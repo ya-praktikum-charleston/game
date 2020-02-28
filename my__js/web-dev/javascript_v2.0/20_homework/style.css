@@ -1,0 +1,80 @@
+.container  {
+    width: 100%;
+}
+
+section {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #444;
+}
+
+.block {
+    width: 75px;
+    height: 75px;
+    margin: 25px;
+    border: 2px solid #333;
+}
+
+.active {
+    background: orange;
+}
+
+.hide {
+    display: none;
+}
+
+.div-10 img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+
+#keyboard {
+    margin: 0;
+    padding: 0 30px;
+    list-style: none;
+}
+#keyboard li {
+    float: left;
+    margin: 0 5px 5px 0;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #807e7e;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+#keyboard li.active {
+    background: #ffb300;
+}
+.capslock, .tab, .left-shift, .left-ctrl {
+    clear: left;
+}
+#keyboard .tab, #keyboard .backspace {
+    width: 95px;
+}
+#keyboard .capslock {
+    width: 85px;
+}
+#keyboard .enter {
+    width: 95px;
+}
+#keyboard .left-shift, #keyboard .right-shift {
+    width: 112px;
+}
+
+#keyboard .left-ctrl, #keyboard .right-ctrl {
+    width: 78px;
+}
+
+#keyboard .left-alt, #keyboard .right-alt {
+    width: 49px;
+}
+
+#keyboard .space {
+    width: 405px;
+}
+

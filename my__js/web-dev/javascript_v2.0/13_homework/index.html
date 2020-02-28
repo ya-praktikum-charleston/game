@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div>
+        <p>Task 1. Выведите массив a1 на страницу.</p>
+        <div class="out_1"></div>
+    </div>
+
+    <hr>
+
+    <div>
+        <p>Task 2. Выведите на страницу элементы из масиива a2 у которых символов больше 4.</p>
+        <div class="out_2"></div>
+    </div>
+
+    <hr>
+
+    <div>
+        <p>Task 3. Выведите на страницу элементы из масиива a3 у которых ключ содержит больше 4 символов.</p>
+        <div class="out_3"></div>
+    </div>
+
+    <hr>
+
+    <div>
+        <p>Task 4. Выведите на страницу элементы из масиива a4 у которых значение - число.</p>
+        <div class="out_4"></div>
+    </div>
+
+    <hr>
+
+    <div>
+        <p>Task 5. Дан ассоциативный массив a5. Найдите сумму элементов находящихся в нем.</p>
+        <div class="out_5"></div>
+    </div>
+
+    <hr>
+
+    <div>
+        <p>Task 6. Создайте ассоциативный массив a6, который содержит ключи name, age, sex, height и значения любого персонажа. Выведите массив на страницу.</p>
+        <div class="out_6"></div>
+    </div>
+
+    <hr>
+
+    <div>
+        <p>Task 7. Создайте ассоциативный массив a7, два input (u7-key__input, u7-value__input) и кнопку. При нажатии кнопки добавляйте в массив новое значение с соответствующим ключем. Выводите массив на страницу.</p>
+        <input type="text" class="u7_key__input" placeholder="Ключ">
+        <input type="text" class="u7_value__input" placeholder="Значение">
+        <button class="u7_bt">Добавить элемент в массив</button>
+        <div class="out_7"></div>
+    </div>
+
+    <hr>
+
+    <div>
+        <p>Task 8. Добавьте к предыдущей задачи input.u8-key__input и кнопку. При нажатии кнопки - удаляйте значение с соответствующим ключем. Выводите массив на страницу.</p>
+        <input type="text" class="u8_value__input" placeholder="Ключ">
+        <button class="u8_bt">Удалить по ключу</button>
+    </div>
+
+    <hr>
+
+    <div>
+        <p>Task 9. Добавьте к предыдущей задачи input.u9-delete-value__input и кнопку. При нажатии кнопки - удаляйте записи с соответствующим значением. Выводите массив на страницу.</p>
+        <input type="text" class="u9_delete_value__input" placeholder="Значение">
+        <button class="u9_bt">Удалить по значению</button>
+    </div>
+
+    <hr>
+
+    <div>
+        <p>Task 10. Добавьте к предыдущей задачи input.u10-has-key__input и кнопку. При нажатии кнопки - возвращайте true если такой ключ есть в массиве, и false если нет.</p>
+        <input type="text" class="u10_has_key__input" placeholder="Ключ">
+        <button class="u10_bt">Проверить наличе в массиве</button>
+        <div class="u10_div"></div>
+    </div>
+
+    <hr>
+
+    <div>
+        <p>Task 11. Создайте массив, который описывает метро киевского метрополитена, выведите его на страницу.</p>
+        <div class="u11_div"></div>
+    </div>
+
+    <hr>
+
+    <div>
+        <p>Task 12. Добавьте к предыдущей задаче select.u12-branch и кнопку. Пользователь может выбрать цвет ветки и нажать кнопку, после чего на страницу будут выведены только станции данной ветки.</p>
+        <select name="" id="t12_select">
+            <option value="red">Красная</option>
+            <option value="green">Зеленая</option>
+            <option value="blue">Синяя</option>
+        </select>
+        <button class="u12_bt">Показать ветки метро</button>
+        <div class="u12_div"></div>
+    </div>
+
+    <hr>
+
+    <div>
+        <p>Task 13. Добавьте к предыдущей задаче кнопку button.u13-reverse которая при нажатии выводит станции ветки в обратном порядке. Внимание! Все подобные задачи не меняют массив, а меняют только вывод!!!</p>
+        <select name="" id="t13_select">
+            <option value="red">Красная</option>
+            <option value="green">Зеленая</option>
+            <option value="blue">Синяя</option>
+        </select>
+        <button class="u13_bt">Показать ветки метро в обратном порядке</button>
+        <div class="u13_div"></div>
+    </div>
+
+    <hr>
+
+    <div>
+        <p>Task 14. Добавьте к предыдущей задаче select.u14-find-station и кнопку. В select - пользователь может выбрать станцию, а вы перебирая массив - вывести ветку на которой эта станция находится.</p>
+        <select name="" id="t14_select" class="station">
+
+        </select>
+        <button class="u14_bt">Показать на какой ветке метро находится станция</button>
+        <div class="u14_div"></div>
+    </div>
+
+    <hr>
+
+    <div>
+        <p>Task 15. Добавьте к предыдущему заданию 2 select где пользователь может выбрать 2 станции, и если они на одной ветке - то по
+            нажатию на кнопку будет показано сколько станций между ними (сами станции не включаем. Если это соседние станции - то 0).</p>
+
+        <select name="" id="t15_select_1" class="station">
+
+        </select>
+
+        <select name="" id="t15_select_2" class="station">
+
+        </select>
+
+        <button class="u15_bt">Количество станций</button>
+        <div class="u15_div"></div>
+    </div>
+
+    <hr>
+
+    <div>
+        <p>Task 16. Добавьте 3 radiobutton.u16-radio которые содержат value = red, green, blue - в соотвтествии с цветом веток метро.
+            Добавьте пустой select.u16-select. При выборе radio - программа должна в select добавлять option с названиями станций метро.
+            Т.е. выбрали radio(value="green") то внутрь select должны быть записаны option со станциями зеленой ветки.
+            Выбрали red - select должен быть очищен и добавлены option со станциями красной ветки.</p>
+
+        <input class="t16" type="radio" name="line_station" id="red" checked> Красная ветка
+        <input class="t16" type="radio" name="line_station" id="green"> Зеленая ветка
+        <input class="t16" type="radio" name="line_station" id="blue"> Синяя ветка
+
+        <select name="" id="t16_select">
+
+        </select>
+
+    </div>
+
+    <hr>
+
+    <div>
+        <p>Task 17. Создайте массив, который описывает метро киевского метрополитена и обозначаются конечные и станции перехода, выведите его на страницу.
+            Конечные - обозначать 0, перехода - 1.</p>
+        <div class="u17_div"></div>
+    </div>
+
+    <hr>
+
+    <div>
+        <p>Task 18. Выведите на страницу только станции с переходами из массива a17.</p>
+        <div class="u18_div"></div>
+    </div>
+
+    <hr>
+
+    <div>
+        <p>Task 19. Создайте ассоциативный массив где ключами являются страны азии, а вложенными массивами - ассоциативный массив содержащий название столицы,
+            количество населения, площадь. Выведите его на страницу.</p>
+        <div class="u19_div"></div>
+    </div>
+
+    <hr>
+
+    <div>
+        <p>Task 20. Дополните массив из задачи 19 так, чтобы пользователь мог сам выбирать страну в select, а необходимая информация подтягивалась на страницу.</p>
+
+        <select name="" id="t20_select">
+
+        </select>
+        <br>
+        <br>
+        <div class="u20_div"></div>
+    </div>
+
+    <hr>
+    <div style="height: 200px;"></div>
+    <script src="script.js"></script>
+</body>
+
+</html>
