@@ -42,7 +42,10 @@
             <p><i>Если стягивающий обновления программист ни чего не делал</i></p>
             <p><code>git pull origin master</code> стягиваем проект</p>
         </li>
-
+        <li>
+            <p><i>Если стягивающий обновления программист вносил изменения</i></p>
+            <p><code>git pull origin master</code> стягиваем проект</p>
+        </li>
     </ul>
 
 
@@ -56,7 +59,28 @@
 </div>
 
 
+<div class="linear" id="use_strict">
 
+    <h2>IT-KAMASUTRA</h2>
+
+    <pre class="brush: js;">
+
+        // стянуть проект
+        git clone https://github.com/it-kamasutra/react-way-of-samurai.git
+
+        // откатится к определенному коммиту
+        gitk --all&     (открыть графическую оболочку гита, чтобы позырить все коммиты)
+        // выбираем нужный коммит и копируем SHAR1 ID
+            ctrl + insert (копировать в буфер обмена)
+            shift + insert (вставить из буфера обмена)
+        git checkout commit-number (пример: git checkout 1f9623bc656e2b0bf8d393b93359a854d31ca5e3) (переключится на нужный коммит)
+
+        // откатить изменения в определенном файле
+        git checkout src/App.js         (src/App.js это путь откуда запустили git)
+    </pre>
+
+
+</div>
 
 
 

@@ -1,0 +1,47 @@
+git init  - инициализация git
+
+git config --global user.name "vit" - имя пользователя
+git config --global user.email vit@email.com  - мэил пользователя
+
+git config --list посмотреть текущие настройки
+
+git status 		посмотреть статус файлов (если файлы красные, то надо добавить в отслеживание гитом)
+
+git add . 		добавить файлы для отслеживания гитом (теперь после git status файлу будут зелеными)
+
+git commit -a -m"name commit"		коммит (слепок), добавляем в репозиторий. -а это добавление всех файлов
+
+git push  	протолкнуть в глобальный репозиторий
+
+git clone	(git clone https://github.com/vit-vokhminov/test.git и наживаем ентер)
+
+git fetch	забрать обновление, но еще не мержить. Для мержинга, нужно добавить команду git pull
+
+git pull	мёржим обновления
+
+
+git branch name_branch 			создаём ветку, name_branch это имя ветки
+
+git branch -v					посмотреть какие ветки есть и в какой находимся
+
+git checkout name_branch		переключиться на ветку name_branch
+
+git checkout -b name_branch3	создаём ветку name_branch3 и сразу в нее перейдём
+
+
+http://kdiff3.sourceforge.net/		прога для мёржинга
+
+git config --global merge.tool kdiff3	указываем гиту утилиту, которая будет решать конфликты
+
+git config --global mergetool.kdiff3.cmd '"C:\\Program Files\\KDiff3\\kdiff3" $BASE $LOCAL $REMOTE -o $MERGED'		откуда запускать эту прогу
+
+git merge		мержим ветки (git merge name_branch) указываем с какой веткой мёржим
+
+git mergetool	мёржим с помошью инструмента который указали
+
+
+git log
+
+git log --pretty=format:"%h - %an, %ar : %s"	посмотреть комиты
+
+git log -p -2 	показать последние два коммита
