@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Регулярные выражения в Notepad++ готовые примеры</title>
+
+
+<!-- All In One SEO Pack 3.5.2[206,282] -->
+
+<style type="text/css">
+    body {
+        background: #a0e7fc;
+        font-family: Arial, serif;
+        padding: 0;
+        margin: 0;
+    }
+
+    #wrapper {
+        padding: 10px 20px;
+        outline: 0px solid #34CFBE;
+        margin: 0 auto;
+        max-width: 940px;
+        background: #f3ffff;
+    }
+
+    .codes {
+        background: #FEFEFE;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 5px double #888;
+        max-height: 400px;
+        overflow: auto;
+    }
+
+    code {
+        font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+        background: transparent;
+        vertical-align: baseline;
+    }
+
+    body, input, textarea {
+        color: #666;
+        font-size: 16px;
+        line-height: 18px;
+    }
+</style>
+
+
+<div id="wrapper">
+
+
+    <p style="font-size:22px; text-align:center;">Подборка регулярных выражений и шаблонов которые применяются в
+        Notepad++ и Excel</p>
+    <p style="font-size:20px;">Символы</p>
+    <table style="width:100%;">
+        <tbody>
+        <tr>
+            <td style="width:50px">
+                <span style="font-weight:bold;">.</span>
+            </td>
+            <td>
+                Точка. Обозначает любой символ
+            </td>
+        </tr>
+        <tr>
+            <td style="width:50px">
+                <span style="font-weight:bold;">\</span>
+            </td>
+            <td>
+                Экранирующий символ. Символы которые экранируются: ^, [, ., $, {, *, (, ), \, +, |, ?, &lt;, &gt;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">^</span>
+            </td>
+            <td>
+                Крышка. Начало строки
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">$</span>
+            </td>
+            <td>
+                Конец строки
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">\d</span>
+            </td>
+            <td>
+                Любая цифра
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">\D</span>
+            </td>
+            <td>
+                Не цифра
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">\s</span>
+            </td>
+            <td>
+                Пробел, табуляция, перенос строки
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">\S</span>
+            </td>
+            <td>
+                Не пробел
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">\w</span>
+            </td>
+            <td>
+                Любая буква латиницы, цифра, или знак подчёркивания
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">\W</span>
+            </td>
+            <td>
+                Не латиница, не цифра, не подчёркивание
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">|</span>
+            </td>
+            <td>
+                Или. Соединяет несколько вариантов
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">\b</span>
+            </td>
+            <td>
+                Граница слова. Применяется когда нужно выделить, что искомые символы являются словом, а не частью
+                другого слова
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">\B</span>
+            </td>
+            <td>
+                Не граница слова
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">\&lt;</span>
+            </td>
+            <td>
+                Начало слова
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">\&gt;</span>
+            </td>
+            <td>
+                Конец слова
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">\A</span>
+            </td>
+            <td>
+                Начало текста
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">\Z</span>
+            </td>
+            <td>
+                Конец текста
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">*</span>
+            </td>
+            <td>
+                Повторитель. Означает что предшествующий символ может работать 0 и более раз
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">+</span>
+            </td>
+            <td>
+                Количество предшествующего не менее 1-го.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">?</span>
+            </td>
+            <td>
+                Ограничитель. Не более одного раза
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">[ ]</span>
+            </td>
+            <td>
+                В квадратных скобках задаются символы к поиску, например [a-яА-Я], или [0-9]
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">[^ ]</span>
+            </td>
+            <td>
+                Исключает из поиска символы указанные в квадратных скобках
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">()</span>
+            </td>
+            <td>
+                В круглые скобки заключаются все комбинации с "или" и поиск начала и конца строк
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">{ }</span>
+            </td>
+            <td>
+                В фигурных скобках указывается точное количество вхождений, например если надо две цифры, то \d{2}, если
+                две или четыре, то \d{2,4}, если четыре и более, то {4,}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="font-weight:bold">\n</span>
+            </td>
+            <td>
+                Новая строка
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <p><span style="font-size:20px;">Шаблоны регулярных выражений</span></p>
+    <p>Заключить каждую строку в теги html, кавычки, скобки</p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        (^.*$)<br>
+        Заменить на:<br>
+        &lt;p&gt;\1&lt;/p&gt; Можно вместо тега или кавычки, или скобки. Если не сработает, то попробуйте добавить перед
+        ними символ экранирования<br>
+    </code></div>
+    <p>Убрать все теги html, вместе с содержимым, оставить только текст между открывающим и закрывающим тегом</p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        [&lt;].*?&gt;<br>
+        Заменить на:<br>
+        Пусто<br>
+    </code></div>
+    <p>Найти даты написанные в формате дд месяц гггг г., остальное убрать</p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        (\d{1,2}+\s+[а-яА-Я]+\s+\d{2,4}+\s+[а-я]\.)|.<br>
+        Заменить на:<br>
+        $1<br>
+    </code></div>
+    <p>Найти дату со слешем, например: 20/5/2020, остальное убрать</p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        (\d{1,2}\/\d{1,2}\/\d{4})|.<br>
+        Заменить на:<br>
+        $1<br>
+    </code></div>
+    <p>Найти даты в формате дд.мм.гггг и дд-мм-гггг, остальное убрать</p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        (\d{1,2}+(-|\.)+\d{1,2}+(-|\.)+\d{2,4})|.<br>
+        Заменить на:<br>
+        $1<br>
+    </code></div>
+    <p>Найти всё между кавычек</p>
+    <div class="codes"><code><br>
+        "([^"]*)"<br>
+    </code></div>
+    <p>Найти всё между скобок</p>
+    <div class="codes"><code><br>
+        \(([^\(]*)\)<br>
+    </code></div>
+    <p>Найти все адреса электронной почты, а остальное всё убрать</p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        (\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b)|.<br>
+        Заменить на:<br>
+        $1<br>
+    </code></div>
+    <p>Удалить всё, оставив только ссылки</p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        ^[^"]+.([^"]+).*<br>
+        Заменить на:<br>
+        $1<br>
+    </code></div>
+    <p>Найти почтовый индекс, а остальное убрать</p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        (\b\d{6}\b)|.<br>
+        Заменить на:<br>
+        $1<br>
+    </code></div>
+    <p>Поменять местами ФИО и дату рождения. Например "Кузнецов Андрей Николаевич 26.10.1983", на "26.10.1983 Кузнецов
+        Андрей Николаевич"</p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        (\w+) (\w+) (\w+) (\d+.\d+.\d+)<br>
+        Заменить на:<br>
+        \4 \1 \2 \3<br>
+    </code></div>
+
+
+    <p>Перенести буквы в начало, в выражениях формата 6465C, 498558JR, 1286458975KTD и т.д.</p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        \b(\d*)([A-Z]+)(\d*)\b<br>
+        Заменить на:<br>
+        $2$1$3<br>
+    </code></div>
+    <p>Удалить атрибут с разными URL</p>
+    <div class="codes"><code><br>
+        tppabs="(.+?)"<br>
+    </code></div>
+    <p>Заменить один html тег на другой, открывающую и закрывающую части</p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        &lt;p&gt;(.*)&lt;/p&gt;<br>
+        Заменить на:<br>
+        &lt;span&gt;\1&lt;/span&gt;<br>
+    </code></div>
+    <p>Удалить всё в строке после определённого символа или слова, вместе с ним</p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        (.*)Примечания(.*)<br>
+        Заменить на:<br>
+        \1<br>
+    </code></div>
+    <p>Удалить всё после символа использующегося и в регулярных выражениях, например *</p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        (.*)\*(.*)<br>
+        Заменить на:<br>
+        \1<br>
+    </code></div>
+    <p>Сделать перенос строки перед каждой заглавной буквой</p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        (\S)([A-ZА-ЯЁ])<br>
+        Заменить на:<br>
+        $1\r\n$2<br>
+    </code></div>
+    <p>Удалить из ссылки всё, кроме домена</p>
+    <div class="codes"><code><br>
+        .*://|/.*<br>
+    </code></div>
+    <p>Убрать всю табуляцию</p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        \t<br>
+        Заменить на:<br>
+        Пусто<br>
+    </code></div>
+    <p>Удалить все комментарии из html кода</p>
+    <div class="codes"><code><br>
+        &lt;!--([\s\S]*?)--&gt;<br>
+    </code></div>
+    <p>Удалить все комментарии из CSS кода</p>
+    <div class="codes"><code><br>
+        \/\*.*?\*\/<br>
+    </code></div>
+    <p>Удалить все комментарии вида // из PHP кода.</p>
+    <div class="codes"><code><br>
+        \//[\s\S]*?\/<br>
+    </code></div>
+    <p>Привести к одному размеру все находящиеся в открытых файлах картинки</p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        &lt;img width="(\d+)" height="(\d+)" src=""&gt;<br>
+        Заменить на:<br>
+        &lt;img width="(200)" height="(200)" src=""&gt;<br>
+    </code></div>
+    <p>Удалить в строке всё после пробела</p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        ^(.+?)\s.+$<br>
+        Заменить на:<br>
+        \1<br>
+    </code></div>
+    <p>Удалить во всех строках всё до определённого символа, например до ?</p>
+    <div class="codes"><code><br>
+        ^.*\?<br>
+    </code></div>
+    <p>Удалить все строки в которых определённое число символов, например меньше 100</p>
+    <div class="codes"><code><br>
+        ^(.{0,100})\r\n<br>
+    </code></div>
+    <p>Удалить все запятые, после которых идёт буква или пробел, но не цифра</p>
+    <div class="codes"><code><br>
+        ,(?=\D)<br>
+    </code></div>
+    <p>Найти и, если надо, удалить время в формате ММ:СС. Актуально для стенограмм и расшифровок видео</p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        (\d+\:\d+)<br>
+        Заменить на:<br>
+        \0 или Пусто<br>
+    </code></div>
+    <p>Взять в круглые скобки время в формате ММ:СС, находящееся в любой части текста </p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        (?&lt;!\d)\d\d:\d\d(?!\d)<br>
+        Заменить на:<br>
+        \($&amp;\)<br>
+    </code></div>
+    <p>Добавить в каждую пустую строку</p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        ^\s*$<br>
+        Заменить на:<br>
+        Любой символ или слово<br>
+    </code></div>
+    <p>Отредактировать расшифровку видео</p>
+    <p>1. Убираем раскадровку по времени</p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        (\d+\:\d+)<br>
+        Заменить на:<br>
+        Пусто<br>
+    </code></div>
+    <p>2. Объединяем предложения, с разделением пустой строкой</p>
+    <div class="codes"><code><br>
+        Найти:<br>
+        (?&lt;=[^.])\r\n\r\n<br>
+        Заменить на:<br>
+        Пусто<br>
+    </code></div>
+</div><!-- .entry-content -->
+					
+
+
