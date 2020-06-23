@@ -118,7 +118,7 @@
 
     <h2>Промисы</h2>
 
-    <p>Представляю способ разобраться в асинхронном поведении</p>
+    <p>Представляют способ разобраться в асинхронном поведении</p>
 
     <pre class="brush: js;">
         const getFakeMembers = count => new Promise((resolves, rejects) => {
@@ -138,8 +138,153 @@
 
 </div>
 
+<div class="linear" id="use_strict">
+
+    <h2>This</h2>
+
+    <p>С помощью <code>this</code> JavaScript определяется точку вызова функции, на который ссылается <code>this</code>. То есть, когда <code>this</code> используется внутри функции, <code>this</code> будет ссылкой на контекст выполнения, из которого выполняется функция.</p>
+
+    <p><b>4 разных способа привязки <code>this</code> в JavaScript</b></p>
+
+    <p>- 1. Ключевое слово <code>new</code></p>
+
+    <p>При применении ключевого слова <code>new</code> будет создан экземпляр определенного пользователем объекта <code>this</code>, который будет привязан к этому объекту. Ключевое слово new делает следующие 4 вещи:</p>
+
+    <ul class="ul_num">
+        <li> Создает пустой, простой объект JavaScript.</li>
+        <li>Связывает этот объект с другим объектом.</li>
+        <li>Передает вновь созданный объект из шага 1 в качестве контекста this.</li>
+        <li>Возвращает this, если функция не возвращает собственный объект.</li>
+
+    </ul>
+
+    <p>- 2. Явная привязка</p>
+
+    <p><code>Call()</code> вызвать функцию с явным указанием контекста, <code>function.call(context, [arg1, arg2...])</code> <i>context</i> это то, чем будет this</p>
+
+    <pre class="brush: js;">
+        const b1 = document.querySelector('.b_1');
+
+        function test() {
+            this.style.background = 'orange';
+        }
+
+        test.call(b1);      // вызвал функцию = this = b1
+
+
+        function test2(color) {
+            this.style.background = color;
+        }
+
+        b2.onclick = function () {
+            test2.call(b1,'green');     // привязали this к кнопке
+        }
+    </pre>
+
+    <br>
+
+    <p><code>Apply()</code> - тот же Call, только аргументы передаем в виде массива, это на случай если мы не знаем колличество нужных для передачи свойств</p>
+
+    <pre class="brush: js;">
+        const b3 = document.querySelector('.b_3');
+
+        function test3(color, text) {
+            this.style.background = color;
+            this.innerHTML = text;
+        }
+
+        b3.onclick = function () {
+            test3.apply(b3,['blue',555]);
+        }
+    </pre>
+
+    <br>
+
+    <p><code>Bind</code> - позволяет привязывать контекст функции и получать новый экземпляр функции</p>
+
+    <pre class="brush: js;">
+        const b4 = document.querySelector('.b_4');
+
+        let a = test3.bind(b4, 'red', 777);
+
+        b4.onclick = a;
+    </pre>
+</div>
+
+<div class="linear" id="use_strict">
+
+    <h2>Модули ES6</h2>
+
+    <p>Если из модуля нужно экспортировать несколько объектов</p>
+
+    <pre class="brush: js;">
+        import { print, log } from './file.js';     // экспортируем две функции
+    </pre>
+
+    <p>Если из модуля нужно экспортировать только один объект, можно воспользоваться инструкцией <code>export default</code></p>
+
+    <pre class="brush: js;">
+        import funk from './file2.js';     // экспортируем один объект
+
+        funk.print();
+    </pre>
+
+    <p>Для переменных модуля можно задать локальную область видимости под другими именами</p>
+
+    <pre class="brush: js;">
+        import { print as p, log as y } from './file.js';
+
+        p('text');
+        y('text2');
+    </pre>
+
+    <p>Можно всё импортировать всё в одну переменную с помощью знака <code>*</code></p>
+
+    <pre class="brush: js;">
+        import * as fns from './file.js';
+    </pre>
+</div>
+
+<div class="linear" id="use_strict">
+
+    <h2>CommonJS</h2>
+
+    <p>благодаря CommonJS объекты экспортируются с применением <code>module.exports</code></p>
+
+    <pre class="brush: js;">
+        const print(message) => log( message, new Date() )
+
+        const log(message, timestamp) =>
+            console.log(`${message}: ${timestamp}`)
+
+        module.exports = {print, log}
+    </pre>
+
+    <p>CommonJS не поддерживает инструкцию <code>import</code>. Вместо неё используется инструкция <code>require</code></p>
+
+    <pre class="brush: js;">
+        const {log, print} = require('./file.js')
+    </pre>
+</div>
+
 
 <!--
+
+<div class="linear" id="use_strict">
+
+    <h2>2222222222222222</h2>
+
+
+    <p>3333333333333333333</p>
+
+    <pre class="brush: js;">
+
+    </pre>
+
+</div>
+
+
+
 
     <div class="linear" id="use_strict">
         <h1>11111111111111111</h1>
