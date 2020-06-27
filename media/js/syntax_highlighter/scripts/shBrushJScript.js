@@ -27,8 +27,8 @@
 						'new null return super switch ' +
 						'this throw true try typeof var while with ' +
 						'let alert const console.log split of forEach Object.fromEntries entries ' +
-						'document getElementById innerHTML querySelector onclick value trim '
-						;
+						'document getElementById innerHTML querySelector onclick value trim ' +
+						'React.createElement ReactDOM.render';
 
 		var r = SyntaxHighlighter.regexLib;
 		

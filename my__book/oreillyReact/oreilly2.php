@@ -1,10 +1,10 @@
-<?php include '../include/header.php'; ?>
+<?php include '../../include/header.php'; ?>
 
 
 
 <div class="linear" id="use_strict">
 
-	<h1>Новый синтаксис Java Script</h1>
+	<h1>2. Новый синтаксис JavaScript</h1>
 	<h2>Деструктивное присваивание</h2>
 
     <p>Область видимости для локального применения</p>
@@ -309,4 +309,4 @@
 
 
 
-<?php include '../include/footer.php'; ?>
+<?php include '../../include/footer.php'; ?>

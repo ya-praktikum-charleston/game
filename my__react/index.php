@@ -11,7 +11,6 @@
         <li class="list-sub__item">
             <div class="list-sub__title"><a class="list-sub__link" href="wordbook.php">WebDev</a></div>
             <div class="list-sub__title"><a class="list-sub__link" href="samurai.php">ReactJS - Путь Самурая</a></div>
-            <div class="list-sub__title"><a class="list-sub__link" href="oreilly.php">o'reilly - React и Redux</a></div>
         </li>
         
     </ul>
