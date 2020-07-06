@@ -445,8 +445,173 @@
 	</pre>
 
 </div>
-	
-	
+
+<div class="linear" id="use_strict">
+
+    <h2>87 - shouldComponentUpdate, PureComponent, memo - React JS</h2>
+
+    <p>Что-бы не было лишних вызовов жизненного цикла добавляем</p>
+
+    <pre class="brush: js;">
+        // для классовых компонентов
+        import React from 'react';                             // было
+        import React, {PureComponent} from 'react';             // стало
+
+        class HeaderContainer extends React.Component {         // было
+        class HeaderContainer extends React.PureComponent {     // стало
+    </pre>
+    <br>
+    <pre class="brush: js;">
+        // для функциональных компонентов
+        const Header = (props) => {                             // было
+        const Header = React.memo(props => {                    // стало и в конце функции добавить скобку
+    </pre>
+</div>
+
+<div class="linear" id="use_strict">
+
+    <h2>89 - Тесты, jest, tdd, тестируем reducer - React JS</h2>
+
+    <p>Рядом с тестируемым файлом добавляем файл с расширением test, например: <code>app-reducer.test.js</code></p>
+
+    <pre class="brush: js;">
+        import appReducer, {addCity, deleteCity, newCity, statusFavoritesBt} from "./app-reducer";
+        import React from "react";
+
+
+        let state = {
+            favoritesBt: false,
+            cities : [
+                {
+                    name : 'Новосибирск',
+                    id : 1496747
+                }
+            ],
+            newCity: []
+        };
+
+
+        it('number of cities added', () => {
+            let action = addCity({name: "Владивосток", id: 2013348});
+            let newState = appReducer(state, action);
+            expect(newState.cities.length).toBe(2);
+        });
+
+        it('number of newCity added', () => {
+            let action = newCity({name: "Мурманск", id: 524305});
+            let newState = appReducer(state, action);
+            expect(newState.cities.length).toBe(1);
+        });
+
+        it('number of cities after deletion', () => {
+            let action = deleteCity(1496747);
+            let newState = appReducer(state, action);
+            expect(newState.cities.length).toBe(0);
+        });
+
+        it('status favoritesBt', () => {
+            let action = statusFavoritesBt(true);
+            let newState = appReducer(state, action);
+            expect(newState.favoritesBt).toBe(true);
+        })
+    </pre>
+
+</div>
+
+<div class="linear" id="use_strict">
+
+    <h2>91 - chrome extensions для react и redux - React JS</h2>
+
+    <p>Ставим расширения для Chrome <a target="_blank" href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=ru">React Developer Tools</a></p>
+    <p>Ставим расширения для Chrome <a target="_blank" href="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=ru">Redux DevTools</a></p>
+
+    <p>В консоли появляются вкладки <b><i>Components</i></b> и <b><i>Profiler</i></b>:</p>
+
+    <p>- <b><i>Components</i></b> показывает всё дерево компонентов</p>
+    <p>- <b><i>Profiler</i></b> позволяет записывать рендеринги, отслеживать какая компонента сколько рендерилась и по какой причине</p>
+
+    <br>
+
+    <p>Для приложения <b><i>Redux DevTools</i></b> в файле <code>redux-store.js</code> добавляем:</p>
+
+    <pre class="brush: js;">
+        import {combineReducers, compose, createStore} from "redux";
+        import appReducer from "./app-reducer";
+
+        let reducers = combineReducers({
+            appReducer: appReducer,
+        });
+
+        // добавляем
+        const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+        const store = createStore(reducers,  composeEnhancers());
+
+
+        window.store = store;
+        export default store;
+    </pre>
+    <br>
+
+    <pre class="brush: js;">
+        // если нужен applyMiddleware
+        import {applyMiddleware, combineReducers, compose, createStore} from "redux";
+
+        const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+        const store = createStore(reducers,  composeEnhancers(applyMiddleware(thunkMiddleware)));
+    </pre>
+</div>
+
+<div class="linear" id="use_strict">
+
+    <h2>92 - тестриуем компоненты, react-test-renderer - React JS</h2>
+
+    <p>Читай статью: <a target="_blank" href="https://www.valentinog.com/blog/testing-react/">Testing React Components with react-test-renderer, and the Act API</a></p>
+
+    <p>В файле <code>App.test.js</code> происходит следующее:</p>
+
+    <pre class="brush: js;">
+        const div = document.createElement('div');
+        ReactDOM.render(&lt;App /&gt;, div); - монтирование компоненты в дивку, просто в память, нигде не отрендерится
+        ReactDOM.unmountComponentAtNode(div) - демонтирование компоненты из дивки
+    </pre>
+
+    <br>
+
+    <p>Устанавливаем <b><i>npm i react-test-renderer@16.13.0 --save-dev</i></b>.</p>
+
+    <pre class="brush: js;">
+        npm i react-test-render --save-dev
+        npm i --save-dev enzyme
+        npm i --save-dev react-addons-test-utils
+        npm i --save-dev react-dom
+    </pre>
+
+    <p>Создаём файл для тестирования компоненты, например: <code>CitiesContainer.test.js</code></p>
+
+    <pre class="brush: js;">
+        // в нём
+        import React from "react";
+        import { create } from "react-test-renderer";
+
+        describe("Button component", () => {
+            test("Matches the snapshot", () => {
+                const button = create(&lt;Button /&gt;);
+                expect(button.toJSON()).toMatchSnapshot();
+            });
+        });
+    </pre>
+
+    <p><b><i>describe</i></b> - позволяет обьеденить тесты в одну группу, внутри describe может быть набор тестов</p>
+    <p><b><i>create</i></b> - виртуально, фейково создает компоненту, (VirtualDOM, разметка ...)</p>
+    <p><b><i>getInstance</i></b> - дай мне экземпляр объекта для взаимодействия</p>
+    <p><b><i>component.root.findByType("span")</i></b> - пример поиска span в компоненте созданной через create</p>
+    <p><b><i>proto</i></b> - это ссылка на прототип класса с помощью которого создан обьект</p>
+
+
+</div>
+
+
+
 <!--
 
     <div class="linear" id="use_strict">

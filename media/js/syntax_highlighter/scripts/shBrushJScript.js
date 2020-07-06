@@ -24,11 +24,13 @@
 		var keywords =	'break case catch continue ' +
 						'default delete do else false  ' +
 						'for function if in instanceof ' +
-						'new null return super switch ' +
+						'new null return super switch clearInterval setInterval' +
 						'this throw true try typeof var while with ' +
 						'let alert const console.log split of forEach Object.fromEntries entries ' +
 						'document getElementById innerHTML querySelector onclick value trim ' +
-						'React.createElement ReactDOM.render';
+						'React.createElement ReactDOM.render componentWillMount componentDidMount componentWillUnmount import setState ' +
+						'unmountComponentAtNode from render window.React window React subscribe unsubscribeLogger getState createStore localStorage ' +
+						'combineReducers JSON.parse JSON.stringify dispatch toString new Date';
 
 		var r = SyntaxHighlighter.regexLib;
 		

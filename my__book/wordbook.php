@@ -1,4 +1,4 @@
-<?php include '../include/header.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'].'/include/header.php'; ?>
 
 
 <div class="linear" id="use_strict">
@@ -48,4 +48,4 @@
 
 
 
-<?php include '../include/footer.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'].'/include/footer.php'; ?>

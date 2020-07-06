@@ -38,8 +38,8 @@
 
 <body>
 
-
 <br>
+
 <div class="main_wrapper">
 
     <div class="wrapper">
@@ -58,7 +58,16 @@
 
         <div class="main">
 
+            <?php
+                if(isset($_SERVER['HTTP_REFERER'])) { ?>
+                    <p class="break_list"><a href="<?php echo $_SERVER['HTTP_REFERER'] ?>">&#8617; Назад</a></p>
+                <?php
+                }
+            ?>
+
 
             <div class="container">
+
+
 
 
