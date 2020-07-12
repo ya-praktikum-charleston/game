@@ -7,7 +7,7 @@
     <p><i>Содержание:</i></p>
     <ul>
         <li><a class="list-sub__link" href="#2_new_syntax_javaScript">2. Новый синтаксис JavaScript</a></li>
-        <li><a class="list-sub__link" href="#3_funk_progr">3. Функциональное программирование с примеенением JavaScript</a></li>
+        <li><a class="list-sub__link" href="#3_funk_progr">3. Функциональное программирование с применением JavaScript</a></li>
         <li><a class="list-sub__link" href="#4_clean_react">4. Чистый React</a></li>
         <li><a class="list-sub__link" href="#5_react_JSX">5. React с JSX</a></li>
         <li><a class="list-sub__link" href="#7_properties">7. Усовершенствование компонентов</a></li>
@@ -281,7 +281,7 @@
 
 <div class="linear" id="3_funk_progr">
 
-    <h1>3. Функциональное программирование с примеенением JavaScript</h1>
+    <h1>3. Функциональное программирование с применением JavaScript</h1>
     <p>Функция считается <b><i>элементом первого класса</i></b>, когда может быть объявлена в качестве переменной и отправлена другим функциям в качестве аргумента. Такие функции могут быть даже возвращены из других функций.</p>
 
     <h2>Значение понятия функциональности</h2>

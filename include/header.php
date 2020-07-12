@@ -67,7 +67,3 @@
 
 
             <div class="container">
-
-
-
-

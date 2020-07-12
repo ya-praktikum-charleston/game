@@ -9,7 +9,7 @@
     <h2 class="frontpage-content__title"><a href="/my__node/index.php">Node.js</a></h2>
     <h2 class="frontpage-content__title"><a href="/my__php/index.php">PHP</a></h2>
     <h2 class="frontpage-content__title"><a href="/my__git/index.php">Git</a></h2>
-    <h2 class="frontpage-content__title"><a href="/my__book/index.php">Книги</a></h2>
+    <h2 class="frontpage-content__title"><a href="/my__books/index.php">Книги</a></h2>
 
 
 
