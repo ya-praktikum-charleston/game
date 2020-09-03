@@ -11,5 +11,12 @@ $(document)
     })
     .ready(function() {
 
+       
 
-    });
+});
+
+
+
+if(document.querySelector('.nav_bar')){
+    document.querySelector('.main').classList.add("page_navbar");;
+}
