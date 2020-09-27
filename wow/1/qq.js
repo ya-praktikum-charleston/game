@@ -1,7 +1,3 @@
-
-
-
-
 /*flatten([1, 'any [complex] string', null, function() {}, [1, 2, [3, '4'], 0], [], { a: 1 , b: 2 }]);
 // возвращает
 //      [1, 'any [complex] string', null, function() {}, 1, 2, 3, '4', 0, { a: 1 }]
@@ -23,6 +19,8 @@ function flatten(list) {
     console.log( ...list  )
 
 }*/
+
+
 
 
 

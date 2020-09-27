@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<!-- saved from url=(0222)file:///C:/Users/%D0%92/Downloads/1111/%D0%9D%D0%BE%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%B0%D0%BF%D0%BA%D0%B0/%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20Redux%20&%20React-redux%20_%20%D0%A5%D0%B0%D0%B1%D1%80.html -->
+<html lang="ru" class="no-js fonts-loaded"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <meta content="width=1024" name="viewport">
+    <title>Введение в Redux &amp; React-redux / Хабр</title>
+
+
+
+
+
+
+    <style type="text/css">
+        @font-face {
+            font-family: 'Fira Sans';
+            font-style: normal;
+            font-weight: 500;
+            src: url(https://dr.habracdn.net/habr/5f60e105/fonts/FiraSans/firaSans-medium.eot);
+            src: local("Fira Sans Medium"), local("FiraSans-Medium"), url(https://dr.habracdn.net/habr/5f60e105/fonts/FiraSans/firaSans-medium.eot?#iefix) format("embedded-opentype"), url(https://dr.habracdn.net/habr/5f60e105/fonts/FiraSans/firaSans-medium.woff2) format("woff2"), url(https://dr.habracdn.net/habr/5f60e105/fonts/FiraSans/firaSans-medium.woff) format("woff"), url(https://dr.habracdn.net/habr/5f60e105/fonts/FiraSans/firaSans-medium.ttf) format("truetype")
+        }
+
+        .h-info table th p::first-child,.h-info table td p::first-child{margin-top:0}
+        /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
+        html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,section{display:block}h1{font-size:2em;margin:.67em 0}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}b{font-weight:inherit}b{font-weight:bolder}code{font-family:monospace,monospace;font-size:1em}img{border-style:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;background:#fafafa}.hljs-comment{color:#a0a1a7;font-style:italic}.hljs-keyword{color:#a626a4}.hljs-name{color:#e45649}.hljs-literal{color:#0184bb}.hljs-string{color:#50a14f}.hljs-built_in{color:#c18401}.hljs-attr{color:#986801}.hljs-title{color:#4078f2}
+        /*!
+         * Datepicker for Bootstrap v1.6.4 (https://github.com/eternicode/bootstrap-datepicker)
+         *
+         * Copyright 2012 Stefan Petre
+         * Improvements by Andrew Rowls
+         * Licensed under the Apache License v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+         */html,body{height:100%}body{color:#333;font-size:14px;line-height:1.5;font-weight:400;font-style:normal;text-rendering:optimizeLegibility;font-family:"-apple-system",BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}a{color:#548eaa;text-decoration:none}a:hover{color:#487284}.js-sticky-wrapper{display:flex}.layout{position:relative;min-width:1024px;width:100%;border-spacing:0;border-collapse:collapse;background:#fff;display:flex;min-height:100vh;flex-direction:column}.layout__row{width:100%}.layout__row_body{height:auto;flex:1 0 auto}.layout__cell{box-sizing:border-box;margin:0 auto;padding:0 32px;width: 1024px;}.layout__cell_body{padding-top:20px;padding-bottom:60px}:root{--percent-value: 0%}.column-wrapper{position:relative;width:100%;display:flex}.column-wrapper:after{clear:both;content:'';display:table}.column-wrapper_post{margin-bottom:20px}.content_left{float:left;box-sizing:border-box;width:100%;min-height:1px}@-moz-document url-prefix(){}.post__title{margin:0;margin-bottom:9px;word-break:break-word}.post__title_full{margin-bottom:4px}.post__title-text{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;color:#343434;font-weight:500;font-size:32px;line-height:40px}.fonts-loaded .post__title-text{font-weight:500;font-family:'Fira Sans',sans-serif}.post__body{margin-bottom:24px}.post__body_full{clear:both;margin-bottom:24px;padding-top:32px}.post__text{font-size:16px;line-height:1.56;font-family:"-apple-system",BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;overflow-wrap:break-word}.post__text-html{margin-right:-5px;padding-right:5px;color:#222;font-family:"-apple-system",BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}.post__text-html h1,.post__text-html h2,.post__text-html h3{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;margin:0;padding:0;font-weight:500}.fonts-loaded .post__text-html h1,.fonts-loaded .post__text-html h2,.fonts-loaded .post__text-html h3{font-weight:500;font-family:'Fira Sans',sans-serif}.post__text-html h1,.post__text-html h2{font-size:24px;line-height:32px}.post__text-html h3{font-size:20px;line-height:28px}.post__text-html a{color:#548eaa;text-decoration:none}.post__text-html a:visited{color:#992298}.post__text-html a:hover{color:#487284;text-decoration:underline}.post__text-html blockquote{display:block;margin:12px 0;padding:18px 20px;background:#fff7d7}.post__text-html img{margin:0;vertical-align:middle;max-width:100%;height:auto}.post__text-html code{white-space:normal;font-size:14px;font-family:Menlo,Monaco,'Consolas','Courier New',monospace}.post__text-html pre .hljs{display:block}.post__text-html pre{display:block;overflow-x:auto;overflow-y:hidden;margin:0;padding:0;word-break:break-all}.post__text-html pre code{display:block;padding:17px 20px 20px;border:1px solid #e5e8ec;background:#fbfdff;white-space:pre-wrap}:root{--quickFade-time: 1.5s;--fade-time: 2s;--blur-time: 2s;--blur-amount: 0.088em}@media print{body{background:#fff}.content_left{width:100%;float:none;padding-right:0}}
+        .logo__react_title {width: 700px;}
+     </style>
+
+
+
+</head>
+
+<body class="nl">
+
+<div class="layout">
+
+    <div class="layout__row layout__row_body">
+        <div class="layout__cell layout__cell_body">
+
+            <section class="column-wrapper column-wrapper_post js-sticky-wrapper">
+                <div class="content_left js-content_left">
+
+                    <article class="post post_full" id="post_498860" lang="ru">
+                        <div class="post__wrapper">
+
+                            <h1 class="post__title post__title_full">
+                                <span class="post__title-text">Введение в Redux &amp; React-redux</span>
+                            </h1>
+
+                            <div class="post__body post__body_full">
+                                <div class="post__text post__text-html post__text_v1" id="post-content-body">
+                                    <img src="https://hsto.org/getpro/habr/post_images/1d3/8bd/7bf/1d38bd7bfd244a573a3170a3f753c900.png" alt="image" class="logo__react_title"><br>
+                                    <br>
+                                    <h1>Оглавление</h1><br>
+                                    <a href="#00">Введение</a><br>
+                                    <a href="#01">1. Установка и начало работы</a><br>
+                                    <a href="#02">2. Redux</a><br>
+                                    ....<a href="#021">2.1 createStore</a><br>
+                                    ....<a href="#022">2.2 reducer()</a><br>
+                                    ....<a href="#023">2.3 dispatch()</a><br>
+                                    ....<a href="#024">2.4 actionCreator()</a><br>
+                                    ....<a href="#025">2.5 Actions</a><br>
+                                    ....<a href="#026">2.6 getState()</a><br>
+                                    ....<a href="#027">2.7 subscribe()</a><br>
+                                    ....<a href="#028">2.8 combineReducers()</a><br>
+                                    ....<a href="#029">2.9 initialState</a><br>
+                                    <a href="#03">3. React-redux</a><br>
+                                    ....<a href="#031">3.1 Provider</a><br>
+                                    ....<a href="#032">3.2 mapStateToProps()</a><br>
+                                    ....<a href="#033">3.3 mapDispatchToProps()</a><br>
+                                    ....<a href="#034">3.4 connect()</a><br>
+                                    <br>
+                                    <a name="00"></a>
+                                    <h2>Введение</h2><br>
+                                    Вот вы прочитали <a href="https://habr.com/ru/post/461541/">мою статью про React</a>
+                                    (если нет, то настоятельно рекомендую вам сделать это) и начали разрабатывать
+                                    приложения на нём. Но что это? Вы замечаете, как с расширением вашего приложения
+                                    становится всё сложнее следить за текущим состоянием, сложно следить за тем, когда и
+                                    какие компоненты рендарятся, когда они не рендарятся и почему они не рендарятся,
+                                    сложно следить за потоком изменяющихся данных. Для этого и есть библиотека Redux.
+                                    Сам React хоть и лёгкий, но для комфортной разработки на нем нужно много чего
+                                    изучить.<br>
+                                    <a name="habracut"></a><br>
+                                    И сегодня мы разберём 2 библиотеки: Redux и React-redux. Для использования Redux'а
+                                    вам не нужно скачивать дополнительных библиотек, но, если использовать его в связке
+                                    с библиотекой React-redux разработка становится ещё удобнее и проще.<br>
+                                    <br>
+                                    Все примеры из этой статьи вы можете найти в <a href="https://github.com/Ruslan101/Basical-react-redux-app" rel="nofollow">этом </a>
+                                    репозитории на Github. Там находится полностью настроенное приложение React с
+                                    использованием Redux и React-redux. Вы можете использовать его как начальную точку
+                                    для вашего проекта. Изменяйте названия файлов и добавляйте новые в этот репозитории
+                                    для создания собственного приложения. Смотрите во вкладку релизы для того что бы
+                                    найти разные версии приложения. Первая содержит приложение только с использованием
+                                    Redux, второе с использованием Redux и React-redux.<br>
+                                    <br>
+                                    <b>Мотивация использования Redux</b><br>
+                                    <br>
+                                    Механизм локального хранилища компонента, который поставляется вместе с базовой
+                                    библиотекой (React) неудобен тем, что такое хранилище изолировано. К примеру, если
+                                    вы хотите, чтобы разные независимые компоненты реагировали на какое-либо событие,
+                                    вам придётся либо передавать локальное состояние в виде пропсов дочерним
+                                    компонентам, либо поднимать его вверх до ближайшего родительского компонента. В
+                                    обоих случаях делать это не удобно. Код становится более грязным, трудночитаемым, а
+                                    компоненты зависимыми от их вложенности. Redux снимает эту проблему так как всё
+                                    состояние доступно всем компонентом без особых трудностей.<br>
+                                    <br>
+                                    Redux является универсальным средством разработки и может быть использован в связке
+                                    с различными библиотеками и фреймворками. В этой же статье будет рассматривается
+                                    использование Redux в React приложениях.<br>
+                                    <br>
+                                    <a name="01"></a>
+                                    <h2>1. Установка Redux и начало работы</h2><br>
+                                    Используете ли вы Yarn или Npm, выполните одну из этих команд для установки
+                                    Redux:<br>
+                                    <br>
+                                    <pre><code class="bash hljs"><span class="hljs-comment"># NPM</span>
+npm install redux
+
+<span class="hljs-comment"># Yarn</span>
+yarn add redux </code></pre>
+                                    <br>
+                                    Скорее всего вы используете папку src в которой хранится ваша кодовая база. Файлы,
+                                    связанные с redux принято хранить в отдельной папке. Для этого я использую папку
+                                    /src/store в которой хранится всё то, что связано с Redux и хранилищем приложения.
+                                    Вы можете назвать ее по другому или поместить в другое место.<br>
+                                    <br>
+                                    Создайте базовую структуру для хранилища. Она должна выглядит примерно следующим
+                                    образом:<br>
+                                    <br>
+                                    <code>.store<br>
+                                        ├── actionCreators<br>
+                                        │ ├── action_1.js<br>
+                                        │ └── action_2.js<br>
+                                        ├── actions<br>
+                                        │ ├── action_1.js<br>
+                                        │ └── action_2.js<br>
+                                        ├── reducers<br>
+                                        │ ├── reducer_1.js<br>
+                                        │ ├── reducer_2.js<br>
+                                        │ └── rootReducer.js<br>
+                                        ├── initialState.js<br>
+                                        └── store.js<br>
+                                    </code><br>
+                                    Конечно здесь я использовал примитивные названия для файлов, это сделано для
+                                    наглядности. В настоящем проекте так называть файлы не стоит.<br>
+                                    <br>
+                                    <a name="02"></a>
+                                    <h2>2. Redux</h2><br>
+                                    <a name="021"></a>
+                                    <h2>2.1 createStore</h2><br>
+                                    Когда вы создали базовую структуру для работы с хранилищем Redux пришло время понять
+                                    то как вы можете взаимодействовать с ним.<br>
+                                    <br>
+                                    Глобальное хранилище приложения создаётся в отдельном файле, который как правило
+                                    называется store.js: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-comment">// Код файла store.js</span>
+<span class="hljs-keyword">import</span> { createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span>;
+
+<span class="hljs-keyword">const</span> store = createStore(reducer);
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> store;</code></pre>
+                                    <br>
+                                    <a name="022"></a>
+                                    <h3>2.2 reducer()</h3><br>
+                                    reducer — чистая функция которая будет отвечать за обновление состояния. Здесь
+                                    реализовывается логика в соответствие с которой будет происходить обновление полей
+                                    store.<br>
+                                    <br>
+                                    Так выглядит базовая функция reducer: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reducer</span>(<span class="hljs-params">state, action</span>) </span>{
+    <span class="hljs-keyword">switch</span>(action.type) {
+        <span class="hljs-keyword">case</span> ACTION_1: <span class="hljs-keyword">return</span> { <span class="hljs-attr">value</span>: action.value_1 };
+        <span class="hljs-keyword">case</span> ACTION_2: <span class="hljs-keyword">return</span> { <span class="hljs-attr">value</span>: action.value_2 };
+
+        <span class="hljs-keyword">default</span>: <span class="hljs-keyword">return</span> state;
+    }
+}</code></pre>
+                                    <br>
+                                    Функция принимает значение текущего состояния и обьект события (action). Обьект
+                                    события содержит два свойства — это тип события (action.type) и значение события
+                                    (action.value).<br>
+                                    <br>
+                                    К примеру если нужно обработать событие onChange для поля ввода то объект события
+                                    может выглядеть так: <br>
+                                    <br>
+                                    <pre><code class="json hljs">{
+    type: <span class="hljs-string">"ACTION_1"</span>,
+    value: <span class="hljs-string">"Здесь значение поля формы"</span>
+}</code></pre>
+                                    <br>
+                                    Некоторые события могут не нуждаться в передаче каких-либо значении. К примеру,
+                                    обрабатывая событие onClick мы можем сигнализировать о том, что событие произошло,
+                                    более никаких данных не требуется, а как на него реагировать будет описывать логика,
+                                    заложенная непосредственно в сам компонент которой должен на него реагировать и
+                                    частично в reducer. Но во всех случаях необходимо определять тип события. Редьюсер
+                                    как бы спрашивает: что произошло? actio.type равен «ACTION_1» ага значит произошло
+                                    событие номер 1. Дальше его нужно как то обработать и обновить состояние. То, что
+                                    вернёт редьюсер и будет новым состоянием.<br>
+                                    <br>
+                                    ACTION_1 и ACTION_2 это константы событий. По-другому Actions. Про них мы поговорим
+                                    далее <a href="http:/#025">2.5 Actions</a>.<br>
+                                    <br>
+                                    Как вы уже догадались store может хранить сложную структуру данных состоящих из
+                                    набора независимых свойств. Обновление одного свойства оставит нетронутым другие
+                                    свойства. Так из примера выше, когда происходит событие номер один (ACTION_1)
+                                    обновляется поле номер один (value_1) в store при этом поле номер два (value_2)
+                                    остаётся нетронутым. В общем механизм схож с методом this.setState().<br>
+                                    <br>
+                                    <a name="023"></a>
+                                    <h3>2.3 dispatch()</h3><br>
+                                    Что бы обновить store необходимо вызвать метод dispatch(). Он вызывается у объекта
+                                    store который вы создаёте в store.js. Этот объект принято называть store поэтому
+                                    обновление состояния в моём случае выглядит так: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs">store.dispatch({ <span class="hljs-attr">type</span>: ACTION_1, <span class="hljs-attr">value_1</span>: <span class="hljs-string">"Some text"</span> });</code></pre>
+                                    <br>
+                                    Onchange это константа события о которой речь пойдет дальше (см. <a href="#025">Actions</a>).<br>
+                                    <br>
+                                    Эта функция вызовет функцию reducer который обработает событие и обновит
+                                    соответствующие поля хранилища.<br>
+                                    <br>
+                                    <a name="024"></a>
+                                    <h3>2.4 actionCreator()</h3><br>
+                                    На самом деле передавать объект события напрямую в dispatch() является признаком
+                                    плохого тона. Для этого нужно использовать функцию под названием actionCreator. Она
+                                    делает ровно то что и ожидается. Создаёт событие! Вызов этой функции нужно
+                                    передавать как аргумент в dispatch а в actionCreator передавать необходимое значение
+                                    (value). Базовый actionCreator выглядит следующим образом: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">action_1</span>(<span class="hljs-params">value</span>) </span>{
+    <span class="hljs-keyword">return</span> {
+        <span class="hljs-attr">type</span>: ACTION_1,
+        <span class="hljs-attr">value_1</span>: value
+    };
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> action_1;</code></pre>
+                                    <br>
+                                    Таким образом вызов dispatch должен выглядеть так: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs">store.dispatch(action_1(<span class="hljs-string">"Some value"</span>));</code></pre>
+                                    <br>
+                                    С использованием actionCreator код становится более чистым.<br>
+                                    <br>
+                                    <a name="025"></a>
+                                    <h3>2.5 Actions</h3><br>
+                                    actions это константы, описывающие событие. Обычно это просто строка с названием
+                                    описывающее событие. К примеру константа описывающее событие номер один будет
+                                    выглядеть следующем образом: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> ACTION_1 = <span class="hljs-string">"ACTION_1"</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> ACTION_1;</code></pre>
+                                    <br>
+                                    Опять же в проекте вам стоит называть константы в соответствии с событием, которое
+                                    она описывает: onClick, createUserSesion, deleteItem, addItem и т.д. Главное, чтобы
+                                    было понятно. Замете что я нигде не писал import поэтому не забудьте импортировать
+                                    ваши константы перед их использованием. Потому что константы тоже принято разбивать
+                                    на отдельные файлы храня их в специальной папке. Хотя некоторые хранят их в одном
+                                    файле под названием actionTypes.js. Такое решение нельзя назвать не правильным, но и
+                                    не идеальным.<br>
+                                    <br>
+                                    <a name="026"></a>
+                                    <h3>2.6 getState()</h3><br>
+                                    С помощью dispatch() обновили, а как теперь посмотреть новое значение store? Ничего
+                                    изобретать не нужно, есть метод getState(). Он также, как и метод dispatch
+                                    вызывается на экземпляре объекта store. Поэтому для моего примера вызов <br>
+                                    <br>
+                                    <pre><code class="javascript hljs">store.getState()</code></pre>
+                                    <br>
+                                    вернёт значение полей хранилища. К примеру что бы посмотреть значение поля value_1
+                                    необходимо будет вызвать <br>
+                                    <br>
+                                    <pre><code class="javascript hljs">store.getState().value_1</code></pre>
+                                    <br>
+                                    <a name="027"></a>
+                                    <h3>2.7 subscribe()</h3><br>
+                                    А как же узнать, когда состояние обновилось? Для этого есть метод subscribe(). Он
+                                    также вызывается на экземпляре store. Данный метод принимает функцию, которая будет
+                                    вызывается каждый раз после обновления store. Он как бы «подписывает» функцию,
+                                    переданную ему на обновление. К примеру следующий код при каждом обновлении (при
+                                    каждом вызове dispatch()) будет выводить новое значение store в консоль. <br>
+                                    <br>
+                                    <pre><code class="javascript hljs">store.subscribe(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.info(store.getState()))</code></pre>
+                                    <br>
+                                    Этот метод возвращает функцию unsubscribe(). Которая позволяет «отписаться от
+                                    обновления». К примеру если компонент удаляется из DOM стоит отписать его методы от
+                                    обновления в componentWillUnmount(). Этот метод жизненного цикла вызывается при
+                                    размонтировании компонента и это именно то место где стоит отписываться от
+                                    обновления. Проще говоря в деструкторе.<br>
+                                    <br>
+                                    <a name="028"></a>
+                                    <h3>2.8 combineReducers()</h3><br>
+                                    combineReducers() позволяет объединить несколько редьюсеров в один.<br>
+                                    <br>
+                                    Если логика обновления компонентов довольно сложна и\или необходимо обрабатывать
+                                    большое количество различных типов событий, то корневой reducer может стать слишком
+                                    громоздким. Лучшим решением будет разбить его на несколько отдельных редьюсеров
+                                    каждый из которых отвечает за обработку только одного типа событий и обновления
+                                    определённого поля.<br>
+                                    <br>
+                                    <b>Внимание!</b><br>
+                                    <blockquote>Когда вы разбиваете базовый редьюсер на несколько, то название каждого
+                                        из них должно соответствовать полю которое он обновляет в store.
+                                    </blockquote>
+                                    К примеру если редьюсер обновляет поле номер один, то он может выглядеть так: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">value_1</span>(<span class="hljs-params">state, action</span>) </span>{
+    <span class="hljs-keyword">switch</span>(action.type) {
+        <span class="hljs-keyword">case</span> ACTION_1: <span class="hljs-keyword">return</span> action.value_1;
+
+        <span class="hljs-keyword">default</span>: <span class="hljs-keyword">return</span> state;
+    }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> value_1;</code></pre>
+                                    <br>
+                                    Название редьюсера (value_1) показывает какое свойство он будет обновлять в store.
+                                    Если переименуете его в value_2 то он станет обновлять value_2. Поэтому учтите
+                                    это!<br>
+                                    <br>
+                                    Когда используется единый редьюсер мы показываем какое поле хотим обновить: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"> <span class="hljs-keyword">case</span> ACTION_1: <span class="hljs-keyword">return</span> { <span class="hljs-attr">value_1</span>: action.value_1 };</code></pre>
+                                    <br>
+                                    Но когда вы разделили ваши редьюсеры вам нужно просто вернуть новое значение: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">case</span> ACTION_1: <span class="hljs-keyword">return</span> action.value_1;</code></pre>
+                                    <br>
+                                    Поскольку здесь не требуется указывать которое из полей обновляет редьюсер ибо его
+                                    название и есть поле которое он обновляет.<br>
+                                    <br>
+                                    <a name="029"></a>
+                                    <h3>2.9 initialState</h3><br>
+                                    initialState — объект, представляющий начальное состояние хранилища. Он является
+                                    вторым не обязательным аргументом метода createStore(). С созданием хранилища можно
+                                    сразу объявить начальное состояние для его полей. Этот объект желательно создавать,
+                                    даже в тех случаях, когда объявления начального состояния не требуется. Потому что
+                                    этот объект помогает посмотреть на структуру хранилища и название его полей. Обычный
+                                    объект initialState выглядит следующим образом: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> initialState = {
+    <span class="hljs-attr">date_1</span>: <span class="hljs-string">"value..."</span>,
+    <span class="hljs-attr">date_2</span>: <span class="hljs-string">"value..."</span>
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> initialState;</code></pre>
+                                    <br>
+                                    В некоторых случаях (когда компонент сразу использует значение из store), его
+                                    объявление может стать обязательным иначе вы получите ошибку: TypeError: Cannot read
+                                    property 'value_1' of undefined.<br>
+                                    <br>
+                                    Также редьюсеры всегда должны возвращать по дефолту текущее состояние. К примеру,
+                                    если используется единый reducer то последнее значение в switch должно выглядеть
+                                    так: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">default</span>: <span class="hljs-keyword">return</span> store;</code></pre>
+                                    <br>
+                                    Если же вы разделяете редьюсеры на независимые функции, то он должен возвращать
+                                    значение того свойства за которое он отвечает: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">default</span>: <span class="hljs-keyword">return</span> store.value_1;</code></pre>
+                                    <br>
+                                    Также если вы не передаёте объект initialState в createStore вы можете вернуть его
+                                    из редьюсера. В обоих случаях будет инициализировано начальное состояние для
+                                    store.<br>
+                                    <br>
+                                    <a name="03"></a>
+                                    <h2>3. React-redux</h2><br>
+                                    Казалось бы, у нас есть всё что бы использовать Redux. Но на деле использование его
+                                    без пакета React-redux в React приложениях выглядит не очень красиво.<br>
+                                    <br>
+                                    <a name="031"></a>
+                                    <h3>3.1 Provider</h3><br>
+                                    Для использование store в компоненте вам необходимо передавать его в пропсы: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs">ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Main</span> <span class="hljs-attr">store</span>=<span class="hljs-string">{store}</span> /&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'root'</span>));</code></pre>
+                                    <br>
+                                    И после использовать в компоненте: this.props.state. Для этого react-redux
+                                    предостовляет метод Provider: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs">ReactDOM.render(
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Provider</span> <span class="hljs-attr">store</span>=<span class="hljs-string">{store}</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Main</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Provider</span>&gt;</span></span>,
+<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'root'</span>));</code></pre>
+                                    <br>
+                                    Таким образом метод connect сможет использовать store. В противном случае вы
+                                    получите ошибку: Error: Could not find «store» in the context of «Connect(Main)».
+                                    Either wrap the root component in a , or pass a custom React context provider to and
+                                    the corresponding React context consumer to Connect(Main) in connect options.<br>
+                                    <br>
+                                    Также можно передать store напрямую в компонент, не оборачивая его в Provider и это
+                                    будет работать. Но лучше всё-таки используйте Provider.<br>
+                                    <br>
+                                    <a name="032"></a>
+                                    <h3>3.2 mapStateToProps()</h3><br>
+                                    Этот метод вызывается всякий раз, когда происходит обновление store и именно он
+                                    передаёт необходимые свойства из store в компонент. К примеру компонент, должен
+                                    реагировать и обновлять UI каждый раз, когда поле номер один (value_1) обновилось.
+                                    На обновление других полей ему реагировать не нужно. Если вы не используете
+                                    React-redux вам бы пришлось использовать метод subscribe() что бы узнавать об
+                                    обновлении и далее каким то образом проверять обновилось ли поле номер один или нет.
+                                    В общем несложно понять, что такой код будет выглядеть слишком грязным и избыточным.
+                                    С помощью mapStateToProps() можно чётко определить какие поля интересуют компонент.
+                                    И на какие поля он должен реагировать.<br>
+                                    <br>
+                                    Возвращаясь к примеру выше, если компоненту один нужно получать поле номер один
+                                    (value_1) то mapStateToProps для него будет выглядеть следующим образом: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">state</span>) </span>{
+    <span class="hljs-keyword">return</span> {
+        <span class="hljs-attr">value_1</span>: state.value_1
+    };
+}</code></pre>
+                                    После внутри компонента мы можем обращается к полю value_1 через this.props.value_1.
+                                    И каждый раз когда это поле будет обновляется компонент будет рендерится заново.<br>
+                                    <br>
+                                    Вы можете создать отдельную папку в /src/store для хранения файлов каждый из которых
+                                    будет содержать функцию mapStateToProps для всех ваших компонентов. Либо (как сделал
+                                    это я) использовать единую функцию возвращающую функцию mapStateToProps для каждого
+                                    компонента. Лично мне нравится такой подход. Такая функция выглядит следующим
+                                    образом: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapStateToProps</span>(<span class="hljs-params">component</span>) </span>{
+    <span class="hljs-keyword">switch</span>(component) {
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"Component_1"</span>: {
+            <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">state</span>) </span>{
+                <span class="hljs-keyword">return</span> {
+                    <span class="hljs-attr">value_1</span>: state.value_1
+                };
+            }
+        }
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"Component_2"</span>: {
+            <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">state</span>) </span>{
+                <span class="hljs-keyword">return</span> {
+                    <span class="hljs-attr">value_2</span>: state.value_2
+                };
+            }
+        }
+        <span class="hljs-attr">default</span>: <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
+    }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> mapStateToProps;</code></pre>
+                                    <br>
+                                    Эта функция в качестве аргумента принимает строку с названием компонента и
+                                    возвращает функцию mapStateToProps которая возвращает объект со свойством из store
+                                    необходимом для данного компонента. Эту функцию можно назвать
+                                    mapStateToPropsGenerator().<br>
+                                    <br>
+                                    <a name="033"></a>
+                                    <h3>3.3 mapDispatchToProps()</h3><br>
+                                    Эта функция передаёт в компонент методы для обновления необходимого поля store. Что
+                                    бы не вызывать dispatch напрямую из компонента вы будете использовать данный метод
+                                    для того что бы передавать в props метод вызов которого приведёт к вызову dispatch и
+                                    обновлению соответствующего поля. Просто теперь это будет выглядеть более элегантно,
+                                    а код более понятным и чистым.<br>
+                                    <br>
+                                    К примеру компонент, номер один должен иметь возможность обновлять поле номер один
+                                    из store. Тогда mapDispatchToProps для него будет выглядеть следующим образом: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dispatch</span>) </span>{
+    <span class="hljs-keyword">return</span> {
+        <span class="hljs-attr">changeValue_1</span>: bindActionCreators(action_1, dispatch)
+    };
+};</code></pre>
+                                    <br>
+                                    Теперь для обновления свойства value_1 вы будете вызывать changeValue_1() через
+                                    this.props.changeValue_1(value). Не вызывая dispatch напрямую через
+                                    this.props.store.dispatch(action_1(value)).<br>
+                                    <br>
+                                    bindActionCreators следует импортировать из redux. Он позволяет оборачивать функцию
+                                    dispatch и actionCreator в единый объект. Вы можете не использовать
+                                    bindActionCreators но тогда код будет выглядеть избыточным. Вы должны старятся
+                                    реализовать какую-либо функциональность так, чтобы код выгладил просто и миниатюрно.
+                                    Поэтому ничего лишнего писать не следует. <br>
+                                    <br>
+                                    Только чистый и понятный код. Метод bindActionCreators(actionCreator, dispatch)
+                                    принимает два обязательных параметра это функцию actionCreator о которой мы уже
+                                    говорили и dispatch. Возвращая метод для изменения полей store.<br>
+                                    <br>
+                                    Также как и для mapStateToProps я использую функцию генератор возвращающую функцию
+                                    mapDispatchToProps для каждого компонента: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">import</span> { bindActionCreators } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span>;
+<span class="hljs-keyword">import</span> action_1 <span class="hljs-keyword">from</span> <span class="hljs-string">'./actionCreators/action_1'</span>;
+<span class="hljs-keyword">import</span> action_2 <span class="hljs-keyword">from</span> <span class="hljs-string">'./actionCreators/action_2'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapDispatchToProps</span>(<span class="hljs-params">component</span>) </span>{
+    <span class="hljs-keyword">switch</span>(component) {
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"Component_1"</span>: <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">dispatch</span>) </span>{
+            <span class="hljs-keyword">return</span> {
+                <span class="hljs-attr">change_value_1</span>: bindActionCreators(action_1, dispatch)
+            };
+        };
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"Component_2"</span>: <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">dispatch</span>) </span>{
+            <span class="hljs-keyword">return</span> {
+                <span class="hljs-attr">change_value_2</span>: bindActionCreators(action_2, dispatch)
+            };
+        };
+        <span class="hljs-keyword">default</span>: <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
+    }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> mapDispatchToProps;</code></pre>
+                                    <br>
+                                    <a name="034"></a>
+                                    <h3>3.4 connect()</h3><br>
+                                    Ну и теперь кульминация! То без чего всё это не будет работать. Это функция connect.<br>
+                                    Именно она связывает mapStateToProps и mapDispatchToProps с компонентом и передает
+                                    необходимые поля и методы в него. Возвращает она новый компонент-обёртку для вашего
+                                    компонента. Как правильно именовать такой компонент я не знаю, ибо в самой
+                                    документации React-redux это не описывается. Лично я добавляю окончание _w для
+                                    компонентов оберток. Как бы _w = wrap Component. Подключение компонента в этм случае
+                                    выглядит так: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> COMPONENT_1_W = connect(mapStateToProps(<span class="hljs-string">"Component_1"</span>), mapDispatchToProps(<span class="hljs-string">"Component_1"</span>))(Component_1);</code></pre>
+                                    <br>
+                                    И теперь в ReactDOM.render() вы передаёте не ваш компонент, а тот что возвращает
+                                    функция connect.<br>
+                                    <br>
+                                    Если же у компонента нет необходимости в передаче ему mapStateToProps или
+                                    mapDispatchToProps передавайте undefined или null в него.
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+                </div>
+
+            </section>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+</body></html>

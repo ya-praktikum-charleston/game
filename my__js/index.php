@@ -11,6 +11,9 @@
         <li class="list-sub__item">
             <div class="list-sub__title"><a class="list-sub__link" href="web-dev/index.php">WebDev</a></div>
         </li>
+		<li class="list-sub__item">
+            <div class="list-sub__title"><a class="list-sub__link" href="sorax.php">Sorax</a></div>
+        </li>
         <li class="list-sub__item">
             <div class="list-sub__title"><a class="list-sub__link" href="wordbook.php">СЛОВАРЬ</a></div>
         </li>

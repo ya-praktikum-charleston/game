@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+
+<html lang="ru" class="no-js fonts-loaded">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta content="width=1024" name="viewport">
+    <title>Введение в React / Хабр</title>
+
+
+    <style type="text/css">
+        @font-face {
+            font-family: 'Fira Sans';
+            font-style: normal;
+            font-weight: 500;
+            src: url(https://dr.habracdn.net/habr/5f60e105/fonts/FiraSans/firaSans-medium.eot);
+            src: local("Fira Sans Medium"), local("FiraSans-Medium"), url(https://dr.habracdn.net/habr/5f60e105/fonts/FiraSans/firaSans-medium.eot?#iefix) format("embedded-opentype"), url(https://dr.habracdn.net/habr/5f60e105/fonts/FiraSans/firaSans-medium.woff2) format("woff2"), url(https://dr.habracdn.net/habr/5f60e105/fonts/FiraSans/firaSans-medium.woff) format("woff"), url(https://dr.habracdn.net/habr/5f60e105/fonts/FiraSans/firaSans-medium.ttf) format("truetype")
+        }
+
+
+        .h-info table th p::first-child,.h-info table td p::first-child{margin-top:0}
+        /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
+        html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,header,section{display:block}h1{font-size:2em;margin:.67em 0}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}b{font-weight:inherit}b{font-weight:bolder}code{font-family:monospace,monospace;font-size:1em}img{border-style:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;background:#fafafa}.hljs-comment{color:#a0a1a7;font-style:italic}.hljs-keyword{color:#a626a4}.hljs-name,.hljs-subst{color:#e45649}.hljs-literal{color:#0184bb}.hljs-string{color:#50a14f}.hljs-built_in,.hljs-class .hljs-title{color:#c18401}.hljs-attr,.hljs-number{color:#986801}.hljs-meta,.hljs-title{color:#4078f2}
+        /*!
+         * Datepicker for Bootstrap v1.6.4 (https://github.com/eternicode/bootstrap-datepicker)
+         *
+         * Copyright 2012 Stefan Petre
+         * Improvements by Andrew Rowls
+         * Licensed under the Apache License v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+         */html,body{height:100%}body{color:#333;font-size:14px;line-height:1.5;font-weight:400;font-style:normal;text-rendering:optimizeLegibility;font-family:"-apple-system",BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}a{color:#548eaa;text-decoration:none}a:hover{color:#487284}.js-sticky-wrapper{display:flex}.layout{position:relative;min-width:1024px;width:100%;border-spacing:0;border-collapse:collapse;background:#fff;display:flex;min-height:100vh;flex-direction:column}.layout__row{width:100%}.layout__row_body{height:auto;flex:1 0 auto}.layout__cell{box-sizing:border-box;margin:0 auto;padding:0 32px;width:1024px;}.layout__cell_body{padding-top:20px;padding-bottom:60px}:root{--percent-value: 0%}.column-wrapper{position:relative;width:100%;display:flex}.column-wrapper:after{clear:both;content:'';display:table}.column-wrapper_post{margin-bottom:20px}.content_left{float:left;box-sizing:border-box;width:100%;min-height:1px}.inline-list{display:flex;flex-wrap:wrap;align-items:flex-start;margin:0;padding:0;list-style:none}.inline-list__item{margin:8px 8px 0 0}.inline-list__item_hub{margin:0 .5em 0 0;color:#5e6973;font-size:13px}.inline-list__item_hub:last-child{margin-left:0}.inline-list__item_post-type{margin:0 8px 0 0}.inline-list__item_post-type:last-child{margin-left:0}.inline-list__item-link{color:inherit}.hub-link{font-size:13px;color:#5e6973;line-height:1.5;font-family:"-apple-system",BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;text-decoration:none}.hub-link:hover{color:#548eaa}@-moz-document url-prefix(){}.post__meta{display:flex;align-items:center;margin-bottom:5px}.post__user-info{display:inline-flex;align-items:center}.post__user-info+.post__time{margin-left:8px}.post__time{color:#5f5f5f;font-weight:500;font-size:13px;line-height:16px;font-family:"-apple-system",BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}.post__title{margin:0;margin-bottom:9px;word-break:break-word}.post__title_full{margin-bottom:4px}.post__title-text{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;color:#343434;font-weight:500;font-size:32px;line-height:40px}.post__hubs+.post__marks{margin-top:7px;margin-bottom:4px}.post__type-label{display:inline-block;padding:3px 8px;border:1px solid #b0b0e2;border-radius:2px;color:#6667a3;vertical-align:-1px;font-size:12px;line-height:16px;font-family:"-apple-system",BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}.post__type-label:link{text-decoration:none}.post__body{margin-bottom:24px}.post__body_full{clear:both;margin-bottom:24px;padding-top:32px}.post__text{font-size:16px;line-height:1.56;font-family:"-apple-system",BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;overflow-wrap:break-word}.post__text-html{margin-right:-5px;padding-right:5px;color:#222;font-family:"-apple-system",BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}.post__text-html h2,.post__text-html h3,.post__text-html h4{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;margin:0;padding:0;font-weight:500}.post__text-html h2{font-size:24px;line-height:32px}.post__text-html h3,.post__text-html h4{font-size:20px;line-height:28px}.post__text-html a{color:#548eaa;text-decoration:none}.post__text-html a:visited{color:#992298}.post__text-html a:hover{color:#487284;text-decoration:underline}.post__text-html blockquote{display:block;margin:12px 0;padding:18px 20px;background:#fff7d7}.post__text-html img{margin:0;vertical-align:middle;max-width:100%;height:auto}.post__text-html br+img{margin:0}.post__text-html ul,.post__text-html ol{margin:0 0 0 34px;padding:0}.post__text-html ul li,.post__text-html ol li{padding:9px 0;line-height:1.6}.post__text-html ul li:first-child,.post__text-html ol li:first-child{padding-top:0}.post__text-html ul li:last-child,.post__text-html ol li:last-child{padding-bottom:0}.post__text-html ul{list-style-type:disc}.post__text-html code{white-space:normal;font-size:14px;font-family:Menlo,Monaco,'Consolas','Courier New',monospace}.post__text-html pre .hljs{display:block}.post__text-html pre{display:block;overflow-x:auto;overflow-y:hidden;margin:0;padding:0;word-break:break-all}.post__text-html pre code{display:block;padding:17px 20px 20px;border:1px solid #e5e8ec;background:#fbfdff;white-space:pre-wrap}.user-info{font-family:"-apple-system",BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}.user-info:link{text-decoration:none}.user-info *{box-sizing:border-box}.user-info__nickname{display:inline-block;vertical-align:baseline;line-height:20px;font-family:"-apple-system",BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}.user-info__nickname{color:#548eaa;font-weight:500;font-size:14px;text-decoration:none}.user-info__nickname:hover,.user-info__nickname:active{color:#487284}.user-info__nickname_small{margin-left:8px;font-size:13px}.user-info__image-pic{display:block;margin:0;max-width:100%;height:auto;border:0;border-radius:3px}.user-info__image-pic_small{width:24px;height:24px}:root{--quickFade-time: 1.5s;--fade-time: 2s;--blur-time: 2s;--blur-amount: 0.088em}@media print{body{background:#fff}.content_left{width:100%;float:none;padding-right:0}}
+
+
+
+    </style>
+
+
+</head>
+
+<body class="nl">
+
+<div class="layout">
+
+
+    <div class="layout__row layout__row_body">
+        <div class="layout__cell layout__cell_body">
+
+
+            <section class="column-wrapper column-wrapper_post js-sticky-wrapper">
+                <div class="content_left js-content_left">
+
+                    <article class="post post_full" id="post_461541" lang="ru">
+                        <div class="post__wrapper">
+
+                            <h1 class="post__title post__title_full">
+                                <span class="post__title-text">Введение в React</span>
+                            </h1>
+
+                            <div class="post__body post__body_full">
+                                <div class="post__text post__text-html post__text_v1" id="post-content-body"
+                                     data-io-article-url=""><b>Оглавление</b><br>
+                                    <a href="#section1">1. Getting started with
+                                        React</a><br>
+                                    ....<a href="#section11">1.1 Методы добавления
+                                        React</a><br>
+                                    ....<a href="#section12">1.2 Выбор метода
+                                        добавления</a><br>
+                                    ........<a href="#section121">1.2.1 Добавление React
+                                        с помощью тэга &lt;script /&gt;</a><br>
+                                    ........<a href="#section122">1.2.2 Добавление React
+                                        с помощью create-react-app</a><br>
+                                    <a href="#section2">2. Basically React</a><br>
+                                    ....<a href="#section21">2.1 React object</a><br>
+                                    ....<a href="#section22">2.2 React element</a><br>
+                                    ........<a href="#section221">2.2.1
+                                        CreateElement</a><br>
+                                    ........<a href="#section222">2.2.2 CloneElement</a><br>
+                                    ........<a href="#section223">2.2.3
+                                        IsValidElement</a><br>
+                                    ........<a href="#section224">2.2.4 Children</a><br>
+                                    ....<a href="#section23">2.3 React
+                                        компоненты</a><br>
+                                    ........<a href="#section231">2.3.1
+                                        React.Component</a><br>
+                                    ........<a href="#section232">2.3.2
+                                        React.Fragment</a><br>
+                                    .........<a href="#section233">2.3.3 State</a><br>
+                                    .........<a href="#section234">2.3.4 Events</a><br>
+                                    .........<a href="#section235">2.3.5
+                                        Lifecycle</a><br>
+                                    .........<a href="#section236">2.3.6 Refs</a><br>
+                                    ....<a href="#section24">2.4 ReactDOM</a><br>
+                                    ........<a href="#section241">2.4.1 Render</a><br>
+                                    ........<a href="#section242">2.4.2 Hydrate</a><br>
+                                    ........<a href="#section243">2.4.3
+                                        UnmountComponentAtNode</a><br>
+                                    ........<a href="#section244">2.4.4 CreatePortal</a><br>
+                                    <a href="#section3">3. Other topics</a><br>
+                                    ....<a href="#section31">3.1 Lists and Keys</a><br>
+                                    ....<a href="#section32">3.2 Error Handling</a><br>
+                                    ........<a href="#section321">3.2.1
+                                        getDerivedStateFromError</a><br>
+                                    ........<a href="#section322">3.2.2
+                                        componentDidCatch</a><br>
+                                    <a href="#section">Заключение</a><br>
+                                    <br>
+                                    <b>React</b> — JavaScript-библиотека с открытым исходным кодом для разработки
+                                    пользовательских интерфейсов.<br>
+                                    <br>
+                                    <a name="section1"></a>
+                                    <h2>1. Getting started with React</h2><br>
+                                    <a name="section11"></a>
+                                    <h3>1.1 Методы добавления React</h3><br>
+                                    Существует 2 основных метода для добавления React на сайт:<br>
+                                    <br>
+                                    <ol>
+                                        <li>С помощью тэга &lt;script /&gt;</li>
+                                        <li>С помощью create-react-app</li>
+                                    </ol>
+                                    <br>
+                                    <a name="section12"></a>
+                                    <h3>1.2 Выбор метода добавления</h3><br>
+                                    Выбор метода зависит от потребностей. Если вы просто хотите добавить немного
+                                    интерактивности на существующую страницу или хотите просто попробовать React тогда
+                                    используйте первый метод подключения. Если вы собираетесь построить полноценное
+                                    React приложение, то используйте create-react-app.<br>
+                                    <br>
+                                    <a name="section121"></a><h4>1.2.1 Добавление React с помощью тэга &lt;script
+                                        /&gt;</h4><br>
+                                    <b>Шаг 1</b> Добавьте 3 тега в контейнер head на вышей странице:<br>
+                                    <pre><code class="javascript hljs">&lt;script src=<span class="hljs-string">"https://unpkg.com/react@16/umd/react.development.js"</span>&gt;&lt;/script&gt;
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span
+        class="hljs-attr">src</span>=<span class="hljs-string">"https://unpkg.com/react-dom@16/umd/react-dom.development.js"</span>&gt;</span><span
+        class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span
+        class="hljs-attr">src</span>=<span
+        class="hljs-string">"https://unpkg.com/babel-standalone@6.15.0/babel.min.js"</span>&gt;</span><span
+        class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
+                                    <br>
+                                    Здесь подключаются библиотеки React и React-dom, а также компилятор babel.<br>
+                                    <blockquote>Babel не является обязательным для использования React, но полезным для
+                                        написания кода UI, с помощью JSX.
+                                    </blockquote>
+                                    <br>
+                                    <b>Шаг 2</b> Добавьте пустой контейнер на вашу страницу чтобы отметить место, где вы
+                                    хотите что-либо отобразить с помощью React.<a name="habracut"></a><br>
+                                    <b>Шаг 3</b> Теперь вы можете использовать React вместе с JSX в любом теге script,
+                                    добавив к нему атрибут type=«text/babel».<br>
+                                    <br>
+                                    Пример:<br>
+                                    <br>
+                                    <pre><code class="xml hljs"><span class="hljs-meta">&lt;!DOCTYPE <span
+                                            class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span
+        class="hljs-string">"en"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span
+            class="hljs-string">"UTF-8"</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>My first React app<span class="hljs-tag">&lt;/<span
+                                                class="hljs-name">title</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span
+            class="hljs-string">"https://unpkg.com/react@16/umd/react.development.js"</span> <span class="hljs-attr">crossorigin</span>&gt;</span><span
+                                                class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  	<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span
+            class="hljs-string">"https://unpkg.com/react-dom@16/umd/react-dom.development.js"</span> <span
+            class="hljs-attr">crossorigin</span>&gt;</span><span class="hljs-tag">&lt;/<span
+                                                class="hljs-name">script</span>&gt;</span>
+  	<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span
+            class="hljs-string">"https://unpkg.com/babel-standalone@6/babel.min.js"</span>&gt;</span><span
+                                                class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span
+            class="hljs-string">"root"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+	<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span
+            class="hljs-string">"text/babel"</span>&gt;</span><span class="javascript">
+  		ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello world<span
+                                                class="hljs-tag">&lt;/<span
+                                                class="hljs-name">h1</span>&gt;</span></span>, <span
+                                                class="hljs-built_in">document</span>.querySelector(<span
+                                                class="hljs-string">"#root"</span>));
+  	</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+                                    <br>
+                                    <a name="section122"></a><h4>1.2.2 Добавление React с помощью create-react-app</h4>
+                                    <br>
+                                    Инструменты, используемые для разработки React, опираются на Node.js, поэтому первое
+                                    что вам необходимо сделать, это установить <a href="https://nodejs.org/en/download/"
+                                                                                  rel="nofollow">Node</a>, что бы
+                                    использовать npm.<br>
+                                    <br>
+                                    Пакет create-react-app является стандартным способом создания и управления сложными
+                                    пакетами React и предоставляет разработчикам полный набор инструментов. Используйте
+                                    <a href="https://create-react-app.dev/" rel="nofollow">create-react-app</a>, для
+                                    создания нового React приложения.<br>
+                                    <br>
+                                    После установки nodejs, для установки create-react-app:<br>
+                                    <br>
+                                    <pre><code class="bash hljs">// npx
+npx create-react-app my-app
+
+// npm
+npm init react-app my-app
+
+// yarn
+yarn create react-app my-app</code></pre>
+                                    <br>
+                                    Выбор за вами какой инструмент использовать (npx, npm, yarn) для создания React
+                                    приложения.<br>
+                                    <br>
+                                    Когда вы создаете новое приложение, CLI будет использовать Yarn для установки
+                                    зависимостей (если они доступны). Если у вас установлен Yarn, но вы предпочитаете
+                                    использовать npm, вы можете добавить --use-npm к команде создания. Например: <br>
+                                    <br>
+                                    <pre><code class="bash hljs">npx create-react-app my-app --use-npm</code></pre>
+                                    <br>
+                                    Выполнение любой из этих команд создаст каталог с именем my-app внутри текущей
+                                    папки. Внутри этого каталога будет сгенерирована исходная структура проекта и
+                                    установлены необходимые зависимости: <br>
+                                    <br>
+                                    <pre><code class="tex hljs">my-app
+├── README.md
+├── node_modules
+├── package.json
+├── .gitignore
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+└── src
+    ├── App.css
+    ├── App.js
+    ├── App.test.js
+    ├── index.css
+    ├── index.js
+    ├── logo.svg
+    └── serviceWorker.js</code></pre>
+                                    <br>
+                                    Для запуска приложения в режиме разработки перейдите в папку с вашим приложением и
+                                    выполните npm start или yarn start: <br>
+                                    <br>
+                                    <pre><code class="bash hljs"><span class="hljs-built_in">cd</span> my-app
+npm start</code></pre>
+                                    <br>
+                                    Страница автоматически перезагрузится, если вы внесете изменения в код. Вы увидите
+                                    ошибки сборки и предупреждения в консоли. Откройте <a href="http://localhost/"
+                                                                                          rel="nofollow">localhost</a>:3000,
+                                    чтобы просмотреть приложение в браузере.<br>
+                                    <br>
+                                    Обратите внимание! Для сборки проекта эти файлы должны существовать с точными
+                                    именами файлов:<br>
+                                    <br>
+                                    <ul>
+                                        <li>public / index.html — шаблон страницы;</li>
+                                        <li>src / index.js — это точка входа JavaScript.</li>
+                                    </ul>
+                                    <br>
+                                    Вы можете удалять или переименовывать другие файлы.<br>
+                                    <br>
+                                    <a name="section2"></a>
+                                    <h2>2. Basically React</h2><br>
+                                    <a name="section21"></a>
+                                    <h3>2.1 React object</h3><br>
+                                    React — это точка входа в библиотеку React. При подключении React с помощью тега
+                                    script, API верхнего уровня доступны в глобальном объекте React, а если вы
+                                    используете ES6 и create-react-app, вы должны импортировать React объект:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span
+                                            class="hljs-keyword">import</span> React <span
+                                            class="hljs-keyword">from</span> <span
+                                            class="hljs-string">'react'</span>;</code></pre>
+                                    <br>
+                                    Если же вы используете ES5 и create-react-app, вы можете импортировать React объект
+                                    следующем образом:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span
+                                            class="hljs-keyword">var</span> React = <span
+                                            class="hljs-built_in">require</span>(<span
+                                            class="hljs-string">'react'</span>);</code></pre>
+                                    <br>
+                                    В этой статье я использую синтаксис ES6 и буду предполагать, что вы тоже его
+                                    используете. В противном случае советую прочитать соответствующий раздел
+                                    документации: <a href="https://ru.reactjs.org/docs/react-without-es6.html"
+                                                     rel="nofollow">React без ES6</a>.<br>
+                                    <br>
+                                    <a name="section22"></a>
+                                    <h3>2.2 React element</h3><br>
+                                    React элемент — минимальная единица React-приложения, объект описывающий то, что вы
+                                    хотите увидеть на странице. Элементы React не изменяемые (immutable). То есть
+                                    состояние элементов React не может быть изменено после создания.<br>
+                                    <br>
+                                    Для создания React элементов вам нужно использовать методы <a
+                                            href="#section221">createElement()</a>
+                                    или<br>
+                                    createFactory(). Последний считается устаревшим и его использование не рекомендуется
+                                    поэтому не будем останавливаться на нём. Если вы используете JSX, то вам не придётся
+                                    вызывать данные методы.<br>
+                                    <br>
+                                    React предоставляет методы для клонирования — <a
+                                            href="#section222">cloneElement</a>,
+                                    проверки — <a
+                                            href="#section223">isValidElement()</a> и
+                                    работой с структурой данных props.children это <a
+                                            href="#section224">React.Children</a>
+                                    (семейство методов React.Children).<br>
+                                    <br>
+                                    Для отображения React элементов необходимо вызвать метод <a
+                                            href="#section241"> Render</a> объекта
+                                    ReactDom. После отображения (рендеринга) React элемента вы не можете изменить его
+                                    потомков или атрибуты. Единственным решением является повторный вызов
+                                    ReactDom.render(). На практике не советуется повторный вызов этого метода. Поэтому
+                                    для интерактивных элементов вам необходимо использовать <a
+                                            href="#section23">React компоненты</a>.<br>
+                                    <br>
+                                    С помощью React элементов проще описать, как интерфейс выглядит в конкретный момент,
+                                    чем-то как он изменяется с течением времени. К тому же такой подход позволяет
+                                    избавиться от целого класса ошибок.<br>
+                                    <br>
+                                    В React элементах допустимо использование <a
+                                            href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide/Expressions_and_Operators"
+                                            rel="nofollow">встраиваемых выражений Javascript</a>.<br>
+                                    <br>
+                                    Пример использования встраиваемого выражения: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span
+                                            class="hljs-keyword">const</span> name = <span
+                                            class="hljs-string">'Michael'</span>;
+<span class="hljs-keyword">var</span> nameUser = <span class="hljs-function"><span
+                                                class="hljs-params">()</span> =&gt;</span> <span class="hljs-string">"Franklin"</span>;
+<span class="hljs-keyword">const</span> element = <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Здравствуй, {name}<span
+                                                class="hljs-tag">&lt;/<span
+                                                class="hljs-name">h1</span>&gt;</span></span>;
+<span class="hljs-keyword">const</span> element_2 = <span class="xml"><span class="hljs-tag">&lt;<span
+                                                class="hljs-name">h1</span>&gt;</span>Здравствуй, {nameUser()}<span
+                                                class="hljs-tag">&lt;/<span
+                                                class="hljs-name">h1</span>&gt;</span></span>;
+
+ReactDOM.render(element, <span class="hljs-built_in">document</span>.getElementById(<span
+                                                class="hljs-string">"root"</span>));
+ReactDOM.render(element_2, <span class="hljs-built_in">document</span>.getElementById(<span
+                                                class="hljs-string">"root_2"</span>));
+
+<span class="hljs-comment">//Output</span>
+Здравствуй, Michael
+Здравствуй, Franklin</code></pre>
+                                    <br>
+                                    Если вы не используете JSX, то вы можете использовать встраиваемые выражения передав
+                                    их как один из аргументов методу createElement.<br>
+                                    <br>
+                                    Пример использования встраиваемого выражения с методом createElement: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">var</span> element = React.createElement(<span
+                                            class="hljs-string">"h1"</span>, <span
+                                            class="hljs-literal">null</span>, <span
+                                            class="hljs-string">"Здравствуй, "</span>, name);
+<span class="hljs-keyword">var</span> element_2 = React.createElement(<span class="hljs-string">"h1"</span>, <span
+                                                class="hljs-literal">null</span>, <span class="hljs-string">"Здравствуй, "</span>, nameUser());</code></pre>
+                                    <br>
+                                    <a name="section221"></a><h4>2.2.1 React.createElement</h4><br>
+                                    Для создания React элемента используйте метод createElement:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs">React.createElement(
+  type,
+  [props],
+  [...children]
+);</code></pre>
+                                    <br>
+                                    <ul>
+                                        <li>type — JavaSacript строка, содержащая имя тега, React-компонент или
+                                            React-фрагмент;
+                                        </li>
+                                        <li>props — <a href="#0xFFFFF">props </a>(свойство
+                                            экземпляра React объекта)
+                                        </li>
+                                        <li>children — Дочерний элемент для type.</li>
+                                    </ul>
+                                    <br>
+                                    Создание элемента без использования JSX, с использованием React.createElement: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs">element = React.createElement(Message, {
+  <span class="hljs-attr">message</span>: <span class="hljs-string">"Hello, world"</span>
+}, React.createElement(<span class="hljs-string">"p"</span>, <span class="hljs-literal">null</span>, <span
+                                                class="hljs-string">"Some child element"</span>));</code></pre>
+                                    <br>
+                                    Если же вы используете JSX, то у вас нет необходимости в специальных методах для
+                                    создания React элемента.<br>
+                                    <br>
+                                    Создание React элемента с использованием JSX: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs">element = <span class="xml"><span
+                                            class="hljs-tag">&lt;<span class="hljs-name">Message</span> <span
+                                            class="hljs-attr">message</span>=<span
+                                            class="hljs-string">"Hello, world"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Some child element<span
+                                                class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Message</span>&gt;</span></span>;</code></pre>
+                                    <br>
+                                    Как вы могли заметить оба примера создают один и тот же объект. Таким образом из
+                                    примера выше можно сделать вывод о том, что каждый элемент JSX это просто
+                                    синтаксический сахар для вызова React.createElement().<br>
+                                    <br>
+                                    Вы можете проверить это сами. Используя для этого онлайн компилятор<a
+                                            href="https://babeljs.io/repl" rel="nofollow"> Babel</a>.<br>
+                                    <br>
+                                    <a name="section222"></a><h4>2.2.2 React.cloneElement</h4><br>
+                                    React.cloneElement — метод позволяющий клонировать React элементы.<br>
+                                    <br>
+                                    <pre><code class="javascript hljs">React.cloneElement(
+  element,
+  [props],
+  [...children]
+)</code></pre>
+                                    <br>
+                                    Возвращает новый React элемент, используя переданный React элемент в качестве
+                                    отправной точки. Аргументы такие же как у React.createElement() за исключением того,
+                                    что первый параметр не имя нового тэга, а имеющиеся React элемент. Полученный
+                                    элемент будет иметь пропсы исходного элемента, а новые пропсы будут поверхностно
+                                    слиты воедино. Новые дочерние элементы заменят существующие. <a
+                                            href="#section31">key </a>и <a
+                                            href="#section236">ref </a>из исходного
+                                    элемента будут сохранены.<br>
+                                    <br>
+                                    Пример: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">var</span> a = <span
+                                            class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Some React element<span
+                                            class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>;
+<span class="hljs-keyword">var</span> b = React.cloneElement(a);
+
+ReactDOM.render(b, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"root"</span>));
+<span class="hljs-comment">//Output </span>
+Some React element</code></pre>
+                                    <br>
+                                    <a name="section223"></a><h4>2.2.3 React.isValidElement</h4><br>
+                                    React.isValidElement(object) — Проверяет, что объект является элементом React.
+                                    Возвращает true в случае если объект является элементом React или false в случае
+                                    если он не является элементом React.<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> A = <span
+                                            class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Some text<span
+                                            class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>;
+<span class="hljs-keyword">const</span> B = {};
+
+<span class="hljs-keyword">if</span> (React.isValidElement(A))
+  <span class="hljs-built_in">console</span>.info(<span class="hljs-string">"A is React Element"</span>);
+
+<span class="hljs-keyword">if</span> (React.isValidElement(B))
+  <span class="hljs-built_in">console</span>.info(<span class="hljs-string">"B is React Element"</span>);
+<span class="hljs-keyword">else</span>
+  <span class="hljs-built_in">console</span>.error(<span class="hljs-string">"B is not a React Element"</span>);
+
+<span class="hljs-comment">// Output</span>
+A is React Element
+B is not a React Element</code></pre>
+                                    <br>
+                                    <a name="section224"></a><h4>2.2.4 React.Children</h4><br>
+                                    React.Children предоставляет функции для работы с непрозрачной структурой данных
+                                    this.props.children. Если проще, то props.children это то, что вы включаете между
+                                    открывающим и закрывающим тегами при вызове компонента.<br>
+                                    <br>
+                                    Простой пример: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-function"><span
+                                            class="hljs-keyword">function</span> <span
+                                            class="hljs-title">Chill</span>(<span
+                                            class="hljs-params">props</span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span
+                                                class="hljs-name">h1</span>&gt;</span>Hello {props.children}<span
+                                                class="hljs-tag">&lt;/<span
+                                                class="hljs-name">h1</span>&gt;</span></span>
+}
+
+ReactDom.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Chill</span>&gt;</span>Mike<span
+                                                class="hljs-tag">&lt;/<span
+                                                class="hljs-name">Chill</span>&gt;</span></span>, element); <span
+                                                class="hljs-comment">// Hello Mike</span></code></pre>
+                                    <br>
+                                    Таким образом props.children может помочь сделать ваши компоненты React более
+                                    гибкими и многократно используемыми. Вы можете использовать props.children для
+                                    компонентов, которые представляют «общие блоки» и которые «не знают своих детей
+                                    раньше времени». То есть в примере выше компонент Chill это шаблон, который можно
+                                    использовать многократно с разным результатом. Конечно такой упрощенный пример
+                                    сильно напоминает использование пропсов, но с помощью props.children вы можете
+                                    строить более сложные структуры данных.<br>
+                                    <br>
+                                    Давайте в вкратце рассмотрим методы для работы с props.children.<br>
+                                    <br>
+                                    <ul>
+                                        <li>React.Children.map — создаёт новый массив с результатом вызова указанной
+                                            функции для каждого элемента массива;
+                                        </li>
+                                        <li>React.Children.forEach — выполняет указанную функцию один раз для каждого
+                                            элемента в массиве;
+                                        </li>
+                                        <li>React.Children.count — возвращает общее количество компонентов в children;
+                                        </li>
+                                        <li>React.Children.only — если у children есть только один потомок (React
+                                            элемент), то возвращает его иначе выдаёт ошибку;
+                                        </li>
+                                        <li>React.Children.toArray — возвращает массива из children с ключами, заданные
+                                            каждому дочернему элементу
+                                        </li>
+                                    </ul>
+                                    <br>
+                                    <b>React.Children.map</b><br>
+                                    <br>
+                                    <pre><code class="javascript hljs">React.Children.map(children, <span
+                                            class="hljs-function"><span class="hljs-keyword">function</span>[(<span
+                                            class="hljs-params">thisArg</span>)])</span></code></pre>
+                                    <br>
+                                    Похож на Array.prototype.map(). Создаёт новый массив с результатом вызова указанной
+                                    функции для каждого элемента массива. Вызывает функцию для каждого непосредственного
+                                    потомка, содержащегося в children передавая их по очереди в thisArg. Если children —
+                                    это массив, он будет пройден, и функция будет вызвана для каждого потомка в массиве.
+                                    Если children равен null или undefined, этот метод вернёт null или undefined, а не
+                                    массив. Если children — это React.Fragment, он будет рассматриваться как целый
+                                    потомок, а элементы внутри не будут пройдены. Метод map вызывает переданную функцию
+                                    callback один раз для каждого элемента, в порядке их появления и конструирует новый
+                                    массив из результатов её вызова.<br>
+                                    <br>
+                                    <b>React.Children.forEach</b><br>
+                                    <br>
+                                    <pre><code class="javascript hljs">React.Children.forEach(children, <span
+                                            class="hljs-function"><span class="hljs-keyword">function</span>[(<span
+                                            class="hljs-params">thisArg</span>)])</span></code></pre>
+                                    <br>
+                                    Похож на Array.prototype.forEach(). Выполняет указанную функцию один раз для каждого
+                                    элемента в массиве. В отличие от React.Children.map не возвращает массив из
+                                    результатов вызова функции. Возвращает ubdefined.<br>
+                                    <br>
+                                    Пример: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span
+                                            class="hljs-keyword">var</span> users = [<span
+                                            class="hljs-string">"Mike"</span>, <span class="hljs-string">"Bill"</span>, <span
+                                            class="hljs-string">"Scott"</span>];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Chill</span>(<span
+        class="hljs-params">props</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span
+                                                class="hljs-name">span</span>&gt;</span>{React.Children.map(props.children, (thisArg) =&gt; <span
+                                                class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hello {thisArg}<span
+                                                class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>)}<span
+                                                class="hljs-tag">&lt;/<span
+                                                class="hljs-name">span</span>&gt;</span></span>;
+}
+
+render (<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Chill</span>&gt;</span>{users}<span
+                                                class="hljs-tag">&lt;/<span
+                                                class="hljs-name">Chill</span>&gt;</span></span>, element); <span
+                                                class="hljs-comment">// Hello Mike, Hello Bill, Hello Scott</span></code></pre>
+                                    <br>
+                                    Вы множите найти больше примеров <a
+                                            href="https://learn.co/lessons/react-this-props-children"
+                                            rel="nofollow">тут </a>и <a
+                                            href="https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891"
+                                            rel="nofollow">тут</a>.<br>
+                                    <br>
+                                    <a name="section23"></a>
+                                    <h3>2.3 React компоненты</h3><br>
+                                    React компонент — функция возвращающая React-элемент или JavaScript класс
+                                    реализующий метод render() который возвращает React-элемент. Соответственно
+                                    компоненты, объявленные с помощью JavaScript функции принято называть
+                                    «функциональными компонентами» а компоненты, объявленные с помощью JavaScript
+                                    классов принято называть «классовыми компонентами».<br>
+                                    <br>
+                                    Компоненты, объявленные как функции JavaScript не могут содержать «состояния»,
+                                    поэтому их также принято называть stateless components, то есть, компоненты без
+                                    состояния, а компонентные объявленные как JavaScript класс могу содержать
+                                    «состояние», поэтому их называют statefull components, то есть, компоненты с
+                                    состоянием. *На самом деле вы можете добиться похожей функциональности и от
+                                    функциональных компонентов используя <a
+                                            href="https://ru.reactjs.org/docs/hooks-overview.html#state-hook"
+                                            rel="nofollow">хуки</a>.<br>
+                                    <br>
+                                    Классовые React-компоненты могут быть объявлены путём создания подклассов <a
+                                            href="#section231">React.Component</a> или
+                                    <a href="https://ru.reactjs.org/docs/react-api.html#reactpurecomponent"
+                                       rel="nofollow">React.PureComponent</a>. Последний отличается лишь тем, что он
+                                    реализует метод shouldComponentUpdate() (см. <a
+                                            href="#section231">жизненный цикл
+                                        компонентов</a>).<br>
+                                    <br>
+                                    Функциональный React-компонент это <a
+                                            href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Functions"
+                                            rel="nofollow">функция JavaScript</a>, которая может быть обернута в <a
+                                            href="https://ru.reactjs.org/docs/react-api.html#reactmemo" rel="nofollow">React.memo</a>.
+                                    React.memo похож на React.PureComponent только предназначен для функциональных
+                                    компонентов.<br>
+                                    <br>
+                                    <a name="0xFFFFF"></a><b>Пропсы </b> — это просто аргументы передоверяемые
+                                    компоненту. Когда React встречает JSX-атрибуты он собирает их в один объект и
+                                    передаёт компоненту. Этот объект и называется «пропсы» (props).<br>
+                                    <br>
+                                    Пример использования пропсов в функциональном компоненте:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-function"><span
+                                            class="hljs-keyword">function</span> <span
+                                            class="hljs-title">SayHi</span>(<span
+                                            class="hljs-params">props</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span
+                                                class="hljs-name">h1</span>&gt;</span>Привет, {props.name}<span
+                                                class="hljs-tag">&lt;/<span
+                                                class="hljs-name">h1</span>&gt;</span></span>;
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SayHi_2</span> <span
+        class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span
+        class="hljs-title">Component</span> </span>{
+    render() {
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span
+                                                class="hljs-name">h1</span>&gt;</span>Привет, {this.props.name}<span
+                                                class="hljs-tag">&lt;/<span
+                                                class="hljs-name">h1</span>&gt;</span></span>;
+    }
+}
+
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">SayHi</span> <span
+                                                class="hljs-attr">name</span>=<span class="hljs-string">"Mark"</span> /&gt;</span></span>, <span
+                                                class="hljs-built_in">document</span>.getElementById(<span
+                                                class="hljs-string">"root"</span>));
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">SayHi_2</span> <span
+                                                class="hljs-attr">name</span>=<span class="hljs-string">"Bob"</span> /&gt;</span></span>, <span
+                                                class="hljs-built_in">document</span>.getElementById(<span
+                                                class="hljs-string">"root_2"</span>));
+
+<span class="hljs-comment">//Output</span>
+Привет, Mark
+привет, Bob</code></pre>
+                                    <br>
+                                    <blockquote>Запомните! Названия типов пользовательских компонентов должны начинаться
+                                        с большой буквы!!!
+                                    </blockquote>
+                                    React-компоненты обязаны вести себя как чистые функции по отношению к своим пропсам.<br>
+                                    <br>
+                                    Компонент никогда не должен что-то записывать в свои пропсы — вне зависимости от
+                                    того, функциональный он или классовый.<br>
+                                    <br>
+                                    <a name="section231"></a><h4>2.3.1 React.Component</h4><br>
+                                    React.Component — это базовый класс для компонентов React. Для создания
+                                    React-компонента наследуйте свойства и методы от React.Component: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-class"><span
+                                            class="hljs-keyword">class</span> <span
+                                            class="hljs-title">myComponent</span> <span
+                                            class="hljs-keyword">extends</span> <span
+                                            class="hljs-title">React</span>.<span
+                                            class="hljs-title">Component</span> </span>{
+  render() {
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span
+                                                class="hljs-name">h1</span>&gt;</span>Hello, world<span
+                                                class="hljs-tag">&lt;/<span
+                                                class="hljs-name">h1</span>&gt;</span></span>;
+  }
+}</code></pre>
+                                    <br>
+                                    Каждый компонент имеет методы жизненного цикла, которые закономерно вызываются при
+                                    монтировании, обновление и размонтировании компонента. Переопределение такого метода
+                                    позволяет выполнять код на конкретном этапе этого процесса. (см. <a
+                                            href="#section235">2.3.5 Lifecycle</a>).<br>
+                                    <br>
+                                    <a name="section232"></a><h4>2.3.2 React.Fragment</h4><br>
+                                    Как вы могли заметить любой React элемент и компонент должен возвращать только один
+                                    узел (один html тэг). Если же вам необходимо отрендерить несколько тегов, то они в
+                                    обязательном порядке должны быть обернуты в один контейнер иначе вы получите ошибку.
+                                    Но что же делать, если не хочется создавать лишние контейнеры? Ответ:
+                                    React.Fragment.<br>
+                                    <br>
+                                    Компонент React.Fragment позволяет возвращать несколько элементов в методе render()
+                                    без создания дополнительного элемента DOM:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs">render() {
+    <span class="hljs-keyword">return</span> (
+       <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">React.Fragment</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Some text<span
+                   class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Tittle<span
+                   class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">React.Fragment</span>&gt;</span></span>
+    );
+}</code></pre>
+                                    Конечно, если вы не используете Jsx, то ваш код будет выглядеть так: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs">React.createElement(React.Fragment, <span
+                                            class="hljs-literal">null</span>, React.createElement(<span
+                                            class="hljs-string">"p"</span>, <span
+                                            class="hljs-literal">null</span>, <span
+                                            class="hljs-string">"Some text"</span>), React.createElement(<span
+                                            class="hljs-string">"h2"</span>, <span
+                                            class="hljs-literal">null</span>, <span class="hljs-string">"Tittle"</span>));</code></pre>
+                                    <br>
+                                    В React <a
+                                            href="https://ru.reactjs.org/blog/2017/11/28/react-v16.2.0-fragment-support.html"
+                                            rel="nofollow">v16.2.0</a> завезли новый синтаксический сахар для
+                                    React.Fragment, с этой версии вы можете просто писать пустой html тэг, который будет
+                                    оборачиваться в React.Fragment: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs">render() {
+    <span class="hljs-keyword">return</span> (
+       <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Some text<span
+                   class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Tittle<span
+                   class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+      <span class="hljs-tag">&lt;/&gt;</span></span>
+    );
+}</code></pre>
+                                    <br>
+                                    <a name="section233"></a><h4>2.3.3 State</h4><br>
+                                    Состояние компонента (State) — это приватное свойство (state) классовых React
+                                    компонентов. Обновляя состояние с помощью метода setState() компонент рендерится
+                                    повторно. Из этого следует запомнить что компонент не будет рендерится заново если
+                                    изменять состояние напрямую (без вызова setState()).<br>
+                                    <br>
+                                    Давайте рассмотрим простейшей пример с кнопкой счетчиком. В этом примере при нажатии
+                                    на кнопку вызывается метод incrementCount который с помощью setState обновляет
+                                    состояние компонента и компонент рендерится снова, отображая новое значение
+                                    счетчика. <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-class"><span
+                                            class="hljs-keyword">class</span> <span
+                                            class="hljs-title">Counter</span> <span class="hljs-keyword">extends</span> <span
+                                            class="hljs-title">React</span>.<span
+                                            class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+
+        <span class="hljs-keyword">this</span>.state = { <span class="hljs-attr">count</span>: <span
+                                                class="hljs-number">0</span> };
+        <span class="hljs-keyword">this</span>.incrementCount = <span class="hljs-keyword">this</span>.incrementCount.bind(<span
+                                                class="hljs-keyword">this</span>);
+    }
+    incrementCount() {
+        <span class="hljs-keyword">this</span>.setState(<span class="hljs-function"><span
+                                                class="hljs-params">state</span> =&gt;</span> ({ <span
+                                                class="hljs-attr">count</span>: state.count + <span class="hljs-number">1</span> }));
+    }
+
+    render() {
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Count = {this.state.count}<span
+                                                    class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span
+                    class="hljs-attr">onClick</span>=<span class="hljs-string">{this.incrementCount}</span>&gt;</span>Add<span
+                                                    class="hljs-tag">&lt;/<span
+                                                    class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    }
+}
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Counter</span> /&gt;</span></span>, <span
+                                                class="hljs-built_in">document</span>.getElementById(<span
+                                                class="hljs-string">"root"</span>));</code></pre>
+                                    <br>
+                                    Давайте разберём код по частям.<br>
+                                    <br>
+                                    Ключевое слово super() используется как функция, вызывающая родительский
+                                    конструктор. Её необходимо вызвать до первого обращения к ключевому слову this в
+                                    теле конструктора. Поэтому прежде чем инициализировать начальное состояние
+                                    компонента необходимо вызвать super(). Классовые компоненты всегда должны вызывать
+                                    базовый конструктор с аргументом props. Даже если вы не используете пропсы.<br>
+                                    <br>
+                                    Для методов необходимо вызывать метод bind() который наследуется из
+                                    Function.prototype.bind() он создаёт новую функцию, которая при вызове устанавливает
+                                    в качестве контекста выполнения this предоставленное значение. Это нужно потому что
+                                    методы класса в JavaScript по умолчанию не привязаны к контексту. Поэтому this будет
+                                    undefined в момент вызова функции если не привязать ее к контексту. Есть способ
+                                    позволяющий избежать вызова bind(), это использование синтаксиса общедоступных полей
+                                    классов:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs">incrementCount = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        <span class="hljs-keyword">this</span>.setState(<span class="hljs-function"><span
+                                                class="hljs-params">state</span> =&gt;</span> ({ <span
+                                                class="hljs-attr">count</span>: state.count + <span class="hljs-number">1</span> }));
+}</code></pre>
+                                    <br>
+                                    С помощью ключевого слова onClick регистрируется обработчик событий вызывающий метод
+                                    incrementCount каждый раз, когда совершается событие. Особенности обработки событий
+                                    на React будут рассмотрены в следующей главе.<br>
+                                    <br>
+                                    setState() использует текущее значение состояния для его обновления. Поэтому вместо
+                                    объекта с новым состоянием передаётся функция получающая текущее состояние как
+                                    аргумент. Дело в том что вызовы setState являются асинхронными из за чего this.state
+                                    в некоторых случаях может отображать неправильное значение. Для понимания этого
+                                    давайте взглянем на синтаксис метода setState: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs">setState(updater[, callback])</code></pre>
+                                    <br>
+                                    setState() напоминает функцию fetch() делающая запрос. Метод setState() не всегда
+                                    обновляет компонент сразу. Он может группировать или откладывать обновление до
+                                    следующего раза. Это делает чтение this.state сразу после вызова setState()
+                                    потенциальной ловушкой. Первый аргумент функции updater имеет следующий вид:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs">(state[, props]) =&gt; stateChange</code></pre>
+                                    <br>
+                                    здесь state — ссылка на состояние компонента при изменении. Как state, так и props,
+                                    полученные функцией, гарантированно будут обновлены. Второй параметр в setState() —
+                                    дополнительный колбэк, который выполняется после того, как исполнится setState и
+                                    произойдёт повторный рендер компонента. Если же следующее состояние не зависит от
+                                    текущего тогда в качестве первого аргумента вы можете просто передать объект с новым
+                                    состоянием.<br>
+                                    <br>
+                                    Обновления состояния объединяются!<br>
+                                    <br>
+                                    Если состояние хранит несколько значений, то изменение одно значения не повлияет на
+                                    другое.<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">constructor</span>(props) {
+    <span class="hljs-keyword">super</span>(props);
+
+<span class="hljs-keyword">this</span>.state = { <span class="hljs-attr">value_1</span>: <span
+                                                class="hljs-literal">true</span>, <span class="hljs-attr">value_2</span>: <span
+                                                class="hljs-literal">false</span> };
+  }</code></pre>
+                                    <br>
+                                    Оба поля можно обновить по отдельности с помощью отдельных вызовов setState()<br>
+                                    <br>
+                                    <pre><code class="javascript hljs">changeValue_1() {
+    <span class="hljs-keyword">this</span>.setState(<span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> ({ <span
+                                                class="hljs-attr">value_1</span>: !state.value_1 }));
+}
+changeValue_2() {
+    <span class="hljs-keyword">this</span>.setState(<span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> ({ <span
+                                                class="hljs-attr">value_2</span>: !state.value_2 }));
+}</code></pre>
+                                    <br>
+                                    Состояния объединяются поверхностно, поэтому вызов changeValue_1() оставляет value_2
+                                    нетронутым, но полностью заменяет value_1.<br>
+                                    <br>
+                                    Состояние доступно только для самого компонента и скрыто от других. То есть
+                                    this.state является приватным свойством.<br>
+                                    <br>
+                                    Компонент может передать своё состояние вниз по дереву в виде пропсов дочерних
+                                    компонентов.<br>
+                                    <br>
+                                    <a name="section234"></a><h4>2.3.4 Events</h4><br>
+                                    Обработка событии в React похожа на таковую в DOM-элементах за исключением
+                                    синтаксических особенностей и некоторых особенностей реализации.<br>
+                                    <br>
+                                    <pre><code class="xml hljs">// In HTML
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span
+        class="hljs-string">"handler()"</span>&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+
+// In Jsx
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+        class="hljs-string">{handler}</span>&gt;</span>Button<span class="hljs-tag">&lt;/<span
+                                                class="hljs-name">button</span>&gt;</span></code></pre>
+                                    <br>
+                                    В React нельзя предотвратить события по умолчанию вернув false из обработчика
+                                    события. Для этого нужно вызвать preventDefault().
+                                    <pre><code class="javascript hljs"><span class="hljs-function"><span
+                                            class="hljs-keyword">function</span> <span
+                                            class="hljs-title">ActionLink</span>(<span
+                                            class="hljs-params"></span>) </span>{
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span
+          class="hljs-title">handleClick</span>(<span class="hljs-params">e</span>) </span>{
+    e.preventDefault(); <span class="hljs-comment">// отмена события по умолчанию</span>
+  }
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span
+                                                class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span
+                                                class="hljs-attr">onClick</span>=<span
+                                                class="hljs-string">{handleClick}</span>&gt;</span>Link<span
+                                                class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span>;
+}</code></pre>
+                                    <br>
+                                    Обработчики событий также получают объект <a
+                                            href="https://developer.mozilla.org/ru/docs/Web/API/Event" rel="nofollow">Event</a>,
+                                    который в React называют SyntheticEvent. После вызова обработчика события объект
+                                    SyntheticEvent повторно используется, а все его свойства будут очищены, поэтому
+                                    нельзя использовать синтетические события асинхронно.<br>
+                                    <pre><code class="javascript hljs"><span class="hljs-function"><span
+                                            class="hljs-keyword">function</span> <span class="hljs-title">onClick</span>(<span
+                                            class="hljs-params">event</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(event); <span class="hljs-comment">// =&gt; null-объект.</span>
+  <span class="hljs-built_in">console</span>.log(event.type); <span class="hljs-comment">// =&gt; "click"</span>
+  <span class="hljs-keyword">const</span> eventType = event.type; <span class="hljs-comment">// =&gt; "click"</span>
+
+  setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(event.type); <span class="hljs-comment">// =&gt; null</span>
+    <span class="hljs-built_in">console</span>.log(eventType); <span class="hljs-comment">// =&gt; "click"</span>
+  }, <span class="hljs-number">0</span>);
+
+  <span class="hljs-comment">// Не сработает, поскольку this.state.clickEvent будет содержать только null-значения.</span>
+  <span class="hljs-keyword">this</span>.setState({<span class="hljs-attr">clickEvent</span>: event});
+
+  <span class="hljs-comment">// По-прежнему можно экспортировать свойства события.</span>
+  <span class="hljs-keyword">this</span>.setState({<span class="hljs-attr">eventType</span>: event.type});
+}</code></pre>
+                                    <br>
+                                    Но если же вы всё таки хотите использовать события асинхронно то вызывайте
+                                    event.persist() на событии. Тогда оно будет извлечено из пула, что позволит вашему
+                                    коду удерживать ссылки на это событие.<br>
+                                    <br>
+                                    Список всех поддерживаемых событий вы можете посмотреть <a
+                                            href="https://ru.reactjs.org/docs/events.html" rel="nofollow">тут</a>.<br>
+                                    <br>
+                                    <a name="section235"></a><h4>2.3.5 Lifecycle</h4><br>
+                                    Каждый компонент имеет несколько «методов жизненного цикла». Переопределение такого
+                                    метода позволяет выполнять код на конкретном этапе этого процесса. Давайте
+                                    рассмотрим все три этапа и разберёмся в какой последовательности, какие методы
+                                    вызываются на различных этапах. И собственно, как вы можете использовать эти методы.<br>
+                                    <br>
+                                    <a href="http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/"
+                                       rel="nofollow">Диаграмма жизненного цикла</a>:<br>
+                                    <br>
+                                    <img src="https://habrastorage.org/webt/n7/kr/ql/n7krqlscm1y6mc54g-grt4gcd3o.jpeg"
+                                         alt="image"><br>
+                                    <br>
+                                    <b>Монтирование</b><br>
+                                    <br>
+                                    При монтирований (создание экземпляра компонента и его вставке в DOM) закономерно
+                                    вызываются следующие методы в указанном порядке:<br>
+                                    <br>
+                                    <ul>
+                                        <li>constructor()</li>
+                                        <li>static getDerivedStateFromProps()</li>
+                                        <li>render()</li>
+                                        <li>componentDidMount()</li>
+                                    </ul>
+                                    <br>
+                                    <b>constructor</b><br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">constructor</span>(props)</code></pre>
+                                    <br>
+                                    Конструктор — самый первый метод жизненного цикла, вызывается до того, как компонент
+                                    будет примонтирован.<br>
+                                    <br>
+                                    Собственно, конструктор вам скорее всего будет нужен для инициализации внутреннего
+                                    состояния и привязки обработчиков событий к экземпляру. Следовательно, если вы не
+                                    определяете состояние или не привязываете методы, то реализация конструктора вам не
+                                    нужна.<br>
+                                    <br>
+                                    Как правильно определять состояние и привязывать методы к контексту в конструкторе я
+                                    уже детально объяснил. (см. <a href="#section233">2.3.3
+                                        State</a>).<br>
+                                    <br>
+                                    <a name="0x001"></a><b>getDerivedStateFromProps()</b><br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">static</span> getDerivedStateFromProps(props, state)</code></pre>
+                                    <br>
+                                    getDerivedStateFromProps вызывается непосредственно перед вызовом метода render, как
+                                    при начальном монтировании, так и при последующих обновлениях. Он должен вернуть
+                                    объект для обновления состояния или null, чтобы ничего не обновлять. Этот метод
+                                    существует для редких случаев, когда состояние зависит от изменений в пропсах.
+                                    getDerivedStateFromProps существует только для одной цели. Он позволяет компоненту
+                                    обновлять свое внутреннее состояние в результате изменений в props. Для лучшего
+                                    понимания прочитайте статью <a
+                                            href="https://ru.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state"
+                                            rel="nofollow">Brian Vaughn, You Probably Don't Need Derived State</a>.<br>
+                                    <br>
+                                    Так как это статический метод, он не имеет доступа к экземпляру компонента. Чтобы
+                                    использовать пропсы, состояние и методы класса в getDerivedStateFromProps(), их
+                                    нужно вынести за пределы класса в виде чистых функций.<br>
+                                    <br>
+                                    Если вы хотите повторно использовать код между getDerivedStateFromProps() и другими
+                                    методами класса, извлеките чистые функции пропсов и состояния компонента и поместите
+                                    их вне определения класса.<br>
+                                    <br>
+                                    Обратите внимание, что этот метод запускается при каждом рендере, независимо от
+                                    причины.<br>
+                                    <br>
+                                    <a name="0x007"></a><b>render()</b><br>
+                                    <br>
+                                    <pre><code class="javascript hljs">render()</code></pre>
+                                    <br>
+                                    При вызове он проверяет this.props и this.state и возвращает один из следующих
+                                    вариантов:<br>
+                                    <br>
+                                    <ul>
+                                        <li>Элемент React</li>
+                                        <li>Массив</li>
+                                        <li>Портал</li>
+                                        <li>Строку</li>
+                                        <li>Число</li>
+                                        <li>Booleans или null</li>
+                                    </ul>
+                                    <br>
+                                    Функция render() должна быть чистой.<br>
+                                    <br>
+                                    Взаимодействовать с браузером необходимо в componentDidMount() или других методах
+                                    жизненного цикла. Чистый render() делает компонент понятным.<br>
+                                    <br>
+                                    В отличие от других методов жизненного цикла, он является единственным обязательным
+                                    методом в классовом компоненте.<br>
+                                    <br>
+                                    <b>componentDidMount()</b><br>
+                                    <br>
+                                    <pre><code class="javascript hljs">componentDidMount()</code></pre>
+                                    <br>
+                                    componentDidMount() вызывается сразу после монтирования (то есть, вставки компонента
+                                    в DOM). В этом методе должны происходить действия, которые требуют наличия
+                                    DOM-узлов. Например, работа с анимацией или создание сетевых запросов.<br>
+                                    <br>
+                                    Вы можете сразу вызвать setState() в componentDidMount(). Это вызовет дополнительный
+                                    рендер перед тем, как браузер обновит экран. Гарантируется, что пользователь не
+                                    увидит промежуточное состояние, даже если render() будет вызываться дважды. Правда
+                                    при таком подходе возможны проблемы с производительностью. Начальное состояние лучше
+                                    объявить в constructor(). Однако, это может быть необходимо для случаев, когда нужно
+                                    измерить размер или положение DOM-узла, на основе которого происходит рендер.
+                                    Например, для модальных окон или всплывающих подсказок.<br>
+                                    <br>
+                                    <b>Обновление</b><br>
+                                    <br>
+                                    Если монтирование происходит при создании экземпляра компонента и его рендеринге
+                                    (передаче компонента в метод ReactDom.render()), то обновление происходит при
+                                    последующих вызовах ReactDom.render(). Обновление происходит при изменении пропсов
+                                    или состояния компонента. При повторном рендере компонента закономерно вызываются
+                                    следующие методы в указанном порядке:<br>
+                                    <br>
+                                    <ul>
+                                        <li>static getDerivedStateFromProps()</li>
+                                        <li>shouldComponentUpdate()</li>
+                                        <li>render()</li>
+                                        <li>getSnapshotBeforeUpdate()</li>
+                                        <li>componentDidUpdate()</li>
+                                    </ul>
+                                    <br>
+                                    Правда здесь стоит отметить, что метод shouldComponentUpdate() не будет вызван если
+                                    к обновлению привёл вызов forceUpdate(). Можно заключить что не только обновление
+                                    состояния и пропсов приводит к обновлению компонента, но также и метод
+                                    forceUpdate().<br>
+                                    <br>
+                                    <b>forceUpdate()</b><br>
+                                    <br>
+                                    <pre><code class="javascript hljs">component.forceUpdate(callback)</code></pre>
+                                    <br>
+                                    Если ваш метод render() зависит от некоторых других данных, вы можете указать React
+                                    необходимость в повторном рендере, вызвав forceUpdate().<br>
+                                    <br>
+                                    Вызов forceUpdate() приведёт к выполнению метода render() в компоненте, пропуская
+                                    shouldComponentUpdate(). Это вызовет обычные методы жизненного цикла для дочерних
+                                    компонентов, включая shouldComponentUpdate() каждого дочернего компонента. React
+                                    по-прежнему будет обновлять DOM только в случае изменения разметки.<br>
+                                    <br>
+                                    В этом примере при нажатие на кнопку будет вызван handleClick который приведёт к
+                                    обновлению компонента и вызову getSnapshotBeforeUpdate в Tittle который изменит
+                                    значение свойства button.click перед тем как компонент будет отображён. В итоге при
+                                    каждом нажатии кнопки надпись в Title будет сменятся.<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-class"><span
+                                            class="hljs-keyword">class</span> <span
+                                            class="hljs-title">Clicker</span> <span class="hljs-keyword">extends</span> <span
+                                            class="hljs-title">React</span>.<span
+                                            class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+    }
+    handleClick = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        <span class="hljs-keyword">this</span>.forceUpdate();
+    }
+    render() {
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">React.Fragment</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Tittle</span>&gt;</span><span class="hljs-tag">&lt;/<span
+                                                    class="hljs-name">Tittle</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span
+                    class="hljs-attr">onClick</span>=<span class="hljs-string">{this.handleClick}</span>&gt;</span>Click me<span
+                                                    class="hljs-tag">&lt;/<span
+                                                    class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">React.Fragment</span>&gt;</span></span>;
+    }
+}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Tittle</span> <span
+        class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span
+        class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+
+        <span class="hljs-keyword">this</span>.button = { <span class="hljs-attr">click</span>: <span
+                                                class="hljs-literal">false</span> };
+    }
+    getSnapshotBeforeUpdate() {
+        <span class="hljs-keyword">this</span>.button.click = (<span
+                                                class="hljs-keyword">this</span>.button.click) ? <span
+                                                class="hljs-literal">false</span> : <span
+                                                class="hljs-literal">true</span>;
+    }
+    render() {
+        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.button.click)
+            <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span
+                                                class="hljs-name">h1</span>&gt;</span>Button enabled<span
+                                                class="hljs-tag">&lt;/<span
+                                                class="hljs-name">h1</span>&gt;</span></span>;
+        <span class="hljs-keyword">else</span>
+            <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span
+                                                class="hljs-name">h1</span>&gt;</span>Button disabled<span
+                                                class="hljs-tag">&lt;/<span
+                                                class="hljs-name">h1</span>&gt;</span></span>;
+    }
+}
+ReactDom.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Clicker</span> /&gt;</span></span>, <span
+                                                class="hljs-built_in">document</span>.getElementById(<span
+                                                class="hljs-string">"root"</span>));</code></pre>
+                                    <br>
+                                    Конечно это можно было реализовать проще, просто изменяя состояние Clicker в
+                                    handleClick и передовая его как props в Tittle. Но этот пример хорошо демонстрирует
+                                    работу forceUpdate(). Можно сказать, что forceUpdate() это замена для setState()
+                                    когда необходимо принудительно обновить компонент. Вы можете использовать этот метод
+                                    в двух случаях: когда вы не хотите реализовывать состояние компонента но хотите
+                                    иметь способ принудительного обновления либо если вы хотите пропустить
+                                    shouldComponentUpdate() при обновление компонента.<br>
+                                    <br>
+                                    <b>getDerivedStateFromProps()</b><br>
+                                    <br>
+                                    Метод getDerivedStateFromProps() уже был рассмотрен <a
+                                            href="#0x001">выше</a> так как он вызывается
+                                    как при начальном монтировании, так и при обновлении компонента. Не ясно для чего он
+                                    вызывается при монтировании. Поскольку его основной задачей по задумке разработчиков
+                                    это возвращение объекта для обновления состояния или null, чтобы ничего не
+                                    обновлять.<br>
+                                    <br>
+                                    <b>shouldComponentUpdate()</b><br>
+                                    <br>
+                                    <pre><code
+                                            class="javascript hljs">shouldComponentUpdate(nextProps, nextState)</code></pre>
+                                    <br>
+                                    shouldComponentUpdate указывает на необходимость следующего рендера на основе
+                                    изменений состояния и пропсов. По умолчанию происходит повторный рендер при любом
+                                    изменении состояния. В большинстве случаев вы должны полагаться на это поведение. Но
+                                    бывают специфические случае, когда, к примеру, необходимость в обновление компонента
+                                    возникает только при изменение конкретного props или state, а во всех остальных
+                                    случаях не требуется. Вы можете сравнить this.props с nextProps, а this.state с
+                                    nextState, верните false чтобы пропустить обновление React. <br>
+                                    <br>
+                                    Обратите внимание возврат false не предотвращает повторный рендер дочерних
+                                    компонентов при изменении их состояния.<br>
+                                    <br>
+                                    Значение по умолчанию равно true. Этот метод не вызывается при первом рендере или
+                                    когда используется forceUpdate().<br>
+                                    <br>
+                                    Поскольку лишние вызовы ReactDom.render() могут плохо сказаться на скорости работы
+                                    вашего приложения, этот метод нужен только для повышения производительности. Не
+                                    опирайтесь на возможность shouldComponentUpdate() «предотвратить» рендер, это может
+                                    привести к багам.<br>
+                                    <br>
+                                    Как говорилось ранее (<a href="#section23">см. 2.3
+                                        React компоненты</a>) классовые React-компоненты которые объявляются путём
+                                    создания подкласса React.PureComponent, а не React.Component по умолчанию реализуют
+                                    метод shouldComponentUpdate().<br>
+                                    <br>
+                                    Метод shouldComponentUpdate() базового класса React.PureComponent делает только
+                                    поверхностное сравнение объектов. Если они содержат сложные структуры данных, это
+                                    может привести к неправильной работе для более глубоких различий (то есть, различий,
+                                    не выраженных на поверхности структуры). Наследуйте класс PureComponent только
+                                    тогда, когда вы ожидаете использовать простые пропсы и состояние, или используйте
+                                    forceUpdate(), когда знаете, что вложенные структуры данных изменились.<br>
+                                    <br>
+                                    При обновление сразу после shouldComponentUpdate() вызывается render() принцип
+                                    работы которого рассматривался <a
+                                            href="#0x007">выше</a>.<br>
+                                    <br>
+                                    <b>getSnapshotBeforeUpdate()</b><br>
+                                    <br>
+                                    <pre><code
+                                            class="javascript hljs">getSnapshotBeforeUpdate(prevProps, prevState)</code></pre>
+                                    <br>
+                                    getSnapshotBeforeUpdate() вызывается прямо перед этапом «фиксирования» (например,
+                                    перед добавлением в DOM). Он позволяет вашему компоненту брать некоторую информацию
+                                    из DOM (например, положение прокрутки) перед её возможным изменением. Любое
+                                    значение, возвращаемое этим методом жизненного цикла, будет передано как параметр
+                                    componentDidUpdate().<br>
+                                    <br>
+                                    Хотя этот метод и вызывается после render() в нем вы все еще можете получить
+                                    «снимок», то как выглядит DOM до рендера.<br>
+                                    <br>
+                                    Значение снимка (или null) должно быть возвращено из этого метода.<br>
+                                    <br>
+                                    <b>componentDidUpdate()</b><br>
+                                    <br>
+                                    <pre><code class="javascript hljs">componentDidUpdate(prevProps, prevState, snapshot)</code></pre>
+                                    <br>
+                                    componentDidUpdate() вызывается сразу после обновления DOM. Он подходит для
+                                    выполнения, таких действии которые требуют наличие DOM. Также он подходит для
+                                    выполнения сетевых запросов, которые выполняются на основании результата сравнения
+                                    текущих пропсов с предыдущими. Если пропсы не изменились, новый запрос может и не
+                                    требоваться.<br>
+                                    <br>
+                                    В componentDidUpdate() можно вызывать setState(), однако его необходимо обернуть в
+                                    условие, чтобы не возникла бесконечная рекурсия.<br>
+                                    <br>
+                                    В тех редких случаях когда реализован метод жизненного цикла
+                                    getSnapshotBeforeUpdate(), его результат передаётся componentDidUpdate() в качестве
+                                    третьего параметра snapshot.<br>
+                                    <br>
+                                    componentDidUpdate() не вызывается, если shouldComponentUpdate() возвращает
+                                    false.<br>
+                                    <br>
+                                    <b>Размонтирование</b><br>
+                                    <br>
+                                    При удалении компонента из DOM вызывается метод componentWillUnmount().<br>
+                                    <br>
+                                    <b>componentWillUnmount()</b><br>
+                                    <br>
+                                    <pre><code class="javascript hljs">componentWillUnmount()</code></pre>
+                                    <br>
+                                    componentWillUnmount() вызывается непосредственно перед размонтированием (например
+                                    при вызове <a href="#section243">ReactDOM.unmountComponentAtNode()</a>)
+                                    и удалением компонента. В этом методе выполняется необходимый сброс: отмена
+                                    таймеров, сетевых запросов и подписок, созданных ранее.<br>
+                                    <br>
+                                    <a name="section236"></a><h4>2.3.6 Refs</h4><br>
+                                    Рефы дают возможность получить доступ к DOM-узлам или React-элементам, созданным в
+                                    рендер-методе. Обычно родительские компоненты могут взаимодействовать с дочерними
+                                    только через пропсы, но иногда вам требуется императивно изменить дочерний элемент,
+                                    обойдя обычный поток данных. Рефы как небольшие лазейки, которые позволяют вам
+                                    обойти семантику React в тех случаях, когда обычным способом достичь требуемой
+                                    функциональности невозможно. Из-за чего в случаях, когда задачу можно решить
+                                    декларативным способом вы должны избегать использования рефов.<br>
+                                    <br>
+                                    Ситуации, в которых использования рефов является оправданным:<br>
+                                    <br>
+                                    <ul>
+                                        <li>Управление фокусом, выделение текста или воспроизведение медиа.</li>
+                                        <li>Императивный вызов анимаций.</li>
+                                        <li>Интеграция со сторонними DOM-библиотеками.</li>
+                                    </ul>
+                                    <br>
+                                    Рефы создаются с помощью React.createRef() и прикрепляются к React-элементам через
+                                    ref атрибут. Когда атрибут ref используется с HTML-элементом, свойство current
+                                    созданного рефа в конструкторе с помощью React.createRef() получает соответствующий
+                                    DOM-элемент.<br>
+                                    <br>
+                                    Когда атрибут ref используется с классовым компонентом, свойство current
+                                    объекта-рефа получает экземпляр смонтированного компонента.<br>
+                                    <br>
+                                    Нельзя использовать ref атрибут с функциональными компонентами, потому что для них
+                                    не создаётся экземпляров. Для этого используйте хук <a
+                                            href="https://ru.reactjs.org/docs/hooks-reference.html#useref"
+                                            rel="nofollow">useRef </a>. Говоря проще реф это ссылка на DOM элемент либо
+                                    на экземпляр смонтированного компонента.<br>
+                                    <br>
+                                    Пример: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-class"><span
+                                            class="hljs-keyword">class</span> <span class="hljs-title">RefExample</span> <span
+                                            class="hljs-keyword">extends</span> <span
+                                            class="hljs-title">React</span>.<span
+                                            class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+
+        <span class="hljs-keyword">this</span>.ref = React.createRef();
+    }
+    handleClick = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        <span class="hljs-keyword">var</span> color = <span class="hljs-built_in">Math</span>.floor(<span
+                                                class="hljs-built_in">Math</span>.random() * <span class="hljs-number">16777215</span>).toString(<span
+                                                class="hljs-number">16</span>);
+        <span class="hljs-keyword">this</span>.ref.current.style.color = <span class="hljs-string">`#<span
+                                                class="hljs-subst">${color}</span>`</span>;
+    }
+    render() {
+        <span class="hljs-keyword">return</span>(
+            <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">ref</span>=<span
+                        class="hljs-string">{this.ref}</span>&gt;</span>Hello world<span class="hljs-tag">&lt;/<span
+                        class="hljs-name">h1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+                        class="hljs-string">{this.handleClick}</span>&gt;</span>Click me<span
+                        class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+            <span class="hljs-tag">&lt;/&gt;</span></span>);
+    }
+}</code></pre>
+                                    <br>
+                                    В этом примере this.ref это ссылка на дом элемент h1 — Hello world. При нажатии на
+                                    кнопку вызывается функция handleClick использующая ссылку на h1 через ref и рандомно
+                                    изменяет цвет текста.<br>
+                                    <br>
+                                    Узнайте больше о Рефах <a href="https://ru.reactjs.org/docs/refs-and-the-dom.html"
+                                                              rel="nofollow">здесь</a>.<br>
+                                    <br>
+                                    <a name="section24"></a>
+                                    <h3>2.4 ReactDOM</h3><br>
+                                    Если объект React из react предоставляет API для создания и произведения различных
+                                    манипуляции над React объектами и компонентами, то ReactDom предоставляет API для
+                                    рендеринга этих компонентов или объектов.<br>
+                                    <br>
+                                    Под рендерингом понимается отображение элементов или компонентов на странице.<br>
+                                    <br>
+                                    Методы, предоставляемые пакетом ReactDom:<br>
+                                    <br>
+                                    <ul>
+                                        <li>render() — Рендерит React-элемент в DOM-элемент;</li>
+                                        <li>hydrate() — Рендерит React-элемент в DOM-элемент используя HTML-содержимое
+                                            которого было отрендерено с помощью ReactDOMServer;
+                                        </li>
+                                        <li>unmountComponentAtNode() — Удаляет смонтированный компонент React из DOM и
+                                            очищает его обработчики событий и состояние;
+                                        </li>
+                                        <li>createPortal() — Создаёт портал.</li>
+                                    </ul>
+                                    <br>
+                                    *Здесь нет метода findDOMNode() поскольку он считается устаревшим и не желательным
+                                    для употребления. Почему его не стоит использовать вы можете прочитать <a
+                                            href="https://ru.reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage"
+                                            rel="nofollow">тут</a>. Также здесь нет метода flushSync(), поскольку он был
+                                    добавлен недавно и ещё не был задокументирован. Также здесь не рассматриваются
+                                    экспериментальные нестабильные методы методы. Такие как
+                                    (unstable_renderSubtreeIntoContainer(), unstable_createPortal(),
+                                    unstable_batchedUpdates(), unstable_interactiveUpdates(), unstable_createRoot(),
+                                    unstable_flushControlled()). Ну и конечно же свойство
+                                    __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED — лично я не хочу быть уволенным,
+                                    поэтому не буду это использовать и рассматривать :D<br>
+                                    <br>
+                                    <a name="section241"></a><h4>2.4.1 Render</h4><br>
+                                    <pre><code
+                                            class="javascript hljs">ReactDOM.render(element, container[, callback])</code></pre>
+                                    <br>
+                                    Рендерит React-элемент в DOM-элемент, переданный в аргумент container и возвращает
+                                    ссылку на корневой экземпляр ReactComponent или null для компонентов без
+                                    состояния.<br>
+                                    <br>
+                                    Любые существующие дочерние элементы DOM container заменяются при первом вызове.<br>
+                                    Другими словами — если вы рендерите в DOM узел, заведомо имеющий какие-либо дочерние
+                                    элементы, то они будут удалены и заменены на element.<br>
+                                    <br>
+                                    Повторный вызов произведёт обновление контейнера и изменит соответствующую часть
+                                    DOM, чтобы она содержала последние изменения.<br>
+                                    <br>
+                                    Если дополнительно был предоставлен колбэк, он будет вызван после того, как
+                                    компонент отрендерится или обновится.<br>
+                                    <br>
+                                    <a name="section242"></a><h4>2.4.2 Hydrate</h4><br>
+                                    <pre><code
+                                            class="javascript hljs">ReactDOM.hydrate(element, container[, callback])</code></pre>
+                                    <br>
+                                    Тоже самое что и ReactDOM.render но для случаев, когда рендеринг на клиенте основан
+                                    на результатах серверного рендеринга. Что такое <a
+                                            href="https://habr.com/ru/company/ruvds/blog/339148/">Server-Side
+                                        Rendering</a> я объяснять не собираюсь. Для этого уже написана отдельная статья
+                                    и соответсвующий раздел документации <a
+                                            href="https://ru.reactjs.org/docs/react-dom-server.html" rel="nofollow">ReactDOMServer</a>.<br>
+                                    <br>
+                                    React ожидает, что отрендеренное содержимое идентично на сервере, и на клиенте.
+                                    Текстовые различия в контенте могут быть переписаны поверх, но вам следует
+                                    рассматривать такие нестыковки как ошибки и исправлять их.<br>
+                                    <br>
+                                    Если атрибут отдельного элемента или текстовое содержимое неизбежно отличается на
+                                    сервере и клиенте (например, отметка времени), вы можете отключить предупреждение,
+                                    добавив к элементу suppressHydrationWarning={true}. Он работает только на один
+                                    уровень в глубину, и задумана как лазейка. Не злоупотребляйте ею.<br>
+                                    <br>
+                                    <a name="section243"></a><h4>2.4.3 UnmountComponentAtNode</h4><br>
+                                    <pre><code class="javascript hljs">ReactDOM.unmountComponentAtNode(container)</code></pre>
+                                    <br>
+                                    Удаляет смонтированный компонент из <b>container</b> и очищает его обработчики
+                                    событий и состояние. Если в контейнер не было смонтировано ни одного компонента,
+                                    вызов этой функции ничего не делает. Возвращает true, если компонент был
+                                    размонтирован, и false если нет компонента для размонтирования. Не перепутайте,
+                                    container это не React элемент который необходимо удалить, а DOM узел в котором
+                                    находится компонент.<br>
+                                    <br>
+                                    <a name="section244"></a><h4>2.4.4 CreatePortal</h4><br>
+                                    <pre><code
+                                            class="javascript hljs">ReactDOM.createPortal(child, container)</code></pre>
+                                    <br>
+                                    Порталы позволяют рендерить дочерние элементы в DOM-узел, который находится вне
+                                    DOM-иерархии родительского компонента.<br>
+                                    <br>
+                                    child — это любой React-компонент, который может быть отрендерен<br>
+                                    container — это ссылка на DOM-элемент.<br>
+                                    <br>
+                                    Что бы понять принцип действия порталов давайте рассмотрим простой пример: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-class"><span
+                                            class="hljs-keyword">class</span> <span
+                                            class="hljs-title">Welcome</span> <span class="hljs-keyword">extends</span> <span
+                                            class="hljs-title">React</span>.<span
+                                            class="hljs-title">Component</span> </span>{
+    render() {
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{this.props.children}<span
+                                                    class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+    }
+}
+
+render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Welcome</span>&gt;</span>Привет, мир!<span
+                                                class="hljs-tag">&lt;/<span class="hljs-name">Welcome</span>&gt;</span></span>, <span
+                                                class="hljs-built_in">document</span>.getElementById(<span
+                                                class="hljs-string">"root"</span>));
+
+<span class="hljs-comment">// После выполнения кода в контейнере с id root будет вставлено  &lt;div&gt;Привет, мир!&lt;/div&gt;</span></code></pre>
+                                    <br>
+                                    Теперь используя портал, можно изменить то куда будет отрендерин компонент, точнее
+                                    часть компонента: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-class"><span
+                                            class="hljs-keyword">class</span> <span
+                                            class="hljs-title">Welcome</span> <span class="hljs-keyword">extends</span> <span
+                                            class="hljs-title">React</span>.<span
+                                            class="hljs-title">Component</span> </span>{
+    render() {
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{this.props.children}<span
+                                                    class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+            {createPortal(<span class="hljs-tag">&lt;<span
+                                                    class="hljs-name">p</span>&gt;</span>{this.props.children}<span
+                                                    class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>, document.getElementById("app-root"))}
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+    }
+}
+
+render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Welcome</span>&gt;</span>Привет, мир!<span
+                                                class="hljs-tag">&lt;/<span class="hljs-name">Welcome</span>&gt;</span></span>, <span
+                                                class="hljs-built_in">document</span>.getElementById(<span
+                                                class="hljs-string">"root"</span>));
+
+<span class="hljs-comment">// Теперь первый тэг &lt;p&gt; будет отрендерен в #root, а второй в #app-root</span></code></pre>
+                                    <br>
+                                    <img src="https://habrastorage.org/webt/uf/yx/bs/ufyxbsxpmr5yx1ncu6bgdxe8xuk.png"
+                                         alt="image"><br>
+                                    <br>
+                                    Перехват событий, всплывающих от портала к родительскому компоненту, позволяет
+                                    создавать абстракции, которые не спроектированы специально под порталы. Например, вы
+                                    отрендерили некий дочерний элемент. Тогда его события могут быть перехвачены
+                                    родительским компонентом, вне зависимости от того, был ли этот дочерний элемент
+                                    реализован с использованием порталов или без них. То есть, не смотря на то где
+                                    находятся дети, родительский компонент все равно будет перехватывать события даже с
+                                    учётом того что в html он и не является родительским благодаря использованию
+                                    порталов. <br>
+                                    <br>
+                                    <a name="section3"></a>
+                                    <h2>3. Other topics</h2><br>
+                                    Здесь будут рассмотрены прочие темы, которые на мой взгляд не относятся к базовым
+                                    понятиям React. В общем то прочитав первые два пункта <a
+                                            href="#section1">1. Getting started with
+                                        React</a> и <a href="#section2">2. Basically
+                                        React</a> вы уже будете обладать достаточными знаниями для начала работы с
+                                    React.<br>
+                                    <br>
+                                    <a name="section31"></a>
+                                    <h3>3.1 Lists and Keys</h3><br>
+                                    Одной из целей, которые преследовали авторы при разработке React это многократное
+                                    использование встроенных интерфейсов. Поэтому компоненты могут напоминать шаблоны
+                                    для интерфейсов. Компоненты, написанные разными людьми, должны хорошо работать
+                                    вместе. Этот патерн принято называть композиция (en. Composition).<br>
+                                    <br>
+                                    Одной из таких концепции является использование списков. Например, вы множите
+                                    определить общий шаблон для списка друзей пользователя в мессенджере или списка
+                                    покупок в интернет магазине и отображать такой персонализированный список для
+                                    каждого пользователя.<br>
+                                    <br>
+                                    Давайте рассмотрим простой пример: у нас есть список друзей пользователя, который мы
+                                    хотим отобразить в сайдбар. Мы можем сделать это следующим образом: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span
+                                            class="hljs-keyword">var</span> users = [<span
+                                            class="hljs-string">"Mike"</span>, <span class="hljs-string">"Bill"</span>, <span
+                                            class="hljs-string">"Scott"</span>];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">UsersList</span>(<span
+        class="hljs-params">props</span>) </span>{
+    <span class="hljs-keyword">const</span> userlist = props.children.map(<span class="hljs-function">(<span
+                                                class="hljs-params">users</span>) =&gt;</span> <span class="xml"><span
+                                                class="hljs-tag">&lt;<span
+                                                class="hljs-name">p</span>&gt;</span>{users}<span class="hljs-tag">&lt;/<span
+                                                class="hljs-name">p</span>&gt;</span></span>);
+
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span
+                                                class="hljs-name">div</span>&gt;</span>{userlist}<span class="hljs-tag">&lt;/<span
+                                                class="hljs-name">div</span>&gt;</span></span>;
+}
+
+render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">UsersList</span>&gt;</span>{users}<span
+                                                class="hljs-tag">&lt;/<span
+                                                class="hljs-name">UsersList</span>&gt;</span></span>, element);</code></pre>
+                                    <br>
+                                    В главе <a href="#section235">2.3.5 Lifecycle</a>
+                                    при рассмотрение метода render() вы узнали, что данный метод может возвращать не
+                                    только React элементы или компоненты, но также и массивы, фрагменты, порталы,
+                                    строки, числа, Booleans или null. Таким образом вы можете вернуть массив
+                                    пользователей, состоящий из элементов React. Это конечно удобно, но при возвращении
+                                    массива из компонента, вы получите следующее предупреждение:<br>
+                                    Warning: Each child in a list should have a unique «key» prop.<br>
+                                    <br>
+                                    У каждого ребенка в списке должно быть уникальное свойство «key».<br>
+                                    <br>
+                                    Key это специальный строковый атрибут, который нужно указывать при создании списка
+                                    элементов. Он нужен для оптимизации работы React при изменении DOM с течением
+                                    времени. Для большего понимания работы React при изменение DOM прочитайте статью <a
+                                            href="https://ru.reactjs.org/docs/reconciliation.html#the-diffing-algorithm"
+                                            rel="nofollow">Алгоритм сравнения</a>. Ключи должны быть уникальны в
+                                    пределах одного списка элементов. Если переписать компонент с использованием Key то
+                                    он будет выглядеть следующим образом: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-function"><span
+                                            class="hljs-keyword">function</span> <span
+                                            class="hljs-title">UsersList</span>(<span class="hljs-params">props</span>) </span>{
+    <span class="hljs-keyword">const</span> userlist = props.children.map(<span class="hljs-function">(<span
+                                                class="hljs-params">users, index</span>) =&gt;</span> <span class="xml"><span
+                                                class="hljs-tag">&lt;<span class="hljs-name">p</span> <span
+                                                class="hljs-attr">key</span>=<span class="hljs-string">{index}</span>&gt;</span>{users}<span
+                                                class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>);
+
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span
+                                                class="hljs-name">div</span>&gt;</span>{userlist}<span class="hljs-tag">&lt;/<span
+                                                class="hljs-name">div</span>&gt;</span></span>;
+}</code></pre>
+                                    <br>
+                                    На самом деле использование индекса элемента для атрибута Key, как в примере выше
+                                    является плохой практикой в случаях, когда порядок элементов может поменяться потому
+                                    что это может негативно сказаться на производительности и вызвать проблемы с
+                                    состоянием компонента. Поэтому лучше использовать ID из ваших данных. Ключи не будут
+                                    отображаться как атрибуты в DOM элементах, они являются свойствами React элементов.
+                                    Вы можете убедится в этом вызвав обьект элемента в консоле с помощью
+                                    element.__reactInternalInstance$235y8cxv0e8 (возможно после $ у вас будет другое
+                                    число). element.__reactInternalInstance$235y8cxv0e8 — эксперементальное свойство, не
+                                    опирайтесь на него при разработке.<br>
+                                    <br>
+                                    <a name="section32"></a>
+                                    <h3>3.2 Error Handling</h3><br>
+                                    При разработке больших приложений могут возникать трудности с обнаружением и
+                                    исправлением целого ряда различных ошибок, например, ошибок проектирования,
+                                    логических или синтаксических ошибок. Для этого в React есть различные средства,
+                                    которые призваны помочь разработчикам в поиске и исправлений таких ошибок.<br>
+                                    <br>
+                                    Ошибка JavaScript где-то в коде UI не должна прерывать работу всего приложения. Для
+                                    этого были добавлены специальные методы отлавливающие ошибки JavaScript в любом
+                                    месте деревьев их дочерних компонентов, для сохранения их в журнале ошибок и вывода
+                                    запасного UI вместо рухнувшего дерева компонентов. Они отлавливают ошибки при
+                                    рендеринге, в методах жизненного цикла и конструкторах деревьев компонентов,
+                                    расположенных под ними. Объекты реализующие такие методы принято называть
+                                    «Предохранители». Вы можете узнать больше о предохранителях в специальном разделе
+                                    документации <a
+                                            href="https://ru.reactjs.org/docs/error-boundaries.html#how-about-event-handlers"
+                                            rel="nofollow">Error Boundaries</a>. Работают они следующем образом: если
+                                    возникают ошибки в дочерних элементах предохранителей, они вызывают специальные
+                                    методы и рендерят запасной вариант вместо рухнувшего интерфейса.<br>
+                                    <br>
+                                    JavaScript язык с динамической типизации. Такой вариант типизации сильно облегчает
+                                    работу для программистов, но может привести к сложным ошибкам. Инструменты для
+                                    статической типизации, такие как <a href="https://flow.org/"
+                                                                        rel="nofollow">Flow </a>или <a
+                                            href="https://www.typescriptlang.org/" rel="nofollow">TypeScript</a>,
+                                    позволяют отлавливать большую часть таких ошибок ещё до исполнения кода. Кроме того,
+                                    они существенно улучшают процессы разработки, добавляя авто дополнение и другие
+                                    возможности. Для использования статической типизации при написании React приложений
+                                    прочитайте соответствующий раздел документации <a
+                                            href="https://ru.reactjs.org/docs/static-type-checking.html" rel="nofollow">Static
+                                        Type Checking</a>.<br>
+                                    <br>
+                                    Но даже если вы не используете расширения вроде Flow и TypeScript React
+                                    предоставляет встроенные возможности для проверки типов. Это <a
+                                            href="https://ru.reactjs.org/docs/typechecking-with-proptypes.html"
+                                            rel="nofollow">проверка типов с помощью PropTypes</a>. Для проверки на
+                                    правильность переданных типов данных в пропсы компонента вам нужно использовать
+                                    специальное свойство propTypes: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-class"><span
+                                            class="hljs-keyword">class</span> <span
+                                            class="hljs-title">PropTypesExample</span> <span class="hljs-keyword">extends</span> <span
+                                            class="hljs-title">React</span>.<span
+                                            class="hljs-title">Component</span> </span>{
+    render() {
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span
+                                                class="hljs-name">h1</span>&gt;</span>Привет, {this.props.name}<span
+                                                class="hljs-tag">&lt;/<span
+                                                class="hljs-name">h1</span>&gt;</span></span>;
+    }
+}
+
+PropTypesExample.propTypes = {
+    <span class="hljs-attr">name</span>: PropTypes.string
+};
+ReactDom.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">PropTypesExample</span> <span
+                                                class="hljs-attr">name</span>=<span class="hljs-string">{5}</span> /&gt;</span></span>, element);</code></pre>
+                                    При этом если вместо строки передать число (как показано выше), то в консоле можно
+                                    будет увидеть следующее предупреждение: <b>Warning: Failed prop type: Invalid prop
+                                        `name` of type `number` supplied to `PropTypesExample`, expected
+                                        `string`.</b><br>
+                                    <blockquote>С версии React 15.5 React.PropTypes были вынесены в отдельный пакет. Так
+                                        что используйте <a href="https://www.npmjs.com/package/prop-types"
+                                                           rel="nofollow">библиотеку prop-types</a></blockquote>
+                                    Также для обнаружения потанцеальных проблем вам может помочь Строгий режим
+                                    (StrictMode). Также, как и Fragment, StrictMode не рендерит видимого UI. Строгий
+                                    режим активирует дополнительные проверки и предупреждения для своих потомков.<br>
+                                    <br>
+                                    Пример: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-function"><span
+                                            class="hljs-keyword">function</span> <span class="hljs-title">Example</span>(<span
+                                            class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> (
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">React.StrictMode</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, world!<span class="hljs-tag">&lt;/<span
+                    class="hljs-name">h1</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">React.StrictMode</span>&gt;</span></span>
+    );
+}
+render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Example</span> /&gt;</span></span>, element); </code></pre>
+                                    <br>
+                                    Используйте библиотеку <a
+                                            href="https://testing-library.com/docs/react-testing-library/intro"
+                                            rel="nofollow">React Testing Library</a> для написания тестов. В качестве
+                                    альтернативы используйте утилиту тестирования <a
+                                            href="https://enzymejs.github.io/enzyme/" rel="nofollow">Enzyme</a>, которая
+                                    легко позволяет делать проверки, управлять, а также просматривать выходные данные
+                                    React-компонентов. Также прочитайте специальный раздел документации React (<a
+                                            href="https://ru.reactjs.org/docs/testing.html" rel="nofollow">Testing</a>)
+                                    что бы знать больше о тестах.<br>
+                                    <br>
+                                    <a name="section321"></a><h4>3.2.1 getDerivedStateFromError</h4><br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">static</span> getDerivedStateFromError(error)</code></pre>
+                                    <br>
+                                    Этот метод жизненного цикла вызывается после возникновения ошибки у
+                                    компонента-потомка. Он получает ошибку в качестве параметра и возвращает значение
+                                    для обновления состояния.<br>
+                                    Стоит отметить места, в которых данные методы не отловят ошибки: в обработчиках
+                                    событий, асинхронном коде, серверном рендеринге, самом предохранителе. Поэтому если
+                                    ошибка произойдет в дочернем компоненте, то она будет отловлена и вызваны методы
+                                    static getDerivedStateFromError() и componentDidCatch().<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-class"><span
+                                            class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span
+                                            class="hljs-keyword">extends</span> <span
+                                            class="hljs-title">React</span>.<span
+                                            class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+
+        <span class="hljs-keyword">this</span>.state = { <span class="hljs-attr">error</span>: <span
+                                                class="hljs-literal">false</span> };
+    }
+    <span class="hljs-keyword">static</span> getDerivedStateFromError(error) {
+        <span class="hljs-comment">// Произошла ошибка!!!</span>
+
+        <span class="hljs-keyword">return</span> {<span class="hljs-attr">error</span>: <span
+                                                class="hljs-literal">true</span>};
+    }
+    render() {
+        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.state.error) { <span
+                                                class="hljs-comment">// Произошла ошибка</span>
+            <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span
+                                                class="hljs-name">h1</span>&gt;</span>Что-то пошло не так.<span
+                                                class="hljs-tag">&lt;/<span
+                                                class="hljs-name">h1</span>&gt;</span></span>; <span
+                                                class="hljs-comment">// Отображение запасного UI</span>
+        }
+        <span class="hljs-comment">// Ошибки нет</span>
+            <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span
+                                                class="hljs-name">Welcome</span>&gt;</span>{this.props.children}<span
+                                                class="hljs-tag">&lt;/<span class="hljs-name">Welcome</span>&gt;</span></span>; <span
+                                                class="hljs-comment">// Отображение того что нужно</span>
+    }
+}
+
+ReactDom.render(<span class="xml"><span class="hljs-tag">&lt;<span
+                                                class="hljs-name">App</span>&gt;</span>Hello world<span
+                                                class="hljs-tag">&lt;/<span
+                                                class="hljs-name">App</span>&gt;</span></span>, <span
+                                                class="hljs-built_in">document</span>.getElementById(<span
+                                                class="hljs-string">"root"</span>));
+
+<span class="hljs-comment">// Если в &lt;Welcome&gt; произойдёт исключение, то будет вызван getDerivedStateFromError</span></code></pre>
+                                    <br>
+                                    Начиная с React 16, ошибки, не отловленные ни одним из предохранителей, будут
+                                    приводить к размонтированию всего дерева компонентов React.<br>
+                                    <br>
+                                    <a name="section322"></a><h4>3.2.2 componentDidCatch</h4><br>
+                                    <pre><code class="javascript hljs">componentDidCatch(error, info)</code></pre>
+                                    <br>
+                                    Этот метод также, как и getDerivedStateFromError отвечает за обработку ошибок и
+                                    вызывается сразу после getDerivedStateFromError. Если предназначение
+                                    getDerivedStateFromError это вернуть значение для обновления состояния, то
+                                    предназначение componentDidCatch это логирование ошибок. То есть в componentDidCatch
+                                    вы должны писать код для журналирования информации об отловленной ошибке.<br>
+                                    <br>
+                                    Этот метод получает два параметра:<br>
+                                    error — перехваченная ошибка<br>
+                                    info — объект с ключом componentStack, содержащий информацию о компоненте, в котором
+                                    произошла ошибка.<br>
+                                    <br>
+                                    Дополняя предыдущий пример методом componentDidCatch получаем следующий код: <br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-class"><span
+                                            class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span
+                                            class="hljs-keyword">extends</span> <span
+                                            class="hljs-title">React</span>.<span
+                                            class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+
+        <span class="hljs-keyword">this</span>.state = { <span class="hljs-attr">error</span>: <span
+                                                class="hljs-literal">false</span> };
+    }
+    <span class="hljs-keyword">static</span> getDerivedStateFromError(error) {
+        <span class="hljs-comment">// Произошла ошибка!!!</span>
+
+        <span class="hljs-keyword">return</span> {<span class="hljs-attr">error</span>: <span
+                                                class="hljs-literal">true</span>};
+    }
+    componentDidCatch(error, info) {
+        <span class="hljs-built_in">console</span>.info(info.componentStack); <span class="hljs-comment">// Вывод состояния стека и ошибки в консоль</span>
+        <span class="hljs-built_in">console</span>.error(error); <span class="hljs-comment">// В продакшене этих вызовов console не должно быть!!!</span>
+
+        logComponentStackToMyService(info.componentStack); <span
+                                                class="hljs-comment">// Метод обрабатывающий ошибку</span>
+    }
+    render() {
+        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.state.error) { <span
+                                                class="hljs-comment">// Произошла ошибка</span>
+            <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span
+                                                class="hljs-name">h1</span>&gt;</span>Что-то пошло не так.<span
+                                                class="hljs-tag">&lt;/<span
+                                                class="hljs-name">h1</span>&gt;</span></span>; <span
+                                                class="hljs-comment">// Отображение запасного UI</span>
+        }
+        <span class="hljs-comment">// Ошибки нет</span>
+            <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span
+                                                class="hljs-name">Welcome</span>&gt;</span>{this.props.children}<span
+                                                class="hljs-tag">&lt;/<span class="hljs-name">Welcome</span>&gt;</span></span>; <span
+                                                class="hljs-comment">// Отображение того что нужно</span>
+    }
+}
+ReactDom.render(<span class="xml"><span class="hljs-tag">&lt;<span
+                                                class="hljs-name">App</span>&gt;</span>Hello world<span
+                                                class="hljs-tag">&lt;/<span
+                                                class="hljs-name">App</span>&gt;</span></span>, <span
+                                                class="hljs-built_in">document</span>.getElementById(<span
+                                                class="hljs-string">"root"</span>));</code></pre>
+                                    <br>
+                                    Методы console были добавлены только для того то бы показать из чего состоят объекты
+                                    ошибки. В консоле получаем следующее: <br>
+                                    <br>
+                                    <img src="https://habrastorage.org/webt/re/1j/v_/re1jv_xvp1sucdsomnlo-bzwgs4.png"
+                                         alt="image"><br>
+                                    <br>
+                                    <a name="section"></a>
+                                    <h2>Заключение</h2><br>
+                                    Спасибо что прочитали мою статью «Введение в React». Эта статья затрагивает основные
+                                    (и не только) темы и концепции React. После прочтения данной статьи вы будете
+                                    обладать хорошим фундаментом теоретических знаний о React которых будет достаточно
+                                    для грамотного начала вашего первого проекта. Я надеюсь, что эта статья поможет вам
+                                    в освоении React'а. Конечно для разработки настоящих проектов знаний одного только
+                                    React вам будет явно недостаточно. Вы скорее всего будете использовать кучу других
+                                    библиотек и пакетов для написания более сложных интерфейсов. Да и для того что бы
+                                    облегчить себе работу (зачем изобретать велосипед) если кто-то уже его изобрёл.
+                                    Скорее всего вы будете использовать <a href="https://redux.js.org/" rel="nofollow">Redux </a>для
+                                    лучшей работы с хранилищем, <a
+                                            href="https://reacttraining.com/react-router/web/guides/philosophy"
+                                            rel="nofollow">React Router</a> для обеспечения URL-маршрутизации, <a
+                                            href="https://github.com/axios/axios" rel="nofollow">Axios</a> для
+                                    выполнения асинхронных HTTP-запросов, <a href="https://graphql.org/graphql-js/"
+                                                                             rel="nofollow">GraphQL JS</a> удобный язык
+                                    запросов для API, а также огромное количество других API. Пишите в комментариях
+                                    какие библиотеки используете вы.<br>
+                                    <br>
+                                    Огромное количество Hooks API для React из <a
+                                            href="https://github.com/topics/react-hooks" rel="nofollow">GitHub</a>.
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+
+                    </article>
+
+
+
+
+                </div>
+
+
+            </section>
+
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>

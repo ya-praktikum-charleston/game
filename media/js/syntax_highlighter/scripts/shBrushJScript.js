@@ -32,6 +32,7 @@
 						'unmountComponentAtNode from render window.React window React subscribe unsubscribeLogger getState createStore localStorage ' +
 						'combineReducers JSON.parse JSON.stringify dispatch toString new Date ' +
 						'constructor this appendTo onClic bind click ready Object.create' +
+						'export default connect()' +
 						'';
 
 		var r = SyntaxHighlighter.regexLib;
