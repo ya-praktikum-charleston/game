@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)https://habr.com/ru/post/520370/ -->
+<html lang="ru" class="no-js fonts-loaded">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+    <meta content="width=1024" name="viewport">
+    <title>ReactJS: шпаргалка по хукам / Хабр</title>
+
+    <style type="text/css">
+        @font-face {
+            font-family: 'Fira Sans';
+            font-style: normal;
+            font-weight: 500;
+            src: url(https://dr.habracdn.net/habr/5f71b0b7/fonts/FiraSans/firaSans-medium.eot);
+            src: local("Fira Sans Medium"), local("FiraSans-Medium"), url(https://dr.habracdn.net/habr/5f71b0b7/fonts/FiraSans/firaSans-medium.eot?#iefix) format("embedded-opentype"), url(https://dr.habracdn.net/habr/5f71b0b7/fonts/FiraSans/firaSans-medium.woff2) format("woff2"), url(https://dr.habracdn.net/habr/5f71b0b7/fonts/FiraSans/firaSans-medium.woff) format("woff"), url(https://dr.habracdn.net/habr/5f71b0b7/fonts/FiraSans/firaSans-medium.ttf) format("truetype")
+        }
+
+        .h-info table th p::first-child,.h-info table td p::first-child{margin-top:0}
+        /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
+        html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,section{display:block}h1{font-size:2em;margin:.67em 0}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}code{font-family:monospace,monospace;font-size:1em}img{border-style:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;background:#fafafa}.hljs-comment{color:#a0a1a7;font-style:italic}.hljs-keyword{color:#a626a4}.hljs-name,.hljs-subst{color:#e45649}.hljs-literal{color:#0184bb}.hljs-string{color:#50a14f}.hljs-built_in{color:#c18401}.hljs-attr,.hljs-number{color:#986801}.hljs-title{color:#4078f2}
+        /*!
+         * Datepicker for Bootstrap v1.6.4 (https://github.com/eternicode/bootstrap-datepicker)
+         *
+         * Copyright 2012 Stefan Petre
+         * Improvements by Andrew Rowls
+         * Licensed under the Apache License v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+         */html,body{height:100%}body{color:#333;font-size:14px;line-height:1.5;font-weight:400;font-style:normal;text-rendering:optimizeLegibility;font-family:"-apple-system",BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}a{color:#548eaa;text-decoration:none}a:hover{color:#487284}.js-sticky-wrapper{display:flex}.layout{position:relative;min-width:1024px;width:100%;border-spacing:0;border-collapse:collapse;background:#fff;display:flex;min-height:100vh;flex-direction:column}.layout__row{width:100%}.layout__row_body{height:auto;flex:1 0 auto}.layout__cell{box-sizing:border-box;margin:0 auto;padding:0 32px;width:1024px;}.layout__cell_body{padding-top:20px;padding-bottom:60px}:root{--percent-value: 0%}.column-wrapper{position:relative;width:100%;display:flex}.column-wrapper:after{clear:both;content:'';display:table}.column-wrapper_post{margin-bottom:20px}.content_left{float:left;box-sizing:border-box;width:100%;min-height:1px}@-moz-document url-prefix(){}.post__title{margin:0;margin-bottom:9px;word-break:break-word}.post__title_full{margin-bottom:4px}.post__title-text{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;color:#343434;font-weight:500;font-size:32px;line-height:40px}.fonts-loaded .post__title-text{font-weight:500;font-family:'Fira Sans',sans-serif}.post__body{margin-bottom:24px}.post__body_full{clear:both;margin-bottom:24px;padding-top:32px}.post__text{font-size:16px;line-height:1.56;font-family:"-apple-system",BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;overflow-wrap:break-word}.post__text-html{margin-right:-5px;padding-right:5px;color:#222;font-family:"-apple-system",BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}.post__text-html h3,.post__text-html h5{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;margin:0;padding:0;font-weight:500}.fonts-loaded .post__text-html h3,.fonts-loaded .post__text-html h5{font-weight:500;font-family:'Fira Sans',sans-serif}.post__text-html h3,.post__text-html h5{font-size:20px;line-height:28px}.post__text-html a{color:#548eaa;text-decoration:none}.post__text-html a:visited{color:#992298}.post__text-html a:hover{color:#487284;text-decoration:underline}.post__text-html img{margin:0;vertical-align:middle;width:720px;height:auto}.post__text-html .oembed{overflow:hidden}.post__text-html iframe{max-width:100%}.post__text-html ol{margin:0 0 0 34px;padding:0}.post__text-html ol li{padding:9px 0;line-height:1.6}.post__text-html ol li:first-child{padding-top:0}.post__text-html ol li:last-child{padding-bottom:0}.post__text-html code{white-space:normal;font-size:14px;font-family:Menlo,Monaco,'Consolas','Courier New',monospace}.post__text-html pre .hljs{display:block}.post__text-html pre{display:block;overflow-x:auto;overflow-y:hidden;margin:0;padding:0;word-break:break-all}.post__text-html pre code{display:block;padding:17px 20px 20px;border:1px solid #e5e8ec;background:#fbfdff;white-space:pre-wrap}:root{--quickFade-time: 1.5s;--fade-time: 2s;--blur-time: 2s;--blur-amount: 0.088em}@media print{body{background:#fff}.content_left{width:100%;float:none;padding-right:0}}
+
+    </style>
+
+
+</head>
+
+<body class="nl">
+
+<div class="layout">
+
+    <div class="layout__row layout__row_body">
+        <div class="layout__cell layout__cell_body">
+
+
+            <section class="column-wrapper column-wrapper_post js-sticky-wrapper">
+                <div class="content_left js-content_left">
+
+                    <article class="post post_full" id="post_520370" lang="ru">
+                        <div class="post__wrapper">
+
+                            <h1 class="post__title post__title_full">
+                                <span class="post__title-text">ReactJS: шпаргалка по хукам</span>
+                            </h1>
+
+                            <div class="post__body post__body_full">
+                                <div class="post__text post__text-html post__text_v1" id="post-content-body"
+                                     data-io-article-url="https://habr.com/ru/post/520370/">
+                                  <img src="https://habrastorage.org/webt/sj/uf/xu/sjufxuqiadew2_zg3veuhlac7em.png">
+                                  <br>
+                                    <br>
+                                    Доброго времени суток, друзья!<br>
+                                    <br>
+                                    Представляю вашему вниманию справочник по основным хукам React: useState, useEffect,
+                                    useLayoutEffect, useContext, useReducer, useCallback, useMemo и UseRef.<br>
+                                    <br>
+                                    Источник вдохновения: <a
+                                            href="https://blog.logrocket.com/react-hooks-cheat-sheet-unlock-solutions-to-common-problems-af4caf699e70/"
+                                            rel="nofollow">React Hooks cheat sheet: Unlock solutions to common
+                                        problems</a>.<br>
+                                    <br>
+                                    Цель справочника — краткий обзор назначения и возможностей каждого хука. После
+                                    описания хука приводится код примера его использования и песочница для ваших
+                                    экспериментов.<br>
+                                    <br>
+                                    Полный набор хуков доступен в <a
+                                            href="https://github.com/harryheman/JS-CSS-Exps/tree/master/react-hooks-cheatsheet"
+                                            rel="nofollow">этом репозитории</a>.<br>
+                                    <br>
+                                    <ol>
+                                        <li>Скачиваем репозиторий</li>
+                                        <li>Устанавливаем зависимости: npm i</li>
+                                        <li>Запускаем: npm start</li>
+                                    </ol>
+                                    <br>
+                                    Хуки находятся в директории «hooks». Основной файл — index.js. Для того, чтобы
+                                    выполнить конкретный хук, необходимо раскомментировать соответствующие строки
+                                    импорта и рендеринга.<br>
+                                    <br>
+                                    Без дальнейших предисловий.<br>
+                                    <a name="habracut"></a><br>
+                                    <h3>useState</h3><br>
+                                    <a href="https://reactjs.org/docs/hooks-reference.html#usestate" rel="nofollow">useState</a>
+                                    позволяет работать с состоянием переменных внутри функционального компонента.<br>
+                                    <br>
+                                    <h5>Состояние переменной</h5><br>
+                                    Для определения состояния переменной необходимо вызвать useState с начальным
+                                    состоянием в качестве аргумента: useState(initialValue).<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> DeclareState = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> [count] = useState(<span class="hljs-number">1</span>);
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span
+                                                class="hljs-name">div</span>&gt;</span>Состояние переменной - {count}.<span
+                                                class="hljs-tag">&lt;/<span
+                                                class="hljs-name">div</span>&gt;</span></span>;
+};
+</code></pre>
+                                    <br>
+                                    <h5>Обновление состояния переменной</h5><br>
+                                    Для обновления состояния переменной необходимо вызвать функцию обновления
+                                    возвращаемую useState: const [state, updater] = useState(initialValue).<br>
+                                    <br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> UpdateState = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> [age, setAge] = useState(<span class="hljs-number">19</span>);
+  <span class="hljs-keyword">const</span> handleClick = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setAge(age + <span
+                                                class="hljs-number">1</span>);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Мне {age} лет.<span
+                class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{handleClick}</span>&gt;</span>Стать старше!<span class="hljs-tag">&lt;/<span
+                class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+};
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/preview/ExKGeOE?height=300&slug-hash=ExKGeOE&default-tabs=js%2Cresult&host=https%3A%2F%2Fcodepen.io"
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <h5>Несколько состояний переменных</h5><br>
+                                    В одном функциональном компоненте можно определять и обновлять состояния нескольких
+                                    переменных.<br>
+                                    <br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> MultStates = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> [age, setAge] = useState(<span class="hljs-number">19</span>);
+  <span class="hljs-keyword">const</span> [num, setNum] = useState(<span class="hljs-number">1</span>);
+
+  <span class="hljs-keyword">const</span> handleAge = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setAge(age + <span
+                                                class="hljs-number">1</span>);
+  <span class="hljs-keyword">const</span> handleNum = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setNum(num + <span
+                                                class="hljs-number">1</span>);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Мне {age} лет.<span
+                class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>У меня {num} братьев и сестер.<span
+                class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{handleAge}</span>&gt;</span>Стать старше!<span class="hljs-tag">&lt;/<span
+                class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{handleNum}</span>&gt;</span>Больше братьев и сестер!<span class="hljs-tag">&lt;/<span
+                class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+};
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/preview/ExKGeOE?height=300&slug-hash=ExKGeOE&default-tabs=js%2Cresult&host=https%3A%2F%2Fcodepen.io"
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <h5>Использование объекта для определения состояния переменной</h5><br>
+                                    Кроме строк и чисел, в качестве начального значения могут использоваться объекты.
+                                    Обратите внимание, что useStateUpdater необходимо передавать объект целиком,
+                                    поскольку он заменяется, а не объединяется с предыдущим.<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-comment">// setState (объединение объектов) - useState (замена объекта)</span>
+<span class="hljs-comment">// предположим, что начальное состояние - {name: "Igor"}</span>
+
+setState({ <span class="hljs-attr">age</span>: <span class="hljs-number">30</span> });
+<span class="hljs-comment">// новым состоянием будет</span>
+<span class="hljs-comment">// {name: "Igor", age: 30} - объекты соединились</span>
+
+useStateUpdater({ <span class="hljs-attr">age</span>: <span class="hljs-number">30</span> });
+<span class="hljs-comment">// новым состояние будет</span>
+<span class="hljs-comment">// {age: 30} - объект был заменен</span>
+</code></pre>
+                                    <br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> StateObject = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> [state, setState] = useState({ <span class="hljs-attr">age</span>: <span
+                                                class="hljs-number">19</span>, <span class="hljs-attr">num</span>: <span
+                                                class="hljs-number">1</span> });
+  <span class="hljs-keyword">const</span> handleClick = <span class="hljs-function">(<span
+                                                class="hljs-params">val</span>) =&gt;</span>
+    setState({
+      ...state,
+      [val]: state[val] + <span class="hljs-number">1</span>,
+    });
+  <span class="hljs-keyword">const</span> { age, num } = state;
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Мне {age} лет.<span
+                class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>У меня {num} братьев и сестер.<span
+                class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{()</span> =&gt;</span> handleClick('age')}&gt;Стать старше!<span class="hljs-tag">&lt;/<span
+                class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{()</span> =&gt;</span> handleClick('num')}&gt;Больше братьев и сестер!<span
+                class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/MWyZPbV?default-tab=&amp;theme-id="
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <h5>Инициализация состояния переменной с помощью функции</h5><br>
+                                    Начальное значение состояния переменной может определяться функцией.<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> StateFun = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> [token] = useState(<span class="hljs-function"><span
+                                                class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> token = localStorage.getItem(<span class="hljs-string">"token"</span>);
+    <span class="hljs-keyword">return</span> token || <span class="hljs-string">"default-token"</span>;
+  });
+
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span
+                                                class="hljs-name">div</span>&gt;</span>Токен - {token}<span
+                                                class="hljs-tag">&lt;/<span
+                                                class="hljs-name">div</span>&gt;</span></span>;
+};
+</code></pre>
+                                    <br>
+                                    <h5>Функция вместо setState</h5><br>
+                                    Функция обновления, возвращаемая useState, может быть не только setState.<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> [value, updateValue] = useState(<span
+                                            class="hljs-number">0</span>);
+<span class="hljs-comment">// оба способа вызова функции, указанные ниже, являются валидными</span>
+updateValue(<span class="hljs-number">1</span>);
+updateValue(<span class="hljs-function">(<span class="hljs-params">prevVal</span>) =&gt;</span> prevVal + <span
+                                                class="hljs-number">1</span>);
+</code></pre>
+                                    <br>
+                                    Второй способ подходит для случаев, когда обновление зависит от предыдущего
+                                    состояния.<br>
+                                    <br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> CounterState = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Значение счетчика равно {count}.<span
+                class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{()</span> =&gt;</span> setCount(0)}&gt;Сбросить<span class="hljs-tag">&lt;/<span
+                class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{()</span> =&gt;</span> setCount((prevVal) =&gt; prevVal + 1)}&gt;
+        Плюс (+)
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{()</span> =&gt;</span> setCount((prevVal) =&gt; prevVal - 1)}&gt;
+        Минус (-)
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+};
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/MWyZPbV?default-tab=&amp;theme-id="
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <h3>useEffect</h3><br>
+                                    <a href="https://reactjs.org/docs/hooks-reference.html#useeffect" rel="nofollow">useEffect</a>
+                                    принимает функцию, отвечающую за дополнительные (побочные) эффекты.<br>
+                                    <br>
+                                    <h5>Базовое использование</h5><br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> BasicEffect = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> [age, setAge] = useState(<span class="hljs-number">19</span>);
+  <span class="hljs-keyword">const</span> handleClick = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setAge(age + <span
+                                                class="hljs-number">1</span>);
+
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-built_in">document</span>.title = <span class="hljs-string">`Тебе <span
+                                                class="hljs-subst">${age}</span> лет!`</span>;
+  });
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Обратите внимание на заголовок текущей вкладки браузера.<span
+                class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{handleClick}</span>&gt;</span>Обновить заголовок!<span class="hljs-tag">&lt;/<span
+                class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+};
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/preview/bGpOmWW?height=300&amp;slug-hash=bGpOmWW&amp;default-tabs=js%2Cresult&amp;host=https%3A%2F%2Fcodepen.io"
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <h5>Удаление (отмена) эффекта</h5><br>
+                                    Распространенной практикой является удаление эффекта через некоторое время. Это
+                                    можно сделать с помощью функции, возвращаемой эффектом, переданным useEffect. Ниже
+                                    представлен пример с addEventListener.<br>
+                                    <br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> CleanupEffect = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> clicked = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span
+                                                class="hljs-built_in">console</span>.log(<span class="hljs-string">"Клик!"</span>);
+    <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">"click"</span>, clicked);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span
+                                                class="hljs-params">()</span> =&gt;</span> {
+      <span class="hljs-built_in">window</span>.removeEventListener(<span class="hljs-string">"click"</span>, clicked);
+    };
+  }, []);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>После клика по области просмотра в консоли появится сообщение.<span
+                class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+};
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/preview/oNxJawK?height=300&amp;slug-hash=oNxJawK&amp;default-tabs=js%2Cresult&amp;host=https%3A%2F%2Fcodepen.io"
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <h5>Несколько эффектов</h5><br>
+                                    В функциональном компоненте может использоваться несколько useEffect.<br>
+                                    <br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> MultEffects = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-comment">// эффект номер раз</span>
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> clicked = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span
+                                                class="hljs-built_in">console</span>.log(<span class="hljs-string">"Клик!"</span>);
+    <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">"click"</span>, clicked);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span
+                                                class="hljs-params">()</span> =&gt;</span> {
+      <span class="hljs-built_in">window</span>.removeEventListener(<span class="hljs-string">"click"</span>, clicked);
+    };
+  }, []);
+
+  <span class="hljs-comment">// эффект номер два</span>
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Второй эффект."</span>);
+  });
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Загляните в консоль.<span class="hljs-tag">&lt;/<span
+                class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+};
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/preview/wvGRYrd?height=300&amp;slug-hash=wvGRYrd&amp;default-tabs=js%2Cresult&amp;host=https%3A%2F%2Fcodepen.io"
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    Обратите внимание, что вызов useEffect при повторном рендеринге может быть пропущен
+                                    посредством передачи ему пустого массива в качестве второго аргумента.<br>
+                                    <br>
+                                    <h5>Зависимости эффекта</h5><br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> EffectDependency = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> [randomInt, setRandomInt] = useState(<span class="hljs-number">0</span>);
+  <span class="hljs-keyword">const</span> [effectLogs, setEffectLogs] = useState([]);
+  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">1</span>)
+
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    setEffectLogs(<span class="hljs-function">(<span class="hljs-params">prevEffectLogs</span>) =&gt;</span> [
+      ...prevEffectLogs,
+      <span class="hljs-string">`Вызов функции номер <span class="hljs-subst">${count}</span>.`</span>,
+    ]);
+    setCount(count + <span class="hljs-number">1</span>)
+  }, [randomInt]);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>{randomInt}<span
+                class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{()</span> =&gt;</span> setRandomInt(~~(Math.random() * 10))}&gt;
+        Получить случайное целое число!
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+        {effectLogs.map((effect, i) =&gt; (
+          <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span
+                  class="hljs-string">{i}</span>&gt;</span>{"  ".repeat(i) + effect}<span class="hljs-tag">&lt;/<span
+                class="hljs-name">li</span>&gt;</span>
+        ))}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+};
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/preview/GRZPYQj?height=300&amp;slug-hash=GRZPYQj&amp;default-tabs=js%2Cresult&amp;host=https%3A%2F%2Fcodepen.io"
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    В данном случае мы передаем useEffect зависимость randomInt в качестве второго
+                                    аргумента, поэтому функция вызывается при первоначальном рендеринге, а также при
+                                    каждом изменении randomInt.<br>
+                                    <br>
+                                    <h5>Пропуск эффекта (зависимость в виде пустого массив)</h5><br>
+                                    В представленном ниже примере useEffect в качестве зависимости передается пустой
+                                    массив, поэтому эффект сработает только при первоначальном рендеринге.<br>
+                                    <br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> SkipEffect = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> [randomInt, setRandomInt] = useState(<span class="hljs-number">0</span>);
+  <span class="hljs-keyword">const</span> [effectLogs, setEffectLogs] = useState([]);
+  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">1</span>);
+
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    setEffectLogs(<span class="hljs-function">(<span class="hljs-params">prevEffectLogs</span>) =&gt;</span> [
+      ...prevEffectLogs,
+      <span class="hljs-string">`Вызов функции номер <span class="hljs-subst">${count}</span>.`</span>,
+    ]);
+    setCount(count + <span class="hljs-number">1</span>);
+  }, []);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>{randomInt}<span
+                class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{()</span> =&gt;</span> setRandomInt(~~(Math.random() * 10))}&gt;
+        Получить случайное целое число!
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+        {effectLogs.map((effect, i) =&gt; (
+          <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span
+                  class="hljs-string">{i}</span>&gt;</span>{"  ".repeat(i) + effect}<span class="hljs-tag">&lt;/<span
+                class="hljs-name">li</span>&gt;</span>
+        ))}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+};
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/preview/XWdoxqO?height=300&amp;slug-hash=XWdoxqO&amp;default-tabs=js%2Cresult&amp;host=https%3A%2F%2Fcodepen.io"
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    При нажатии кнопки useEffect не вызывается.<br>
+                                    <br>
+                                    <h5>Пропуск эффекта (отсутствие зависимостей)</h5><br>
+                                    При отсутствии массива зависимостей эффект будет срабатывать при каждом рендеринге
+                                    страницы.<br>
+                                    <br>
+                                    <pre><code class="javascript hljs">useEffect(<span class="hljs-function"><span
+                                            class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(
+    <span class="hljs-string">"Данное сообщение будет выводится в консоль при каждом рендеринге."</span>
+  );
+});
+</code></pre>
+                                    <br>
+                                    <h3>useContext</h3><br>
+                                    <a href="https://reactjs.org/docs/hooks-reference.html#usecontext" rel="nofollow">useContext</a>
+                                    избавляет от необходимости полагаться на потребителя контекста. Он имеет более
+                                    простой интерфейс по сравнению с MyContext.Consumer и рендеринг пропсов. Ниже
+                                    представлено сравнение использования контекста с помощью useContext и
+                                    Context.Consumer.<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-comment">// пример использования объекта Context</span>
+<span class="hljs-keyword">const</span> ThemeContext = React.createContext(<span class="hljs-string">"dark"</span>)
+
+<span class="hljs-comment">// использование потребителя контекста</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Button</span>(<span
+        class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> (
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ThemeContext.Consumer</span>&gt;</span>
+            {theme =&gt; <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span
+                    class="hljs-string">{thene}</span>&gt;</span>Восхитительная кнопка!<span class="hljs-tag">&lt;/<span
+                    class="hljs-name">button</span>&gt;</span>}
+        <span class="hljs-tag">&lt;/<span class="hljs-name">ThemeContext.Consumer</span>&gt;</span></span>
+}
+
+<span class="hljs-comment">// использование useContext</span>
+<span class="hljs-keyword">import</span> { useContext } <span class="hljs-keyword">from</span> <span
+                                                class="hljs-string">"react"</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ButtonHook</span>(<span
+        class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">const</span> theme = useContext(ThemeContext)
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span
+                                                class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span
+                                                class="hljs-string">{theme}</span>&gt;</span>Восхитительная кнопка!<span
+                                                class="hljs-tag">&lt;/<span
+                                                class="hljs-name">button</span>&gt;</span></span>
+}
+</code></pre>
+                                    <br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> ChangeTheme = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> [mode, setMode] = useState(<span class="hljs-string">"light"</span>);
+
+  <span class="hljs-keyword">const</span> handleClick = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    setMode(mode === <span class="hljs-string">"light"</span> ? <span class="hljs-string">"dark"</span> : <span
+                                                class="hljs-string">"light"</span>);
+  };
+
+  <span class="hljs-keyword">const</span> ThemeContext = React.createContext(mode);
+
+  <span class="hljs-keyword">const</span> theme = useContext(ThemeContext);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+      <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span>
+        <span class="hljs-attr">background:</span> <span class="hljs-attr">theme</span> === <span class="hljs-string">"light"</span> ? "#<span
+                class="hljs-attr">eee</span>" <span class="hljs-attr">:</span> "#<span class="hljs-attr">222</span>",
+        <span class="hljs-attr">color:</span> <span class="hljs-attr">theme</span> === <span
+                class="hljs-string">"light"</span> ? "#<span class="hljs-attr">222</span>" <span
+                class="hljs-attr">:</span> "#<span class="hljs-attr">eee</span>",
+        <span class="hljs-attr">display:</span> "<span class="hljs-attr">grid</span>",
+        <span class="hljs-attr">placeItems:</span> "<span class="hljs-attr">center</span>",
+        <span class="hljs-attr">minWidth:</span> "<span class="hljs-attr">320px</span>",
+        <span class="hljs-attr">minHeight:</span> "<span class="hljs-attr">320px</span>",
+        <span class="hljs-attr">borderRadius:</span> "<span class="hljs-attr">4px</span>",
+      }}
+    &gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Выбранная тема: {theme}.<span
+                class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{handleClick}</span>&gt;</span>Поменять тему оформления<span
+                class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+};
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/preview/vYGvVQK?height=300&amp;slug-hash=vYGvVQK&amp;default-tabs=js%2Cresult&amp;host=https%3A%2F%2Fcodepen.io"
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <h3>useLayoutEffect</h3><br>
+                                    Поведение <a href="https://reactjs.org/docs/hooks-reference.html#uselayouteffect"
+                                                 rel="nofollow">useLayoutEffect</a> аналогично поведению useEffect, за
+                                    некоторым исключением, о котором мы поговорим позже.<br>
+                                    <br>
+                                    <pre><code class="javascript hljs">  useLayoutEffect(<span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-comment">// код</span>
+  }, [зависимости]);
+</code></pre>
+                                    <br>
+                                    <h5>Базовое использование</h5><br>
+                                    Вот пример использования useEffect, но с useLayoutEffect.<br>
+                                    <br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs">  <span class="hljs-keyword">const</span> [randomInt, setRandomInt] = useState(<span
+                                            class="hljs-number">0</span>);
+  <span class="hljs-keyword">const</span> [effectLogs, setEffectLogs] = useState([]);
+  <span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">1</span>);
+
+  useLayoutEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    setEffectLogs(<span class="hljs-function">(<span class="hljs-params">prevEffectLogs</span>) =&gt;</span> [
+      ...prevEffectLogs,
+      <span class="hljs-string">`Вызов функции номер <span class="hljs-subst">${count}</span>.`</span>,
+    ]);
+    setCount(count + <span class="hljs-number">1</span>);
+  }, [randomInt]);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>{randomInt}<span
+                class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{()</span> =&gt;</span> setRandomInt(~~(Math.random() * 10))}&gt;
+        Получить случайное целое число!
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+        {effectLogs.map((effect, i) =&gt; (
+          <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span
+                  class="hljs-string">{i}</span>&gt;</span>{"  ".repeat(i) + effect}<span class="hljs-tag">&lt;/<span
+                class="hljs-name">li</span>&gt;</span>
+        ))}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+};
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/preview/OJNrBdj?height=300&amp;slug-hash=OJNrBdj&amp;default-tabs=js%2Cresult&amp;host=https%3A%2F%2Fcodepen.io"
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <h5>useLayoutEffect и useEffect</h5><br>
+                                    Функция, передаваемая в useEffect, вызывается после рендеринга страницы, т.е. после
+                                    формирования макета и отрисовки элементов. Это подходит для большинства
+                                    дополнительных эффектов, которые не должны блокировать поток. Однако, если вы
+                                    например, хотите осуществить некоторые манипуляции с DOM в качестве дополнительного
+                                    эффекта, useEffect не лучший выбор. Для того, чтобы пользователь не видел изменений,
+                                    следует использовать useLayoutEffect. Функция, передаваемая useLayoutEffect,
+                                    вызывается перед рендерингом страницы.<br>
+                                    <br>
+                                    <h3>useReducer</h3><br>
+                                    <a href="https://reactjs.org/docs/hooks-reference.html#usereducer" rel="nofollow">useReducer</a>
+                                    может использоваться как альтернатива useState, однако, его назначение состоит в
+                                    инкапсуляции сложной логики работы с состояниями, когда состояние зависит от
+                                    предыдущего значения или имеется несколько состояний.<br>
+                                    <br>
+                                    <h5>Базовое использование</h5><br>
+                                    В представленном ниже примере вместо useState используется useReducer. Вызов
+                                    useReducer возвращает значение состояния и функцию dispatch.<br>
+                                    <br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> initialState = { <span
+                                            class="hljs-attr">width</span>: <span class="hljs-number">30</span> };
+
+<span class="hljs-keyword">const</span> reducer = <span class="hljs-function">(<span
+                                                class="hljs-params">state, action</span>) =&gt;</span> {
+  <span class="hljs-keyword">switch</span> (action) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">"plus"</span>:
+      <span class="hljs-keyword">return</span> { <span class="hljs-attr">width</span>: <span
+                                                class="hljs-built_in">Math</span>.min(state.width + <span
+                                                class="hljs-number">30</span>, <span class="hljs-number">600</span>) };
+    <span class="hljs-keyword">case</span> <span class="hljs-string">"minus"</span>:
+      <span class="hljs-keyword">return</span> { <span class="hljs-attr">width</span>: <span
+                                                class="hljs-built_in">Math</span>.max(state.width - <span
+                                                class="hljs-number">30</span>, <span class="hljs-number">30</span>) };
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span
+                                                class="hljs-built_in">Error</span>(<span class="hljs-string">"Что происходит?"</span>);
+  }
+};
+
+<span class="hljs-keyword">const</span> BasicReducer = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> [state, dispath] = useReducer(reducer, initialState);
+  <span class="hljs-keyword">const</span> color = <span class="hljs-string">`#<span class="hljs-subst">${((<span
+                                                class="hljs-built_in">Math</span>.random() * <span class="hljs-number">0xfff</span>) &lt;&lt; <span
+                                                class="hljs-number">0</span>).toString(<span
+                                                class="hljs-number">16</span>)}</span>`</span>;
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+        <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span>
+          <span class="hljs-attr">margin:</span> "<span class="hljs-attr">0</span> <span class="hljs-attr">auto</span>",
+          <span class="hljs-attr">background:</span> <span class="hljs-attr">color</span>,
+          <span class="hljs-attr">height:</span> "<span class="hljs-attr">100px</span>",
+          <span class="hljs-attr">width:</span> <span class="hljs-attr">state.width</span>,
+        }}
+      &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{()</span> =&gt;</span> dispath("plus")}&gt;
+        Увеличить ширину контейнера.
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{()</span> =&gt;</span> dispath("minus")}&gt;
+        Уменьшить ширину контейнера.
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+};
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/preview/NWNeOVY?height=300&amp;slug-hash=NWNeOVY&amp;default-tabs=js%2Cresult&amp;host=https%3A%2F%2Fcodepen.io"
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <h5>Отложенная («ленивая») инициализация состояния</h5><br>
+                                    useReducer принимает третий опциональный аргумент — функцию, возвращающую объект
+                                    состояния. Данная функция вызывается с initialState в качестве второго
+                                    аргумента.<br>
+                                    <br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> initializeState = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
+  <span class="hljs-attr">width</span>: <span class="hljs-number">90</span>,
+});
+
+<span class="hljs-comment">// обратите внимание, как initializeState перезаписывает начальное значение</span>
+<span class="hljs-keyword">const</span> initialState = { <span class="hljs-attr">width</span>: <span
+                                                class="hljs-number">0</span> };
+
+<span class="hljs-keyword">const</span> reducer = <span class="hljs-function">(<span
+                                                class="hljs-params">state, action</span>) =&gt;</span> {
+  <span class="hljs-keyword">switch</span> (action) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">"plus"</span>:
+      <span class="hljs-keyword">return</span> { <span class="hljs-attr">width</span>: <span
+                                                class="hljs-built_in">Math</span>.min(state.width + <span
+                                                class="hljs-number">30</span>, <span class="hljs-number">600</span>) };
+    <span class="hljs-keyword">case</span> <span class="hljs-string">"minus"</span>:
+      <span class="hljs-keyword">return</span> { <span class="hljs-attr">width</span>: <span
+                                                class="hljs-built_in">Math</span>.max(state.width - <span
+                                                class="hljs-number">30</span>, <span class="hljs-number">30</span>) };
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span
+                                                class="hljs-built_in">Error</span>(<span class="hljs-string">"Что происходит?"</span>);
+  }
+};
+
+<span class="hljs-keyword">const</span> LazyState = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> [state, dispath] = useReducer(reducer, initialState, initializeState);
+  <span class="hljs-keyword">const</span> color = <span class="hljs-string">`#<span class="hljs-subst">${((<span
+                                                class="hljs-built_in">Math</span>.random() * <span class="hljs-number">0xfff</span>) &lt;&lt; <span
+                                                class="hljs-number">0</span>).toString(<span
+                                                class="hljs-number">16</span>)}</span>`</span>;
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+        <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span>
+          <span class="hljs-attr">margin:</span> "<span class="hljs-attr">0</span> <span class="hljs-attr">auto</span>",
+          <span class="hljs-attr">background:</span> <span class="hljs-attr">color</span>,
+          <span class="hljs-attr">height:</span> "<span class="hljs-attr">100px</span>",
+          <span class="hljs-attr">width:</span> <span class="hljs-attr">state.width</span>,
+        }}
+      &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{()</span> =&gt;</span> dispath("plus")}&gt;
+        Увеличить ширину контейнера.
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{()</span> =&gt;</span> dispath("minus")}&gt;
+        Уменьшить ширину контейнера.
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+};
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/preview/abNPReo?height=300&amp;slug-hash=abNPReo&amp;default-tabs=js%2Cresult&amp;host=https%3A%2F%2Fcodepen.io"
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <h5>Имитация поведения this.setState</h5><br>
+                                    useReducer использует не такой строгий редуктор, как Redux. Например, второй
+                                    аргумент, перадаваемый редуктору, не нуждается в свойстве type. Это предоставляет в
+                                    наше распоряжение интресные возможности.<br>
+                                    <br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> initialState = { <span
+                                            class="hljs-attr">width</span>: <span class="hljs-number">30</span> };
+
+<span class="hljs-keyword">const</span> reducer = <span class="hljs-function">(<span
+                                                class="hljs-params">state, newState</span>) =&gt;</span> ({
+  ...state,
+  <span class="hljs-attr">width</span>: newState.width,
+});
+
+<span class="hljs-keyword">const</span> NewState = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> [state, setState] = useReducer(reducer, initialState);
+  <span class="hljs-keyword">const</span> color = <span class="hljs-string">`#<span class="hljs-subst">${((<span
+                                                class="hljs-built_in">Math</span>.random() * <span class="hljs-number">0xfff</span>) &lt;&lt; <span
+                                                class="hljs-number">0</span>).toString(<span
+                                                class="hljs-number">16</span>)}</span>`</span>;
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+        <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span>
+          <span class="hljs-attr">margin:</span> "<span class="hljs-attr">0</span> <span class="hljs-attr">auto</span>",
+          <span class="hljs-attr">background:</span> <span class="hljs-attr">color</span>,
+          <span class="hljs-attr">height:</span> "<span class="hljs-attr">100px</span>",
+          <span class="hljs-attr">width:</span> <span class="hljs-attr">state.width</span>,
+        }}
+      &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{()</span> =&gt;</span> setState({ width: 300 })}&gt;
+        Увеличить ширину контейнера.
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{()</span> =&gt;</span> setState({ width: 30 })}&gt;
+        Уменьшить ширину контейнера.
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+};
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/preview/XWdoyJv?height=300&amp;slug-hash=XWdoyJv&amp;default-tabs=js%2Cresult&amp;host=https%3A%2F%2Fcodepen.io"
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <h3>useCallback</h3><br>
+                                    <a href="https://reactjs.org/docs/hooks-reference.html#usecallback" rel="nofollow">useCallback</a>
+                                    возвращает сохраненный (кэшированный) колбэк.<br>
+                                    <br>
+                                    <h5>Стартовый шаблон</h5><br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> CallbackTemplate = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> [age, setAge] = useState(<span class="hljs-number">19</span>);
+  <span class="hljs-keyword">const</span> handleClick = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setAge(age &lt; <span
+                                                class="hljs-number">100</span> ? age + <span
+                                                class="hljs-number">1</span> : age);
+  <span class="hljs-keyword">const</span> someValue = <span class="hljs-string">"some value"</span>;
+  <span class="hljs-keyword">const</span> doSomething = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> someValue;
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Age</span> <span class="hljs-attr">age</span>=<span
+              class="hljs-string">{age}</span> <span class="hljs-attr">handleClick</span>=<span class="hljs-string">{handleClick}</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Guide</span> <span class="hljs-attr">doSomething</span>=<span
+              class="hljs-string">{doSomething}</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+};
+
+<span class="hljs-keyword">const</span> Age = <span class="hljs-function">(<span class="hljs-params">{ age, handleClick }</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Мне {age} лет.<span
+                class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Нажми на кнопку <span class="hljs-tag">&lt;/<span
+                class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{handleClick}</span>&gt;</span>Стать старше!<span class="hljs-tag">&lt;/<span
+                class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+};
+
+<span class="hljs-keyword">const</span> Guide = React.memo(<span class="hljs-function">(<span
+                                                class="hljs-params">props</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> color = <span class="hljs-string">`#<span class="hljs-subst">${((<span
+                                                class="hljs-built_in">Math</span>.random() * <span class="hljs-number">0xfff</span>) &lt;&lt; <span
+                                                class="hljs-number">0</span>).toString(<span
+                                                class="hljs-number">16</span>)}</span>`</span>;
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span
+            class="hljs-string">{{</span> <span class="hljs-attr">background:</span> <span
+            class="hljs-attr">color</span>, <span class="hljs-attr">padding:</span> "<span
+            class="hljs-attr">.4rem</span>" }}&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">style</span>=<span
+              class="hljs-string">{{</span> <span class="hljs-attr">color:</span> <span class="hljs-attr">color</span>, <span
+              class="hljs-attr">filter:</span> "<span class="hljs-attr">invert</span>()" }}&gt;</span>
+        Следуй инструкциям максимально точно.
+      <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+});
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/preview/vYGvQNx?height=300&amp;slug-hash=vYGvQNx&amp;default-tabs=js%2Cresult&amp;host=https%3A%2F%2Fcodepen.io"
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    В приведенном примере компонент Age обновляется и повторно отрисовывается при
+                                    нажатии кнопки. Компонент Guide также рендерится повторно, поскольку пропсу
+                                    doSomething передается новый колбэк. Несмотря на то, что в Guide используется
+                                    React.memo для оптимизации производительности, он все равно перерисовывается. Как мы
+                                    можем это исправить?<br>
+                                    <br>
+                                    <h5>Базовое использование</h5><br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> BasicCallback = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> [age, setAge] = useState(<span class="hljs-number">19</span>);
+  <span class="hljs-keyword">const</span> handleClick = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setAge(age &lt; <span
+                                                class="hljs-number">100</span> ? age + <span
+                                                class="hljs-number">1</span> : age);
+  <span class="hljs-keyword">const</span> someValue = <span class="hljs-string">"some value"</span>;
+  <span class="hljs-keyword">const</span> doSomething = useCallback(<span class="hljs-function"><span
+                                                class="hljs-params">()</span> =&gt;</span> someValue, [someValue]);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Age</span> <span class="hljs-attr">age</span>=<span
+              class="hljs-string">{age}</span> <span class="hljs-attr">handleClick</span>=<span class="hljs-string">{handleClick}</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Guide</span> <span class="hljs-attr">doSomething</span>=<span
+              class="hljs-string">{doSomething}</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+};
+
+<span class="hljs-keyword">const</span> Age = <span class="hljs-function">(<span class="hljs-params">{ age, handleClick }</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Мне {age} лет.<span
+                class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Нажми на кнопку <span class="hljs-tag">&lt;/<span
+                class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{handleClick}</span>&gt;</span>Стать старше!<span class="hljs-tag">&lt;/<span
+                class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+};
+
+<span class="hljs-keyword">const</span> Guide = React.memo(<span class="hljs-function">(<span
+                                                class="hljs-params">props</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> color = <span class="hljs-string">`#<span class="hljs-subst">${((<span
+                                                class="hljs-built_in">Math</span>.random() * <span class="hljs-number">0xfff</span>) &lt;&lt; <span
+                                                class="hljs-number">0</span>).toString(<span
+                                                class="hljs-number">16</span>)}</span>`</span>;
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span
+            class="hljs-string">{{</span> <span class="hljs-attr">background:</span> <span
+            class="hljs-attr">color</span>, <span class="hljs-attr">padding:</span> "<span
+            class="hljs-attr">.4rem</span>" }}&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">style</span>=<span
+              class="hljs-string">{{</span> <span class="hljs-attr">color:</span> <span class="hljs-attr">color</span>, <span
+              class="hljs-attr">filter:</span> "<span class="hljs-attr">invert</span>()" }}&gt;</span>
+        Следуй инструкциям максимально точно.
+      <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+});
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/preview/OJNraMz?height=300&amp;slug-hash=OJNraMz&amp;default-tabs=js%2Cresult&amp;host=https%3A%2F%2Fcodepen.io"
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <h5>Встроенный useCallback</h5><br>
+                                    useCallback может использоваться как встроенная функция.<br>
+                                    <br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> InlineCallback = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> [age, setAge] = useState(<span class="hljs-number">19</span>);
+  <span class="hljs-keyword">const</span> handleClick = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setAge(age &lt; <span
+                                                class="hljs-number">100</span> ? age + <span
+                                                class="hljs-number">1</span> : age);
+  <span class="hljs-keyword">const</span> someValue = <span class="hljs-string">"some value"</span>;
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Age</span> <span class="hljs-attr">age</span>=<span
+              class="hljs-string">{age}</span> <span class="hljs-attr">handleClick</span>=<span class="hljs-string">{handleClick}</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Guide</span> <span class="hljs-attr">doSomething</span>=<span
+              class="hljs-string">{useCallback(()</span> =&gt;</span> someValue, [someValue])} /&gt;
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+};
+
+<span class="hljs-keyword">const</span> Age = <span class="hljs-function">(<span class="hljs-params">{ age, handleClick }</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Мне {age} лет.<span
+                class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Нажми на кнопку <span class="hljs-tag">&lt;/<span
+                class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{handleClick}</span>&gt;</span>Стать старше!<span class="hljs-tag">&lt;/<span
+                class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+};
+
+<span class="hljs-keyword">const</span> Guide = React.memo(<span class="hljs-function">(<span
+                                                class="hljs-params">props</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> color = <span class="hljs-string">`#<span class="hljs-subst">${((<span
+                                                class="hljs-built_in">Math</span>.random() * <span class="hljs-number">0xfff</span>) &lt;&lt; <span
+                                                class="hljs-number">0</span>).toString(<span
+                                                class="hljs-number">16</span>)}</span>`</span>;
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span
+            class="hljs-string">{{</span> <span class="hljs-attr">background:</span> <span
+            class="hljs-attr">color</span>, <span class="hljs-attr">padding:</span> "<span
+            class="hljs-attr">.4rem</span>" }}&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">style</span>=<span
+              class="hljs-string">{{</span> <span class="hljs-attr">color:</span> <span class="hljs-attr">color</span>, <span
+              class="hljs-attr">filter:</span> "<span class="hljs-attr">invert</span>()" }}&gt;</span>
+        Следуй инструкциям максимально точно.
+      <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+});
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/preview/LYNMXZZ?height=300&amp;slug-hash=LYNMXZZ&amp;default-tabs=js%2Cresult&amp;host=https%3A%2F%2Fcodepen.io"
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <h3>useMemo</h3><br>
+                                    <a href="https://reactjs.org/docs/hooks-reference.html#usememo" rel="nofollow">useMemo</a>
+                                    возвращает сохраненное (кэшированное) значение.<br>
+                                    <br>
+                                    <h5>Стартовый шаблон</h5><br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> MemoTemplate = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> [age, setAge] = useState(<span class="hljs-number">19</span>);
+  <span class="hljs-keyword">const</span> handleClick = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setAge(age &lt; <span
+                                                class="hljs-number">100</span> ? age + <span
+                                                class="hljs-number">1</span> : age);
+  <span class="hljs-keyword">const</span> someValue = { <span class="hljs-attr">value</span>: <span class="hljs-string">"some value"</span> };
+  <span class="hljs-keyword">const</span> doSomething = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> someValue;
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Age</span> <span class="hljs-attr">age</span>=<span
+              class="hljs-string">{age}</span> <span class="hljs-attr">handleClick</span>=<span class="hljs-string">{handleClick}</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Guide</span> <span class="hljs-attr">doSomething</span>=<span
+              class="hljs-string">{doSomething}</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+};
+
+<span class="hljs-keyword">const</span> Age = <span class="hljs-function">(<span class="hljs-params">{ age, handleClick }</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Мне {age} лет.<span
+                class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Нажми на кнопку <span class="hljs-tag">&lt;/<span
+                class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{handleClick}</span>&gt;</span>Стать старше!<span class="hljs-tag">&lt;/<span
+                class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+};
+
+<span class="hljs-keyword">const</span> Guide = React.memo(<span class="hljs-function">(<span
+                                                class="hljs-params">props</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> color = <span class="hljs-string">`#<span class="hljs-subst">${((<span
+                                                class="hljs-built_in">Math</span>.random() * <span class="hljs-number">0xfff</span>) &lt;&lt; <span
+                                                class="hljs-number">0</span>).toString(<span
+                                                class="hljs-number">16</span>)}</span>`</span>;
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span
+            class="hljs-string">{{</span> <span class="hljs-attr">background:</span> <span
+            class="hljs-attr">color</span>, <span class="hljs-attr">padding:</span> "<span
+            class="hljs-attr">.4rem</span>" }}&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">style</span>=<span
+              class="hljs-string">{{</span> <span class="hljs-attr">color:</span> <span class="hljs-attr">color</span>, <span
+              class="hljs-attr">filter:</span> "<span class="hljs-attr">invert</span>()" }}&gt;</span>
+        Следуй инструкциям максимально точно.
+      <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+});
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/preview/MWyZzjR?height=300&amp;slug-hash=MWyZzjR&amp;default-tabs=js%2Cresult&amp;host=https%3A%2F%2Fcodepen.io"
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    Данный шаблон идентичен стартовому шаблону useCallback, за исключением того, что
+                                    someValue является объектом, а не строкой. Компонент Guide также повторно
+                                    отрисовывается, несмотря на использование React.memo.<br>
+                                    <br>
+                                    Но почему так происходит? Ведь объекты сравниваются по ссылкам, а ссылка на
+                                    someValue меняется при каждом рендеринге. Есть идеи?<br>
+                                    <br>
+                                    <h5>Базовое использование</h5><br>
+                                    Значение, возвращаемое doSomething, может быть сохранено с помощью useMemo. Это
+                                    предотвратить ненужный рендеринг.<br>
+                                    <br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> BasicMemo = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> [age, setAge] = useState(<span class="hljs-number">19</span>);
+  <span class="hljs-keyword">const</span> handleClick = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> setAge(age &lt; <span
+                                                class="hljs-number">100</span> ? age + <span
+                                                class="hljs-number">1</span> : age);
+  <span class="hljs-keyword">const</span> someValue = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span
+                                                class="hljs-attr">value</span>: <span
+                                                class="hljs-string">"some value"</span> });
+  <span class="hljs-keyword">const</span> doSomething = useMemo(<span class="hljs-function"><span
+                                                class="hljs-params">()</span> =&gt;</span> someValue, []);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Age</span> <span class="hljs-attr">age</span>=<span
+              class="hljs-string">{age}</span> <span class="hljs-attr">handleClick</span>=<span class="hljs-string">{handleClick}</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Guide</span> <span class="hljs-attr">doSomething</span>=<span
+              class="hljs-string">{doSomething}</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+};
+
+<span class="hljs-keyword">const</span> Age = <span class="hljs-function">(<span class="hljs-params">{ age, handleClick }</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Мне {age} лет.<span
+                class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Нажми на кнопку <span class="hljs-tag">&lt;/<span
+                class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{handleClick}</span>&gt;</span>Стать старше!<span class="hljs-tag">&lt;/<span
+                class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+};
+
+<span class="hljs-keyword">const</span> Guide = React.memo(<span class="hljs-function">(<span
+                                                class="hljs-params">props</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> color = <span class="hljs-string">`#<span class="hljs-subst">${((<span
+                                                class="hljs-built_in">Math</span>.random() * <span class="hljs-number">0xfff</span>) &lt;&lt; <span
+                                                class="hljs-number">0</span>).toString(<span
+                                                class="hljs-number">16</span>)}</span>`</span>;
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span
+            class="hljs-string">{{</span> <span class="hljs-attr">background:</span> <span
+            class="hljs-attr">color</span>, <span class="hljs-attr">padding:</span> "<span
+            class="hljs-attr">.4rem</span>" }}&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">style</span>=<span
+              class="hljs-string">{{</span> <span class="hljs-attr">color:</span> <span class="hljs-attr">color</span>, <span
+              class="hljs-attr">filter:</span> "<span class="hljs-attr">invert</span>()" }}&gt;</span>
+        Следуй инструкциям максимально точно.
+      <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+});
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/preview/RwaEqpZ?height=300&amp;slug-hash=RwaEqpZ&amp;default-tabs=js%2Cresult&amp;host=https%3A%2F%2Fcodepen.io"
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <h5>useRef</h5><br>
+                                    <a href="https://reactjs.org/docs/hooks-reference.html#useref"
+                                       rel="nofollow">useRef</a> возвращает объект ref. Значения этого объекта доступны
+                                    через свойство «current». Данному свойству может присваиваться начальное значение:
+                                    useRef(initialValue). Объект ref существует на протяжении жизненного цикла
+                                    компонента.<br>
+                                    <br>
+                                    <h5>Получение доступа к DOM</h5><br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> DomAccess = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> textareaEl = useRef(<span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">const</span> handleClick = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    textareaEl.current.value =
+      <span class="hljs-string">"Ты - человек, в данный момент изучающий хуки. Да, кэп снова в деле!"</span>;
+    textareaEl.current.focus();
+  };
+  <span class="hljs-keyword">const</span> color = <span class="hljs-string">`#<span class="hljs-subst">${((<span
+                                                class="hljs-built_in">Math</span>.random() * <span class="hljs-number">0xfff</span>) &lt;&lt; <span
+                                                class="hljs-number">0</span>).toString(<span
+                                                class="hljs-number">16</span>)}</span>`</span>;
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{handleClick}</span>&gt;</span>
+        Получить сообщение.
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">htmlFor</span>=<span
+              class="hljs-string">"msg"</span>&gt;</span>
+        После нажатия кнопки в поле для ввода текста появится сообщение.
+      <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">ref</span>=<span
+              class="hljs-string">{textareaEl}</span> <span class="hljs-attr">id</span>=<span
+              class="hljs-string">"msg"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+};
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/preview/wvGRQdx?height=300&amp;slug-hash=wvGRQdx&amp;default-tabs=js%2Cresult&amp;host=https%3A%2F%2Fcodepen.io"
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <h5>Переменные, похожие на экземпляры (дженерики)</h5><br>
+                                    Объект ref может содержать любое значение, а не только указатель на DOM-элемент.<br>
+                                    <br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> StringVal = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> textareaEl = useRef(<span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">const</span> stringVal = useRef(
+    <span class="hljs-string">"Ты - человек, в данный момент изучающий хуки. Да, кэп снова в деле!"</span>
+  );
+  <span class="hljs-keyword">const</span> handleClick = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    textareaEl.current.value = stringVal.current;
+    textareaEl.current.focus();
+  };
+  <span class="hljs-keyword">const</span> color = <span class="hljs-string">`#<span class="hljs-subst">${((<span
+                                                class="hljs-built_in">Math</span>.random() * <span class="hljs-number">0xfff</span>) &lt;&lt; <span
+                                                class="hljs-number">0</span>).toString(<span
+                                                class="hljs-number">16</span>)}</span>`</span>;
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span
+              class="hljs-string">{handleClick}</span>&gt;</span>
+        Получить сообщение.
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">htmlFor</span>=<span
+              class="hljs-string">"msg"</span>&gt;</span>
+      После нажатия кнопки в поле для ввода текста появится сообщение.
+      <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">ref</span>=<span
+              class="hljs-string">{textareaEl}</span> <span class="hljs-attr">id</span>=<span
+              class="hljs-string">"msg"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+};
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/preview/MWyZzoM?height=300&amp;slug-hash=MWyZzoM&amp;default-tabs=js%2Cresult&amp;host=https%3A%2F%2Fcodepen.io"
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    useRef можно использовать для хранения идентификатора таймера с целью его
+                                    последующей остановки.<br>
+                                    <br>
+                                    Код:<br>
+                                    <br>
+                                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> IntervalRef = <span
+                                            class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> [time, setTime] = useState(<span class="hljs-number">0</span>);
+  <span class="hljs-keyword">const</span> setIntervalRef = useRef();
+
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> id = setInterval(<span class="hljs-function"><span
+                                                class="hljs-params">()</span> =&gt;</span> {
+      setTime(<span class="hljs-function">(<span class="hljs-params">time</span>) =&gt;</span> (time = <span
+                                                class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().toLocaleTimeString()));
+    }, <span class="hljs-number">1000</span>);
+
+    setIntervalRef.current = id;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span
+                                                class="hljs-params">()</span> =&gt;</span> clearInterval(setIntervalRef.current);
+  }, [time]);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Текущее время:<span
+                class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">time</span>&gt;</span>{time}<span class="hljs-tag">&lt;/<span
+                class="hljs-name">time</span>&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+};
+</code></pre>
+                                    <br>
+                                    Песочница:<br>
+                                    <br>
+                                    <div class="oembed">
+                                        <div>
+                                            <div style="left: 0; width: 100%; height: 300px; position: relative;">
+                                                <iframe src="https://codepen.io/harryheman/embed/preview/dyMwQVW?height=300&amp;slug-hash=dyMwQVW&amp;default-tabs=js%2Cresult&amp;host=https%3A%2F%2Fcodepen.io"
+                                                        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+                                                        allowfullscreen=""></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    Надеюсь статья статья вам понравилась. Благодарю за внимание.
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+
+                    </article>
+
+
+
+
+                </div>
+
+
+            </section>
+
+
+
+
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>
