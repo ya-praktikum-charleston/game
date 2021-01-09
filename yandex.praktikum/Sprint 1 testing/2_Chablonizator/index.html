@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+	<title>2_Chablonizator</title>
+    <link href="styles/style.css" />
+  </head>
+
+  <body>
+    <div class="root"></div>
+
+    <script src="templator.js"></script>
+    <script src="chats.tmpl.js"></script>
+    <script src="index.js"></script>
+	
+	
+	
+	
+	
+	Задача 2<br>
+Шаблонизатор — утилита, которая генерирует HTML-страницы. Она упрощает работу веб-разработчика. <br>
+Вместо того, чтобы копировать одну и ту же разметку и заменять данные, он просто передает данные в шаблонизатор.<br>
+Простейший пример:<br>
+<pre>
+const templator = context => `<p>${context.text}</p>`;
+
+const element = document.createElement('div');
+element.innerHTML = templator({text: 'Hello, Templator!'}); 
+</pre>
+Подробнее о шаблонизаторах мы расскажем в курсе.<br>
+В данной задаче необходимо реализовать шаблонизатор, который умеет работать следующим образом. На вход подают объект-контекст со значениями, которые хотят подставить:<br>
+строкой,<br>
+объектом,<br>
+функцией.<br>
+Это делает шаблонизатор templator.js. Он заменит шаблонные переменные на значения из контекста.<br>
+Назначение остальных файлов:<br>
+index.html — вызывает скрипты в указанном порядке,<br>
+index.js — содержит объект контекста, компилирует шаблоны и помещает их на страницу,<br>
+chats.tmpl.js — описывает шаблон.<br>
+Результат должен быть как на видео.<br>
+При нажатии на элементы списка выводите элемент ul:<br>
+
+<pre>
+	&lt;ul class=&quot;chat&quot; data-chat-id=&quot;123&quot; onclick=&quot;window.handleClick()&quot;&gt; 
+		&lt;li&gt;1&lt;/li&gt; 
+		&lt;li&gt;2&lt;/li&gt; 
+		&lt;li&gt;3&lt;/li&gt; 
+		&lt;li&gt;4&lt;/li&gt; 
+	&lt;/ul&gt; 
+</pre>
+Табы, новые строки при выводе учитывать не нужно.<br>
+Допишите функционал в файле templator.js, остальные файлы трогать не нужно!<br>
+	
+	
+  </body>
+</html>

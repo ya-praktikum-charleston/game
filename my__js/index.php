@@ -23,6 +23,9 @@
         <li class="list-sub__item">
             <div class="list-sub__title"><a class="list-sub__link" href="my_code.php">МОЙ КОД</a></div>
         </li>
+        <li class="list-sub__item">
+            <div class="list-sub__title"><a class="list-sub__link" href="tests.php">Тесты</a></div>
+        </li>
     </ul>
 </div>
 

@@ -17,6 +17,9 @@
         <li class="list-sub__item">
             <div class="list-sub__title"><a class="list-sub__link" href="sorax.php">Sorax</a></div>
         </li>
+		<li class="list-sub__item">
+            <div class="list-sub__title"><a class="list-sub__link" href="https://nodejs-guide.netlify.app/#" target="_blank">Краткое руководство по Node.js для начинающих</a></div>
+        </li>
     </ul>
 </div>
 
