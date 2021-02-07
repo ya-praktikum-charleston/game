@@ -24,6 +24,11 @@
                     <a class="list-sub__link" href="3_netlify.php">Настройка Netlify</a>
                 </div>
             </li>
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="4_first_node.php">Первый сервер на Node.js</a>
+                </div>
+            </li>
         </ul>
     </div>
 
