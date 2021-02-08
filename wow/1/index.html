@@ -1,35 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   
-    <title>test JS file</title>
+    <title>Пользователи чата</title>
+    <script src="script.js"></script>
 </head>
-
 <body>
-    
-	<div id="www">
-	</div>
-    <p id="elem">
-        Доброе утро, страна!</p>
+<style>
+    table, td {
+        border: 1px solid #cecece;
+        padding: 10px;
+    }
 
-    <template id="tmpl">
-        <h3><content></content></h3>
-        <p>Привет из подполья!</p>
-        <script>
-            document.write('...document.write:Новость!');
-        </script>
-    </template>
+    thead {
+        font-weight: 700;
+    }
 
-    <script>
-        var root = elem.createShadowRoot();
-        root.appendChild(tmpl.content.cloneNode(true));
-    </script>
+    .male td {
+        background-color: #65bff3;
+    }
 
-    <script src="qq.js"></script>
+    .female td {
+        background-color: #932bb3;
+    }
+
+    .regular td {
+        border: 2px solid green;
+    }
+
+    .admin td {
+        border: 2px solid red;
+    }
+</style>
+<table class="chatUsers">
+    <thead>
+    <tr>
+        <td>Display name</td>
+        <td>Age</td>
+        <td>Gender</td>
+        <td>Role</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>User 1</td>
+        <td>30</td>
+        <td>m</td>
+        <td data-role="regular">Free</td>
+    </tr>
+    <tr>
+        <td>User 2</td>
+        <td>17</td>
+        <td>f</td>
+        <td data-role="admin">Admin</td>
+    </tr>
+    <tr>
+        <td>User 3</td>
+        <td>12</td>
+        <td>f</td>
+        <td>Admin</td>
+    </tr>
+    </tbody>
+</table>
+<script>
+    highlight(document.querySelector('.chatUsers'));
+</script>
 </body>
-
 </html>
