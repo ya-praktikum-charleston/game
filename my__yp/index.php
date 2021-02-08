@@ -29,6 +29,16 @@
                     <a class="list-sub__link" href="4_first_node.php">Первый сервер на Node.js</a>
                 </div>
             </li>
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="5_javascript_part1.php">Java Script. Глава 1.js</a>
+                </div>
+            </li>
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="6_dom_api.php">DOM API.js</a>
+                </div>
+            </li>
         </ul>
     </div>
 
