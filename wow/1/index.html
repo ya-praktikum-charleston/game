@@ -6,64 +6,7 @@
     <script src="script.js"></script>
 </head>
 <body>
-<style>
-    table, td {
-        border: 1px solid #cecece;
-        padding: 10px;
-    }
 
-    thead {
-        font-weight: 700;
-    }
 
-    .male td {
-        background-color: #65bff3;
-    }
-
-    .female td {
-        background-color: #932bb3;
-    }
-
-    .regular td {
-        border: 2px solid green;
-    }
-
-    .admin td {
-        border: 2px solid red;
-    }
-</style>
-<table class="chatUsers">
-    <thead>
-    <tr>
-        <td>Display name</td>
-        <td>Age</td>
-        <td>Gender</td>
-        <td>Role</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>User 1</td>
-        <td>30</td>
-        <td>m</td>
-        <td data-role="regular">Free</td>
-    </tr>
-    <tr>
-        <td>User 2</td>
-        <td>17</td>
-        <td>f</td>
-        <td data-role="admin">Admin</td>
-    </tr>
-    <tr>
-        <td>User 3</td>
-        <td>12</td>
-        <td>f</td>
-        <td>Admin</td>
-    </tr>
-    </tbody>
-</table>
-<script>
-    highlight(document.querySelector('.chatUsers'));
-</script>
 </body>
 </html>

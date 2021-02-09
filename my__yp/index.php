@@ -44,6 +44,11 @@
                     <a class="list-sub__link" href="7_javascript_part2.php">JavaScript. Глава 2</a>
                 </div>
             </li>
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="8_asynchronous.php">Асинхронность. Начало</a>
+                </div>
+            </li>
         </ul>
     </div>
 
