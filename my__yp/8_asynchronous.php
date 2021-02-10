@@ -110,18 +110,27 @@
         });
 
         // Решение 2
-        Promise.resolve().then(function() {
-            foo((callback)=> {
-                console.log(callback);
-            });
-        }).then(function() {
-            bar((callback)=> {
-                console.log(callback);
-            });
-        }).then(function() {
-            baz((callback)=> {
-                console.log(callback);
-            });
+       Promise.resolve().then(()=> {
+            return new Promise((resolve, reject) => {
+                foo((callback) => {
+                    console.log(callback);
+                    resolve();
+                });
+            })
+        }).then(() => {
+            return new Promise((resolve, reject) => {
+                bar((callback)=> {
+                    console.log(callback);
+                    resolve();
+                });
+            })
+        }).then(() => {
+            return new Promise((resolve, reject) => {
+                baz((callback)=> {
+                    console.log(callback);
+                    resolve();
+                });
+            })
         })
     </pre>
 

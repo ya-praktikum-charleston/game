@@ -49,6 +49,21 @@
                     <a class="list-sub__link" href="8_asynchronous.php">Асинхронность. Начало</a>
                 </div>
             </li>
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="9_we_make.php">Рубрика: мастерим сами</a>
+                </div>
+            </li>
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="10_ui.php">UI / UX</a>
+                </div>
+            </li>
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="11_algorithms.php">Введение в алгоритмы</a>
+                </div>
+            </li>
         </ul>
     </div>
 
