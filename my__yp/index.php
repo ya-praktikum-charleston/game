@@ -2,72 +2,86 @@
 
 
     <div class="frontpage-content__part">Яндекс Практикум</div>
+	
     <h2 class="frontpage-content__title">Спринт I. Вспомнить всё</h2>
-<br>
-
-
-
+	<br>
     <div class="list__item">
         <ul class="list-sub">
             <li class="list-sub__item">
                 <div class="list-sub__title">
-                    <a class="list-sub__link" href="1_terminal.php">Шпаргалка: команды терминала</a>
+                    <a class="list-sub__link" href="sprint1/1_terminal.php">Шпаргалка: команды терминала</a>
                 </div>
             </li>
             <li class="list-sub__item">
                 <div class="list-sub__title">
-                    <a class="list-sub__link" href="2_in_git.php">Введение в Git | Установка и настройка Git</a>
+                    <a class="list-sub__link" href="sprint1/2_in_git.php">Введение в Git | Установка и настройка Git</a>
                 </div>
             </li>
             <li class="list-sub__item">
                 <div class="list-sub__title">
-                    <a class="list-sub__link" href="3_netlify.php">Настройка Netlify</a>
+                    <a class="list-sub__link" href="sprint1/3_netlify.php">Настройка Netlify</a>
                 </div>
             </li>
             <li class="list-sub__item">
                 <div class="list-sub__title">
-                    <a class="list-sub__link" href="4_first_node.php">Первый сервер на Node.js</a>
+                    <a class="list-sub__link" href="sprint1/4_first_node.php">Первый сервер на Node.js</a>
                 </div>
             </li>
             <li class="list-sub__item">
                 <div class="list-sub__title">
-                    <a class="list-sub__link" href="5_javascript_part1.php">Java Script. Глава 1.js</a>
+                    <a class="list-sub__link" href="sprint1/5_javascript_part1.php">Java Script. Глава 1.js</a>
                 </div>
             </li>
             <li class="list-sub__item">
                 <div class="list-sub__title">
-                    <a class="list-sub__link" href="6_dom_api.php">DOM API.js</a>
+                    <a class="list-sub__link" href="sprint1/6_dom_api.php">DOM API.js</a>
                 </div>
             </li>
             <li class="list-sub__item">
                 <div class="list-sub__title">
-                    <a class="list-sub__link" href="7_javascript_part2.php">JavaScript. Глава 2</a>
+                    <a class="list-sub__link" href="sprint1/7_javascript_part2.php">JavaScript. Глава 2</a>
                 </div>
             </li>
             <li class="list-sub__item">
                 <div class="list-sub__title">
-                    <a class="list-sub__link" href="8_asynchronous.php">Асинхронность. Начало</a>
+                    <a class="list-sub__link" href="sprint1/8_asynchronous.php">Асинхронность. Начало</a>
                 </div>
             </li>
             <li class="list-sub__item">
                 <div class="list-sub__title">
-                    <a class="list-sub__link" href="9_we_make.php">Рубрика: мастерим сами</a>
+                    <a class="list-sub__link" href="sprint1/9_we_make.php">Рубрика: мастерим сами</a>
                 </div>
             </li>
             <li class="list-sub__item">
                 <div class="list-sub__title">
-                    <a class="list-sub__link" href="10_ui.php">UI / UX</a>
+                    <a class="list-sub__link" href="sprint1/10_ui.php">UI / UX</a>
                 </div>
             </li>
             <li class="list-sub__item">
                 <div class="list-sub__title">
-                    <a class="list-sub__link" href="11_algorithms.php">Введение в алгоритмы</a>
+                    <a class="list-sub__link" href="sprint1/11_algorithms.php">Введение в алгоритмы</a>
+                </div>
+            </li>
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="sprint1/12_additional_materials.php">Дополнительные материалы для самостоятельного изучения</a>
                 </div>
             </li>
         </ul>
     </div>
 
-
+	<h2 class="frontpage-content__title">Спринт 2. 111111111</h2>
+	<br>
+    <div class="list__item">
+        <ul class="list-sub">
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="sprint2/1_111111111.php">22222222222222</a>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
 
 
 
