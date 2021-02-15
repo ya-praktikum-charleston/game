@@ -3,6 +3,60 @@
 
     <div class="frontpage-content__part">Яндекс Практикум</div>
 	
+	<h2 class="frontpage-content__title">Вступительное тестирование</h2>
+	<br>
+	<div class="list__item">
+        <ul class="list-sub">
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="sprint0_testing/1_Get_find-object/index.html">Задача 1</a>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+	<div class="list__item">
+        <ul class="list-sub">
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="sprint0_testing/2_Chablonizator/index.html">Задача 2</a>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+	<div class="list__item">
+        <ul class="list-sub">
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="sprint0_testing/3_Siemens-A55/index.html">Задача 3</a>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+	<div class="list__item">
+        <ul class="list-sub">
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="sprint0_testing/4_Recursia/index.html">Задача 4</a>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+	<div class="list__item">
+        <ul class="list-sub">
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="sprint0_testing/5_Canvas/index.html">Задача 5</a>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+	
+	
     <h2 class="frontpage-content__title">Спринт I. Вспомнить всё</h2>
 	<br>
     <div class="list__item">
