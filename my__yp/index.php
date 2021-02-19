@@ -126,6 +126,11 @@
                     <a class="list-sub__link" href="sprint2/4_templates.php">Шаблонизаторы</a>
                 </div>
             </li>
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="sprint2/5_callback.php">Callback и чейнинг</a>
+                </div>
+            </li>
         </ul>
     </div>
 
