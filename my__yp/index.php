@@ -131,6 +131,21 @@
                     <a class="list-sub__link" href="sprint2/5_callback.php">Callback и чейнинг</a>
                 </div>
             </li>
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="sprint2/6_typescript_1.php">TypeScript I</a>
+                </div>
+            </li>
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="sprint2/7_compo.php">Компонент</a>
+                </div>
+            </li>
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="sprint2/8_algorithms.php">Алгоритмы</a>
+                </div>
+            </li>
         </ul>
     </div>
 

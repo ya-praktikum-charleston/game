@@ -297,6 +297,78 @@
         allSettled(promises)
     </pre>
 
+    <br>
+    <p><b>Задача 2 - Мемоизация №1</b></p>
+
+    <p>Моё решение</p>
+
+    <pre class="brush: js;">
+        function memoize(fn) {
+
+            let cache = {};
+
+            return (...args) => {
+
+                let n = args[0];  // тут работаем с единственным аргументом
+
+                if (n in cache) {
+                    console.log('Fetching from cache');
+                    return cache[n];
+                }
+                else {
+                    console.log('Calculating result');
+                    let result = fn(n);
+                    cache[n] = result;
+                    return result;
+                }
+            }
+
+        }
+    </pre>
+
+    <p>Рубрика «Решаем вместе»</p>
+
+    <pre class="brush: js;">
+        function generateKey(args) {
+            return args.map(arg => `${typeof(arg)}<${String(arg)}>`).join(',');
+        }
+
+        function memoize(fn, timeout) {
+            const cache = {};
+
+            return function (...args) {
+                const key = generateKey(args);
+                const result = cache[key];
+
+                if (typeof result === 'undefined' || Date.now() > result.expire) {
+                    return Promise.resolve(fn(...args)).then(value => {
+                        cache[key] = { value, expire: Date.now() + timeout };
+                        return value;
+                    });
+                }
+
+                return Promise.resolve(result.value);
+            };
+        }
+    </pre>
+
+
+    <br>
+    <p><b>Задача 3 - Полифилл для Promise.prototype.finally</b></p>
+
+    <pre class="brush: js;">
+        Promise.prototype.finally = function (fn) {
+                 const onFinally = callback => Promise.resolve(fn()).then(callback);
+            return this.then(
+                result => onFinally(() => result),
+                reason => onFinally(() => Promise.reject(reason))
+            );
+        }
+    </pre>
+
+
+
+
 </div>
 
 

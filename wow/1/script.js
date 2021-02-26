@@ -1,38 +1,32 @@
-const delay = timeout => new Promise(resolve => setTimeout(resolve, timeout));
+/*
+Input: 1->2->3->4->5->NULL
+Output: 5->4->3->2->1->NULL
+*/
 
-const promises = [
-    delay(65).then(() => 10),
-    delay(100).then(() => { throw 'my error'; })
-];
+/**
+ * function ListNode(val, next) {
+ *     this.value = (value===undefined ? 0 : value)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
 
-function allSettled(promises) {
+function reverse(head) {
+    let node = head;
+    let previous = null;
 
-    return Promise.all(promises.map(elem => {
-
-        return new Promise((resolve) => {
-            return resolve(elem)
-        })
-        .then(resolve=>{
-            return {"status": "resolved", "value": resolve}
-        }).catch(reject=>{
-            return {"status": "rejected", "reason": reject}
-        });
-    }))
-        .then((value) => {
-            console.log(value);
-            return value;
-        }).catch(reason => {
-            console.log(reason)
-    });
-
-
-
-    // return Promise.resolve([{"status": "resolved", "value": 10}, {"status": "rejected", "reason": "my error"}]);
+    while(node) {
+        // save next or you lose it!!!
+        let save = node.next;
+        // reverse pointer
+        node.next = previous;
+        // increment previous to current node
+        previous = node;
+        // increment node to next node or null at end of list
+        node = save;
+    }
+    return previous;
 }
-
-
-
-console.log(allSettled(promises))
-
-
-

@@ -1,4 +1,4 @@
-<?php include '../include/header.php'; ?>
+<?php include '../../include/header.php'; ?>
 
 
 
@@ -1048,4 +1048,4 @@ v&ndash;                тире
 
 
 
-<?php include '../include/footer.php'; ?>
+<?php include '../../include/footer.php'; ?>
