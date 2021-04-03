@@ -10,6 +10,7 @@
 <h2><a class="list-sub__link" href="ydkjs4.php">4. K.Simpson - Вы не знаете JS. Типы и грамматические конструкции (Types & Grammar) 2019</a></h2>
 <h2><a class="list-sub__link" href="ydkjs5.php">5. K.Simpson - Вы не знаете JS. Async & Performance (Асинхронная обработка и оптимизация) 2019</a></h2>
 <h2><a class="list-sub__link" href="ydkjs6.php">6. K.Simpson - Вы не знаете JS. ES6 and Beyond (ES6 и не только) 2017</a></h2>
+<h2><a class="list-sub__link" href="typescript.php">Натан Розенталс - Изучаем TypeScript 3</a></h2>
 
     
 

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FlexBox</title>
+
+
+<style>
+    .flex-container-style {
+        border: 3px solid #C5C588;
+        -webkit-border-radius: 15px;
+        border-radius: 15px;
+        background: #953E28;
+        -webkit-box-shadow: -23px 66px rgba(0,0,0,.06) inset, -63px 49px rgba(0,0,0,.06) inset, 17px -51px rgba(0,0,0,.06) inset, 2px 5px rgba(0,0,0,.2);
+        box-shadow: -23px 66px rgba(0,0,0,.06) inset, -63px 49px rgba(0,0,0,.06) inset, 17px -51px rgba(0,0,0,.06) inset, 2px 5px rgba(0,0,0,.2);
+    }
+    .flex-container {
+        min-height: 350px;
+        _height: 350px;
+        padding: 5px;
+        width: 400px;
+    }
+    .flex-container.fixed-height {
+        height: 350px;
+        min-height: 0;
+        _height: 0;
+    }
+    .flex-container > .flex-item {
+        position: relative;
+        padding: 10px;
+    }
+    .flex-container .flex-item {
+        margin: 5px;
+    }
+    .flex-item {
+        padding: 5px 10px;
+        -webkit-border-radius: 7px;
+        border-radius: 7px;
+        background: #6F1F1F;
+        -webkit-box-shadow: -2px -4px rgba(0,0,0,.2) inset;
+        box-shadow: -2px -4px rgba(0,0,0,.2) inset;
+    }
+    .flex-container > .flex-item > span[contenteditable] {
+        padding: 15px 25px;
+        display: block;
+    }
+    .flex-container > .flex-item > .counter, .flex-items > li:before {
+        color: #FBF7E9;
+        font: bold 14px Lato,sans-serif;
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        background: #938F67;
+        -webkit-border-radius: 100px;
+        border-radius: 100px;
+        -webkit-box-shadow: 1px 1px 0 0 rgba(255,255,255,.5) inset, -1px -1px 0 1px rgba(0,0,0,.2) inset;
+        box-shadow: 1px 1px 0 0 rgba(255,255,255,.5) inset, -1px -1px 0 1px rgba(0,0,0,.2) inset;
+        text-shadow: 0 0 2px rgba(0,0,0,.8);
+        width: 24px;
+        line-height: 24px;
+        text-align: center;
+    }
+    .wrapper {
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        -webkit-align-content: stretch;
+        -ms-flex-line-pack: stretch;
+        align-content: stretch;
+        -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+    }
+    .wrapper_elem {
+        padding: 30px 30px 30px;
+    }
+</style>
+
+<main>
+    <div class="wrapper">
+        <div class="wrapper_elem">
+            <div class="flex-container flex-container-style fixed-height">
+                <div class="flex-item"><span contenteditable=""></span><span class="counter">1</span></div>
+                <div class="flex-item"><span contenteditable=""></span><span class="counter">2</span></div>
+                <div class="flex-item"><span contenteditable=""></span><span class="counter">3</span></div>
+            </div>
+        </div>
+        <div class="wrapper_elem">
+            <div class="flex-container flex-container-style fixed-height">
+                <div class="flex-item"><span contenteditable=""></span><span class="counter">1</span></div>
+                <div class="flex-item"><span contenteditable=""></span><span class="counter">2</span></div>
+                <div class="flex-item"><span contenteditable=""></span><span class="counter">3</span></div>
+            </div>
+        </div>
+        <div class="wrapper_elem">
+            <div class="flex-container flex-container-style fixed-height">
+                <div class="flex-item"><span contenteditable=""></span><span class="counter">1</span></div>
+                <div class="flex-item"><span contenteditable=""></span><span class="counter">2</span></div>
+                <div class="flex-item"><span contenteditable=""></span><span class="counter">3</span></div>
+            </div>
+        </div>
+        <div class="wrapper_elem">
+            <div class="flex-container flex-container-style fixed-height">
+                <div class="flex-item"><span contenteditable=""></span><span class="counter">1</span></div>
+                <div class="flex-item"><span contenteditable=""></span><span class="counter">2</span></div>
+                <div class="flex-item"><span contenteditable=""></span><span class="counter">3</span></div>
+            </div>
+        </div>
+        <div class="wrapper_elem">
+            <div class="flex-container flex-container-style fixed-height">
+                <div class="flex-item"><span contenteditable=""></span><span class="counter">1</span></div>
+                <div class="flex-item"><span contenteditable=""></span><span class="counter">2</span></div>
+                <div class="flex-item"><span contenteditable=""></span><span class="counter">3</span></div>
+            </div>
+        </div>
+    </div>
+
+
+
+</main>
