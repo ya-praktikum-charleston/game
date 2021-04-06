@@ -1,0 +1,9 @@
+https://github.com/streamich/react-use
+https://formik.org/
+https://github.com/jquense/yup		валидация форм
+https://github.com/uuidjs/uuid
+https://overreacted.io/				блог дэна абрамова
+https://github.com/reduxjs/reselect	решение проблеам реселекта
+https://github.com/toomuchdesign/re-reselect проблема реселекта
+https://testing-library.com/docs/react-testing-library/intro/
+https://masonry.desandro.com/
