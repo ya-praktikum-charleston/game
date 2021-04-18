@@ -14,6 +14,12 @@
             <div class="list-sub__title"><a class="list-sub__link" href="basics2.php">Минин</a></div>
         </li>
         <li class="list-sub__item">
+            <div class="list-sub__title"><a class="list-sub__link" href="webDevTypeScript.php">WebDev TypeScript</a></div>
+        </li>
+        <li class="list-sub__item">
+            <div class="list-sub__title"><a class="list-sub__link" href="webDevTypeScriptReact.php">WebDev TypeScript & React </a></div>
+        </li>
+        <li class="list-sub__item">
             <div class="list-sub__title"><a class="list-sub__link" href="wordbook.php">СЛОВАРЬ</a></div>
         </li>
     </ul>
