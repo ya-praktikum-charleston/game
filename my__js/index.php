@@ -9,6 +9,9 @@
 <div class="list__item">
     <ul class="list-sub">
         <li class="list-sub__item">
+            <div class="list-sub__title"><a class="list-sub__link" href="algorithms.php">Алгоритмы</a></div>
+        </li>
+        <li class="list-sub__item">
             <div class="list-sub__title"><a class="list-sub__link" href="web-dev/index.php">WebDev</a></div>
         </li>
 		<li class="list-sub__item">

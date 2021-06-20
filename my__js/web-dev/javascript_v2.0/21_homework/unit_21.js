@@ -172,7 +172,7 @@ function sliderImg() {
     let $id = this.getAttribute('data-id');
     sliderLoad($id);
 }
-function sliderPrev() {
+function sliderPrev() {console.log('sliderPrev')
     let $id = this.getAttribute('data-id');
 
     if( $id == 0){
@@ -181,7 +181,7 @@ function sliderPrev() {
         sliderLoad(--$id);
     }
 }
-function sliderNext() {
+function sliderNext() {console.log('sliderNext')
     let $id = this.getAttribute('data-id');
 
     if( $id ==  sliderMinImg.length - 1){
