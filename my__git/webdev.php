@@ -48,13 +48,16 @@
         </li>
     </ul>
 
-
-    <pre class="brush: xml;">
-
-
-
-    </pre>
-
+	<br>
+    <p><b>Переименование ветки (локально и удаленно)</b></p>
+    <p><code>git branch -m old_branch new_branch</code> – переименовать локальную ветку</p>
+    <p><code>git push origin :old_branch</code> – удалить старую ветку</p>
+    <p><code>git push --set-upstream origin new_branch</code> – выгрузить новую ветку и «закрепить» ее за локальной веткой</p>
+	
+	<br>
+    <p><b>Залить новую локальную ветку в удаленный репозитарий</b></p>
+	<p><code>git push --set-upstream origin sprint_2</code></p>
+	<p><code>git push -u origin dev</code> – то же самое, но с сокращенным именем опции</p>
 
 </div>
 
