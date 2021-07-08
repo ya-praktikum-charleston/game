@@ -2,7 +2,7 @@
 
 
     <div class="frontpage-content__part">Яндекс Практикум</div>
-	
+
 	<h2 class="frontpage-content__title">Вступительное тестирование</h2>
 	<br>
 	<div class="list__item">
@@ -34,7 +34,7 @@
             </li>
         </ul>
     </div>
-	
+
     <h2 class="frontpage-content__title">Спринт I. Вспомнить всё</h2>
 	<br>
     <div class="list__item">
@@ -99,6 +99,11 @@
                     <a class="list-sub__link" href="sprint1/12_additional_materials.php">Дополнительные материалы для самостоятельного изучения</a>
                 </div>
             </li>
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="sprint1/material.php">Полезные материалы спринта</a>
+                </div>
+            </li>
         </ul>
     </div>
 
@@ -146,11 +151,16 @@
                     <a class="list-sub__link" href="sprint2/8_algorithms.php">Алгоритмы</a>
                 </div>
             </li>
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="sprint2/material.php">Полезные материалы спринта</a>
+                </div>
+            </li>
         </ul>
     </div>
 
 
-	<h2 class="frontpage-content__title">Спринты III и IV. Проектирование и эксплуатация</h2>
+	<h2 class="frontpage-content__title">Спринты III. Проектирование и клиентской части</h2>
 	<br>
     <div class="list__item">
         <ul class="list-sub">
@@ -177,6 +187,11 @@
             <li class="list-sub__item">
                 <div class="list-sub__title">
                     <a class="list-sub__link" href="sprint3/5_algorithms.php">Алгоритмы</a>
+                </div>
+            </li>
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="sprint3/material.php">Полезные материалы спринта</a>
                 </div>
             </li>
         </ul>
