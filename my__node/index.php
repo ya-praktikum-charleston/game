@@ -9,7 +9,13 @@
 <div class="list__item">
     <ul class="list-sub">
         <li class="list-sub__item">
-            <div class="list-sub__title"><a class="list-sub__link" href="wordbook.php">WebDev</a></div>
+            <div class="list-sub__title"><a class="list-sub__link" target="_blank" href="https://habr.com/ru/company/ruvds/blog/428576/">Все части руководства по Node.js (онлайн-версия с комментариями)</a></div>
+        </li>
+        <li class="list-sub__item">
+            <div class="list-sub__title"><a class="list-sub__link" href="wordbook.php">WebDev. Лущенко</a></div>
+        </li>
+        <li class="list-sub__item">
+            <div class="list-sub__title"><a class="list-sub__link" href="webdev.php">WebDev</a></div>
         </li>
 		 <li class="list-sub__item">
             <div class="list-sub__title"><a class="list-sub__link" href="lesson.php">NodeJS (1 часть)</a></div>
@@ -24,6 +30,6 @@
 </div>
 
 
-    
+
 
 <?php include '../include/footer.php'; ?>

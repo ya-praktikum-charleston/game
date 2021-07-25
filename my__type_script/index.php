@@ -8,6 +8,9 @@
 <div class="list__item">
     <ul class="list-sub">
         <li class="list-sub__item">
+            <div class="list-sub__title"><a class="list-sub__link" target="_blank" href="https://typescript-definitive-guide.ru/">Большая русская книга-документация по TypeScript</a></div>
+        </li>
+        <li class="list-sub__item">
             <div class="list-sub__title"><a class="list-sub__link" href="basics.php">IT-KAMASUTRA</a></div>
         </li>
 		 <li class="list-sub__item">

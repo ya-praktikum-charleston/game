@@ -196,7 +196,18 @@
             </li>
         </ul>
     </div>
+    <h2 class="frontpage-content__title">Спринты IV. Эксплуатация</h2>
+    <br>
+    <div class="list__item">
+        <ul class="list-sub">
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="sprint4/1_typescript_2.php">TypeScript II</a>
+                </div>
+            </li>
 
+        </ul>
+    </div>
 
 
 
