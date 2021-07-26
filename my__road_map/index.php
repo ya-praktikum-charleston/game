@@ -26,6 +26,13 @@
                     <p>Папка "Next JS быстрый курс SSR на React JS"</p>
                 </div>
             </li>
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <p><b>Webpack - Полный курс за 3 часа [2020]</b></p>
+                    <a class="list-sub__link" href="https://www.youtube.com/watch?v=eSaF8NXeNsA&t=7743s" target="_blank">Видео урока</a>
+                    <p>WebPack</p>
+                </div>
+            </li>
         </ul>
     </div>
 

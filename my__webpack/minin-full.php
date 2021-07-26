@@ -10,11 +10,35 @@
         npm install --save-dev style-loader
         npm install sass-loader sass webpack --save-dev
         npm install --save-dev css-loader
+        npm install --save-dev mini-css-extract-plugin
         npm install -D file-loader
+        npm install assets-webpack-plugin --save-dev
         npm install normalize.css
         npm install -D webpack-dev-server
         npm i -D copy-webpack-plugin
         npm i -D cross-env
+        npm install terser-webpack-plugin --save-dev
+        npm install --save-dev optimize-css-assets-webpack-plugin
+
+        // препроцессоры
+        npm install --save-dev less less-loader
+        npm install --save-dev node-sass sass-loader
+
+        // babel-loader
+        npm install -D babel-loader @babel/core @babel/preset-env webpack
+        // @babel/polyfill
+        npm install --save @babel/polyfill
+        // @babel/plugin-proposal-class-properties
+        npm install --save-dev @babel/plugin-proposal-class-properties
+        // webpack-bundle-analyzer
+        npm install --save-dev webpack-bundle-analyzer
+        // @babel/preset-typescript
+        npm install --save-dev @babel/preset-typescript
+
+        // eslint-loader
+        npm install eslint eslint-loader babel-eslint --save-dev
+        // eslint-config-google
+        npm install --save-dev eslint eslint-config-google
     </pre>
 
 </div>
@@ -218,12 +242,16 @@
 
     <pre class="brush: js;">
         npm install -D file-loader
+        npm install assets-webpack-plugin --save-dev
 
         // для распознования xml файлов
         npm install -D xml-loader
 
         // для распознования csv файлов
         npm install -D csv-loader
+
+        // для распознования less файлов
+        npm install --save-dev less-loader
     </pre>
 
     <pre class="brush: js;">
@@ -232,14 +260,12 @@
                 {
                     // распознавание картинок
                     test: /\.(png|jpg|jpeg|svg|gif)$/,
-                    use: ['file-loader']
-
-                    // или так, это нужно если webpack почему то возвращает объект в место картинки
+                    dependency: { not: ['url'] },
                     use: [
                         {
                             loader: 'file-loader',
                             options: {
-                                esModule: false,
+                                esModule: false
                             },
                         },
                     ],
@@ -438,6 +464,22 @@
     </pre>
 
 </div>
+
+<div class="linear" id="use_strict">
+
+    <h2>Минификация css</h2>
+
+    <pre class="brush: js;">
+        // минифицирует js
+        npm install terser-webpack-plugin --save-dev
+
+        // минифицирует css
+        npm install --save-dev optimize-css-assets-webpack-plugin
+    </pre>
+
+</div>
+
+
 <!--
 
     <div class="linear" id="use_strict">
