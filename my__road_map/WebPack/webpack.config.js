@@ -145,7 +145,6 @@ module.exports = {
         port: 4200,
         hot: isDev      // обновляет только то что изменилось, мгновенное реагирование
     },
-    devtool: isDev ? 'source-map' : '',
     plugins: plugins(),
     // подключение loaders
     module: {

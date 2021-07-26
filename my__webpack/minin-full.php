@@ -19,6 +19,7 @@
         npm i -D cross-env
         npm install terser-webpack-plugin --save-dev
         npm install --save-dev optimize-css-assets-webpack-plugin
+        npm install --save-dev webpack-bundle-analyzer
 
         // препроцессоры
         npm install --save-dev less less-loader
@@ -30,8 +31,6 @@
         npm install --save @babel/polyfill
         // @babel/plugin-proposal-class-properties
         npm install --save-dev @babel/plugin-proposal-class-properties
-        // webpack-bundle-analyzer
-        npm install --save-dev webpack-bundle-analyzer
         // @babel/preset-typescript
         npm install --save-dev @babel/preset-typescript
 
@@ -188,6 +187,7 @@
     <p><code>npm run dev</code> сборка для разработки</p>
     <p><code>npm run build</code> билд</p>
     <p><code>npm run watch</code> автообновление</p>
+    <p><code>webpack --json</code> запускается analyzer, будет таже инфографика, что и при npm run build</p>
 
 </div>
 
