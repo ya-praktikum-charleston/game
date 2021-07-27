@@ -205,7 +205,11 @@
                     <a class="list-sub__link" href="sprint4/1_typescript_2.php">TypeScript II</a>
                 </div>
             </li>
-
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="sprint4/material.php">Полезные материалы спринта</a>
+                </div>
+            </li>
         </ul>
     </div>
 

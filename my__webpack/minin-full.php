@@ -8,7 +8,6 @@
         npm install --save-dev html-webpack-plugin
         npm install --save-dev clean-webpack-plugin
         npm install --save-dev style-loader
-        npm install sass-loader sass webpack --save-dev
         npm install --save-dev css-loader
         npm install --save-dev mini-css-extract-plugin
         npm install -D file-loader
@@ -201,7 +200,7 @@
         npm install --save-dev style-loader
 
         // sass-loader
-        npm install sass-loader sass webpack --save-dev
+        npm install --save-dev node-sass sass-loader
 
         // css-loader
         npm install --save-dev css-loader

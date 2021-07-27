@@ -378,7 +378,221 @@
 
 </div>
 
+<div class="linear" id="use_strict">
+    <h2>Рубрика: мастерим сами</h2>
 
+    <p><b>Omit</b></p>
+
+    <p>Реализуйте функцию, которая исключает из объекта указанные свойства.</p>
+
+    <pre class="brush: js;">
+         function omit<T extends object>(obj: T, fields: (keyof T)[]): Omit<T, typeof fields[0]> {
+            // Хорошо бы cloneDeep юзать
+            const shallowCopy = {
+                ...obj,
+            };
+            // Можно range через Array или отдельную реализацию
+            for (let i = 0; i < fields.length; i++) {
+                const key = fields[i];
+                delete shallowCopy[key];
+            }
+            return shallowCopy;
+        }
+
+        export default omit
+
+        const a = omit({ name: 'Benjy', age: 18 }, [ 'name' ]); // => { age: 18 }
+        console.log(a)
+    </pre>
+
+    <br>
+    <p><b>classnames</b></p>
+
+    <p>Напишите утилиту для объединения имён классов. </p>
+
+    <pre class="brush: js;">
+        const hasOwn = {}.hasOwnProperty;
+
+        function classNames(...args: unknown[]): string {
+            const classes = [];
+
+            for (let i = 0; i < args.length; i++) {
+                const arg = args[i];
+                if (!arg) {
+                    continue;
+                }
+
+                const argType = typeof arg;
+
+                if (argType === "string" || argType === "number") {
+                    classes.push(arg);
+                } else if (Array.isArray(arg)) {
+                    if (arg.length) {
+                        const inner = classNames.apply(null, arg);
+
+                        if (inner) {
+                            classes.push(inner);
+                        }
+                    }
+                } else if (argType === "object") {
+                    if (arg.toString !== Object.prototype.toString) {
+                        classes.push(arg.toString());
+                    } else {
+                        for (let key in (arg as any)) {
+                            if (hasOwn.call(arg, key) && arg[key]) {
+                                classes.push(key);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return classes.join(" ");
+        }
+
+        console.log(classNames("foo", "bar")); // => 'foo bar'
+        console.log(classNames("foo", { bar: true })); // => 'foo bar'
+        console.log(classNames({ "foo-bar": true })); // => 'foo-bar'
+        console.log(classNames({ "foo-bar": false })); // => ''
+        console.log(classNames({ foo: true }, { bar: true })); // => 'foo bar'
+        console.log(classNames({ foo: true, bar: true })); // => 'foo bar'
+        console.log(
+          classNames("foo", { bar: true, duck: false }, "baz", { quux: true })
+        ); // => 'foo bar baz quux'
+        console.log(classNames(null, false, "bar", undefined, 0, 1, { baz: null }, "")); // => 'bar 1'
+        console.log(classNames('bar', [1, null, 'baz'], {baz: true}, '3')); // => 'bar 1 baz baz 3'
+        console.log(classNames('bar', [1, null, 'baz', ['foo', 'test']], {baz: true}, '3')); // => 'bar 1 baz foo test baz 3'
+    </pre>
+
+    <br>
+    <p><b>take</b></p>
+    <p>Напишите функцию, которая создаёт часть массива с n элементами, взятыми с начала. Необходимо валидировать входные значения. В случае ошибки — выбросьте исключение ValidationError: bad value. Сделайте реализацию через класс. Ошибка в консоли должна выглядеть в точности как в примере.</p>
+
+    <pre class="brush: js;">
+        class ValidationError extends Error {
+            constructor(message: string) {
+                super(message);
+                this.name = 'ValidationError';
+            }
+        }
+
+        function take(list: number[], num: number = 1): number[] {
+            if (!Array.isArray(list) || typeof num !== 'number') {
+                throw new ValidationError('bad value');
+            }
+
+            return list.slice(0, num);
+        }
+
+        /**
+            take([1, 2, 3]); // => [1]
+            take([1, 2, 3], 2); // => [1, 2]
+            take([1, 2, 3], 5); // => [1, 2, 3]
+            take([1, 2, 3], 0); // => []
+
+            const testErrCase1 = [123, [1, 2, 3], [1, 2, 3], [1, 2, 3]]
+            const testErrCase2 = [1, [1], '1', true]
+
+            for (let i = 0; i<4; i++) {
+              try {
+                take(testErrCase1[i], testErrCase2[i])
+              }
+              catch(err) {
+                console.log(err.toString()) // ValidationError: bad value
+              }
+             }
+        */
+    </pre>
+
+    <br>
+    <p><b>unzip</b></p>
+
+    <p>Реализуйте функцию, которая группирует значения из массивов по индексам. Если хоть один аргумент не массив — нужно выбросить ошибку ${arg} is not array.</p>
+
+    <p>Результирующие массивы должны иметь длину, равную длине массива с максимальным количеством элементов.</p>
+
+    <pre class="brush: js;">
+        // Элегантным способом нахождения массива с наибольшей длиной среди переданных массивов будет использование метода
+        Math.max(...result.map(arr => arr.length));
+    </pre>
+
+    <p><code>Моё решение</code></p>
+
+    <pre class="brush: js;">
+        /**
+         * unzip([1, 2, 3], [4], [5, 6]); // => [[1, 4, 5], [2, undefined, 6], [3, undefined, undefined]]
+         * unzip([1, 2, 3]); // => [[1], [2], [3]]
+         * unzip([1], [1, 2, 3], [4, 6, 7, 8, 9]);
+         * // => [[1, 1, 4], [undefined, 2, 6], [undefined, 3, 7], [undefined, undefined, 8], [undefined, undefined, 9]]
+         * unzip({}); // => Error: [object Object] is not array
+         */
+
+        class ValidationError extends Error {
+            constructor(arg) {
+                super(arg);
+                this.name = `Error ${arg}`;
+                this.message = `is not array`;
+            }
+        }
+
+        function unzip() {
+
+            let arr = [];
+            for (var i = 0; i < arguments.length; i++) {
+                if (!Array.isArray(arguments[i])) {
+                    throw new ValidationError(arguments[i]);
+                }
+                arr[i] = arguments[i];
+            }
+
+            let elements = arr.length;
+            let len = 0;
+            let final = [];
+
+            for (let i = 0; i < elements; i++) {
+                if (arr[i].length > len) len = arr[i].length;
+            }
+
+            for (var i = 0; i < len; i++) {
+                var temp = [];
+                for (var j = 0; j < elements; j++) {
+                    temp.push(arr[j][i]);
+                }
+                final.push(temp);
+            }
+
+            return final;
+        }
+
+
+        console.log(unzip([1, 2, 3], [4], [5, 6]))
+        console.log(unzip([1, 2, 3]))
+        console.log(unzip([1], [1, 2, 3], [4, 6, 7, 8, 9]))
+        console.log(unzip({}))
+    </pre>
+
+    <p><code>Авторское решение </code></p>
+
+    <pre class="brush: js;">
+        function unzip(...args: (number[])[]): number[][] {
+            const maxLength = args.reduce((result, arg) => {
+                if (!Array.isArray(arg)) {
+                    throw new Error(`${arg} is not array`);
+                }
+
+                return Math.max(result, arg.length);
+            }, 0);
+
+            // Можно range юзать или просто цикл сразу, чтобы было эффективнее
+            return [...Array(maxLength)].map((item, index) => {
+                return args.map(arg => arg[index]);
+            });
+        }
+
+        export default unzip
+    </pre>
+
+</div>
 
 <!--
 <pre class="brush: js;">
