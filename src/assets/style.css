@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+
+:root {
+    --main-font-family: "Play";
+
+    --button-color: #B8D220;
+    --textInput-color: #292929;
+    --titleButton-color: #292929;
+    --text-color: #000000;
+    --text-color-light: #F3F3F3;
+    --link-color: #4791FF;
+    --border-input-color: #A0A0A0;
+
+    --font-size-titlePage: 48px;
+    --font-size-md: 24px;
+
+    --font-size-xl: 288px;
+    --font-size-lg: 144px;
+    --font-size-md: 48px;
+    --font-size-sm: 36px;
+    --font-size-xs: 24px;
+    --font-size-xxs: 16px;
+}
+
+.titlePage {
+    font-size: var(--font-size-md);
+}
+
+.InputPlaceholder {
+    font-size: var(--font-size-xs);
+    font-Family: var(--main-font-family);
+}
+
+.button {
+    font-size: var(--font-size-xs);
+    font-family: var(--main-font-family);
+    background: var(--button-color);
+}
+
+.input {
+    border-color: var(--border-input-color);
+}
