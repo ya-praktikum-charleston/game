@@ -1,51 +1,47 @@
-/**
- * unzip([1, 2, 3], [4], [5, 6]); // => [[1, 4, 5], [2, undefined, 6], [3, undefined, undefined]]
- * unzip([1, 2, 3]); // => [[1], [2], [3]]
- * unzip([1], [1, 2, 3], [4, 6, 7, 8, 9]);
- * // => [[1, 1, 4], [undefined, 2, 6], [undefined, 3, 7], [undefined, undefined, 8], [undefined, undefined, 9]]
- * unzip({}); // => Error: [object Object] is not array
- */
+const someCalc = function(a) {
+    console.log(a + this.b )
+};
 
-class ValidationError extends Error {
-    constructor(arg) {
-        super(arg);
-        this.name = `Error ${arg}`;
-        this.message = `is not array`;
+function throttle(callback, delay, context = this) {
+
+    let isThrottled = false,
+        savedArgs,
+        savedThis;
+
+    function wrapper() {
+
+        if (isThrottled) {
+            // запоминаем последние аргументы для вызова после задержки
+            savedArgs = arguments;
+            savedThis = context;
+            return;
+        }
+
+        // в противном случае переходим в состояние задержки
+        callback.apply(context, arguments);
+
+        isThrottled = true;
+
+        // настройка сброса isThrottled после задержки
+        setTimeout(function() {
+            isThrottled = false;
+            if (savedArgs) {
+                // если были вызовы, savedThis/savedArgs хранят последний из них
+                // рекурсивный вызов запускает функцию и снова устанавливает время задержки
+                wrapper.apply(savedThis, savedArgs);
+                savedArgs = savedThis = null;
+            }
+        }, delay);
     }
+
+    return wrapper;
 }
 
-function unzip() {
+// затормозить функцию до одного раза в 1000 мс
+const f1000 = throttle(someCalc, 1000, {b: ' call'});
+f1000(1); // выведет 1 call
+f1000(2); // (тормозим, не прошло 1000 мс)
+f1000(3); // (тормозим, не прошло 1000 мс)
 
-    let arr = [];
-    for (var i = 0; i < arguments.length; i++) {
-        if (!Array.isArray(arguments[i])) {
-            throw new ValidationError(arguments[i]);
-        }
-        arr[i] = arguments[i];
-    }
-
-    let elements = arr.length;
-    let len = 0;
-    let final = [];
-
-    for (let i = 0; i < elements; i++) {
-        if (arr[i].length > len) len = arr[i].length;
-    }
-
-    for (var i = 0; i < len; i++) {
-        var temp = [];
-        for (var j = 0; j < elements; j++) {
-            temp.push(arr[j][i]);
-        }
-        final.push(temp);
-    }
-
-    return final;
-}
-
-
-console.log(unzip([1, 2, 3], [4], [5, 6]))
-console.log(unzip([1, 2, 3]))
-console.log(unzip([1], [1, 2, 3], [4, 6, 7, 8, 9]))
-console.log(unzip({}))
-
+// когда пройдёт 1000 мс...
+// выведет 3 call, промежуточное значение 2 call игнорируется

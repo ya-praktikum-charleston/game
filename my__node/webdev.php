@@ -11,6 +11,7 @@
         <li><a class="list-sub__link" href="#node_5">#5 Модуль событий (Event Module)</a></li>
         <li><a class="list-sub__link" href="#node_6">#6 Буфер и потоки (Buffer & Streams)</a></li>
         <li><a class="list-sub__link" href="#node_7">#7 Клиент и сервер (Client & Server)</a></li>
+        <li><a class="list-sub__link" href="#node_8">#8 Создание сервера (Create Server)</a></li>
     </ul>
 </div>
 
@@ -383,21 +384,82 @@
     <p>Для запроса на сервер, нужен его <code>ip</code>, или его доменное имя. Что одно и тоже.</p>
 
     <ul class="ul_num">
-        <li><b>GET</b> - обычный запрос данных</li>
-        <li><b>POST</b> - используется для отправки данных</li>
-        <li><b>PUT</b> - изменение данных на сервере</li>
+        <li><b>GET</b> - обычный запрос данных (чтение)</li>
+        <li><b>POST</b> - используется для отправки данных (создание)</li>
+        <li><b>PUT</b> - изменение данных на сервере (обновление)</li>
         <li><b>DELETE</b> - удаление данных</li>
     </ul>
 
     <p>Это всё называется <code>HTTP/HTTPS</code>.</p>
 
-    
+</div>
+
+<div class="linear" id="node_8">
+
+    <h2>#8 Создание сервера (Create Server)</h2>
+
+    <p>Создание простого сервера</p>
 
     <pre class="brush: js;">
+       // создание сервера с помошью http модуля
+        const http = require('http');
 
+        const PORT = 3000;
+
+        // создаём сервер, воспользуемся встроенным методом server
+        // в качестве аргумента идёт callback функция, которая вызывается каждый раз когда к серверу идет обращение
+        const server = http.createServer((request, responce) => {
+            // request - запрос
+            // responce - ответ
+            console.log('server пошел!!!');
+
+            // header ответа, это вспомогательная информация с которой мы можем взаимодействовать в браузере
+            // в данном случае говорим что ответ это просто строка
+            responce.setHeader('Content-type', 'text/plain');
+
+            // ответ сервера
+            responce.write('Hello бля');
+            // responce.write('&lt;h4&gt;Hello бля&lt;/h4&gt;');       // text/html
+            // res.write('&lt;head&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;#&quot;&gt;&lt;/head&gt;');      // text/html добавим стили в head
+
+            // end сообщает что все нужные данные были добавлены в ответ которые отправляются и контроль можно возвращать браузеру
+            responce.end();
+        });
+
+        // создаём порт для прослушивания, имя хоста, callback
+        server.listen(PORT, 'localhost', (error) => {
+            error ? console.log(error) : console.log(`Listent port ${PORT}`);
+        });
     </pre>
 
+    <p>Возврат json формата</p>
+
+    <pre class="brush: js;">
+        const http = require('http');
+        const PORT = 3000;
+
+        const server = http.createServer((request, responce) => {
+            responce.setHeader('Content-Type', 'application/json');
+
+            // ответ сервера
+            // возврат json формата
+            const data = JSON.stringify([
+                { name: 'Tommy', age: 35 },
+                { name: 'Arthur', age: 40 },
+            ]);
+
+            responce.end(data);
+
+        });
+
+        server.listen(PORT, 'localhost', (error) => {
+            error ? console.log(error) : console.log(`Listent port ${PORT}`);
+        });
+    </pre>
+
+    <p>В итоге, в браузере увидим данный json.</p>
 </div>
+
 <!--
 
     <div class="linear" id="use_strict">

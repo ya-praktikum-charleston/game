@@ -132,6 +132,15 @@ a:hover, a:active {
     text-decoration: underline;
 }
 
+pre {
+    color: #383a42;
+    background: #f7f9fc;
+    padding: 20px 0;
+    font-size: 14px;
+    border: 1px solid #dfe5ee;
+    border-radius: 7px;
+}
+
 .main .syntaxhighlighter {overflow: visible !important;}
 .main .syntaxhighlighter .toolbar {display: none !important;}
 

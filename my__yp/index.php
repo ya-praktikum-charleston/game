@@ -35,6 +35,33 @@
         </ul>
     </div>
 
+    <h2 class="frontpage-content__title">Алгоритмы</h2>
+    <br>
+    <div class="list__item">
+        <ul class="list-sub">
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="algorithms/1_algorithms.php">Введение в алгоритмы</a>
+                </div>
+            </li>
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="algorithms/2_algorithms.php">Алгоритмы</a>
+                </div>
+            </li>
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="algorithms/3_algorithms.php">Алгоритмы</a>
+                </div>
+            </li>
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="algorithms/tasks.php">Задачи</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
     <h2 class="frontpage-content__title">Спринт I. Вспомнить всё</h2>
 	<br>
     <div class="list__item">
@@ -91,12 +118,7 @@
             </li>
             <li class="list-sub__item">
                 <div class="list-sub__title">
-                    <a class="list-sub__link" href="sprint1/11_algorithms.php">Введение в алгоритмы</a>
-                </div>
-            </li>
-            <li class="list-sub__item">
-                <div class="list-sub__title">
-                    <a class="list-sub__link" href="sprint1/12_additional_materials.php">Дополнительные материалы для самостоятельного изучения</a>
+                    <a class="list-sub__link" href="sprint1/11_additional_materials.php">Дополнительные материалы для самостоятельного изучения</a>
                 </div>
             </li>
             <li class="list-sub__item">
@@ -148,17 +170,11 @@
             </li>
             <li class="list-sub__item">
                 <div class="list-sub__title">
-                    <a class="list-sub__link" href="sprint2/8_algorithms.php">Алгоритмы</a>
-                </div>
-            </li>
-            <li class="list-sub__item">
-                <div class="list-sub__title">
                     <a class="list-sub__link" href="sprint2/material.php">Полезные материалы спринта</a>
                 </div>
             </li>
         </ul>
     </div>
-
 
 	<h2 class="frontpage-content__title">Спринты III. Проектирование и клиентской части</h2>
 	<br>
@@ -186,16 +202,12 @@
             </li>
             <li class="list-sub__item">
                 <div class="list-sub__title">
-                    <a class="list-sub__link" href="sprint3/5_algorithms.php">Алгоритмы</a>
-                </div>
-            </li>
-            <li class="list-sub__item">
-                <div class="list-sub__title">
                     <a class="list-sub__link" href="sprint3/material.php">Полезные материалы спринта</a>
                 </div>
             </li>
         </ul>
     </div>
+
     <h2 class="frontpage-content__title">Спринты IV. Эксплуатация</h2>
     <br>
     <div class="list__item">
@@ -208,6 +220,28 @@
             <li class="list-sub__item">
                 <div class="list-sub__title">
                     <a class="list-sub__link" href="sprint4/material.php">Полезные материалы спринта</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <h2 class="frontpage-content__title">Спринты V. Привет, React.</h2>
+    <br>
+    <div class="list__item">
+        <ul class="list-sub">
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="sprint5/1_react.php">React</a>
+                </div>
+            </li>
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="sprint5/2_router.php">Router</a>
+                </div>
+            </li>
+            <li class="list-sub__item">
+                <div class="list-sub__title">
+                    <a class="list-sub__link" href="sprint5/3_api.php">API</a>
                 </div>
             </li>
         </ul>
