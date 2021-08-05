@@ -31,7 +31,13 @@
     font-Family: var(--main-font-family);
 }
 
-.button {
+.btn {
+    width: 100%;
+    height: 97px;
+    text-align: center;
+    vertical-align: 97px;
+    margin-bottom: 28px;
+    border-radius: 10px;
     font-size: var(--font-size-xs);
     font-family: var(--main-font-family);
     background: var(--button-color);
