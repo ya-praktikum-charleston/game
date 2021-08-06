@@ -1,0 +1,33 @@
+.form {
+    width: 278px;
+}
+.form_line {
+    margin-bottom: 20px;
+}
+.input {
+    height: 40px;
+    width: 100%;
+    padding: 5px 13px;
+    font-size: 15px;
+    color: #000;
+    background: #fff;
+    border-radius: 7px;
+    border: 1px solid #a0a0a0;
+}
+.input::-webkit-input-placeholder  { color: #949494;font-size: 15px; }
+.input::-moz-placeholder           { color: #949494;font-size: 15px; }
+.input:-moz-placeholder            { color: #949494;font-size: 15px; }
+.input:-ms-input-placeholder       { color: #949494;font-size: 15px; }
+
+.form__redirect {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.form__redirect a {
+    color: #000;
+    font-size: 15px;
+    text-decoration: none;
+}
+.form__no_account a:hover {
+    opacity: 0.85;
+}

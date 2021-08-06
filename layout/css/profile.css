@@ -1,0 +1,37 @@
+.profile {}
+.profile_main {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+}
+.avatar {
+    width: 175px;
+    margin-right: 35px;
+}
+.avatar_edit {}
+.avatar_img {
+    height: 160px;
+    border-radius: 10px;
+    background: #fff;
+    padding: 5px;
+    margin-bottom: 20px;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: center;
+}
+.avatar_img img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.avatar_edit #file-input {
+    display: none;
+}
