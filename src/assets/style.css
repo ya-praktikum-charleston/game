@@ -1,48 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap");
 
 :root {
-    --main-font-family: "Play";
+	--main-font-family: "Play";
 
-    --button-color: #B8D220;
-    --textInput-color: #292929;
-    --titleButton-color: #292929;
-    --text-color: #000000;
-    --text-color-light: #F3F3F3;
-    --link-color: #4791FF;
-    --border-input-color: #A0A0A0;
+	--button-color: #b8d220;
+	--textInput-color: #292929;
+	--titleButton-color: #292929;
+	--text-color: #000000;
+	--text-color-light: #f3f3f3;
+	--link-color: #4791ff;
+	--border-input-color: #a0a0a0;
 
-    --font-size-titlePage: 48px;
-    --font-size-md: 24px;
+	--font-size-titlePage: 48px;
+	--font-size-md: 24px;
 
-    --font-size-xl: 288px;
-    --font-size-lg: 144px;
-    --font-size-md: 48px;
-    --font-size-sm: 36px;
-    --font-size-xs: 24px;
-    --font-size-xxs: 16px;
+	--font-size-xl: 288px;
+	--font-size-lg: 144px;
+	--font-size-md: 48px;
+	--font-size-sm: 36px;
+	--font-size-xs: 24px;
+	--font-size-xxs: 16px;
+}
+
+* {
+	margin: 0;
+}
+
+.mainFontFamily {
+	font-family: var(--main-font-family);
 }
 
 .titlePage {
-    font-size: var(--font-size-md);
+	font-size: var(--font-size-sm);
+	font-family: var(--main-font-family);
+	text-align: center;
 }
 
 .InputPlaceholder {
-    font-size: var(--font-size-xs);
-    font-Family: var(--main-font-family);
+	font-size: var(--font-size-xs);
+	font-family: var(--main-font-family);
 }
 
 .btn {
-    width: 100%;
-    height: 97px;
-    text-align: center;
-    vertical-align: 97px;
-    margin-bottom: 28px;
-    border-radius: 10px;
-    font-size: var(--font-size-xs);
-    font-family: var(--main-font-family);
-    background: var(--button-color);
+	width: 100%;
+	height: 97px;
+	text-align: center;
+	vertical-align: 97px;
+	margin-bottom: 28px;
+	border-radius: 10px;
+	font-size: var(--font-size-xs);
+	font-family: var(--main-font-family);
+	background: var(--button-color);
+}
+
+.btn-back {
+	flex: 0 0 auto;
+}
+
+.btn-back-icon {
+	transform: rotate(180deg);
+	background: #fff;
+	padding: 10px;
+	border-bottom-right-radius: 20px;
 }
 
 .input {
-    border-color: var(--border-input-color);
+	border-color: var(--border-input-color);
+}
+
+.background {
+	width: 100vw;
+	height: 100vh;
+	background: url("./img/Background2.png") no-repeat left;
+	background-size: cover;
 }

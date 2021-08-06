@@ -1,0 +1,91 @@
+.box-content {
+	width: 83vw;
+	height: 51vh;
+	background: #ffffff8a;
+	backdrop-filter: blur(7px);
+	-webkit-backdrop-filter: blur(7px);
+	/* filter: blur(1px); */
+	margin: 0 auto;
+	top: 70px;
+	position: relative;
+	border-radius: 20px;
+	box-shadow: 1px 1px 70px 0px rgb(50 50 50 / 40%);
+}
+
+.content {
+	display: grid;
+}
+
+.forum {}
+
+.header {
+	display: flex;
+}
+
+.header-title {
+	flex: 1 0 auto;
+	padding: 10px;
+}
+
+.table-loaderboard {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.table-leaderboard-item {
+	display: grid;
+	grid-template-columns: 40px 50px 100px 100px;
+	margin: 20px 45px;
+	align-items: center;
+}
+
+.item-topics-count {
+	display: flex;
+	border-radius: 10px;
+	border: 1px solid #000;
+	justify-content: space-between;
+	align-items: center;
+	justify-items: center;
+	margin-right: 20px;
+	padding: 10px;
+}
+
+.item-answers {
+	display: flex;
+	border-radius: 10px;
+	border: 1px solid #000;
+	align-items: center;
+	justify-items: center;
+	padding: 10px;
+}
+
+.item-img {
+	height: 53px;
+	background: url('../../assets/img/Angels1.png') no-repeat;
+	background-size: contain;
+}
+
+.item-img2 {
+	height: 53px;
+	background: url('../../assets/img/Angels2.png') no-repeat;
+	background-size: contain;
+}
+
+.item-img3 {
+	height: 53px;
+	background: url('../../assets/img/Angels3.png') no-repeat;
+	background-size: contain;
+}
+
+.item-topics-icon {
+	cursor: pointer;
+}
+
+.item-topics {
+	display: flex;
+	border-radius: 10px;
+	align-items: center;
+	padding: 10px;
+	margin-right: 20px;
+	background: #fff;
+}
