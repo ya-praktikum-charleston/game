@@ -5,10 +5,8 @@ import App from './App';
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
-    <StrictMode>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </StrictMode>,
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>,
     rootElement,
 );
