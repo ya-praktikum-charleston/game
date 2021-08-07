@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './main.css';
 import ForwardIcon from '../../assets/svg/forward.svg';
-import { Link } from 'react-router-dom'
 
 type MainProps = {
     title: string;
