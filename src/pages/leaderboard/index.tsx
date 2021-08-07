@@ -1,62 +1,47 @@
 import React from 'react';
 import './leaderboard.css';
-import ForwardIcon from '../../assets/svg/forward.svg';
+import Main from '../../components/main';
+import LeaderboardItem from './leaderboardItem';
+import Angel1 from '../../assets/img/Angels1.png';
+import Angel2 from '../../assets/img/Angels2.png';
+import Angel3 from '../../assets/img/Angels3.png';
+
+const DATA = [
+    {
+        id: 1, position: 1, avatar: Angel1, name: 'MAX', count: 60000,
+    },
+    {
+        id: 2, position: 2, avatar: Angel2, name: 'Sanka', count: 54300,
+    },
+    {
+        id: 3, position: 3, avatar: Angel3, name: 'Kira', count: 43005,
+    },
+    {
+        id: 4, position: 4, avatar: Angel2, name: 'MAX', count: 32001,
+    },
+    {
+        id: 5, position: 5, avatar: Angel3, name: 'Ira', count: 30015,
+    },
+    {
+        id: 6, position: 6, avatar: Angel2, name: 'Igor', count: 29015,
+    },
+];
 
 export default function LeaderboardPage() {
     return (
-        <div className="background">
-            <div className="box-content mainFontFamily">
-                <div className="content">
-                    <div className="header">
-                        <div className="btn-back">
-                            <img className="btn-back-icon" src={ForwardIcon} alt="forward" />
-                        </div>
-                        <div className="titlePage header-title">Таблица лидеров</div>
-                    </div>
-                    <div className="table-loaderboard">
-                        <div>
-                            <div className="table-leaderboard-item">
-                                <div className="item-number">1</div>
-                                <div className="item-img"></div>
-                                <div className="item-name">MAX</div>
-                                <div className="item-count">60000</div>
-                            </div>
-                            <div className="table-leaderboard-item">
-                                <div className="item-number">2</div>
-                                <div className="item-img2"></div>
-                                <div className="item-name">Sanka</div>
-                                <div className="item-count">54300</div>
-                            </div>
-                            <div className="table-leaderboard-item">
-                                <div className="item-number">3</div>
-                                <div className="item-img3"></div>
-                                <div className="item-name">Kira</div>
-                                <div className="item-count">43005</div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="table-leaderboard-item">
-                                <div className="item-number">4</div>
-                                <div className="item-img"></div>
-                                <div className="item-name">MAX</div>
-                                <div className="item-count">32001</div>
-                            </div>
-                            <div className="table-leaderboard-item">
-                                <div className="item-number">5</div>
-                                <div className="item-img3"></div>
-                                <div className="item-name">Ira</div>
-                                <div className="item-count">30015</div>
-                            </div>
-                            <div className="table-leaderboard-item">
-                                <div className="item-number">6</div>
-                                <div className="item-img"></div>
-                                <div className="item-name">Igor</div>
-                                <div className="item-count">29015</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <Main title="Таблица лидеров">
+            <div className="table-loaderboard">
+                {
+                    DATA.map((item) => {
+                        const {
+                            id, avatar, name, position, count,
+                        } = item;
+                        return (
+                            <LeaderboardItem key={id} position={position} avatar={avatar} name={name} count={count} />
+                        );
+                    })
+                }
             </div>
-        </div>
+        </Main>
     );
 }

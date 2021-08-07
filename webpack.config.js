@@ -9,6 +9,13 @@ module.exports = {
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
+        alias: {
+            process: 'process/browser',
+        },
+    },
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        historyApiFallback: true,
     },
     module: {
         rules: [
@@ -22,12 +29,23 @@ module.exports = {
                 use: ['style-loader', 'css-loader'],
             },
             {
-                test: /\.(svg)$/i,
+                test: /\.svg$/i,
                 use: [
                     {
-                        loader: 'url-loader',
+                        loader: 'file-loader',
                         options: {
-                            limit: false,
+                            name: 'assets/svg/[hash].[ext]',
+                        },
+                    },
+                ],
+            },
+            {
+                test: /\.(gif|png|jpg|jpeg)?$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'assets/img/[hash].[ext]',
                         },
                     },
                 ],

@@ -26,11 +26,11 @@
 	margin: 0;
 }
 
-.mainFontFamily {
+.main-font-family {
 	font-family: var(--main-font-family);
 }
 
-.titlePage {
+.title-page {
 	font-size: var(--font-size-sm);
 	font-family: var(--main-font-family);
 	text-align: center;
@@ -68,9 +68,11 @@
 	border-color: var(--border-input-color);
 }
 
-.background {
+.canvas {
 	width: 100vw;
 	height: 100vh;
-	background: url("./img/Background2.png") no-repeat left;
+	/*background: url("./img/Background2.png") no-repeat left;*/
 	background-size: cover;
+	position: fixed;
+	z-index: -1;
 }
