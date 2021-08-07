@@ -1,0 +1,182 @@
+@import '~normalize.css/normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+
+:root {
+    --main-font-family: "Play";
+
+    --button-color: #B8D220;
+    --textInput-color: #292929;
+    --titleButton-color: #292929;
+    --text-color: #000000;
+    --text-color-light: #F3F3F3;
+    --link-color: #4791FF;
+    --border-input-color: #A0A0A0;
+
+    --font-size-titlePage: 48px;
+    --font-size-md: 24px;
+
+    --font-size-xl: 288px;
+    --font-size-lg: 144px;
+    --font-size-md: 48px;
+    --font-size-sm: 36px;
+    --font-size-xs: 24px;
+    --font-size-xxs: 16px;
+}
+
+.titlePage {
+    font-size: var(--font-size-md);
+}
+
+.InputPlaceholder {
+    font-size: var(--font-size-xs);
+    font-Family: var(--main-font-family);
+}
+
+.btn {
+    width: 100%;
+    height: 97px;
+    text-align: center;
+    vertical-align: 97px;
+    margin-bottom: 28px;
+    border-radius: 10px;
+    font-size: var(--font-size-xs);
+    font-family: var(--main-font-family);
+    background: var(--button-color);
+}
+
+.btn-back {
+  flex: 0 0 auto;
+}
+
+.btn-back-icon {
+  transform: rotate(180deg);
+  background: #fff;
+  padding: 10px;
+  border-bottom-right-radius: 20px;
+}
+
+.input {
+    border-color: var(--border-input-color);
+}
+
+body {
+    background: url(./img/Background.png) no-repeat center bottom;
+    background-size: cover;
+}
+
+.error-page {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-block{
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 4px 70px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+
+    padding-top: 30px;
+    padding-left: 78px;
+    padding-right: 78px;
+}
+
+.error {
+    width: 524px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-Family: var(--main-font-family);
+}
+
+.error__number {
+    font-size: var(--font-size-xl);
+}
+
+.error__decription {
+    font-size: 64px;
+    padding-top: 26px;
+}
+
+.error__message {
+    text-align: center;
+    font-size: var(--font-size-sm);
+    padding-top: 36px;
+}
+
+.error__btn {
+    width: 100%;
+    padding-top: 91px;
+    padding-bottom: 95px;
+}
+
+.background {
+    height: 100vh;
+    background: url(./img/Background.png) no-repeat center bottom;
+    background-size: cover;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-Family: var(--main-font-family);
+    padding: 25px;
+}
+
+.settings {
+    align-self: flex-start;
+}
+
+.instructions {
+    margin-bottom: 36px;
+}
+
+.instruction {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.instruction__img {
+    width: 121px;
+    height: 87px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.instruction__text {
+    font-size: var(--font-size-sm);
+    padding-left: 37px;
+}
+
+.game-btn {
+    width: 460px;
+    height: 100px;
+    margin-bottom: 41px;
+}
+
+.app-menu {
+    width: 460px;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.app-menu__btn {
+    width: 200px;
+    height: 100px;
+}
+
+.distance {
+    font-size: var(--font-size-lg);
+    margin-bottom: 166px;
+}
