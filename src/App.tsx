@@ -11,13 +11,13 @@ export default function App() {
             <div className="canvas" style={{ backgroundImage: `url(${Background})` }}> </div>
             <Switch>
                 <Route path="/" exact><div>Home</div></Route>
-                <Route path="/signin" exact><div>Войти</div></Route>
-                <Route path="/signup" exact><div>Зарегистрироваться</div></Route>
-                <Route path="/profile" exact><div>Профиль</div></Route>
+                <Route path="/signin"><div>Войти</div></Route>
+                <Route path="/signup"><div>Зарегистрироваться</div></Route>
+                <Route path="/profile"><div>Профиль</div></Route>
                 <Route path="/forum" component={ForumPage} />
                 <Route path="/leaderboard" component={LeaderboardPage} />
-                <Route path="/404" exact><div>404</div></Route>
-                <Route path="/500" exact><div>500</div></Route>
+                <Route path="/404"><div>404</div></Route>
+                <Route path="/500"><div>500</div></Route>
             </Switch>
         </div>
     );

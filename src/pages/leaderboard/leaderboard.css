@@ -1,15 +1,17 @@
 .table-loaderboard {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	width: 83vw;
+	max-width: 1200px;
 	height: 100%;
+	width: 80vw;
 }
 
 .table-leaderboard-item {
 	display: grid;
-	grid-template-columns: 40px 50px 100px 100px;
+	grid-template-columns: 0.5fr 1fr 1.5fr 1.5fr;
 	margin: 20px 45px;
 	align-items: center;
+	grid-column-gap: 10px;
 }
 
 .item-topics-count {
