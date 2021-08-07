@@ -16,6 +16,8 @@ export default function App() {
                 <Route path="/profile" exact><div>Профиль</div></Route>
                 <Route path="/forum" component={ForumPage} />
                 <Route path="/leaderboard" component={LeaderboardPage} />
+                <Route path="/404" exact><div>404</div></Route>
+                <Route path="/500" exact><div>500</div></Route>
             </Switch>
         </div>
     );

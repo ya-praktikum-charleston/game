@@ -1,6 +1,7 @@
 import React from 'react';
 import './main.css';
 import ForwardIcon from '../../assets/svg/forward.svg';
+import { Link } from 'react-router-dom'
 
 type MainProps = {
     title: string;
@@ -12,7 +13,7 @@ const Main = ({ children, title }: MainProps) => (
         <div className="content">
             <div className="header">
                 <div className="btn-back">
-                    <img className="btn-back-icon" src={ForwardIcon} alt="forward" />
+                    <Link to="/"><img className="btn-back-icon" src={ForwardIcon} alt="forward" /></Link>
                 </div>
                 <div className="header-title title-page">{title}</div>
             </div>

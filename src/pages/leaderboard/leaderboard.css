@@ -1,6 +1,8 @@
 .table-loaderboard {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
+	width: 83vw;
+	height: 100%;
 }
 
 .table-leaderboard-item {

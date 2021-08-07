@@ -1,6 +1,9 @@
 .forum {}
 
-.table-forum {}
+.table-forum {
+	width: 83vw;
+	height: 100%;
+}
 
 .table-forum-item {
 	display: grid;

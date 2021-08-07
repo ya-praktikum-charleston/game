@@ -55,6 +55,7 @@
 
 .btn-back {
 	flex: 0 0 auto;
+	cursor: pointer;
 }
 
 .btn-back-icon {
