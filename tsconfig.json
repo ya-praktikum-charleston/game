@@ -27,6 +27,7 @@
   "include": [
     "src",
     "typings/**/*.d.ts",
+    "additional.d.ts",
     "./node_modules/@types"
   ],
   "exclude": [
