@@ -5,21 +5,32 @@ import ForwardIcon from '../../assets/svg/forward.svg';
 
 type MainProps = {
     title: string;
+    offBtnIcon?: boolean;
     children: React.ReactNode;
 };
 
-const Main = ({ children, title }: MainProps) => (
+const Main = ({ children, title, offBtnIcon }: MainProps) => (
     <div className="box-content main-font-family">
         <div className="content">
+
             <div className="header">
-                <div className="btn-back">
-                    <Link to="/"><img className="btn-back-icon" src={ForwardIcon} alt="forward" /></Link>
-                </div>
+                {offBtnIcon === false
+                    ? (
+                        <div className="btn-back">
+                            <Link to="/"><img className="btn-back-icon" src={ForwardIcon} alt="forward" /></Link>
+                        </div>
+                    )
+                    : null}
                 <div className="header-title title-page">{title}</div>
             </div>
+
             {children}
         </div>
     </div>
 );
+
+Main.defaultProps = {
+    offBtnIcon: false,
+};
 
 export default Main;

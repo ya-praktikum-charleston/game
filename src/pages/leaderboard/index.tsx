@@ -37,7 +37,13 @@ export default function LeaderboardPage() {
                             id, avatar, name, position, count,
                         } = item;
                         return (
-                            <LeaderboardItem key={id} position={position} avatar={avatar} name={name} count={count} />
+                            <LeaderboardItem
+                                key={id}
+                                position={position}
+                                avatar={avatar}
+                                name={name}
+                                count={count}
+                            />
                         );
                     })
                 }
