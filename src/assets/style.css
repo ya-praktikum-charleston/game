@@ -92,3 +92,15 @@
 .fullwidth {
 	width: 100%;
 }
+
+.error-input {
+	border: 1px solid red;
+}
+
+.error-msg {
+	font-size: 12px;
+	color: red;
+	position: relative;
+	top: -10px;
+	padding-left: 10px;
+}
