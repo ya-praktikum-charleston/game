@@ -1,9 +1,9 @@
 import React from 'react';
-import { Props, InstructionItemProps } from './types';
+import { InstructionItemProps } from './types';
 
 import './instruction-item.css';
 
-const InstructionItem: Props = ({ imgLink, imgAlt, text }: InstructionItemProps) => (
+const InstructionItem = ({ imgLink, imgAlt, text }: InstructionItemProps) => (
     <div className="instruction">
         <div className="instruction__img">
             <img src={imgLink} alt={imgAlt} />

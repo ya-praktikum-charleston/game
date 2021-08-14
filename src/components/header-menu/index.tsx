@@ -1,10 +1,10 @@
 import React from 'react';
 import HeaderMenuItem from '../header-menu-item';
-import { Props, HeaderMenuProps } from './types';
+import { HeaderMenuProps } from './types';
 
 import './header-menu.css';
 
-const HeaderMenu: Props = ({ headerMenu }: HeaderMenuProps) => (
+const HeaderMenu = ({ headerMenu }: HeaderMenuProps) => (
     <div className="header-menu">
         {
             headerMenu.map((item) => (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Start from './pages/start';
-import ErrorPage from './pages/error/error';
+import ErrorPage from './pages/error';
 import LeaderboardPage from './pages/leaderboard';
 import ForumPage from './pages/forum';
 import Profile from './pages/profile';

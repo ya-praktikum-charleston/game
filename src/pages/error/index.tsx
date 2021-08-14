@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Props, ErrorPageProps, Errors } from './types';
+import { ErrorPageProps, Errors } from './types';
 import Main from '../../components/main';
 import './error.css';
 
@@ -25,7 +25,7 @@ function getError(number: 404 | 500): Errors {
     throw new Error('error not found');
 }
 
-const ErrorPage: Props = ({ number }: ErrorPageProps) => {
+const ErrorPage = ({ number }: ErrorPageProps) => {
     const error = getError(number);
 
     return (

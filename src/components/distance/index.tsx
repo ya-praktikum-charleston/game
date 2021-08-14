@@ -1,9 +1,9 @@
 import React from 'react';
-import { Props, DistanceProps } from './types';
+import { DistanceProps } from './types';
 
 import './distance.css';
 
-const Distance: Props = ({ distance }: DistanceProps) => (
+const Distance = ({ distance }: DistanceProps) => (
     <div className="distance">{distance}</div>
 );
 
