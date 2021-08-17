@@ -1,7 +1,8 @@
 .registration {
-	width: 35vw;
+	width: 25vw;
+	max-width: 1000px;
 	margin: 20px;
-	;
+	min-width: 300px;
 }
 
 .form__redirect {

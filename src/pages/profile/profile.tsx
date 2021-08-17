@@ -87,7 +87,7 @@ const Profile = () => {
 
                                                 <label htmlFor="file-input" className="btn-file-input">
                                                     <input id="file-input" className="file-input__hidden" type="file" name="file" accept=".jpg, .jpeg, .png" />
-                                                    Поменять
+                                                    Изменить
                                                 </label>
                                             </div>
                                         </div>

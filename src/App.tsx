@@ -7,7 +7,8 @@ import ForumPage from './pages/forum';
 import Profile from './pages/profile';
 import Signin from './pages/signin';
 import Signup from './pages/signup';
-import Background from './assets/img/Background2.png';
+import Background2 from './assets/img/Background2.png';
+import Background from './assets/svg/parallax01.svg';
 import ErrorBoundary from './utilities/ErrorBoundary';
 import './assets/style.css';
 

@@ -1,5 +1,7 @@
 .profile {
-	width: 55vw;
+	width: 35vw;
+	max-width: 1000px;
+	min-width: 400px;
 }
 
 .profile_main {

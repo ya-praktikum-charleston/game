@@ -7,9 +7,9 @@ type MainProps = {
     countAnswers: number;
 };
 
-const FormItem = ({ topic, countTopics, countAnswers }: MainProps) => (
-    <div className="table-forum-item">
-        <div data-name="forum" className="item-topics">{topic}</div>
+const FormTopicsItem = ({ topic, countTopics, countAnswers }: MainProps) => (
+    <div className="table-topics-item">
+        <div data-name="topics" className="item-topics">{topic}</div>
         {
             countTopics !== null
             && (
@@ -24,8 +24,8 @@ const FormItem = ({ topic, countTopics, countAnswers }: MainProps) => (
     </div>
 );
 
-FormItem.defaultProps = {
+FormTopicsItem.defaultProps = {
     countTopics: null,
 };
 
-export default FormItem;
+export default FormTopicsItem;
