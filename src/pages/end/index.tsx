@@ -8,6 +8,7 @@ import './end.css';
 
 const headerMenu = [
     {
+        id: 1,
         imgLink: SettingsIcon,
         imgAlt: 'Settings',
     },

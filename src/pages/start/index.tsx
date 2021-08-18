@@ -5,8 +5,6 @@ import InstructionItem from '../../components/instruction-item';
 import GameMenu from '../../components/game-menu';
 import ArrowUpIcon from '../../assets/svg/arrow-up.svg';
 import ArrowDownIcon from '../../assets/svg/arrow-down.svg';
-import SettingsIcon from '../../assets/svg/settings.svg';
-
 import './start.css';
 
 const instructions = [
@@ -22,17 +20,9 @@ const instructions = [
     },
 ];
 
-const headerMenu = [
-    {
-        imgLink: SettingsIcon,
-        imgAlt: 'Settings',
-        link: '/profile',
-    },
-];
-
 const Start = () => (
     <>
-        <HeaderMenu headerMenu={headerMenu} />
+        <HeaderMenu />
         <Main title="Инструкция" offBtnIcon>
             <div className="start">
 

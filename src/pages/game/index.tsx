@@ -8,10 +8,12 @@ import './game.css';
 
 const headerMenu = [
     {
+        id: 1,
         imgLink: SettingsIcon,
         imgAlt: 'Settings',
     },
     {
+        id: 2,
         imgLink: PauseIcon,
         imgAlt: 'Pause',
     },
