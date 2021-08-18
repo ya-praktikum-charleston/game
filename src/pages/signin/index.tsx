@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from 'react-router-dom';
+
 import { Form, Field } from 'react-final-form';
 import { setIn } from 'final-form';
 import * as Yup from 'yup';
@@ -66,7 +66,7 @@ const Signin = () => {
                                     <Link to="/signup">Регистрация</Link>
                                 </div>
                                 <button
-                                    type="submit" 
+                                    type="submit"
                                     className="btn fullwidth"
                                     disabled={submitting}
                                 >

@@ -1,4 +1,4 @@
-import { SigninProps } from '../../api/auth/types';
+import { SigninProps, SingupProps } from '../../api/auth/types';
 import AuthAPI from '../../api/auth/AuthAPI';
 
 class AuthController {
@@ -16,6 +16,23 @@ class AuthController {
                 switch (status) {
                 case 200:
                     localStorage.setItem('isAuth', data);
+                    history.push('/');
+                    break;
+
+                default:
+                    break;
+                }
+            });
+    }
+
+    signup(props: SingupProps, history) {
+        this.auth.signup(props)
+            .then((response) => {
+                const { status, data } = response;
+
+                switch (status) {
+                case 200:
+                    localStorage.setItem('isAuth', 'OK');
                     history.push('/');
                     break;
 
