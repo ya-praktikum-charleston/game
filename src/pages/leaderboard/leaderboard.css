@@ -1,0 +1,64 @@
+.table-loaderboard {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	max-width: 1200px;
+	height: 100%;
+	width: 80vw;
+}
+
+.table-leaderboard-item {
+	display: grid;
+	grid-template-columns: 0.5fr 1fr 1.5fr 1.5fr;
+	margin: 20px 45px;
+	align-items: center;
+	grid-column-gap: 10px;
+}
+
+.item-topics-count {
+	display: flex;
+	border-radius: 10px;
+	border: 1px solid #000;
+	justify-content: space-between;
+	align-items: center;
+	justify-items: center;
+	margin-right: 20px;
+	padding: 10px;
+}
+
+.item-answers {
+	display: flex;
+	border-radius: 10px;
+	border: 1px solid #000;
+	align-items: center;
+	justify-items: center;
+	padding: 10px;
+}
+
+.item-img {
+	height: 53px;
+}
+
+.item-img2 {
+	height: 53px;
+	/*background: url('../../assets/img/Angels2.png') no-repeat;*/
+	background-size: contain;
+}
+
+.item-img3 {
+	height: 53px;
+	/*background: url('../../assets/img/Angels3.png') no-repeat;*/
+	background-size: contain;
+}
+
+.item-topics-icon {
+	cursor: pointer;
+}
+
+.item-topics {
+	display: flex;
+	border-radius: 10px;
+	align-items: center;
+	padding: 10px;
+	margin-right: 20px;
+	background: #fff;
+}
