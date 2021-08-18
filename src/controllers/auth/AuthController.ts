@@ -17,7 +17,6 @@ class AuthController {
                 case 200:
                     localStorage.setItem('isAuth', data);
                     history.push('/');
-
                     break;
 
                 default:

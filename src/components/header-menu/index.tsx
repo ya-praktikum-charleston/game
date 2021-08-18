@@ -5,8 +5,6 @@ import LogoutButton from '../logout-button';
 import './header-menu.css';
 
 const HeaderMenu = ({ headerMenu }: HeaderMenuProps) => {
-    headerMenu = [];
-
     return (
         <div className="header-menu">
             <div>

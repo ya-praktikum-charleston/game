@@ -6,5 +6,5 @@ type HeaderMenu = {
 };
 
 export type HeaderMenuProps = {
-    headerMenu?: HeaderMenu[],
+    headerMenu: HeaderMenu[],
 };
