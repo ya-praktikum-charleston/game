@@ -12,6 +12,10 @@
         <li><a class="list-sub__link" href="#node_6">#6 Буфер и потоки (Buffer & Streams)</a></li>
         <li><a class="list-sub__link" href="#node_7">#7 Клиент и сервер (Client & Server)</a></li>
         <li><a class="list-sub__link" href="#node_8">#8 Создание сервера (Create Server)</a></li>
+        <li><a class="list-sub__link" href="#node_9">#9 Создание базового роутинга (Create Base Routing)</a></li>
+        <li><a class="list-sub__link" href="#node_10">#10 Пакетный менеджер (NPM & Packages)</a></li>
+        <li><a class="list-sub__link" href="#node_11">#11 Node.js & Express (Node.js & Express)</a></li>
+        <li><a class="list-sub__link" href="#node_12">#12 Подключение шаблонизатора (View Engine)</a></li>
     </ul>
 </div>
 
@@ -460,13 +464,226 @@
     <p>В итоге, в браузере увидим данный json.</p>
 </div>
 
+<div class="linear" id="node_9">
+
+    <h2>#9 Создание базового роутинга (Create Base Routing)</h2>
+
+    <pre class="brush: js;">
+        const http = require('http');
+        // модуль файловой системы, их будем возвращать в браузер
+        const fs = require('fs');
+        // модуль поможет в формирование корректного пути
+        const path = require('path');
+
+        const PORT = 3000;
+
+        const server = http.createServer((req, res) => {
+            console.log('Server request');
+            // поскольку работаем с разметкой, поэтому пишем text/html
+            res.setHeader('Content-Type', 'text/html');
+
+            // построение пути до файла
+            const createPath = (page) => path.resolve(__dirname, 'views', `${page}.html`);
+            let basePath = '';
+
+            switch(req.url) {
+                // пример множественных путей на одну страницу
+                case '/':
+                case '/home':
+                case '/index.html':
+                    basePath = createPath('index');
+                    res.statusCode = 200;           // добавим статусКод в ответ
+                    break;
+                case '/about-us':
+                    // редирект, например пользователь перешел на устаревший роутер, переправим на актуальный
+                    res.statusCode = 301;
+                    res.setHeader('Location', '/contacts');
+                    res.end();
+                    break;
+                case '/contacts':
+                    basePath = createPath('contacts');
+                    res.statusCode = 200;
+                    break;
+                default:
+                    basePath = createPath('error');
+                    res.statusCode = 404;
+                    break;
+            }
+
+            fs.readFile(basePath, (err, data) => {
+                if (err) {
+                    console.log(err);
+                    // добавим ошибку т.к. ошибка произошла при парсинге файла, а это серверная ошибка
+                    res.statusCode = 500;
+                    // если работаю с запросами и ответами, всегда нужно завершать ответ, чтобы вернуть контроль браузеру
+                    res.end();
+                } else {
+                    res.write(data);
+                    // если работаю с запросами и ответами, всегда нужно завершать ответ, чтобы вернуть контроль браузеру
+                    res.end();
+                }
+            });
+
+        });
+
+        server.listen(PORT, 'localhost', (error) => {
+            error ? console.log(error) : console.log(`listening port ${PORT}`);
+        });
+    </pre>
+
+</div>
+
+<div class="linear" id="node_10">
+
+    <h2>#10 Пакетный менеджер (NPM & Packages)</h2>
+
+    <p>Для начала работы с <code>npm</code> потребуется выполнить одну команду <code>npm init</code></p>
+
+    <p><b>nodemon</b></p>
+
+    <p><code>npm install --save-dev nodemon</code></p>
+
+    <p>Добавлю заваисимость в <code>package.json</code></p>
+
+    <pre class="brush: js;">
+        "scripts": {
+            "dev": "nodemon app.js"
+        },
+    </pre>
+
+    <p>Туперь можно запускать сервер командой <code>npm run dev</code></p>
+
+    <br>
+
+    <p><b>express ejs</b></p>
+
+    <p><code>npm i express ejs</code></p>
+
+    <p><code>express</code> это node.js фреймворк для более элегантной работы с запросами и ответами</p>
+
+    <p><code>ejs</code> это шаблонизатор для выведения динамических данных на сайт</p>
+
+</div>
+
+<div class="linear" id="node_11">
+
+    <h2>#11 Node.js & Express (Node.js & Express)</h2>
+
+    <p>Для демонстрации преимоущества в использовании express, можно сравнить этот код с кодом <a href="#node_9">#9 урока</a></p>
+
+    <pre class="brush: js;">
+        // импортируем express
+        const express = require("express");
+        // модуль поможет в формирование корректного пути
+        const path = require('path');
+        // создаём константу app в которую присваиваем вызов express
+        const app = express();
+
+        const PORT = 3000;
+        // построение пути до файла
+        const createPath = (page) => path.resolve(__dirname, 'views', `${page}.html`);
+
+        // запускаем прослушивание
+        app.listen(PORT, (error) => {
+            error ? console.log(error) : console.log(`listening port ${PORT}`);
+        });
+
+        // для того что бы отправить данные в браузер используем метод get
+        app.get('/', (req, res) => {
+            // метод sendFile передаёт файлы, в данном примере задаёт домашнюю страницу
+            res.sendFile(createPath('index'));
+        })
+        // страница контакты
+        app.get('/contacts', (req, res) => {
+            // метод sendFile передаёт файлы, в данном примере задаёт домашнюю страницу
+            res.sendFile(createPath('contacts'));
+        })
+        // реализуем редирект, но в express обработка роутов имеет последовательность, поэтому редирект должен быть до страницы с ошибкой
+        app.get('/about', (req, res) => {
+            // вызовется app.get('/contacts',
+            res.redirect('/contacts');
+        })
+        // страница error
+        // по сути тут middleVar, который будет обрабатывает не существующий роутер и обрабатывать ошибку
+        app.use((req, res) => {
+            // сюда нужно добавляем статус код
+            // вариант №1
+            //res.statusCode = 404;
+
+            // вариант №2
+            res
+                .status(404)
+                // метод sendFile передаёт файлы, в данном примере задаёт домашнюю страницу
+                .sendFile(createPath('error'));
+        })
+    </pre>
+
+</div>
+
+<div class="linear" id="node_12">
+
+    <h2>#12 Подключение шаблонизатора (View Engine)</h2>
+
+    <p>Настраивание прокидывание значений из backend на front</p>
+
+    <pre class="brush: js;">
+        const express = require("express");
+        const path = require('path');
+        const app = express();
+
+        // устанавливаем ejs в качестве view engine
+        app.set('view engine', 'ejs');
+
+        const PORT = 3000;
+
+        const createPath = (page) => path.resolve(__dirname, 'ejs-views', `${page}.ejs`);
+
+        app.listen(PORT, (error) => {
+            error ? console.log(error) : console.log(`listening port ${PORT}`);
+        });
+
+        app.get('/', (req, res) => {
+            const title = 'Домашняя';
+            // метод sendFile заменяется на метод render
+            res.render(createPath('index'), { title });
+        })
+        app.get('/contacts', (req, res) => {
+            // переменные для шаблонизатора ejs
+            const title = 'Контакты';
+            const contacts = [
+                { name: 'YouTube', link: 'http://youtube.com/YauhenKavalchuk' },
+                { name: 'Twitter', link: 'http://github.com/YauhenKavalchuk' },
+                { name: 'GitHub', link: 'http://twitter.com/YauhenKavalchuk' },
+            ];
+            res.render(createPath('contacts'), { contacts, title });
+        });
+        app.get('/posts/:id', (req, res) => {
+            const title = 'Пост';
+            res.render(createPath('post'), { title });
+        });
+        app.get('/posts', (req, res) => {
+            const title = 'Посты';
+            res.render(createPath('posts'), { title });
+        });
+        app.get('/add-post', (req, res) => {
+            const title = 'Добавить пост';
+            res.render(createPath('add-post'), { title });
+        });
+
+        app.use((req, res) => {
+            res
+                .status(404)
+                .render(createPath('error'));
+        })
+    </pre>
+
+</div>
+
 <!--
 
     <div class="linear" id="use_strict">
-        <h1>11111111111111111</h1>
 
         <h2>2222222222222222</h2>
-
 
         <p>3333333333333333333</p>
 
