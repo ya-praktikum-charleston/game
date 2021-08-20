@@ -1,6 +1,45 @@
-.game {
+body {
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	overflow: hidden;
+}
+
+.game_banner {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100%;
+
+	display: -ms-flexbox;
+	display: -webkit-flex;
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-content: stretch;
 	align-items: center;
+}
+
+.game_banner_main {
+	background-color: #f0f7dd;
+	border-radius: 25px;
 	padding: 25px;
+	text-align: center;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+
+.game_banner h2 {
+	font-size: 55px;
+	line-height: 67px;
+}
+
+.game_banner p {
+	font-size: 50px;
+	line-height: 60px;
+}
+
+.hidden {
+	visibility: hidden;
 }

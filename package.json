@@ -52,7 +52,7 @@
       "@babel/preset-env",
       "@babel/preset-react",
       "@babel/preset-typescript"
-    ]   
+    ]
   },
   "dependencies": {
     "@types/react": "^17.0.15",
