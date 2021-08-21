@@ -1,8 +1,14 @@
-export default function jump() {
+export default function jump(GAME) {
+    const {
+        isGameStopped, 
+        HERO,
+        audio
+    } = GAME;
+
     if ( HERO.position.y === y_positionLine) {
         HERO.event.run = false;
         HERO.event.jump = true;
-        audioJump.restart();
+        audio.Jump.restart();
 
         // сюда главное не дышать
         for (let i = 0; i < 2; i++) {

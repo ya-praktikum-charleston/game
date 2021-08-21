@@ -1,10 +1,10 @@
 /** Загрузка изображений не требующих наличия параметров
  * @path {string} путь до картинки
  */
- export default function loadStaticImage(path) {
+ export function loadStaticImage(path, GAME) {
     const image = document.createElement('img');
     image.onload = function () {
-        loadCount++;
+        GAME.loadCount++;
     }
     image.src = path;
     return image;
@@ -17,7 +17,7 @@
  * @colFrames {number} количество кадров в спрайте
  * @ticksFrame {number} частота обновления (каждый кадр или например 1 раз в 4 кадра)
  */
- export default function loadSpriteImage(path, width, height, colFrames, ticksFrame,) {
+ export function loadSpriteImage(path, width, height, colFrames, ticksFrame, GAME) {
     const image = document.createElement('img');
     const result = {
         dom: image,
@@ -29,8 +29,7 @@
         frameIndex: 0                   // какой кадр показывать
     }
     image.onload = function () {
-        loadCount++;
-        result.loaded = true;
+        GAME.loadCount++;
     }
     image.src = path;
     return result;

@@ -1,17 +1,29 @@
-export default function gameStop() {
+export default function gameStop(GAME) {
+    const {
+        speed, 
+        score, 
+        isGameStopped, 
+        localStorageRecord, 
+        localRecord,
+        HERO,
+        audioPlayed,
+        audio,
+        dom
+    } = GAME;
+
     speed = 0;
     isGameStopped = true;
     HERO.event.run = false;
 
-    gameBannerRef.classList.remove("hidden");
+    dom.gameBanner.classList.remove("hidden");
 
     // остановить аудио
     if(audioPlayed){
-        audioDead.play();
-        audioPlayed = false;
+        audio.Dead.play();
+        audio.Played = false;
     }
 
-    audioTheme1.stop();
+    audio.Theme1.stop();
 
     // запись нового рекорда
     if( localRecord > localStorageRecord ){

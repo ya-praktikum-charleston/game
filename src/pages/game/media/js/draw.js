@@ -1,9 +1,25 @@
-import jump from './jump';
 import drawImage from './drawImage';
 import gameStop from './gameStop';
 
 
-export default function draw() {
+export default function draw(GAME) {
+
+    const {
+        ctx, 
+        winWidth, 
+        winHeight, 
+        yPosBg, 
+        speed, 
+        scoreCounter, 
+        score, 
+        isGameStopped, 
+        localStorageRecord, 
+        localRecord,
+        BG, 
+        HERO,
+        PUSSY,
+        random
+    } = GAME;
 
     ctx.clearRect(0, 0, winWidth, winHeight);
 
@@ -36,7 +52,7 @@ export default function draw() {
     if(!isGameStopped){
         for(let i = 0; i < PUSSY.enemy.length;i++){
             // отрисовка врага
-            drawImage(PUSSY.run, PUSSY.enemy[i].x, PUSSY.enemy[i].y);
+            drawImage(PUSSY.run, PUSSY.enemy[i].x, PUSSY.enemy[i].y, GAME);
 
             // новые координаты для следующей отрисовки
             PUSSY.enemy[i].x -= speed * PUSSY.enemy[i].distance;
@@ -58,22 +74,22 @@ export default function draw() {
     }else {
         for(let i = 0; i < PUSSY.enemy.length;i++){
            if(PUSSY.enemy[i].attack){
-               drawImage(PUSSY.attack, PUSSY.enemy[i].x, PUSSY.enemy[i].y);
+               drawImage(PUSSY.attack, PUSSY.enemy[i].x, PUSSY.enemy[i].y, GAME);
            }else{
-               drawImage(PUSSY.stop, PUSSY.enemy[i].x, PUSSY.enemy[i].y);
+               drawImage(PUSSY.stop, PUSSY.enemy[i].x, PUSSY.enemy[i].y, GAME);
            }
         }
     }
 
     // Варианты отрисовки главного героя
     if(HERO.event.run){
-        drawImage(HERO.img.run, HERO.position.x, HERO.position.y);
+        drawImage(HERO.img.run, HERO.position.x, HERO.position.y, GAME);
     }
     if(HERO.event.jump){
-        drawImage(HERO.img.jump, HERO.position.x, HERO.position.y);
+        drawImage(HERO.img.jump, HERO.position.x, HERO.position.y, GAME);
     }
     if(isGameStopped){
-        drawImage(HERO.img.hurt, HERO.position.x, HERO.position.y);
+        drawImage(HERO.img.hurt, HERO.position.x, HERO.position.y, GAME);
     }
 
     //Увеличение скорости при увеличении счёта
@@ -102,7 +118,7 @@ export default function draw() {
                 // столкновение при приземлении, чтобы жопа не отхватила
                 if ( HERO.position.x + calibration*2 < PUSSY.enemy[i].x + PUSSY.run.width - calibration ) {
                     PUSSY.enemy[i].attack = true;
-                    gameStop();
+                    gameStop(GAME);
                 }
             }
         }

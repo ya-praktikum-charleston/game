@@ -3,7 +3,7 @@
  * @x {number} координа картинки по x
  * @y {number} координа картинки по y
  */
- export default function drawImage(img, x, y){
+ export default function drawImage(img, x, y, GAME){
     // частота обновления кадров для данной картинки
     img.tickCount++;
     if (img.tickCount > img.ticksFrame) {
@@ -15,7 +15,7 @@
         }
     }
     // отрисовка изображения на canvas
-    ctx.drawImage(
+    GAME.ctx.drawImage(
         img.dom,
         img.frameIndex * img.width,
         0,
