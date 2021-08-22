@@ -10,7 +10,7 @@ export default function gameStop() {
     // остановить аудио
     if(GAME.audioPlayed){
         GAME.audio.Dead.play();
-        GAME.audio.Played = false;
+        GAME.audioPlayed = false;
     }
 
     GAME.audio.Theme1.stop();

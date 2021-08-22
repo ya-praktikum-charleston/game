@@ -1,7 +1,7 @@
 import GAME from './parameters';
 
 export default function jump() {
-    if ( GAME.HERO.position.y === GAME.y_positionLine) {
+    if ( GAME.HERO.position.y === GAME.y_positionLine && !GAME.isGameStopped) {
         GAME.HERO.event.run = false;
         GAME.HERO.event.jump = true;
         GAME.audio.Jump.restart();

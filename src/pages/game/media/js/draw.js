@@ -11,8 +11,8 @@ export default function draw() {
     for(let i = 0; i < GAME.BG.length; i++){
         // если изображение движется
         if(GAME.BG[i].frame){
-            GAME.ctx.drawImage(GAME.BG[i].path, GAME.BG[i].x, GAME.yPosGAME);
-            GAME.ctx.drawImage(GAME.BG[i].path, GAME.BG[i].x2, GAME.yPosGAME);
+            GAME.ctx.drawImage(GAME.BG[i].path, GAME.BG[i].x, GAME.yPosBg);
+            GAME.ctx.drawImage(GAME.BG[i].path, GAME.BG[i].x2, GAME.yPosBg);
 
             // parallax
             if( GAME.BG[i].speed ){
@@ -28,7 +28,7 @@ export default function draw() {
                 GAME.BG[i].x2 = GAME.BG[i].x + GAME.winWidth;
             }
         }else{
-            GAME.ctx.drawImage(GAME.BG[i].path, 0, GAME.yPosGAME);
+            GAME.ctx.drawImage(GAME.BG[i].path, 0, GAME.yPosBg);
         }
     }
 
@@ -113,6 +113,6 @@ export default function draw() {
     GAME.ctx.fillText(`Рекорд: ${GAME.localStorageRecord}`, 10, 100);
 	GAME.ctx.font = "50px Arial";
 
-    requestAnimationFrame(draw())
+    requestAnimationFrame(draw)
 
 }
