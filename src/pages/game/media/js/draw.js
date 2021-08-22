@@ -129,6 +129,6 @@ export default function draw(GAME) {
     ctx.fillText(`Рекорд: ${localStorageRecord}`, 10, 100);
 	ctx.font = "50px Arial";
 
-    requestAnimationFrame(draw)
+    requestAnimationFrame(draw(GAME))
 
 }
