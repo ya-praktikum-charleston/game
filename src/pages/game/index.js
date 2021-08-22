@@ -171,14 +171,14 @@ function Game() {
 				if(GAME.allCount === GAME.loadCount){
 					// console.log('Все картинки загружены', allCount , loadStaticImage);
 					clearInterval(int);
-					draw(GAME);
+					draw();
 				}
 			},1000/60);
 
 			// удаление событий клавиатуры и мыши
 			return () => {
 				window.removeEventListener("mousedown", () => {
-					jump(GAME);
+					jump();
 					GAME.audio.Theme1.play();
 				});
 				// window.removeEventListener("keydown", (event) => {

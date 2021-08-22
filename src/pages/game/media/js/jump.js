@@ -1,4 +1,6 @@
-export default function jump(GAME) {
+import GAME from './parameters';
+
+export default function jump() {
     if ( GAME.HERO.position.y === GAME.y_positionLine) {
         GAME.HERO.event.run = false;
         GAME.HERO.event.jump = true;
@@ -30,6 +32,6 @@ export default function jump(GAME) {
     }
     // если гамовер, при клике перезагрузить страницу
     if (GAME.isGameStopped){
-        GAME.document.location.reload();
+        document.location.reload();
     }
 }

@@ -1,4 +1,6 @@
-export default function gameStop(GAME) {
+import GAME from './parameters';
+
+export default function gameStop() {
     GAME.speed = 0;
     GAME.isGameStopped = true;
     GAME.HERO.event.run = false;

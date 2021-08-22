@@ -1,8 +1,9 @@
+import GAME from './parameters';
 import drawImage from './drawImage';
 import gameStop from './gameStop';
 
 
-export default function draw(GAME) {
+export default function draw() {
 
     GAME.ctx.clearRect(0, 0, GAME.winWidth, GAME.winHeight);
 
@@ -101,7 +102,7 @@ export default function draw(GAME) {
                 // столкновение при приземлении, чтобы жопа не отхватила
                 if ( GAME.HERO.position.x + calibration*2 < GAME.PUSSY.enemy[i].x + GAME.PUSSY.run.width - calibration ) {
                     GAME.PUSSY.enemy[i].attack = true;
-                    gameStop(GAME);
+                    gameStop();
                 }
             }
         }
@@ -112,6 +113,6 @@ export default function draw(GAME) {
     GAME.ctx.fillText(`Рекорд: ${GAME.localStorageRecord}`, 10, 100);
 	GAME.ctx.font = "50px Arial";
 
-    requestAnimationFrame(draw(GAME))
+    requestAnimationFrame(draw())
 
 }
