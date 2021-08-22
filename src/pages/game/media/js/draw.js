@@ -4,120 +4,103 @@ import gameStop from './gameStop';
 
 export default function draw(GAME) {
 
-    const {
-        ctx, 
-        winWidth, 
-        winHeight, 
-        yPosBg, 
-        speed, 
-        scoreCounter, 
-        score, 
-        isGameStopped, 
-        localStorageRecord, 
-        localRecord,
-        BG, 
-        HERO,
-        PUSSY,
-        random
-    } = GAME;
-
-    ctx.clearRect(0, 0, winWidth, winHeight);
+    GAME.ctx.clearRect(0, 0, GAME.winWidth, GAME.winHeight);
 
     // отрисовка фоновых картинок
-    for(let i = 0; i < BG.length; i++){
+    for(let i = 0; i < GAME.BG.length; i++){
         // если изображение движется
-        if(BG[i].frame){
-            ctx.drawImage(BG[i].path, BG[i].x, yPosBg);
-            ctx.drawImage(BG[i].path, BG[i].x2, yPosBg);
+        if(GAME.BG[i].frame){
+            GAME.ctx.drawImage(GAME.BG[i].path, GAME.BG[i].x, GAME.yPosGAME);
+            GAME.ctx.drawImage(GAME.BG[i].path, GAME.BG[i].x2, GAME.yPosGAME);
 
             // parallax
-            if( BG[i].speed ){
-                BG[i].x -= speed / BG[i].speed;
-                BG[i].x2 -= speed / BG[i].speed;
+            if( GAME.BG[i].speed ){
+                GAME.BG[i].x -= GAME.speed / GAME.BG[i].speed;
+                GAME.BG[i].x2 -= GAME.speed / GAME.BG[i].speed;
             }
 
             // спрайт фоновых картинок
-            if( BG[i].x < -winWidth ){
-                BG[i].x = BG[i].x2 + winWidth;
+            if( GAME.BG[i].x < -GAME.winWidth ){
+                GAME.BG[i].x = GAME.BG[i].x2 + GAME.winWidth;
             }
-            if( BG[i].x2 < -winWidth ){
-                BG[i].x2 = BG[i].x + winWidth;
+            if( GAME.BG[i].x2 < -GAME.winWidth ){
+                GAME.BG[i].x2 = GAME.BG[i].x + GAME.winWidth;
             }
         }else{
-            ctx.drawImage(BG[i].path, 0, yPosBg);
+            GAME.ctx.drawImage(GAME.BG[i].path, 0, GAME.yPosGAME);
         }
     }
 
     // отрисовка врагов
-    if(!isGameStopped){
-        for(let i = 0; i < PUSSY.enemy.length;i++){
+    if(!GAME.isGameStopped){
+        for(let i = 0; i < GAME.PUSSY.enemy.length;i++){
             // отрисовка врага
-            drawImage(PUSSY.run, PUSSY.enemy[i].x, PUSSY.enemy[i].y, GAME);
+            drawImage(GAME.PUSSY.run, GAME.PUSSY.enemy[i].x, GAME.PUSSY.enemy[i].y, GAME);
 
             // новые координаты для следующей отрисовки
-            PUSSY.enemy[i].x -= speed * PUSSY.enemy[i].distance;
+            GAME.PUSSY.enemy[i].x -= GAME.speed * GAME.PUSSY.enemy[i].distance;
 
             // ушедший за левый экран враг, респаунится за правым экраном
-            if( PUSSY.enemy[i].x + PUSSY.run.width < -40 ) {
+            if( GAME.PUSSY.enemy[i].x + GAME.PUSSY.run.width < -40 ) {
                 let key;
                 // нужно взять кординату х ушедшего i за левый экран и установть рандомно от последнего не ушедшего за левый экран
-                (i === 0) ? key = PUSSY.enemy.length - 1 : key = i - 1;
-                PUSSY.enemy[i].x = PUSSY.enemy[key].x + random(600, 1400);
-                PUSSY.enemy[i].distance = (random(14, 16) / 10 + 1) / 2;
+                (i === 0) ? key = GAME.PUSSY.enemy.length - 1 : key = i - 1;
+                GAME.PUSSY.enemy[i].x = GAME.PUSSY.enemy[key].x + GAME.random(600, 1400);
+                GAME.PUSSY.enemy[i].distance = (GAME.random(14, 16) / 10 + 1) / 2;
 
                 // враги не должны держаться вместе
-                if ( PUSSY.enemy[i].x - PUSSY.enemy[key].x < (speed + 2) * 28 + 80 ){
-                    PUSSY.enemy[i].distance = PUSSY.enemy[key].distance;
+                if ( GAME.PUSSY.enemy[i].x - GAME.PUSSY.enemy[key].x < (GAME.speed + 2) * 28 + 80 ){
+                    GAME.PUSSY.enemy[i].distance = GAME.PUSSY.enemy[key].distance;
                 }
             }
         }
     }else {
-        for(let i = 0; i < PUSSY.enemy.length;i++){
-           if(PUSSY.enemy[i].attack){
-               drawImage(PUSSY.attack, PUSSY.enemy[i].x, PUSSY.enemy[i].y, GAME);
+        for(let i = 0; i < GAME.PUSSY.enemy.length;i++){
+           if(GAME.PUSSY.enemy[i].attack){
+               drawImage(GAME.PUSSY.attack, GAME.PUSSY.enemy[i].x, GAME.PUSSY.enemy[i].y, GAME);
            }else{
-               drawImage(PUSSY.stop, PUSSY.enemy[i].x, PUSSY.enemy[i].y, GAME);
+               drawImage(GAME.PUSSY.stop, GAME.PUSSY.enemy[i].x, GAME.PUSSY.enemy[i].y, GAME);
            }
         }
     }
 
     // Варианты отрисовки главного героя
-    if(HERO.event.run){
-        drawImage(HERO.img.run, HERO.position.x, HERO.position.y, GAME);
+    if(GAME.HERO.event.run){
+        drawImage(GAME.HERO.img.run, GAME.HERO.position.x, GAME.HERO.position.y, GAME);
     }
-    if(HERO.event.jump){
-        drawImage(HERO.img.jump, HERO.position.x, HERO.position.y, GAME);
+    if(GAME.HERO.event.jump){
+        drawImage(GAME.HERO.img.jump, GAME.HERO.position.x, GAME.HERO.position.y, GAME);
     }
-    if(isGameStopped){
-        drawImage(HERO.img.hurt, HERO.position.x, HERO.position.y, GAME);
+    if(GAME.isGameStopped){
+        drawImage(GAME.HERO.img.hurt, GAME.HERO.position.x, GAME.HERO.position.y, GAME);
     }
 
     //Увеличение скорости при увеличении счёта
-    if(score - scoreCounter > 50){
-        speed += 2;
-        scoreCounter = score;
+    if(GAME.score - GAME.scoreCounter > 50){
+        GAME.speed += 2;
+        GAME.scoreCounter = GAME.score;
     }
 
     // увеличение скорости игры
-    score += speed / 100;
+    GAME.score += GAME.speed / 100;
 
     // рекорд в игре
-    if (score > localRecord) {
-        localRecord = Math.floor(score);
+    if (GAME.score > GAME.localRecord) {
+        GAME.localRecord = Math.floor(GAME.score);
     }
 
     // калибровка
     const calibration = 40;
 
     // столкновение героя и врага
-    for(let i = 0; i < PUSSY.enemy.length;i++){
+    for(let i = 0; i < GAME.PUSSY.enemy.length;i++){
         // фронтальное столкновение
-        if ( HERO.position.x + HERO.img.run.width - calibration > PUSSY.enemy[i].x + calibration ) {
+        if ( GAME.HERO.position.x + GAME.HERO.img.run.width - calibration > GAME.PUSSY.enemy[i].x + calibration ) {
             // столкновение сверху после прыжка
-            if ( HERO.position.y + HERO.img.run.height > PUSSY.enemy[i].y + calibration ) {
+            if ( GAME.HERO.position.y + GAME.HERO.img.run.height > GAME.PUSSY.enemy[i].y + calibration ) {
                 // столкновение при приземлении, чтобы жопа не отхватила
-                if ( HERO.position.x + calibration*2 < PUSSY.enemy[i].x + PUSSY.run.width - calibration ) {
-                    PUSSY.enemy[i].attack = true;
+                if ( GAME.HERO.position.x + calibration*2 < GAME.PUSSY.enemy[i].x + GAME.PUSSY.run.width - calibration ) {
+                    GAME.PUSSY.enemy[i].attack = true;
                     gameStop(GAME);
                 }
             }
@@ -125,9 +108,9 @@ export default function draw(GAME) {
     }
 
     // статистика
-    ctx.fillText(`Счёт: ${Math.floor(score)}`, 10, 50);
-    ctx.fillText(`Рекорд: ${localStorageRecord}`, 10, 100);
-	ctx.font = "50px Arial";
+    GAME.ctx.fillText(`Счёт: ${Math.floor(GAME.score)}`, 10, 50);
+    GAME.ctx.fillText(`Рекорд: ${GAME.localStorageRecord}`, 10, 100);
+	GAME.ctx.font = "50px Arial";
 
     requestAnimationFrame(draw(GAME))
 

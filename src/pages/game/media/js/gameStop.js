@@ -1,34 +1,22 @@
 export default function gameStop(GAME) {
-    const {
-        speed, 
-        score, 
-        isGameStopped, 
-        localStorageRecord, 
-        localRecord,
-        HERO,
-        audioPlayed,
-        audio,
-        dom
-    } = GAME;
+    GAME.speed = 0;
+    GAME.isGameStopped = true;
+    GAME.HERO.event.run = false;
 
-    speed = 0;
-    isGameStopped = true;
-    HERO.event.run = false;
-
-    dom.gameBanner.classList.remove("hidden");
+    GAME.dom.gameBanner.current.classList.remove("hidden");
 
     // остановить аудио
-    if(audioPlayed){
-        audio.Dead.play();
-        audio.Played = false;
+    if(GAME.audioPlayed){
+        GAME.audio.Dead.play();
+        GAME.audio.Played = false;
     }
 
-    audio.Theme1.stop();
+    GAME.audio.Theme1.stop();
 
     // запись нового рекорда
-    if( localRecord > localStorageRecord ){
-        let record = Math.floor(score);
+    if( GAME.localRecord > GAME.localStorageRecord ){
+        let record = Math.floor(GAME.score);
         localStorage.setItem("localStorageRecord", record);
-        localStorageRecord = record;
+        GAME.localStorageRecord = record;
     }
 }
