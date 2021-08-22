@@ -51,8 +51,8 @@ function Game() {
 
 			GAME.ctx = canvasRef.current.getContext("2d");
 
-			GAME.y_positionLine = GAME.winWidth - 220 - 120;
-			GAME.yPosBg = GAME.winWidth <= 1080 ? GAME.winWidth - 1080 : 1080 - GAME.winWidth;
+			GAME.y_positionLine = GAME.winHeight - 220 - 120;
+			GAME.yPosBg = GAME.winHeight <= 1080 ? GAME.winHeight - 1080 : 1080 - GAME.winHeight;
 
 			GAME.dom = {
 				canvas: canvasRef,
