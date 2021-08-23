@@ -1,7 +1,9 @@
+import {GAME} from './parameters';
+
 /** Загрузка изображений не требующих наличия параметров
  * @path {string} путь до картинки
  */
- export function loadStaticImage(path, GAME) {
+ export function loadStaticImage(path) {
     const image = document.createElement('img');
     image.onload = function () {
         GAME.loadCount++;
@@ -17,7 +19,7 @@
  * @colFrames {number} количество кадров в спрайте
  * @ticksFrame {number} частота обновления (каждый кадр или например 1 раз в 4 кадра)
  */
- export function loadSpriteImage(path, width, height, colFrames, ticksFrame, GAME) {
+ export function loadSpriteImage(path, width, height, colFrames, ticksFrame) {
     const image = document.createElement('img');
     const result = {
         dom: image,

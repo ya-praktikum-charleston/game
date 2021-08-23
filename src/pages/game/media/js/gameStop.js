@@ -1,19 +1,19 @@
-import GAME from './parameters';
+import {GAME, HERO, AUDIO} from './parameters';
 
 export default function gameStop() {
     GAME.speed = 0;
     GAME.isGameStopped = true;
-    GAME.HERO.event.run = false;
+    HERO.event.run = false;
 
     GAME.dom.gameBanner.current.classList.remove("hidden");
 
     // остановить аудио
     if(GAME.audioPlayed){
-        GAME.audio.Dead.play();
         GAME.audioPlayed = false;
+        AUDIO.Dead.play();
     }
 
-    GAME.audio.Theme1.stop();
+    AUDIO.Theme1.stop();
 
     // запись нового рекорда
     if( GAME.localRecord > GAME.localStorageRecord ){

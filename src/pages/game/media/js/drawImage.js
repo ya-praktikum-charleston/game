@@ -1,9 +1,11 @@
+import {GAME} from './parameters';
+
 /** Эта функция отрисовывает любые изображения
  * @img {string} загруженное изображение
  * @x {number} координа картинки по x
  * @y {number} координа картинки по y
  */
- export default function drawImage(img, x, y, GAME){
+ export default function drawImage(img, x, y){
     // частота обновления кадров для данной картинки
     img.tickCount++;
     if (img.tickCount > img.ticksFrame) {
