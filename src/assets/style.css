@@ -42,6 +42,7 @@
 }
 
 .btn {
+	display: block;
 	width: 60%;
 	height: 50px;
 	text-align: center;
@@ -52,6 +53,9 @@
 	font-family: var(--main-font-family);
 	background: var(--button-color);
 	border: 1px solid #81911f;
+	text-decoration: none;
+	color: var(--text-color);
+	line-height: 46px;
 }
 
 .btn-back {
@@ -91,14 +95,13 @@
 	background: none;
 }
 
-.canvas {
+/* .canvas {
 	width: 100vw;
 	height: 100vh;
-	/*background: url("./img/Background2.png") no-repeat left;*/
 	background-size: cover;
 	position: fixed;
 	z-index: -1;
-}
+} */
 
 .fullwidth {
 	width: 100%;

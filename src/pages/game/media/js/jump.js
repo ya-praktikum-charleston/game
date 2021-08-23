@@ -31,7 +31,7 @@ export default function jump() {
         }, 27 * 1000 / 60);
     }
     // если гамовер, при клике перезагрузить страницу
-    if (GAME.isGameStopped){
-        document.location.reload();
-    }
+    // if (GAME.isGameStopped){
+    //     document.location.reload();
+    // }
 }

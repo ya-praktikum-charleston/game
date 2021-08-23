@@ -9,6 +9,7 @@ export { default as l7_ground } from '../img/l7_ground.png';
 export { default as Angels } from '../img/Angels.png';
 export { default as Angels_Jump } from '../img/Angels_Jump.png';
 export { default as Angels_Hurt } from '../img/Angels_Hurt.png';
+export { default as Angels_Stand } from '../img/Angels_Stand.png';
 export { default as Pussy } from '../img/Pussy.png';
 export { default as PussyAttack } from '../img/PussyAttack.png';
 export { default as PussyStop } from '../img/PussyStop.png';

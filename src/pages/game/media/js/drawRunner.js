@@ -3,7 +3,7 @@ import drawImage from './drawImage';
 import gameStop from './gameStop';
 
 
-export default function draw() {
+export default function drawRunner() {
 
     GAME.ctx.clearRect(0, 0, GAME.winWidth, GAME.winHeight);
 
@@ -46,8 +46,8 @@ export default function draw() {
                 let key;
                 // нужно взять кординату х ушедшего i за левый экран и установть рандомно от последнего не ушедшего за левый экран
                 (i === 0) ? key = PUSSY.enemy.length - 1 : key = i - 1;
-                PUSSY.enemy[i].x = PUSSY.enemy[key].x + GAME.random(600, 1400);
-                PUSSY.enemy[i].distance = (GAME.random(14, 16) / 10 + 1) / 2;
+                PUSSY.enemy[i].x = PUSSY.enemy[key].x + GAME.random([600, 1400]);
+                PUSSY.enemy[i].distance = (GAME.random([14, 16]) / 10 + 1) / 2;
 
                 // враги не должны держаться вместе
                 if ( PUSSY.enemy[i].x - PUSSY.enemy[key].x < (GAME.speed + 2) * 28 + 80 ){
@@ -109,10 +109,15 @@ export default function draw() {
     }
 
     // статистика
-    GAME.ctx.fillText(`Счёт: ${Math.floor(GAME.score)}`, 10, 50);
-    GAME.ctx.fillText(`Рекорд: ${GAME.localStorageRecord}`, 10, 100);
-	GAME.ctx.font = "50px Arial";
-
-    requestAnimationFrame(draw)
+    GAME.ctx.font = "120px Play";
+    GAME.ctx.fillStyle = GAME.scoreColor;
+    GAME.ctx.textAlign = 'center';
+    GAME.ctx.fillText(Math.floor(GAME.score), GAME.winWidth / 2, 100);
+    
+    GAME.ctx.font = "25px Play";
+    GAME.ctx.textAlign = 'left';
+    GAME.ctx.fillText(`Рекорд: ${GAME.localStorageRecord}`, 10, 30);
+    
+    GAME.requestId = requestAnimationFrame(drawRunner)
 
 }
