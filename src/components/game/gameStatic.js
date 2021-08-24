@@ -5,7 +5,7 @@ import drawStatic from './media/js/drawStatic';
 
 function GameStatic() {
 
-	const canvasRef = React.useRef(false);	
+	const canvasRef = React.useRef(false);
 
 	React.useEffect(() => {
 		if (canvasRef.current) {
@@ -29,9 +29,10 @@ function GameStatic() {
 		}
 	}, []);
 
-	if (window.location.pathname === '/game') {
-		return null;
-	}
+	// ? как получить url в react
+	// if (window.location.pathname === '/game') {
+	// 	return null;
+	// }
 
 	return (
 		<canvas id="canvas_static" ref={canvasRef}></canvas>
