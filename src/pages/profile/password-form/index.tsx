@@ -2,14 +2,10 @@ import React from 'react';
 import { Form, Field } from 'react-final-form';
 import { setIn } from 'final-form';
 import * as Yup from 'yup';
-import { PasswordProps } from '../../../api/user/types';
 import Button from '../../../components/button';
-import UserController from '../../../controllers/user/UserController';
 
-const user = new UserController();
-
-const onSubmitHandler = (values: PasswordProps) => {
-    user.changePassword(values);
+const onSubmitHandler = (values) => {
+    //
 };
 
 const PasswordFormSchema = Yup.object().shape({

@@ -10,7 +10,6 @@ import Signup from './pages/signup';
 import Background from './assets/img/Background2.png';
 import ErrorBoundary from './utilities/ErrorBoundary';
 import PrivateRoute from './components/routes/privete';
-import AuthRoute from './components/routes/auth';
 
 import './assets/style.css';
 
@@ -21,8 +20,8 @@ export default function App() {
             <ErrorBoundary>
                 <Switch>
                     <PrivateRoute path="/" exact><Start /></PrivateRoute>
-                    <AuthRoute path="/signin"><Signin /></AuthRoute>
-                    <AuthRoute path="/signup"><Signup /></AuthRoute>
+                    <Route path="/signin"><Signin /></Route>
+                    <Route path="/signup"><Signup /></Route>
                     <PrivateRoute path="/profile"><Profile /></PrivateRoute>
                     <PrivateRoute path="/forum"><ForumPage /></PrivateRoute>
                     <PrivateRoute path="/leaderboard"><LeaderboardPage /></PrivateRoute>

@@ -1,14 +1,13 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
 import { setIn } from 'final-form';
 import * as Yup from 'yup';
-import AuthController from '../../controllers/auth/AuthController';
-import { SingupProps } from '../../api/auth/types';
 import Main from '../../components/main';
+import { signupAction } from '../../actions/auth/signup';
+import { getSignup } from '../../selectors/collections/auth';
 import './signup.css';
-
-const auth = new AuthController();
 
 const SignupSchema = Yup.object().shape({
     email: Yup.string()
@@ -29,7 +28,7 @@ const SignupSchema = Yup.object().shape({
 });
 
 const validateFormValues = (schema) => {
-    return async (values: SingupProps) => {
+    return async (values) => {
         try {
             await schema.validate(values, { abortEarly: false });
         } catch (error) {
@@ -42,12 +41,14 @@ const validateFormValues = (schema) => {
 
 const validate = validateFormValues(SignupSchema);
 
-const Signup = () => {
-    const history = useHistory();
-
+const Signup = ({ signupResult, signupAction }) => {
     const onSubmitHandler = (values: SingupProps) => {
-        auth.signup(values, history);
+        signupAction(values);
     };
+
+    if (signupResult.id) {
+        return <Redirect to="/" />;
+    }
 
     return (
         <>
@@ -124,6 +125,11 @@ const Signup = () => {
                                 >
                                     Регистрация
                                 </button>
+                                {
+                                    (signupResult.error === 'Login already exists')
+                                        ? <div>Такой пользователь уже зарегистрирован</div>
+                                        : ''
+                                }
                             </form>
                         )}
                     />
@@ -133,4 +139,8 @@ const Signup = () => {
     );
 };
 
-export default Signup;
+const mapStateToProps = (store) => ({
+    signupResult: getSignup(store),
+});
+
+export default connect(mapStateToProps, { signupAction })(Signup);
