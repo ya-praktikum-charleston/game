@@ -26,6 +26,11 @@
 	margin: 0;
 }
 
+a {
+	text-decoration: none;
+	display: inline-block;
+}
+
 .main-font-family {
 	font-family: var(--main-font-family);
 }
@@ -58,6 +63,7 @@
 .btn-back {
 	flex: 0 0 auto;
 	cursor: pointer;
+	position: absolute;
 }
 
 .btn-back-icon {
