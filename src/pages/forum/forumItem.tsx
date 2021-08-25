@@ -3,8 +3,8 @@ import AddIcon from '../../assets/svg/add.svg';
 
 type MainProps = {
     topic: string;
-    countTopics?: number;
-    countAnswers: number;
+    countTopics?: string;
+    countAnswers: string;
 };
 
 const FormItem = ({ topic, countTopics, countAnswers }: MainProps) => (

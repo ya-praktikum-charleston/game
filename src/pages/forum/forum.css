@@ -1,11 +1,25 @@
 .forum {
-	padding: 20px 40px;
-	box-sizing: border-box;
+	/*padding: 20px 40px;*/
+	/*box-sizing: border-box;*/
 	height: 100%;
 	width: 35vw;
 	max-width: 1000px;
 	min-width: 450px;
 	overflow: hidden;
+}
+
+.animationBlock {
+	animation: leftGo 1s ease-in-out forwards;
+}
+
+@keyframes leftGo {
+	from {
+		transform: translate3d(100%, 0px, 0px)
+	}
+
+	to {
+		transform: translate3d(0%, 0px, 0px)
+	}
 }
 
 .forum-content {
@@ -30,12 +44,13 @@
 	display: grid;
 	grid-template-columns: 1fr 80px 80px;
 	grid-gap: 20px;
+	/*text-align: center;*/
 	/*margin: 20px 45px;*/
 }
 
 .table-topics-item {
 	display: grid;
-	grid-template-columns: 1fr 80px;
+	grid-template-columns: 1fr 105px;
 	grid-gap: 20px;
 }
 
@@ -71,17 +86,14 @@
 	background: #fff;
 }
 
-.table-topics {
-	grid-column-start: 2;
-	text-align: center;
-}
+.table-topics {}
 
-.table-answers {
-	text-align: center;
-}
+.table-answers {}
 
-.grid {
-	grid-column-start: 2;
+.text-h2 {
+	font-weight: bolder;
+	padding-left: 10px;
+	/*text-align: center;*/
 }
 
 .form-add-topic {
@@ -106,7 +118,7 @@
 }
 
 .forum-content-msg {
-	width: 25vw;
+	/*width: 25vw;*/
 	position: relative;
 }
 
@@ -137,12 +149,20 @@
 }
 
 .date-stick {
-	background-color: #f3df79;
+	background-color: #f3df798c;
 	position: sticky;
 	top: 0;
 	text-align: center;
 	padding: 5px;
-	width: 20%;
+	width: 34%;
 	margin: 0 auto;
 	border-radius: 50%;
+}
+
+.forum-content-msg,
+.forum-content-topics,
+.forum-content-chapter {
+	/*padding: 0px 45px;
+	box-sizing: border-box;*/
+	margin: 20px 45px;
 }
