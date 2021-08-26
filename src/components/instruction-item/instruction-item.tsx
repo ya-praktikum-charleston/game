@@ -5,7 +5,7 @@ import './instruction-item.css';
 
 const InstructionItem: Props = ({ imgLink, imgAlt, text }: InstructionItemProps) => (
     <div className="instruction">
-        <div className="instruction__img">
+        <div className="instruction__img">dawd
             <img src={imgLink} alt={imgAlt} />
         </div>
         <div className="instruction__text">{text}</div>

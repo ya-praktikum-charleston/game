@@ -22,6 +22,7 @@
     "paths": {
       "*": ["./src/*"]
     },
+  	"allowJs": true,
     "typeRoots": ["typings/**/*.d.ts", "node_modules/@types"],
   },
   "include": [
