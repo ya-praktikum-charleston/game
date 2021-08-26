@@ -1,10 +1,11 @@
-{
-  "name": "test_7",
+  {
+  "name": "game-runner-pussy",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve --mode development --open --hot",
+    "start": "webpack --mode production && node ./server.js",
+    "dev": "webpack serve --mode development --open --hot",
     "build": "webpack --mode production",
     "eslint": "eslint . --ext .ts",
     "eslint:fix": "eslint . --ext .ts --fix",
@@ -54,6 +55,9 @@
       "@babel/preset-typescript"
     ]
   },
+  "engines": {
+    "node": "= 12.0.0"
+},
   "dependencies": {
     "@types/react": "^17.0.15",
     "@types/react-dom": "^17.0.9",
@@ -75,3 +79,4 @@
     "yup": "^0.32.9"
   }
 }
+
