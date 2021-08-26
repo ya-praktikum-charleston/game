@@ -1,5 +1,3 @@
-import { FC } from 'react';
-
 export type ErrorPageProps = {
     number: 404 | 500;
 };
@@ -9,5 +7,3 @@ export type Errors = {
     message: string;
     description: string;
 };
-
-export type Props = FC<ErrorPageProps>;

@@ -20,7 +20,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
+                test: /\.(ts)x?|js?$/,
                 use: 'babel-loader',
                 exclude: /node_modules/,
             },
@@ -50,6 +50,14 @@ module.exports = {
                     },
                 ],
             },
+            {
+                test: /\.mp3|wav$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                    },
+                ]
+            }
         ],
     },
     plugins: [
