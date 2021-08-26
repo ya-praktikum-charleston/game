@@ -1,33 +1,32 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Start from './pages/start';
-import ErrorPage from './pages/error/error';
+import { Start } from './pages';
+import ErrorPage from './pages/error';
 import LeaderboardPage from './pages/leaderboard';
 import ForumPage from './pages/forum';
 import Profile from './pages/profile';
 import Signin from './pages/signin';
 import Signup from './pages/signup';
-import Background2 from './assets/img/Background2.png';
-import Background from './assets/svg/parallax01.svg';
 import ErrorBoundary from './utilities/ErrorBoundary';
+import GameStatic from './components/game/gameStatic';
 import './assets/style.css';
 
 export default function App() {
-    return (
-        <div className="app">
-            <div className="canvas" style={{ backgroundImage: `url(${Background})` }}> </div>
-            <ErrorBoundary>
-                <Switch>
-                    <Route path="/" exact><Start /></Route>
-                    <Route path="/signin"><Signin /></Route>
-                    <Route path="/signup"><Signup /></Route>
-                    <Route path="/profile"><Profile /></Route>
-                    <Route path="/forum"><ForumPage /></Route>
-                    <Route path="/leaderboard"><LeaderboardPage /></Route>
-                    <Route path="/404"><ErrorPage number={404} /></Route>
-                    <Route path="/500"><ErrorPage number={500} /></Route>
-                </Switch>
-            </ErrorBoundary>
-        </div>
-    );
+	return (
+		<ErrorBoundary>
+			<div className="app">
+				<Switch>
+					<Route path="/" exact component={Start} />
+					<Route path="/signin" component={Signin} />
+					<Route path="/signup" component={Signup} />
+					<Route path="/profile" component={Profile} />
+					<Route path="/forum" component={ForumPage} />
+					<Route path="/leaderboard" component={LeaderboardPage} />
+					<Route component={() => (<ErrorPage number={404} />)} />
+				</Switch>
+				{/* // TODO добавить условие из redux, если не gameRun показывать GameStatic */}
+				<GameStatic />
+			</div>
+		</ErrorBoundary>
+	);
 }
