@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ErrorPageProps, Errors } from './types';
+import type { ErrorPageProps, Errors } from './types';
 import Main from '../../components/main';
 import './error.css';
 

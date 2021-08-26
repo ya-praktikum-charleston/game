@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { HeaderMenuItemProps } from './types';
+import type { HeaderMenuItemProps } from './types';
 import './header-menu-item.css';
 
 const HeaderMenuItem = ({ imgLink, imgAlt, link }: HeaderMenuItemProps) => {

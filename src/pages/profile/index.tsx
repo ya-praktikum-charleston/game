@@ -2,9 +2,9 @@ import React from 'react';
 import HeaderMenu from '../../components/header-menu';
 import SettingsIcon from '../../assets/svg/settings.svg';
 import Main from '../../components/main';
-import PasswordForm from './password-form';
-import ProfileForm from './profile-form';
-import AvatarForm from './avatar-form';
+import PasswordForm from '../../components/profile/profile-form';
+import ProfileForm from '../../components/profile/password-form';
+import AvatarForm from '../../components/profile/avatar-form';
 
 import './profile.css';
 

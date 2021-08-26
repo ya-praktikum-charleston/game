@@ -1,5 +1,5 @@
 import React from 'react';
-import { DistanceProps } from './types';
+import type { DistanceProps } from './types';
 
 import './distance.css';
 
