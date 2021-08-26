@@ -48,7 +48,7 @@ export const GAME: Game = {
     // выравнивание картинок исходя из пропорций экрана
     yPosBg: clientHeight <= 1080 ? clientHeight - 1080 : 1080 - clientHeight,
     // скорость игры
-    speed: 0.5,
+    speed: 2,
     // балансная переменная для увеличения скорости игры
     scoreCounter: 0,
     // счёт в игре

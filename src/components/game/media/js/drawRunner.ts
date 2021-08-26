@@ -84,7 +84,7 @@ export default function drawRunner() {
 
     // Увеличение скорости при увеличении счёта
     if (GAME.score - GAME.scoreCounter > 50) {
-        GAME.speed += 0.5;
+        GAME.speed += 1;
         GAME.scoreCounter = GAME.score;
     }
 
