@@ -1,13 +1,13 @@
-import {GAME} from './parameters';
-
+import { GAME } from './parameters';
+import { SpriteImage } from './types';
 /** Загрузка изображений не требующих наличия параметров
  * @path {string} путь до картинки
  */
- export function loadStaticImage(path) {
+export function loadStaticImage(path: string) {
     const image = document.createElement('img');
-    image.onload = function () {
-        GAME.loadCount++;
-    }
+    image.onload = () => {
+        GAME.loadCount += 1;
+    };
     image.src = path;
     return image;
 }
@@ -19,20 +19,26 @@ import {GAME} from './parameters';
  * @colFrames {number} количество кадров в спрайте
  * @ticksFrame {number} частота обновления (каждый кадр или например 1 раз в 4 кадра)
  */
- export function loadSpriteImage(path, width, height, colFrames, ticksFrame) {
+export function loadSpriteImage(
+    path: string,
+    width: number,
+    height: number,
+    colFrames: number,
+    ticksFrame: number,
+): SpriteImage {
     const image = document.createElement('img');
     const result = {
         dom: image,
-        width: width,
-        height: height,
-        colFrames: colFrames,
-        ticksFrame: ticksFrame,
-        tickCount: 0,                   // счётчик для ticksFrame
-        frameIndex: 0                   // какой кадр показывать
-    }
-    image.onload = function () {
-        GAME.loadCount++;
-    }
+        width,
+        height,
+        colFrames,
+        ticksFrame,
+        tickCount: 0, // счётчик для ticksFrame
+        frameIndex: 0, // какой кадр показывать
+    };
+    image.onload = () => {
+        GAME.loadCount += 1;
+    };
     image.src = path;
     return result;
 }

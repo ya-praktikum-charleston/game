@@ -1,40 +1,42 @@
+import { Track } from './types';
+
 /** Функция добавления любого количества аудио файлов
  * @arr {string} массив с путями аудио файла в различных форматах
  * @vol {number} уровень громкости
  */
- export default function loadAudio(arr, vol = 1) {
+export default function loadAudio(arr: string[], vol: number = 1): Track {
     const audio = document.createElement('audio');
     for (let i = 0, len = arr.length; i < len; i += 1) {
-        let source = document.createElement('source');
+        const source = document.createElement('source');
         source.src = arr[i];
         audio.appendChild(source);
     }
     audio.volume = vol;
     const track = {
-        dom: false,
+        dom: audio,
         state: 'stop',
-        play: function () {
-            this.dom.play();
+        play() {
+            audio.play();
             this.state = 'play';
         },
-        restart: function () {
+        restart() {
             audio.currentTime = 0;
-            this.dom.play();
+            audio.play();
             this.state = 'play';
         },
-        pause: function () {
+        pause() {
             audio.pause();
             this.state = 'pause';
         },
-        stop: function () {
+        stop() {
             audio.pause();
             audio.currentTime = 0;
             this.state = 'stop';
         },
-        setVolume: function (vol) {
-            this.dom.volume = vol;
-        }
-    }
+        setVolume(_vol: number) {
+            audio.volume = _vol;
+        },
+    };
     track.dom = audio;
     return track;
 }

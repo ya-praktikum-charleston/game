@@ -7,11 +7,12 @@ import './header-menu.css';
 const HeaderMenu: Props = ({ headerMenu }: HeaderMenuProps) => (
     <div className="header-menu">
         {
-            headerMenu.map((item) => (
+            headerMenu.map(({ imgLink, imgAlt, link }) => (
                 <HeaderMenuItem
-                    imgLink={item.imgLink}
-                    imgAlt={item.imgAlt}
-                    link={item.link}
+                    key={imgAlt}
+                    imgLink={imgLink}
+                    imgAlt={imgAlt}
+                    link={link}
                 />
             ))
         }
