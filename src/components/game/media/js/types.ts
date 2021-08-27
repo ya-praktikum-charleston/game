@@ -22,7 +22,7 @@ export type Game = {
     audioPlayed: boolean,
     dom: Record<string, RefObject<HTMLCanvasElement> | RefObject<HTMLDivElement>>,
     random: (range: number[]) => number,
-    requestId: number | null,
+    requestId: number,
 };
 
 export type Background = {

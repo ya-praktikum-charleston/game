@@ -1,9 +1,8 @@
-import { GAME } from './parameters';
-import { SpriteImage } from './types';
+import { SpriteImage, Game } from './types';
 /** Загрузка изображений не требующих наличия параметров
  * @path {string} путь до картинки
  */
-export function loadStaticImage(path: string) {
+export function loadStaticImage(path: string, GAME: Game): HTMLImageElement {
     const image = document.createElement('img');
     image.onload = () => {
         GAME.loadCount += 1;
@@ -25,6 +24,7 @@ export function loadSpriteImage(
     height: number,
     colFrames: number,
     ticksFrame: number,
+    GAME: Game,
 ): SpriteImage {
     const image = document.createElement('img');
     const result = {

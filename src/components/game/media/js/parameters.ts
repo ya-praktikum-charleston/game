@@ -73,55 +73,55 @@ export const GAME: Game = {
         return Math.floor(rand);
     },
     // используется для остановки requestAnimationFrame
-    requestId: null,
+    requestId: 0,
 };
 
 // фоновые картинки
 export const BG: Background[] = [
     {
-        path: loadStaticImage(l1_sky),
+        path: loadStaticImage(l1_sky, GAME),
         x: 0,
         x2: 0,
         frame: false,
         speed: 0,
     },
     {
-        path: loadStaticImage(l2_clouds),
+        path: loadStaticImage(l2_clouds, GAME),
         x: 0,
         x2: 0,
         frame: false,
         speed: 0,
     },
     {
-        path: loadStaticImage(l3_pyramid),
+        path: loadStaticImage(l3_pyramid, GAME),
         x: 0,
         x2: 0,
         frame: false,
         speed: 0,
     },
     {
-        path: loadStaticImage(l4_bg_ground01),
+        path: loadStaticImage(l4_bg_ground01, GAME),
         x: 0,
         x2: clientWidth,
         frame: true,
         speed: 40,
     },
     {
-        path: loadStaticImage(l5_bg_ground02),
+        path: loadStaticImage(l5_bg_ground02, GAME),
         x: 0,
         x2: clientWidth,
         frame: true,
         speed: 20,
     },
     {
-        path: loadStaticImage(l6_bg_ground03),
+        path: loadStaticImage(l6_bg_ground03, GAME),
         x: 0,
         x2: clientWidth,
         frame: true,
         speed: 10,
     },
     {
-        path: loadStaticImage(l7_ground),
+        path: loadStaticImage(l7_ground, GAME),
         x: 0,
         x2: clientWidth,
         frame: true,
@@ -132,10 +132,10 @@ export const BG: Background[] = [
 // главный герой
 export const HERO: Hero = {
     img: {
-        run: loadSpriteImage(Angels, 128.58333, 150, 12, 1),
-        jump: loadSpriteImage(Angels_Jump, 128.5, 150, 6, 1),
-        hurt: loadSpriteImage(Angels_Hurt, 129, 150, 1, 1),
-        stand: loadSpriteImage(Angels_Stand, 128.5555555555556, 150, 18, 5),
+        run: loadSpriteImage(Angels, 128.58333, 150, 12, 1, GAME),
+        jump: loadSpriteImage(Angels_Jump, 128.5, 150, 6, 1, GAME),
+        hurt: loadSpriteImage(Angels_Hurt, 129, 150, 1, 1, GAME),
+        stand: loadSpriteImage(Angels_Stand, 128.5555555555556, 150, 18, 5, GAME),
     },
     position: {
         x: 65,
@@ -151,9 +151,9 @@ export const HERO: Hero = {
 const pussyDistance = [[640, 1400], [1400, 2160], [2160, 2920]];
 
 export const PUSSY = {
-    run: loadSpriteImage(Pussy, 128.58333, 150, 12, 6),
-    attack: loadSpriteImage(PussyAttack, 182, 150, 1, 1),
-    stop: loadSpriteImage(PussyStop, 129, 150, 1, 1),
+    run: loadSpriteImage(Pussy, 128.58333, 150, 12, 6, GAME),
+    attack: loadSpriteImage(PussyAttack, 182, 150, 1, 1, GAME),
+    stop: loadSpriteImage(PussyStop, 129, 150, 1, 1, GAME),
     enemy: [
         {
             x: 1280 + GAME.random(pussyDistance[0]),
