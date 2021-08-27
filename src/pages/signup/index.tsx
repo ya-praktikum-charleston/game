@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import Main from '../../components/main';
 import { signupAction } from '../../actions/auth/signup';
 import { getSignup } from '../../selectors/collections/auth';
+import PasswordField from '../../components/fields/password';
 import './signup.css';
 
 const SignupSchema = Yup.object().shape({
@@ -99,22 +100,14 @@ const Signup = ({ signupResult, signupAction }) => {
                                         </div>
                                     )}
                                 </Field>
-                                <Field name="password">
-                                    {({ input, meta }) => (
-                                        <div>
-                                            <input {...input} className="input" name="password" type="password" placeholder="Пароль" />
-                                            {meta.error && meta.touched && <span className="input-block__error">{meta.error}</span>}
-                                        </div>
-                                    )}
-                                </Field>
-                                <Field name="confirm">
-                                    {({ input, meta }) => (
-                                        <div>
-                                            <input {...input} className="input" type="password" placeholder="Пароль (ещё раз)" />
-                                            {meta.error && meta.touched && <span className="input-block__error">{meta.error}</span>}
-                                        </div>
-                                    )}
-                                </Field>
+                                <PasswordField
+                                    name="password"
+                                    placeholder="Пароль"
+                                />
+                                <PasswordField
+                                    name="confirm"
+                                    placeholder="Пароль (ещё раз)"
+                                />
                                 <div className="form__redirect">
                                     <Link to="/signin">Войти</Link>
                                 </div>

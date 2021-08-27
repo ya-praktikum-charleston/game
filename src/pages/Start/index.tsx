@@ -27,6 +27,7 @@ import "./start.css";
 
 const headerMenu = [
 	{
+        id: 1,
 		imgLink: SettingsIcon,
 		imgAlt: "Settings",
 		link: "/profile",
