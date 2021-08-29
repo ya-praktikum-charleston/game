@@ -4,13 +4,13 @@ import ForumMessagesItem from './forumMessagesItem';
 type Content = {
     id: number;
     avatar: string;
-    content: string;
     date: string;
+    message: string
 };
 
 type Props = {
     date: string,
-    content: { id: number, avatar: string, message: string, date: string }[],
+    content: Content[],
 };
 
 const ForumMessages = ({ date, content }: Props) => (
@@ -18,7 +18,12 @@ const ForumMessages = ({ date, content }: Props) => (
         <div className="date-stick">{date}</div>
         {
             content.map((el) => (
-                <ForumMessagesItem key={el.id} avatar={el.avatar} content={el.message} date={el.date} />
+                <ForumMessagesItem
+                    key={el.id}
+                    avatar={el.avatar}
+                    content={el.message}
+                    date={el.date}
+                />
             ))
         }
 

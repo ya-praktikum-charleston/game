@@ -7,8 +7,12 @@ import {
 import FormTopicsItem from './topicItem';
 import content from './data';
 
+type ParamTypes = {
+    chapterId: string;
+};
+
 const ForumTopicsList = () => {
-    const { chapterId } = useParams();
+    const { chapterId } = useParams<ParamTypes>();
     const { url } = useRouteMatch();
     return (
         <div className="table-forum">
@@ -23,7 +27,13 @@ const ForumTopicsList = () => {
                         return topicsList.map((topicItem) => {
                             const { id, name, countAnswers } = topicItem;
                             return (
-                                <Link key={id} to={`${url}/topics/${id}`}><FormTopicsItem key={id} topic={name} countAnswers={countAnswers} /></Link>
+                                <Link key={id} to={`${url}/topics/${id}`}>
+                                    <FormTopicsItem
+                                        key={id}
+                                        topic={name}
+                                        countAnswers={countAnswers}
+                                    />
+                                </Link>
                             );
                         });
                     }

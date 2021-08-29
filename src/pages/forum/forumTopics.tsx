@@ -1,22 +1,39 @@
 import React from 'react';
-import { Formik, Form } from 'formik';
-import TextInput from '../../components/text-input';
-import AddIcon from '../../assets/svg/add.svg';
+import {
+    Link,
+    useParams,
+} from 'react-router-dom';
+import ForumForm from './forumForm';
 import ForumTopicsList from './forumTopicsList';
+import LogoutIcon from '../../assets/svg/logout.svg';
+import content from './data';
 
-const ForumTopics = () => (
-    <div className="forum-content-topics">
-        <Formik
-            initialValues={{ topics: '' }}
-            onSubmit={(values) => console.log(values)}
-        >
-            <Form className="form-add-topic">
-                <TextInput name="topics" type="text" placeholder="Добавить тему" />
-                <button className="btn-add-topic" type="submit"><img className="item-topics-icon" src={AddIcon} alt="add" /></button>
-            </Form>
-        </Formik>
-        <ForumTopicsList />
-    </div>
-);
+type ParamTypes = {
+    chapterId: string;
+    topicId: string;
+};
+
+const ForumTopics = () => {
+    const { chapterId, topicId } = useParams<ParamTypes>();
+    const chapterItem = content.find(
+        (chapterElement) => chapterElement.id === +chapterId,
+    );
+    const onSubmitHandler = () => {
+        console.log('test');
+    };
+    return (
+        <div className="forum-content-topics">
+            <ForumForm placeholder="Добавить тему" onSubmit={onSubmitHandler} />
+            <div className="title-forum-page">
+                <div className="title-columns">
+                    <div className="text-h2">раздел</div>
+                    <Link to="/forum"><span className="column-back">вернуться к разделам</span></Link>
+                </div>
+                <h2 className="item-chapter">{chapterItem && chapterItem.name}</h2>
+            </div>
+            <ForumTopicsList />
+        </div>
+    );
+};
 
 export default ForumTopics;

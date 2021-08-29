@@ -31,6 +31,7 @@
 a {
     text-decoration: none;
     display: inline-block;
+    color: black;
 }
 
 .main-font-family {
@@ -84,17 +85,10 @@ a {
     flex: 0 0 auto;
 }
 
-.btn-back-icon {
-    transform: rotate(180deg);
-    background: #fff;
-    padding: 10px;
-    border-bottom-right-radius: 20px;
-}
-
 .input {
     border-color: var(--border-input-color);
     font-size: 16px;
-    margin: 0px 0px 10px 0px;
+    margin: 0px 0px 20px 0px;
     border-radius: 5px;
     padding: 10px;
     font-family: var(--main-font-family);

@@ -9,7 +9,7 @@ type MainProps = {
     children: React.ReactNode;
 };
 
-const Main = ({ children, title, offBtnIcon }: MainProps) => (
+const Main = ({ children, title, offBtnIcon = false }: MainProps) => (
     <div className="box-content main-font-family">
         <div className="content">
 
@@ -28,9 +28,5 @@ const Main = ({ children, title, offBtnIcon }: MainProps) => (
         </div>
     </div>
 );
-
-Main.defaultProps = {
-    offBtnIcon: false,
-};
 
 export default Main;
