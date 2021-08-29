@@ -8,7 +8,7 @@ import drawImage from './drawImage';
 import gameStop from './gameStop';
 import jump from './jump';
 
-export default function drawRunner() {
+export default function drawRunner(): void {
     GAME.ctx?.clearRect(0, 0, GAME.winWidth, GAME.winHeight);
 
     // отрисовка фоновых картинок
@@ -122,7 +122,6 @@ export default function drawRunner() {
             }
         }
     }
-
     jump();
     // статистика
     if (GAME.ctx) {

@@ -6,12 +6,20 @@ import {
     AUDIO,
     restart,
 } from './media/js/parameters';
-import jump from './media/js/jump';
 import drawRunner from './media/js/drawRunner';
 import {
     GameOver,
     Smile,
 } from './media/js/assetsLinks';
+
+// добавление события клика мыши
+const jump = () => {
+    if (!GAME.jumping) {
+        GAME.jumping = true;
+        GAME.jumpingStart = true;
+        GAME.jumpTimer = 0;
+    }
+};
 
 function GameRunner(): ReactElement {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -28,15 +36,7 @@ function GameRunner(): ReactElement {
                 gameBanner: gameBannerRef,
             };
             HERO.event.run = true;
-
-            // добавление события клика мыши
-            document.addEventListener('mousedown', () => {
-                // jump();
-                if (!GAME.jumping) {
-                    GAME.jumping = true;
-                    GAME.jumpTimer = 0;
-                }
-            });
+            document.addEventListener('mousedown', jump);
 
             // дожидаемся загрузки всех изображений
 
@@ -48,16 +48,14 @@ function GameRunner(): ReactElement {
         }
         return () => {
             // удаление событий мыши
-            window.removeEventListener('mousedown', () => {
-                jump();
-            });
+            window.removeEventListener('mousedown', jump);
         };
     }, []);
 
     const handleRestart = () => {
         restart();
         drawRunner();
-        AUDIO.Theme1.play();
+        //AUDIO.Theme1.play();
     };
 
     return (

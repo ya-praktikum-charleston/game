@@ -6,7 +6,7 @@ import { SpriteImage } from './types';
  * @x {number} координа картинки по x
  * @y {number} координа картинки по y
  */
-export default function drawImage(img: SpriteImage, x: number, y: number) {
+export default function drawImage(img: SpriteImage, x: number, y: number): void {
     // частота обновления кадров для данной картинки
     img.tickCount += 1;
     if (img.tickCount > img.ticksFrame) {

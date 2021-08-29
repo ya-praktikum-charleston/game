@@ -4,7 +4,7 @@ import { Track } from './types';
  * @arr {string} массив с путями аудио файла в различных форматах
  * @vol {number} уровень громкости
  */
-export default function loadAudio(arr: string[], vol: number = 1): Track {
+export default function loadAudio(arr: string[], vol = 1): Track {
     const audio = document.createElement('audio');
     for (let i = 0, len = arr.length; i < len; i += 1) {
         const source = document.createElement('source');

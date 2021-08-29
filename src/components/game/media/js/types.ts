@@ -9,6 +9,7 @@ export type Game = {
     jumpPower: number,
     jumping: boolean,
     jumpTimer: number,
+    jumpingStart: boolean,
     y_positionLine: number,
     allCount: number,
     loadCount: number,

@@ -40,11 +40,16 @@ export const GAME: Game = {
     winWidth: clientWidth,
     winHeight: clientHeight,
 
+    // гравитация
     gravity: 0.4,
+    // сила прыжка
     jumpPower: 12,
+    // прыжок
     jumping: false,
+    // время прыжка
     jumpTimer: 0,
-
+    //  анимация и аудио прыжка запущена
+    jumpingStart: false,
     // координа на которой расположены персонажы
     y_positionLine: clientHeight - 220 - spriteHeight,
     // сколько всего картинок
@@ -54,7 +59,7 @@ export const GAME: Game = {
     // выравнивание картинок исходя из пропорций экрана
     yPosBg: clientHeight <= 1080 ? clientHeight - 1080 : 1080 - clientHeight,
     // скорость игры
-    speed: 2,
+    speed: 4,
     // балансная переменная для увеличения скорости игры
     scoreCounter: 0,
     // счёт в игре
