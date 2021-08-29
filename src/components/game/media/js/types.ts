@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { RefObject } from 'react';
 
 export type Game = {
@@ -68,4 +69,18 @@ export type Track = {
     pause: () => void,
     stop: () => void,
     setVolume: (arg: number) => void,
+};
+
+export type PussyEnemy = {
+    x: number,
+    y: number,
+    distance: number,
+    attack: boolean,
+};
+
+export type TypePussy = {
+    run: SpriteImage,
+    attack: SpriteImage,
+    stop: SpriteImage,
+    enemy: PussyEnemy[],
 };

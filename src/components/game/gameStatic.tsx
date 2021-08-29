@@ -1,9 +1,9 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, ReactElement } from 'react';
 import './game.css';
 import { GAME } from './media/js/parameters';
 import drawStatic from './media/js/drawStatic';
 
-export default function GameStatic() {
+export default function GameStatic(): ReactElement {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
@@ -16,7 +16,7 @@ export default function GameStatic() {
                 canvas: canvasRef,
             };
             // дожидаемся загрузки всех изображений
-            let int = setInterval(function () {
+            const int = setInterval(() => {
                 if (GAME.allCount === GAME.loadCount) {
                     // console.log('Все картинки загружены', allCount , loadStaticImage);
                     clearInterval(int);

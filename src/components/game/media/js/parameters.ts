@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import {
     // фоновые картинки
     l1_sky,
@@ -21,7 +22,12 @@ import {
     Death,
     theme1,
 } from './assetsLinks';
-import { Game, Background, Hero } from './types';
+import {
+    Game,
+    Background,
+    Hero,
+    TypePussy,
+} from './types';
 import { loadStaticImage, loadSpriteImage } from './loadImages';
 import loadAudio from './loadAudio';
 // import drawRunner from './drawRunner';
@@ -150,7 +156,7 @@ export const HERO: Hero = {
 // пиздюки
 const pussyDistance = [[640, 1400], [1400, 2160], [2160, 2920]];
 
-export const PUSSY = {
+export const PUSSY: TypePussy = {
     run: loadSpriteImage(Pussy, 128.58333, 150, 12, 6, GAME),
     attack: loadSpriteImage(PussyAttack, 182, 150, 1, 1, GAME),
     stop: loadSpriteImage(PussyStop, 129, 150, 1, 1, GAME),
@@ -188,7 +194,7 @@ if (localStorage.getItem('localStorageRecord')) {
     GAME.localStorageRecord = Number(localStorage.getItem('localStorageRecord')) || 0;
 }
 
-export function restart() {
+export function restart(): void {
     window.cancelAnimationFrame(GAME.requestId);
 
     GAME.y_positionLine = clientHeight - 220 - 120;

@@ -1,7 +1,11 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, ReactElement } from 'react';
 import './game.css';
-
-import { GAME, HERO, AUDIO, restart } from './media/js/parameters';
+import {
+    GAME,
+    HERO,
+    AUDIO,
+    restart,
+} from './media/js/parameters';
 import jump from './media/js/jump';
 import drawRunner from './media/js/drawRunner';
 import {
@@ -9,7 +13,7 @@ import {
     Smile,
 } from './media/js/assetsLinks';
 
-function GameRunner() {
+function GameRunner(): ReactElement {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const gameBannerRef = useRef<HTMLDivElement>(null);
 
@@ -59,7 +63,6 @@ function GameRunner() {
     return (
         <div className="game">
             <canvas id="canvas" ref={canvasRef}>Эх... Ваш браузер не поддерживает Canvas, Вы не сможете сыграть в игру...</canvas>
-
             <div className="game_over hidden" ref={gameBannerRef}>
                 <div className="game_over_main">
                     <img src={Smile} className="img_smile" alt="Smile" />
