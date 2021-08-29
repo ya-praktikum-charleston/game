@@ -55,7 +55,7 @@ function GameRunner(): ReactElement {
     const handleRestart = () => {
         restart();
         drawRunner();
-        //AUDIO.Theme1.play();
+        AUDIO.Theme1.play();
     };
 
     return (

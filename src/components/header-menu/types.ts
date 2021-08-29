@@ -1,8 +1,9 @@
-import { FC } from 'react';
-import { HeaderMenuItemProps } from '../header-menu-item/types';
-
-export type HeaderMenuProps = {
-    headerMenu: HeaderMenuItemProps[],
+type HeaderMenu = {
+    imgLink: string;
+    imgAlt: string;
+    link?: string;
 };
 
-export type Props = FC<HeaderMenuProps>;
+export type HeaderMenuProps = {
+    headerMenu: HeaderMenu[],
+};
