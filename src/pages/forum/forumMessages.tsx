@@ -1,11 +1,17 @@
 import React from 'react';
 import ForumMessagesItem from './forumMessagesItem';
 
+type User = {
+    login: string,
+    avatar: string,
+}
+
 type Content = {
     id: number;
-    avatar: string;
+    user: User;
     date: string;
-    message: string
+    message: string,
+    admin: string,
 };
 
 type Props = {
@@ -20,9 +26,11 @@ const ForumMessages = ({ date, content }: Props) => (
             content.map((el) => (
                 <ForumMessagesItem
                     key={el.id}
-                    avatar={el.avatar}
+                    avatar={el.user.avatar}
+                    login={el.user.login}
                     content={el.message}
                     date={el.date}
+                    admin={el.admin}
                 />
             ))
         }
