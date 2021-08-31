@@ -1,31 +1,27 @@
-export const SET_LOGOUT = 'profile/SET';
-export const SET_LOGOUT_FULFILLED = 'profile/SET_FULFILLED';
-export const SET_LOGOUT_FAILED = 'profile/SET_FAILED';
-export const RESET_LOGOUT = 'profile/RESET';
+import type { ProfileProps } from '../../../../app/api/users/types';
+import { ActionPayload } from '../../types';
 
-export const profileAction = (props) => {
+export const SET_PROFILE = 'profile/SET';
+export const SET_PROFILE_FULFILLED = 'profile/SET_FULFILLED';
+export const SET_PROFILE_FAILED = 'profile/SET_FAILED';
+
+export const profileAction = (props: ProfileProps) => {
     return {
-        type: SET_LOGOUT,
+        type: SET_PROFILE,
         payload: props,
-    };
+    } as ActionPayload<ProfileProps>;
 };
 
 export const profileFilfilldAction = (response) => {
     return {
-        type: SET_LOGOUT_FULFILLED,
+        type: SET_PROFILE_FULFILLED,
         payload: response,
     };
 };
 
 export const profileFailedAction = (error) => {
     return {
-        type: SET_LOGOUT_FAILED,
+        type: SET_PROFILE_FAILED,
         payload: error,
-    };
-};
-
-export const profileResetAction = () => {
-    return {
-        type: RESET_LOGOUT,
     };
 };

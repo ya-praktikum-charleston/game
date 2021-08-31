@@ -10,8 +10,17 @@ const Button = ({
     children,
     ...other
 }: ButtonProps) => (
-    /* eslint-disable react/button-has-type */
-    <button type={type} className={fullWidth ? 'fullwidth btn' : 'btn'} {...other}>{children}</button>
+    <button
+        type={type}
+        className={
+            fullWidth
+            ? 'fullwidth btn'
+            : 'btn'
+        }
+        {...other}
+    >
+{children}
+    </button>
 );
 
 Button.defaultProps = {

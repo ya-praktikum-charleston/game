@@ -1,101 +1,138 @@
+import type { ErrorType } from '../../../../app/utils/axios-instance/types';
+import type {
+    SignupResponse,
+    SigninResponse,
+    UserResponse,
+    LogoutResponse,
+} from '../../../../app/api/auth/types';
+import type { Action, ActionPayload } from '../../../actions/types';
+import type {
+    Signup,
+    Signin,
+    User,
+    Logout,
+} from './types';
 import { FETCH_SIGNUP_FULFILLED, FETCH_SIGNUP_FAILED, RESET_SIGNUP } from '../../../actions/auth/signup';
 import { FETCH_SIGNIN_FULFILLED, FETCH_SIGNIN_FAILED, RESET_SIGNIN } from '../../../actions/auth/signin';
-import { FETCH_USER_FULFULLED, FETCH_USER_FAILED } from '../../../actions/auth/user';
+import { FETCH_USER_FULFULLED } from '../../../actions/auth/user';
 import { FETCH_LOGOUT_FULFILLED, FETCH_LOGOUT_FAILED, RESET_LOGOUT } from '../../../actions/auth/logout';
 
-export const signup = (state = {}, action) => {
+const initialSignup: Signup = {
+    data: null,
+    error: null,
+};
+
+export const signup = (
+    store = initialSignup,
+    action: Action | ActionPayload<SignupResponse | string>,
+) => {
 	switch (action.type) {
 		case FETCH_SIGNUP_FULFILLED: {
-			state.id = action.payload.id;
+			store.data = (action as ActionPayload<SignupResponse>).payload;
 
-			return state;
+			return store;
 		}
 
         case FETCH_SIGNUP_FAILED: {
-			state.error = action.payload;
+			store.error = (action as ActionPayload<string>).payload;
 
-			return state;
+			return store;
 		}
 
         case RESET_SIGNUP: {
-			state.id = null;
-            state.error = null;
+			store.data = null;
+            store.error = null;
 
-			return state;
+			return store;
 		}
 
 		default:
-			return state;
+			return store;
 	}
 };
 
-export const signin = (state = {}, action) => {
+const initialSignin: Signin = {
+    data: null,
+    error: null,
+};
+
+export const signin = (
+    store = initialSignin,
+    action: Action | ActionPayload<SigninResponse | ErrorType>,
+) => {
 	switch (action.type) {
 		case FETCH_SIGNIN_FULFILLED: {
-			state.data = action.payload;
+			store.data = (action as ActionPayload<SigninResponse>).payload;
 
-			return state;
+			return store;
 		}
 
         case FETCH_SIGNIN_FAILED: {
-			state.error = action.payload;
+			store.error = (action as ActionPayload<string>).payload;
 
-			return state;
+			return store;
 		}
 
         case RESET_SIGNIN: {
-			state.data = null;
-			state.error = null;
+			store.data = null;
+			store.error = null;
 
-			return state;
+			return store;
 		}
 
 		default:
-			return state;
+			return store;
 	}
 };
 
-export const user = (state = {}, action) => {
+const initialUser: User = {};
+
+export const user = (
+    store = initialUser,
+    action: ActionPayload<UserResponse>,
+): UserResponse => {
 	switch (action.type) {
 		case FETCH_USER_FULFULLED: {
-			state.data = action.payload;
+            store = action.payload;
 
-			return state;
-		}
-
-		case FETCH_USER_FAILED: {
-			state.error = action.payload;
-
-			return state;
+			return store;
 		}
 
 		default:
-			return state;
+			return store;
 	}
 };
 
-export const logout = (state = {}, action) => {
+const initialLogout: Logout = {
+    data: null,
+    error: null,
+};
+
+export const logout = (
+    store = initialLogout,
+    action: Action | ActionPayload<LogoutResponse | ErrorType>,
+) => {
 	switch (action.type) {
 		case FETCH_LOGOUT_FULFILLED: {
-			state.data = action.payload;
+            store.data = (action as ActionPayload<LogoutResponse>).payload;
 
-			return state;
+			return store;
 		}
 
         case FETCH_LOGOUT_FAILED: {
-			state.error = action.payload;
+			store.error = (action as ActionPayload<string>).payload;
 
-			return state;
+			return store;
 		}
 
         case RESET_LOGOUT: {
-			state.data = null;
-			state.error = null;
+			store.data = null;
+			store.error = null;
 
-			return state;
+			return store;
 		}
 
 		default:
-			return state;
+			return store;
 	}
 };

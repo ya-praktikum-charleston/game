@@ -1,10 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
 import { setIn } from 'final-form';
 import * as Yup from 'yup';
-import Button from '../../../components/button';
-
-const onSubmitHandler = (values) => {};
+import Button from '../../button';
+import { profileAction } from '../../../actions/users/profile';
+import { getUser } from '../../../selectors/collections/auth';
+import type { ProfileProps } from '../../../../app/api/users/types';
+import type { Store } from '../../../reducers/types';
+import type { Props } from './types';
 
 const ProfileFormSchema = Yup.object().shape({
     email: Yup.string()
@@ -19,7 +23,7 @@ const ProfileFormSchema = Yup.object().shape({
 });
 
 const validateFormValues = (schema) => {
-    return async (values) => {
+    return async (values: ProfileProps) => {
         try {
             await schema.validate(values, { abortEarly: false });
         } catch (error) {
@@ -32,9 +36,23 @@ const validateFormValues = (schema) => {
 
 const validate = validateFormValues(ProfileFormSchema);
 
-const ProfileForm = () => {
+const ProfileForm = ({ user, profile }: Props) => {
+    const initialValues = {
+        email: user.email,
+        login: user.login,
+        first_name: user.first_name,
+        second_name: user.second_name,
+        phone: user.phone,
+        display_name: `${user.first_name} ${user.second_name}`,
+    };
+
+    const onSubmitHandler = (values: ProfileProps) => {
+        profile(values);
+    };
+
     return (
         <Form
+            initialValues={initialValues}
             onSubmit={onSubmitHandler}
             validate={validate}
             render={({ handleSubmit, submitting }) => (
@@ -81,15 +99,19 @@ const ProfileForm = () => {
                     </Field>
                     <Button
 						type="submit"
-						className="btn fullwidth" 
+						className="btn fullwidth"
 						disabled={submitting}
-					>
+                    >
 						Сохранить
-					</Button>
+                    </Button>
                 </form>
             )}
         />
     );
 };
 
-export default ProfileForm;
+const mapStateToProps = (store: Store) => ({
+    user: getUser(store),
+});
+
+export default connect(mapStateToProps, { profile: profileAction })(ProfileForm);
