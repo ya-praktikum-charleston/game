@@ -23,7 +23,7 @@ const PrivateRoute = ({
         if (!isAuthorized) {
             fetchUser();
         }
-	}, ['isAuthorized', 'fetchUser']);
+	}, [isAuthorized, fetchUser]);
 
     return (
         <Route

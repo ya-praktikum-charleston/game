@@ -1,36 +1,20 @@
-import React from "react";
-import Main from "../../components/main";
-import HeaderMenu from "../../components/header-menu";
-//import InstructionItem from '../../components/instruction-item/instruction-item';
-import GameMenu from "../../components/game-menu";
-//import ArrowUpIcon from '../../assets/svg/arrow-up.svg';
-//import ArrowDownIcon from '../../assets/svg/arrow-down.svg';
-import SettingsIcon from "../../assets/svg/settings.svg";
+import React from 'react';
+import Main from '../../components/main';
+import HeaderMenu from '../../components/header-menu';
+import GameMenu from '../../components/game-menu';
+import SettingsIcon from '../../assets/svg/settings.svg';
 
-import GameRunner from "../../components/game/gameRunner";
-import { AUDIO, restart } from "../../components/game/media/js/parameters";
+import GameRunner from '../../components/game/gameRunner';
+import { AUDIO, restart } from '../../components/game/media/js/parameters';
 
-import "./start.css";
-
-// const instructions = [
-//     {
-//         imgLink: ArrowUpIcon,
-//         imgAlt: 'Arrow up',
-//         text: 'Прыжок',
-//     },
-//     {
-//         imgLink: ArrowDownIcon,
-//         imgAlt: 'Arrow down',
-//         text: 'Наклон',
-//     },
-// ];
+import './start.css';
 
 const headerMenu = [
 	{
         id: 1,
 		imgLink: SettingsIcon,
-		imgAlt: "Settings",
-		link: "/profile",
+		imgAlt: 'Settings',
+		link: '/profile',
 	},
 ];
 
@@ -51,7 +35,7 @@ function Start() {
 	};
 
 	if (game) {
-		return <GameRunner handleExittGame={handleExittGame}/>;
+		return <GameRunner handleExittGame={handleExittGame} />;
 	}
 
 	return (
