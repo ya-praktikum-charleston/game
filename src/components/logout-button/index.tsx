@@ -1,17 +1,19 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logoutAction } from '../../actions/auth/logout';
+import { getLogout } from '../../selectors/collections/auth';
 import './logout-btn.css';
 import LogoutIcon from '../../assets/svg/logout.svg';
-import AuthController from '../../controllers/auth/AuthController';
 
-const auth = new AuthController();
-
-const LogoutButton = () => {
-    const history = useHistory();
-
+const LogoutButton = ({ isLogout, logoutAction }) => {
     const handleOnClick = () => {
-        auth.logout(history);
+        logoutAction();
     };
+
+    if (isLogout.data === 'OK') {
+        return <Redirect to="/signin" />;
+    }
 
     return (
         <img
@@ -23,4 +25,10 @@ const LogoutButton = () => {
     );
 };
 
-export default LogoutButton;
+const mapStateToProps = (store) => {
+    return {
+        isLogout: getLogout(store),
+    };
+};
+
+export default connect(mapStateToProps, { logoutAction })(LogoutButton);

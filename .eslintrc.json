@@ -26,10 +26,9 @@
         "import/resolver": "webpack"
     },
     "rules": {
-        "linebreak-style": ["error", "windows"],
-        "indent": ["error", 4],
-        "react/jsx-indent": ["error", 4],
-        "react/jsx-indent-props": ["error", 4],
+        "linebreak-style": ["off"],
+        "indent": ["off"],
+        "no-tabs": ["error", { "allowIndentationTabs": true }],
         "react/jsx-filename-extension": [0],
         "semi": "off",
         "react/jsx-props-no-spreading": "off",
@@ -48,6 +47,15 @@
         ],
 		"class-methods-use-this": "off",
 		"arrow-body-style": "off",
+<<<<<<< HEAD
         "no-param-reassign": "off"
+=======
+        "no-param-reassign": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/no-noninteractive-element-interactions": "off",
+        "react/jsx-indent-props": "off",
+        "react/jsx-indent": "off",
+        "import/prefer-default-export": "off"
+>>>>>>> 99cf49c0eb5608239e2cc123580974f717cd8f8f
     }
 }

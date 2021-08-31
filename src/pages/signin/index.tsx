@@ -1,15 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useHistory } from "react-router-dom";
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
 import { setIn } from 'final-form';
 import * as Yup from 'yup';
-import AuthController from '../../controllers/auth/AuthController';
+import { signinAction } from '../../actions/auth/signin';
 import Main from '../../components/main';
-import { SigninProps } from '../../api/auth/types';
+import { getSignin } from '../../selectors/collections/auth';
 import './signin.css';
-
-const auth = new AuthController();
 
 const SigninSchema = Yup.object().shape({
     login: Yup.string().required('Пожалуйста, укажите логин'),
@@ -17,7 +15,7 @@ const SigninSchema = Yup.object().shape({
 });
 
 const validateFormValues = (schema) => {
-    return async (values: SigninProps) => {
+    return async (values) => {
         try {
             await schema.validate(values, { abortEarly: false });
         } catch (error) {
@@ -30,12 +28,14 @@ const validateFormValues = (schema) => {
 
 const validate = validateFormValues(SigninSchema);
 
-const Signin = () => {
-    const history = useHistory();
-
+const Signin = ({ signinAction, signinResult }) => {
     const onSubmitHandler = (values: SigninProps) => {
-        auth.signin(values, history);
+        signinAction(values);
     };
+
+    if (signinResult.data === 'OK' || signinResult.error === 'User already in system') {
+        return <Redirect to="/" />;
+    }
 
     return (
         <>
@@ -66,12 +66,17 @@ const Signin = () => {
                                     <Link to="/signup">Регистрация</Link>
                                 </div>
                                 <button
-                                    type="submit" 
+                                    type="submit"
                                     className="btn fullwidth"
                                     disabled={submitting}
                                 >
                                     Вход
                                 </button>
+                                {
+                                    (signinResult.error === 'Login or password is incorrect')
+                                        ? <div>Не правильный логин или пароль</div>
+                                        : ''
+                                }
                             </form>
                         )}
                     />
@@ -81,4 +86,8 @@ const Signin = () => {
     );
 };
 
-export default Signin;
+const mapStateToProps = (store) => ({
+    signinResult: getSignin(store),
+});
+
+export default connect(mapStateToProps, { signinAction })(Signin);

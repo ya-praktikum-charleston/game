@@ -1,5 +1,5 @@
 import React from 'react';
-import { InstructionItemProps } from './types';
+import type { InstructionItemProps } from './types';
 
 import './instruction-item.css';
 

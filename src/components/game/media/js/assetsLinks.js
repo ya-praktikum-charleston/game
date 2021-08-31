@@ -15,7 +15,7 @@ export { default as PussyAttack } from '../img/PussyAttack.png';
 export { default as PussyStop } from '../img/PussyStop.png';
 
 export { default as GameOver } from '../img/GameOver.png';
-export { default as Smile } from '../img/Smile.png';
+export { default as Smile } from '../img/smile.png';
 
 // audio
 export { default as Jump } from '../audio/Jump.wav';

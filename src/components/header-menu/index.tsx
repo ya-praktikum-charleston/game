@@ -1,6 +1,6 @@
 import React from 'react';
 import HeaderMenuItem from '../header-menu-item';
-import { HeaderMenuProps } from './types';
+import type { HeaderMenuProps } from './types';
 import LogoutButton from '../logout-button';
 import './header-menu.css';
 
