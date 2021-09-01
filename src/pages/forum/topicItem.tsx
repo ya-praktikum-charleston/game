@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import AddIcon from '../../assets/svg/add.svg';
 
 type MainProps = {
@@ -7,7 +7,7 @@ type MainProps = {
     countAnswers: string;
 };
 
-const FormTopicsItem = ({ topic, countTopics, countAnswers }: MainProps) => (
+const FormTopicsItem = ({ topic, countTopics, countAnswers }: MainProps): ReactElement => (
     <div className="table-topics-item">
         <div data-name="topics" className="item-topics">{topic}</div>
         {

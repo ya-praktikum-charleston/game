@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import './forum.css';
 import {
     Switch,
@@ -13,7 +13,7 @@ import ForumMessageList from './forumMessageList';
 import ForumChapters from './forumChapters';
 import ForumTopics from './forumTopics';
 
-const ForumPage = () => {
+const ForumPage = (): ReactElement => {
     // let location = useLocation();
     // let background = location.state && location.state.background;
     const { path, url } = useRouteMatch();
