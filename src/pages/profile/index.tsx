@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import HeaderMenu from '../../components/header-menu';
 import SettingsIcon from '../../assets/svg/settings.svg';
 import Main from '../../components/main';
@@ -16,7 +16,7 @@ const headerMenu = [
     },
 ];
 
-const Profile = () => (
+const Profile = (): ReactElement => (
     <>
         <HeaderMenu headerMenu={headerMenu} />
         <Main title="Профиль">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import {
     Link,
     useParams,
@@ -7,7 +7,7 @@ import {
 import FormTopicsItem from './topicItem';
 import content from './data';
 
-const ForumTopicsList = () => {
+const ForumTopicsList = (): ReactElement => {
     const { chapterId } = useParams();
     const { url } = useRouteMatch();
     return (
