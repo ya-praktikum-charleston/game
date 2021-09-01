@@ -1,4 +1,7 @@
 import React, { useRef, useEffect, ReactElement } from 'react';
+import { useDispatch } from 'react-redux';
+import { setGameStart } from '../../actions/app';
+import drawStatic from './media/js/drawStatic';
 import './game.css';
 import {
     GAME,
@@ -24,6 +27,7 @@ const jump = () => {
 function GameRunner(): ReactElement {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const gameBannerRef = useRef<HTMLDivElement>(null);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (canvasRef.current && gameBannerRef.current) {
@@ -57,6 +61,10 @@ function GameRunner(): ReactElement {
         drawRunner();
         AUDIO.Theme1.play();
     };
+    const handleGameExite = () => {
+        restart();
+        dispatch(setGameStart(false));
+    };
 
     return (
         <div className="game">
@@ -66,7 +74,7 @@ function GameRunner(): ReactElement {
                     <img src={Smile} className="img_smile" alt="Smile" />
                     <img src={GameOver} className="img_game_over" alt="GameOver" />
                     <button type="button" className="game_restar" onClick={() => handleRestart()}>Повторить</button>
-                    {/* // TODO добавить кнопку выйти из игры */}
+                    <button type="button" className="game_restar" onClick={() => handleGameExite()}>Выход</button>
                 </div>
             </div>
         </div>

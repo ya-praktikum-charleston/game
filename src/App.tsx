@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Start } from './pages';
 import ErrorPage from './pages/error';
 import LeaderboardPage from './pages/leaderboard';
@@ -12,6 +13,8 @@ import GameStatic from './components/game/gameStatic';
 import './assets/style.css';
 
 export default function App(): ReactElement {
+    const gameRunner = useSelector(({ widgets }) => widgets.app.gamaRunner);
+    console.log('App', gameRunner);
     return (
         <ErrorBoundary>
             <div className="app">
@@ -25,7 +28,7 @@ export default function App(): ReactElement {
                     <Route component={() => (<ErrorPage number={404} />)} />
                 </Switch>
                 {/* // TODO добавить условие из redux, если не gameRun показывать GameStatic */}
-                <GameStatic />
+                {!gameRunner && <GameStatic />}
             </div>
         </ErrorBoundary>
     );

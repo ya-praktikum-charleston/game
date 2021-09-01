@@ -1,9 +1,10 @@
 import React, { ReactElement } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setGameStart } from '../../actions/app';
 import Main from '../../components/main';
 import HeaderMenu from '../../components/header-menu';
 import GameMenu from '../../components/game-menu';
 import SettingsIcon from '../../assets/svg/settings.svg';
-
 import GameRunner from '../../components/game/gameRunner';
 import { AUDIO, restart } from '../../components/game/media/js/parameters';
 
@@ -18,25 +19,28 @@ const headerMenu = [
 ];
 
 function Start(): ReactElement {
-	const [game, setGame] = React.useState<boolean>(false);
-
+	// const [game, setGame] = React.useState<boolean>(false);
+	const dispatch = useDispatch();
+	const gameRunner = useSelector(({ widgets }) => widgets.app.gamaRunner);
 	const handleStartGame = () => {
 		// TODO установить значение в redux gameRun true
-		setGame(true);
+		// setGame(true);
+		dispatch(setGameStart(true));
 		AUDIO.Theme1.play();
 	};
 
 	const handleExittGame = () => {
 		// TODO установить значение в redux gameRun false
-		setGame(false);
+		// setGame(false);
+		dispatch(setGameStart(false));
 		restart();
 		AUDIO.Theme1.stop();
 	};
 
-	if (game) {
+	if (gameRunner) {
 		return <GameRunner handleExittGame={handleExittGame} />;
 	}
-
+	console.log('render')
 	return (
 		<>
 			<HeaderMenu headerMenu={headerMenu} />

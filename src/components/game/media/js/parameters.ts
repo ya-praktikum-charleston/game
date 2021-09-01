@@ -203,7 +203,6 @@ export function restart(): void {
     window.cancelAnimationFrame(GAME.requestId);
 
     GAME.y_positionLine = clientHeight - 220 - 120;
-    GAME.loadCount = 0;
     GAME.yPosBg = clientHeight <= 1080 ? clientHeight - 1080 : 1080 - clientHeight;
     GAME.speed = 4;
     GAME.scoreCounter = 0;

@@ -5,7 +5,7 @@ import drawStatic from './media/js/drawStatic';
 
 export default function GameStatic(): ReactElement {
     const canvasRef = useRef<HTMLCanvasElement>(null);
-
+    console.log('statis')
     useEffect(() => {
         if (canvasRef.current) {
             canvasRef.current.width = GAME.winWidth;
@@ -17,6 +17,7 @@ export default function GameStatic(): ReactElement {
             };
             // дожидаемся загрузки всех изображений
             const int = setInterval(() => {
+                console.log(GAME.allCount, GAME.loadCount)
                 if (GAME.allCount === GAME.loadCount) {
                     // console.log('Все картинки загружены', allCount , loadStaticImage);
                     clearInterval(int);
