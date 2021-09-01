@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import AddIcon from '../../assets/svg/add.svg';
 
 type MainProps = {
@@ -7,7 +7,7 @@ type MainProps = {
     countAnswers: string;
 };
 
-const ForumItem = ({ topic, countAnswers, countTopics }: MainProps) => (
+const ForumItem = ({ topic, countAnswers, countTopics }: MainProps): ReactElement => (
     <div className="table-forum-item">
         <div data-name="forum" className="item-topics">{topic}</div>
         <div className="item-topics-count">

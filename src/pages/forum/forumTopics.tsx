@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import {
     Link,
     useParams,
 } from 'react-router-dom';
 import ForumForm from './forumForm';
 import ForumTopicsList from './forumTopicsList';
-import LogoutIcon from '../../assets/svg/logout.svg';
 import content from './data';
 
 type ParamTypes = {
@@ -13,7 +12,7 @@ type ParamTypes = {
     topicId: string;
 };
 
-const ForumTopics = () => {
+const ForumTopics = (): ReactElement => {
     const { chapterId, topicId } = useParams<ParamTypes>();
     const chapterItem = content.find(
         (chapterElement) => chapterElement.id === +chapterId,

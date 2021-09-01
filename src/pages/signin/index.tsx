@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
@@ -28,7 +28,7 @@ const validateFormValues = (schema) => {
 
 const validate = validateFormValues(SigninSchema);
 
-const Signin = ({ signinAction, signinResult }) => {
+function Signin({ signinAction, signinResult }): ReactElement {
     const onSubmitHandler = (values: SigninProps) => {
         signinAction(values);
     };

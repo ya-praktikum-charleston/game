@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import ForumForm from './forumForm';
 import ForumChaptersList from './forumСhaptersList';
 
-const ForumChapters = () => {
+const ForumChapters = (): ReactElement => {
     const onSubmitHandler = () => {
         console.log('test');
     };
@@ -12,6 +12,6 @@ const ForumChapters = () => {
             <ForumChaptersList />
         </div>
     );
-}
+};
 
 export default ForumChapters;

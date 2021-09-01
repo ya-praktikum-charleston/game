@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import classNames from 'classnames';
 
 type Props = {
@@ -15,7 +15,7 @@ const ForumMessagesItem = ({
     content,
     date,
     admin,
-}: Props) => {
+}: Props): ReactElement => {
     const messageUserStyle = classNames('msg-content', { 'msg-content-out ': admin === 'user' });
     const msgAvatarStyle = classNames('msg-avatar', { 'msg-avatar-out ': admin === 'user' });
     const msgBoxStyle = classNames('msg-box', { 'msg-box-out ': admin === 'user' });

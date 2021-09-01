@@ -37,7 +37,6 @@
     display: grid;
     grid-template-rows: 20px repeat(auto-fill, minmax(46px, 1fr));
     grid-gap: 14px;
-
 }
 
 .table-forum-item {

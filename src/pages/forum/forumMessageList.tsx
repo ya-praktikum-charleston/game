@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import {
     Link,
     useParams,
@@ -12,7 +12,7 @@ type ParamTypes = {
     topicId: string;
 };
 
-const ForumMessageList = () => {
+const ForumMessageList = (): ReactElement => {
     const { chapterId, topicId } = useParams<ParamTypes>();
     const onSubmitHandler = () => {
         console.log('test');
@@ -51,8 +51,6 @@ const ForumMessageList = () => {
                     },
                 )
             }
-
-
             <ForumForm placeholder="Введите сообщение" onSubmit={onSubmitHandler} />
         </div>
     );
