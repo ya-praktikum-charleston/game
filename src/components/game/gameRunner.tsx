@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, ReactElement } from 'react';
 import { useDispatch } from 'react-redux';
 import { setGameStart } from '../../actions/app';
-import drawStatic from './media/js/drawStatic';
 import './game.css';
 import {
     GAME,
