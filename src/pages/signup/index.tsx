@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import Main from '../../components/main';
 import { signupAction } from '../../actions/auth/signup';
 import { getSignup } from '../../selectors/collections/auth';
-import PasswordField from '../../components/fields/password';
+import PasswordField from '../../components/field';
 import './signup.css';
 
 const SignupSchema = Yup.object().shape({
