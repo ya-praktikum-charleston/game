@@ -1,14 +1,15 @@
 import React from 'react';
 import { Form } from 'react-final-form';
 import { connect } from 'react-redux';
-import { setIn } from 'final-form';
 import * as Yup from 'yup';
+import { SchemaOf } from 'yup';
+import { validateFormValues } from '../../../utilities/validator';
 import Button from '../../button';
 import PasswordField from '../../fields/password';
 import { passwordAction } from '../../../actions/users/password';
-import { getChangePassword } from '../../../selectors/collections/users';
+import type { Props, PasswordFormProps } from './types';
 
-const PasswordFormSchema = Yup.object().shape({
+const PasswordFormSchema: SchemaOf<PasswordFormProps> = Yup.object().shape({
     oldPassword: Yup.string()
         .required('Пожалуйста, укажите старый пароль'),
     newPassword: Yup.string()
@@ -20,23 +21,11 @@ const PasswordFormSchema = Yup.object().shape({
         .required('Новые пароли не совпадают'),
 });
 
-const validateFormValues = (schema) => {
-    return async (values: PasswordProps) => {
-        try {
-            await schema.validate(values, { abortEarly: false });
-        } catch (error) {
-            return error.inner.reduce((errors, innerError) => {
-                return setIn(errors, innerError.path, innerError.message);
-            }, {});
-        }
-    };
-};
-
 const validate = validateFormValues(PasswordFormSchema);
 
-const PasswordForm = ({ passwordAction }) => {
-    const onSubmitHandler = ({ oldPassword, newPassword }) => {
-        passwordAction({ oldPassword, newPassword });
+const PasswordForm = ({ password }: Props) => {
+    const onSubmitHandler = ({ oldPassword, newPassword }: PasswordFormProps) => {
+        password({ oldPassword, newPassword });
     };
 
     return (
@@ -70,8 +59,10 @@ const PasswordForm = ({ passwordAction }) => {
     );
 };
 
-const mapStateToProps = (store) => ({
-    changePasswordResult: getChangePassword(store),
-});
+const mapStateToProps = () => ({});
 
-export default connect(mapStateToProps, { passwordAction })(PasswordForm);
+const mapDispatchToProps = {
+    password: passwordAction,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PasswordForm);

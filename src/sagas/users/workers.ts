@@ -5,7 +5,7 @@ import { user } from '../../../app/api/auth';
 import { fetchUserFulfilled } from '../../actions/auth/user';
 import type { ActionPayload } from '../../actions/types';
 import type { UserResponse } from '../../../app/api/auth/types';
-import type { ProfileProps, PasswordProps } from '../../../app/api/users/types';
+import type { ProfileProps, PasswordProps, AvatarProps } from '../../../app/api/users/types';
 
 export function* workerProfile(action: ActionPayload<ProfileProps>) {
     try {
@@ -19,9 +19,13 @@ export function* workerProfile(action: ActionPayload<ProfileProps>) {
     }
 }
 
-export function* workerAvatar(action) {
+export function* workerAvatar(action: ActionPayload<AvatarProps>) {
     try {
         yield call(avatar, action.payload);
+
+       const response: UserResponse = yield call(user);
+
+       yield put(fetchUserFulfilled(response));
     } catch (error) {
         yield put(setUnexpectedError(true));
     }

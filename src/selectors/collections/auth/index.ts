@@ -1,6 +1,15 @@
-import type { UserResponse } from '../../../../app/api/auth/types';
+import type { Store } from '../../../reducers/types';
 
-export const getSignup = (store) => store.collections.signup;
-export const getSignin = (store) => store.collections.signin;
-export const getUser = (store): UserResponse => store.collections.user;
-export const getLogout = (store) => store.collections.logout;
+export const getSignup = (store: Store) => store.collections.signup;
+export const getSignin = (store: Store) => store.collections.signin;
+export const getUser = (store: Store) => store.collections.user;
+export const getUserAvatar = (store: Store) => {
+    const avatarPath = store.collections.user.avatar;
+
+    if (avatarPath) {
+        return `https://ya-praktikum.tech/api/v2/resources/${avatarPath}`;
+    }
+
+    return null;
+};
+export const getLogout = (store: Store) => store.collections.logout;

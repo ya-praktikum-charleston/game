@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
-import { setIn } from 'final-form';
 import * as Yup from 'yup';
+import { SchemaOf } from 'yup';
+import { validateFormValues } from '../../../utilities/validator';
 import Button from '../../button';
 import { profileAction } from '../../../actions/users/profile';
 import { getUser } from '../../../selectors/collections/auth';
@@ -10,7 +11,7 @@ import type { ProfileProps } from '../../../../app/api/users/types';
 import type { Store } from '../../../reducers/types';
 import type { Props } from './types';
 
-const ProfileFormSchema = Yup.object().shape({
+const ProfileFormSchema: SchemaOf<ProfileProps> = Yup.object().shape({
     email: Yup.string()
         .email('Пожалуйста, укажите почту')
         .required('Пожалуйста, укажите почту'),
@@ -21,18 +22,6 @@ const ProfileFormSchema = Yup.object().shape({
         .matches(/^(\s)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/, 'Пожалуйста, укажите телефон')
         .required('Пожалуйста, укажите телефон'),
 });
-
-const validateFormValues = (schema) => {
-    return async (values: ProfileProps) => {
-        try {
-            await schema.validate(values, { abortEarly: false });
-        } catch (error) {
-            return error.inner.reduce((errors, innerError) => {
-                return setIn(errors, innerError.path, innerError.message);
-            }, {});
-        }
-    };
-};
 
 const validate = validateFormValues(ProfileFormSchema);
 
@@ -114,4 +103,8 @@ const mapStateToProps = (store: Store) => ({
     user: getUser(store),
 });
 
-export default connect(mapStateToProps, { profile: profileAction })(ProfileForm);
+const mapDispatchToProps = {
+    profile: profileAction,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileForm);

@@ -7,17 +7,17 @@ import type {
 } from '../../../../app/api/auth/types';
 import type { Action, ActionPayload } from '../../../actions/types';
 import type {
-    Signup,
-    Signin,
-    User,
-    Logout,
+    SignupStore,
+    SigninStore,
+    UserStore,
+    LogoutStore,
 } from './types';
 import { FETCH_SIGNUP_FULFILLED, FETCH_SIGNUP_FAILED, RESET_SIGNUP } from '../../../actions/auth/signup';
 import { FETCH_SIGNIN_FULFILLED, FETCH_SIGNIN_FAILED, RESET_SIGNIN } from '../../../actions/auth/signin';
 import { FETCH_USER_FULFULLED } from '../../../actions/auth/user';
 import { FETCH_LOGOUT_FULFILLED, FETCH_LOGOUT_FAILED, RESET_LOGOUT } from '../../../actions/auth/logout';
 
-const initialSignup: Signup = {
+const initialSignup: SignupStore = {
     data: null,
     error: null,
 };
@@ -51,7 +51,7 @@ export const signup = (
 	}
 };
 
-const initialSignin: Signin = {
+const initialSignin: SigninStore = {
     data: null,
     error: null,
 };
@@ -85,7 +85,7 @@ export const signin = (
 	}
 };
 
-const initialUser: User = {};
+const initialUser: UserStore = {};
 
 export const user = (
     store = initialUser,
@@ -103,7 +103,7 @@ export const user = (
 	}
 };
 
-const initialLogout: Logout = {
+const initialLogout: LogoutStore = {
     data: null,
     error: null,
 };

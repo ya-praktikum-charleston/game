@@ -1,13 +1,13 @@
 import type {
-    Signup,
-    Signin,
-    User,
-    Logout,
+    SignupStore,
+    SigninStore,
+    UserStore,
+    LogoutStore,
 } from './auth/types';
 
 export type Collections = {
-    signup: Signup,
-    signin: Signin,
-    user: User,
-    logout: Logout,
+    signup: SignupStore,
+    signin: SigninStore,
+    user: UserStore,
+    logout: LogoutStore,
 };

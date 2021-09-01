@@ -1,33 +1,32 @@
 import { SigninProps, SigninResponse } from '../../../../app/api/auth/types';
-import type { Action, ActionPayload } from '../../types';
 
 export const FETCH_SIGNIN = 'signin/FETCH';
 export const FETCH_SIGNIN_FULFILLED = 'signin/FETCH_FULFILLED';
 export const FETCH_SIGNIN_FAILED = 'signin/FETCH_FAILED';
 export const RESET_SIGNIN = 'signin/RESET';
 
-export const signinAction = (authProps: SigninProps): ActionPayload<SigninProps> => {
+export const signinAction = (payload: SigninProps) => {
     return {
         type: FETCH_SIGNIN,
-        payload: authProps,
+        payload,
     };
 };
 
-export const signinFilfilldAction = (response: SigninResponse): ActionPayload<SigninResponse> => {
+export const signinFilfilldAction = (response: SigninResponse) => {
     return {
         type: FETCH_SIGNIN_FULFILLED,
         payload: response,
     };
 };
 
-export const signinFailedAction = (error: string): ActionPayload<string> => {
+export const signinFailedAction = (error: string) => {
     return {
         type: FETCH_SIGNIN_FAILED,
         payload: error,
     };
 };
 
-export const signinResetAction = (): Action => {
+export const signinResetAction = () => {
     return {
         type: RESET_SIGNIN,
     };

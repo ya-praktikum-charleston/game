@@ -2,21 +2,18 @@ import React from 'react';
 import { Form, Field } from 'react-final-form';
 import { connect } from 'react-redux';
 import { avatarAction } from '../../../actions/users/avatar';
-import { getChangeAvatar } from '../../../selectors/collections/users';
 import Button from '../../button';
 import Angel1 from '../../../assets/img/Angels1.png';
+import { getUserAvatar } from '../../../selectors/collections/auth';
+import type { Store } from '../../../reducers/types';
+import type { Props, FormProps } from './types';
 
-const AvatarForm = () => {
-    const onSubmitHandler = (avatar) => {
-            console.log(avatar);
+const AvatarForm = ({ avatarLink, avatar }: Props) => {
+    const onSubmitHandler = (form: FormProps) => {
             const formData = new FormData();
-            
-            console.log(formData);
+            formData.append('avatar', form.avatar[0]);
 
-            formData.append('avatar', avatar);
-
-            console.log(formData);
-
+            avatar(formData);
     };
 
     return (
@@ -26,12 +23,24 @@ const AvatarForm = () => {
                 render={({ handleSubmit, submitting }) => (
                     <form className="avatar_edit" onSubmit={handleSubmit}>
                         <div className="avatar_img">
-                            <img className="avatar_img__size" src={Angel1} alt="avatar" />
+                            <img
+                                className="avatar_img__size"
+                                src={avatarLink || Angel1}
+                                alt="avatar"
+                            />
                         </div>
-                        <Field name="avatar">
-                            {({ input, meta }) => (
+
+                        <Field<FileList> name="avatar">
+                            {({ input: { value, onChange, ...input } }) => (
                                 <label htmlFor="file-input" className="btn-file-input">
-                                    <input {...input} name="avatar" id="file-input" className="file-input__hidden" type="file" name="file" accept=".jpg, .jpeg, .png" />
+                                    <input
+                                        {...input}
+                                        onChange={({ target }) => onChange(target.files)}
+                                        id="file-input"
+                                        className="file-input__hidden"
+                                        type="file"
+                                        accept=".jpg, .jpeg, .png"
+                                    />
                                     Загрузить
                                 </label>
                             )}
@@ -50,8 +59,12 @@ const AvatarForm = () => {
     );
 };
 
-const mapStateToProps = (store) => ({
-    changeAvatarResult: getChangeAvatar(store),
+const mapStateToProps = (store: Store) => ({
+    avatarLink: getUserAvatar(store),
 });
 
-export default connect(mapStateToProps, { avatarAction })(AvatarForm);
+const mapDispatchToProps = {
+    avatar: avatarAction,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AvatarForm);

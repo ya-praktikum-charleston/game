@@ -1,4 +1,3 @@
-import { ActionPayload } from '../../types';
 import { UserResponse } from '../../../../app/api/auth/types';
 
 export const FETCH_USER = 'user/FETCH';
@@ -11,7 +10,7 @@ export const fetchUser = () => {
 	};
 };
 
-export const fetchUserFulfilled = (response: UserResponse): ActionPayload<UserResponse> => {
+export const fetchUserFulfilled = (response: UserResponse) => {
 	return {
 		type: FETCH_USER_FULFULLED,
 		payload: response,

@@ -2,35 +2,27 @@ import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
-import { setIn } from 'final-form';
 import * as Yup from 'yup';
+import { SchemaOf } from 'yup';
+import { validateFormValues } from '../../utilities/validator';
 import { signinAction } from '../../actions/auth/signin';
 import Main from '../../components/main';
 import { getSignin } from '../../selectors/collections/auth';
+import type { Store } from '../../reducers/types';
+import type { Props } from './types';
+import type { SigninProps } from '../../../app/api/auth/types';
 import './signin.css';
 
-const SigninSchema = Yup.object().shape({
+const SigninSchema: SchemaOf<SigninProps> = Yup.object().shape({
     login: Yup.string().required('Пожалуйста, укажите логин'),
     password: Yup.string().required('Пожалуйста, укажите пароль'),
 });
 
-const validateFormValues = (schema) => {
-    return async (values) => {
-        try {
-            await schema.validate(values, { abortEarly: false });
-        } catch (error) {
-            return error.inner.reduce((errors, innerError) => {
-                return setIn(errors, innerError.path, innerError.message);
-            }, {});
-        }
-    };
-};
-
 const validate = validateFormValues(SigninSchema);
 
-const Signin = ({ signinAction, signinResult }) => {
+const Signin = ({ signin, signinResult }: Props) => {
     const onSubmitHandler = (values: SigninProps) => {
-        signinAction(values);
+        signin(values);
     };
 
     if (signinResult.data === 'OK' || signinResult.error === 'User already in system') {
@@ -86,8 +78,12 @@ const Signin = ({ signinAction, signinResult }) => {
     );
 };
 
-const mapStateToProps = (store) => ({
+const mapStateToProps = (store: Store) => ({
     signinResult: getSignin(store),
 });
 
-export default connect(mapStateToProps, { signinAction })(Signin);
+const mapDispatchToProps = {
+    signin: signinAction,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signin);

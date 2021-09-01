@@ -1,5 +1,5 @@
-import type { ProfileProps } from '../../../../app/api/users/types';
-import { ActionPayload } from '../../types';
+import type { ProfileProps, ProfileResponse } from '../../../../app/api/users/types';
+import type { ErrorType } from '../../../../app/utils/axios-instance/types';
 
 export const SET_PROFILE = 'profile/SET';
 export const SET_PROFILE_FULFILLED = 'profile/SET_FULFILLED';
@@ -9,17 +9,17 @@ export const profileAction = (props: ProfileProps) => {
     return {
         type: SET_PROFILE,
         payload: props,
-    } as ActionPayload<ProfileProps>;
+    };
 };
 
-export const profileFilfilldAction = (response) => {
+export const profileFilfilldAction = (response: ProfileResponse) => {
     return {
         type: SET_PROFILE_FULFILLED,
         payload: response,
     };
 };
 
-export const profileFailedAction = (error) => {
+export const profileFailedAction = (error: ErrorType) => {
     return {
         type: SET_PROFILE_FAILED,
         payload: error,

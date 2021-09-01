@@ -1,7 +1,3 @@
-// export type Store<T, E = string> = {
-//     data: T | null;
-//     error: E | null;
-// };
 import type {
     SignupResponse,
     SigninResponse,
@@ -9,19 +5,12 @@ import type {
     LogoutResponse,
 } from '../../../../app/api/auth/types';
 
-export type Signup = {
-    data: null | SignupResponse;
-    error: null | string;
-};
+import type { StoreItem } from '../../types';
 
-export type Signin = {
-    data: null | SigninResponse;
-    error: null | string;
-};
+export type SignupStore = StoreItem<SignupResponse>;
 
-export type User = UserResponse;
+export type SigninStore = StoreItem<SigninResponse>;
 
-export type Logout = {
-    data: null | LogoutResponse;
-    error: null | string;
-};
+export type UserStore = UserResponse;
+
+export type LogoutStore = StoreItem<LogoutResponse>;

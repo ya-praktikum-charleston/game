@@ -1,11 +1,18 @@
 import axios from '../../utils/axios-instance';
-import type { ProfileProps, PasswordProps } from './types';
+import type {
+    ProfileProps,
+    AvatarProps,
+    PasswordProps,
+    ProfileResponse,
+    AvatarResponse,
+    PasswordResponse,
+} from './types';
 
-export const profile = (props: ProfileProps) => axios.put('/user/profile', props)
+export const profile = (props: ProfileProps) => axios.put<ProfileResponse>('/user/profile', props)
     .then(({ data }) => data);
 
-export const avatar = (props) => axios.put('/user/profile/avatar', props)
+export const avatar = (props: AvatarProps) => axios.put<AvatarResponse>('/user/profile/avatar', props)
     .then(({ data }) => data);
 
-export const password = (props: PasswordProps) => axios.put('/user/password', props)
+export const password = (props: PasswordProps) => axios.put<PasswordResponse>('/user/password', props)
     .then(({ data }) => data);
