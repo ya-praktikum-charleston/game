@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from './components/routes/privete';
 import { Start } from './pages';

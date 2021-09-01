@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 type Props = {
     avatar: string,
@@ -6,7 +6,7 @@ type Props = {
     date: string
 };
 
-const ForumMessagesItem = ({ avatar, content, date }: Props) => (
+const ForumMessagesItem = ({ avatar, content, date }: Props): ReactElement => (
     <div className="msg-content">
         <div className="msg-avatar">{avatar}</div>
         <div className="msg-box">

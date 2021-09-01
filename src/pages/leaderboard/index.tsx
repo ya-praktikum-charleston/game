@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import './leaderboard.css';
 import Main from '../../components/main';
 import LeaderboardItem from './leaderboardItem';
@@ -27,7 +27,7 @@ const DATA = [
     },
 ];
 
-export default function LeaderboardPage() {
+export default function LeaderboardPage(): ReactElement {
     return (
         <Main title="Таблица лидеров">
             <div className="table-loaderboard">

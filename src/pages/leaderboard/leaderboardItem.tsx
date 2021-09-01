@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 type MainProps = {
     avatar: string;
@@ -12,7 +12,7 @@ const LeaderboardItem = ({
     name,
     position,
     count,
-}: MainProps) => (
+}: MainProps): ReactElement => (
     <div className="table-leaderboard-item">
         <div className="item-number">{position}</div>
         <img src={avatar} alt="avatar" className="item-img" />
