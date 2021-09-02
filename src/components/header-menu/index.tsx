@@ -11,10 +11,10 @@ const HeaderMenu = ({ headerMenu }: HeaderMenuProps) => {
                 {
                     headerMenu.map((item) => (
                         <HeaderMenuItem
+                            key={item.id}
                             imgLink={item.imgLink}
                             imgAlt={item.imgAlt}
                             link={item.link}
-                            key={item.id}
                         />
                     ))
                 }

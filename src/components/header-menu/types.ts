@@ -1,4 +1,5 @@
 type HeaderMenu = {
+    id: number;
     imgLink: string;
     imgAlt: string;
     link?: string;
