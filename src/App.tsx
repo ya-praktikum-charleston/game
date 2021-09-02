@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import PrivateRoute from './components/routes/privete';
 import { Start } from './pages';
 import ErrorPage from './pages/error';
@@ -12,27 +13,23 @@ import GameStatic from './components/game/gameStatic';
 import ErrorBoundary from './utilities/ErrorBoundary';
 import './assets/style.css';
 
-export default function App() {
-	return (
-		<ErrorBoundary>
-			<div className="app">
-				<Switch>
-					<PrivateRoute path="/" exact><Start /></PrivateRoute>
-					<Route path="/signin" component={Signin} />
-					<Route path="/signup" component={Signup} />
-					<PrivateRoute path="/profile"><Profile /></PrivateRoute>
-					<PrivateRoute path="/forum"><ForumPage /></PrivateRoute>
-					<PrivateRoute path="/leaderboard"><LeaderboardPage /></PrivateRoute>
+export default function App(): ReactElement {
+    const gameRunner = useSelector(({ widgets }) => widgets.app.gamaRunner);
+    return (
+        <ErrorBoundary>
+            <div className="app">
+                <Switch>
+                    <PrivateRoute path="/" exact><Start /></PrivateRoute>
+                    <Route path="/signin" component={Signin} />
+                    <Route path="/signup" component={Signup} />
+                    <PrivateRoute path="/profile"><Profile /></PrivateRoute>
+                    <PrivateRoute path="/forum"><ForumPage /></PrivateRoute>
+                    <PrivateRoute path="/leaderboard"><LeaderboardPage /></PrivateRoute>
                     <Route component={() => (<ErrorPage number={404} />)} />
+                </Switch>
 
-                    {/* ! надо покласть в ErrorBoundary */}
-					<Route path="/500">
-						<ErrorPage number={500} />
-					</Route>
-				</Switch>
-				{/* TODO добавить условие из redux, если не gameRun показывать GameStatic */}
-				<GameStatic />
-			</div>
-		</ErrorBoundary>
-	);
+                {!gameRunner && <GameStatic />}
+            </div>
+        </ErrorBoundary>
+    );
 }

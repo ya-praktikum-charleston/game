@@ -21,7 +21,13 @@ const ForumChaptersList = (): ReactElement => {
                         id, name, countTopics, countAnswers,
                     } = chapterItem;
                     return (
-                        <Link key={id} to={`${url}/chapters/${id}`}><ForumItem topic={name} countTopics={countTopics} countAnswers={countAnswers} /></Link>
+                        <Link key={id} to={`${url}/chapters/${id}`}>
+                            <ForumItem
+                                topic={name}
+                                countTopics={countTopics}
+                                countAnswers={countAnswers}
+                            />
+                        </Link>
                     );
                 })
             }

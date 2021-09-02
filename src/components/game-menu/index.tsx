@@ -10,7 +10,7 @@ const GameMenu = ({ handleStartGame }: Props) => {
 	const history = useHistory();
 	const handleOnClick = useCallback(
 		(link) => history.push(`/${link}`),
-		[history]
+		[history],
 	);
 
 	const handleNewGame = () => {

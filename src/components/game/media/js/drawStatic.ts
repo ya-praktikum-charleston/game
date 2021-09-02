@@ -1,7 +1,7 @@
 import { GAME, BG, HERO } from './parameters';
 import drawImage from './drawImage';
 
-export default function drawStatic() {
+export default function drawStatic(): void {
     GAME.ctx?.clearRect(0, 0, GAME.winWidth, GAME.winHeight);
     // отрисовка фоновых картинок
     for (let i = 0; i < BG.length; i += 1) {

@@ -1,6 +1,6 @@
 import { GAME, HERO, AUDIO } from './parameters';
 
-export default function gameStop() {
+export default function gameStop(): void {
     GAME.speed = 0;
     GAME.isGameStopped = true;
     HERO.event.run = false;
