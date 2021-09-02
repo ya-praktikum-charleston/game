@@ -16,3 +16,10 @@ export const fetchUserFulfilled = (response: UserResponse) => {
 		payload: response,
 	};
 };
+
+export const fetchUserFailed = (error) => {
+	return {
+		type: FETCH_USER_FAILED,
+		payload: error,
+	};
+};

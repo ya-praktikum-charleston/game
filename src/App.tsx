@@ -14,8 +14,8 @@ import './assets/style.css';
 
 export default function App() {
 	return (
-		<div className="app">
-			<ErrorBoundary>
+		<ErrorBoundary>
+			<div className="app">
 				<Switch>
 					<PrivateRoute path="/" exact><Start /></PrivateRoute>
 					<Route path="/signin" component={Signin} />
@@ -32,7 +32,7 @@ export default function App() {
 				</Switch>
 				{/* TODO добавить условие из redux, если не gameRun показывать GameStatic */}
 				<GameStatic />
-			</ErrorBoundary>
-		</div>
+			</div>
+		</ErrorBoundary>
 	);
 }

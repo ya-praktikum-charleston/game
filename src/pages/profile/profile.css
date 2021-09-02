@@ -1,24 +1,24 @@
 .profile {
-	width: 40vw;
+    width: 40vw;
 }
 
 .profile_main {
-	display: grid;
-	grid-template-columns: 1fr 2fr;
-	margin: 0px 20px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin: 0px 20px;
 }
 
 .form {
-	margin: 15px;
+    margin: 15px;
 }
 
 .avatar {
-	margin: 15px;
+    margin: 15px;
 }
 
 .avatar_img {
-	width: 100px;
-	margin: 0 auto;
+    width: 100px;
+    margin: 0 auto;
 }
 
 .avatar_img__size {
@@ -27,12 +27,12 @@
 }
 
 .file-input__hidden {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
 
 .btn-file-input {

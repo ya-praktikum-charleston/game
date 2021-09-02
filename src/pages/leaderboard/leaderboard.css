@@ -3,7 +3,9 @@
 	grid-template-columns: 1fr 1fr;
 	max-width: 1200px;
 	height: 100%;
-	width: 80vw;
+	width: 50vw;
+	max-width: 1000px;
+	min-width: 550px;
 }
 
 .table-leaderboard-item {
@@ -14,7 +16,7 @@
 	grid-column-gap: 10px;
 }
 
-.item-topics-count {
+.leaderboard-item-topics-count {
 	display: flex;
 	border-radius: 10px;
 	border: 1px solid #000;
@@ -25,7 +27,7 @@
 	padding: 10px;
 }
 
-.item-answers {
+.leaderboard-item-answers {
 	display: flex;
 	border-radius: 10px;
 	border: 1px solid #000;
@@ -50,15 +52,14 @@
 	background-size: contain;
 }
 
-.item-topics-icon {
+.leaderboard-item-topics-icon {
 	cursor: pointer;
 }
 
-.item-topics {
+.leaderboard-item-topics {
 	display: flex;
 	border-radius: 10px;
 	align-items: center;
 	padding: 10px;
-	margin-right: 20px;
 	background: #fff;
 }
