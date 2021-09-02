@@ -3,4 +3,5 @@ export type App = {
     authorized: boolean;
     unauthorized: boolean;
     unexpectedError: boolean;
+    gamaRunner: boolean;
 };

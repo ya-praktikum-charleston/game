@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import ForumMessagesItem from './forumMessagesItem';
 
 type Content = {
@@ -13,7 +13,7 @@ type Props = {
     content: { id: number, avatar: string, message: string, date: string }[],
 };
 
-const ForumMessages = ({ date, content }: Props) => (
+const ForumMessages = ({ date, content }: Props): ReactElement => (
     <>
         <div className="date-stick">{date}</div>
         {

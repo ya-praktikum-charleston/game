@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import HeaderMenu from '../../components/header-menu';
 import Distance from '../../components/distance';
 import SettingsIcon from '../../assets/svg/settings.svg';
 import PauseIcon from '../../assets/svg/pause.svg';
-
-import './game.css';
 
 const headerMenu = [
     {
@@ -19,7 +17,7 @@ const headerMenu = [
     },
 ];
 
-const Game = () => (
+const Game = (): ReactElement => (
     <div className="game">
         <HeaderMenu headerMenu={headerMenu} />
         <Distance distance={1286} />

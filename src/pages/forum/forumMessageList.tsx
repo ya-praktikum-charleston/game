@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Formik, Form } from 'formik';
 import {
     Link,
@@ -10,7 +10,7 @@ import ForumMessages from './forumMessages';
 import AddIcon from '../../assets/svg/add.svg';
 import content from './data';
 
-const ForumMessageList = () => {
+const ForumMessageList = (): ReactElement => {
     const { chapterId, topicId } = useParams();
     const { url } = useRouteMatch();
     return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import {
     Link,
     useRouteMatch,
@@ -6,7 +6,7 @@ import {
 import ForumItem from './forumItem';
 import content from './data';
 
-const ForumChaptersList = () => {
+const ForumChaptersList = (): ReactElement => {
     const { url } = useRouteMatch();
     return (
         <div className="table-forum">
