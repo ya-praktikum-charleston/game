@@ -1,14 +1,14 @@
-import {GAME, HERO, AUDIO} from './parameters';
+import { GAME, HERO, AUDIO } from './parameters';
 
 export default function gameStop() {
     GAME.speed = 0;
     GAME.isGameStopped = true;
     HERO.event.run = false;
 
-    GAME.dom.gameBanner.current.classList.remove("hidden");
+    GAME.dom.gameBanner.current?.classList.remove('hidden');
 
     // остановить аудио
-    if(GAME.audioPlayed){
+    if (GAME.audioPlayed) {
         GAME.audioPlayed = false;
         AUDIO.Dead.play();
     }
@@ -16,9 +16,9 @@ export default function gameStop() {
     AUDIO.Theme1.stop();
 
     // запись нового рекорда
-    if( GAME.localRecord > GAME.localStorageRecord ){
-        let record = Math.floor(GAME.score);
-        localStorage.setItem("localStorageRecord", record);
+    if (GAME.localRecord > GAME.localStorageRecord) {
+        const record = Math.floor(GAME.score);
+        localStorage.setItem('localStorageRecord', String(record));
         GAME.localStorageRecord = record;
     }
 }

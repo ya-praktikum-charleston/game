@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Formik, Form } from 'formik';
 import TextInput from '../../components/text-input';
 import AddIcon from '../../assets/svg/add.svg';
 import ForumChaptersList from './forumСhaptersList';
 
-const ForumChapters = () => (
+const ForumChapters = (): ReactElement => (
     <div className="forum-content-chapter">
         <Formik
             initialValues={{ topics: '' }}

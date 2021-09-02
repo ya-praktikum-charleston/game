@@ -1,4 +1,4 @@
-// png
+/* eslint-disable camelcase */
 export { default as l1_sky } from '../img/l1_sky.png';
 export { default as l2_clouds } from '../img/l2_clouds.png';
 export { default as l3_pyramid } from '../img/l3_pyramid.png';
