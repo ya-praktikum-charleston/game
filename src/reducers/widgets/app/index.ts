@@ -1,3 +1,6 @@
+import type { App } from './types';
+import type { ActionPayload } from '../../../actions/types';
+
 import {
 	SET_APP_LOADING,
 	SET_APP_AUTHORIZED,
@@ -14,7 +17,7 @@ const initialState = {
 	gamaRunner: false,
 };
 
-export const app = (store = initialState, action) => {
+export const app = (store: App = initialState, action: ActionPayload<boolean>) => {
 	switch (action.type) {
 		case SET_GAME_START: {
 			store.gamaRunner = action.payload;
@@ -27,14 +30,14 @@ export const app = (store = initialState, action) => {
 			return store;
 		}
 
-		case SET_APP_AUTHORIZED: {
-			store.authorized = action.payload;
+        case SET_APP_AUTHORIZED: {
+            store.authorized = action.payload;
 
 			return store;
 		}
 
 		case SET_APP_UNAUTHORIZED: {
-			store.unauthorized = action.payload;
+            store.unauthorized = action.payload;
 
 			return store;
 		}

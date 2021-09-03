@@ -7,7 +7,7 @@ const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ||
 
 const sagaMiddleware = createSagaMiddleware();
 
-export const create = (initialState) => {
+export const create = <T>(initialState: T) => {
 	const store = createStore(
 		rootReducer,
 		initialState,
