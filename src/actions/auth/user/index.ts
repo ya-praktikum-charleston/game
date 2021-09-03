@@ -1,3 +1,5 @@
+import { UserResponse } from '../../../../app/api/auth/types';
+
 export const FETCH_USER = 'user/FETCH';
 export const FETCH_USER_FULFULLED = 'user/FETCH_FULFULLED';
 export const FETCH_USER_FAILED = 'user/FETCH_FAILED';
@@ -8,7 +10,7 @@ export const fetchUser = () => {
 	};
 };
 
-export const fetchUserFulfilled = (response) => {
+export const fetchUserFulfilled = (response: UserResponse) => {
 	return {
 		type: FETCH_USER_FULFULLED,
 		payload: response,

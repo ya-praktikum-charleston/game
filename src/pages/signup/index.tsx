@@ -2,15 +2,18 @@ import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
-import { setIn } from 'final-form';
 import * as Yup from 'yup';
+import { SchemaOf } from 'yup';
+import { validateFormValues } from '../../utilities/validator';
 import Main from '../../components/main';
 import { signupAction } from '../../actions/auth/signup';
 import { getSignup } from '../../selectors/collections/auth';
 import PasswordField from '../../components/fields/password';
+import type { Store } from '../../reducers/types';
+import type { Props, SignupFormProps } from './types';
 import './signup.css';
 
-const SignupSchema = Yup.object().shape({
+const SignupSchema: SchemaOf<SignupFormProps> = Yup.object().shape({
     email: Yup.string()
         .email('Пожалуйста, укажите почту')
         .required('Пожалуйста, укажите почту'),
@@ -28,26 +31,28 @@ const SignupSchema = Yup.object().shape({
         .required('Пароли не совпадают'),
 });
 
-const validateFormValues = (schema) => {
-    return async (values) => {
-        try {
-            await schema.validate(values, { abortEarly: false });
-        } catch (error) {
-            return error.inner.reduce((errors, innerError) => {
-                return setIn(errors, innerError.path, innerError.message);
-            }, {});
-        }
-    };
-};
-
 const validate = validateFormValues(SignupSchema);
 
-const Signup = ({ signupResult, signupAction }) => {
-    const onSubmitHandler = (values: SingupProps) => {
-        signupAction(values);
+const Signup = ({ signupResult, signup }: Props) => {
+    const onSubmitHandler = ({
+        first_name,
+        second_name,
+        login,
+        email,
+        password,
+        phone,
+    }: SignupFormProps) => {
+        signup({
+            first_name,
+            second_name,
+            login,
+            email,
+            password,
+            phone,
+        });
     };
 
-    if (signupResult.id) {
+    if (signupResult && signupResult.data && signupResult.data.id) {
         return <Redirect to="/" />;
     }
 
@@ -132,8 +137,12 @@ const Signup = ({ signupResult, signupAction }) => {
     );
 };
 
-const mapStateToProps = (store) => ({
+const mapStateToProps = (store: Store) => ({
     signupResult: getSignup(store),
 });
 
-export default connect(mapStateToProps, { signupAction })(Signup);
+const mapDispatchToProps = {
+    signup: signupAction,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
