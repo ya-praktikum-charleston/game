@@ -3,36 +3,31 @@ import {
     BG,
     HERO,
     PUSSY,
+    pixelDevice,
 } from './parameters';
 import drawImage from './drawImage';
 import gameStop from './gameStop';
-import jump from './jump';
 
 export default function drawRunner(): void {
     GAME.ctx?.clearRect(0, 0, GAME.winWidth, GAME.winHeight);
 
     // отрисовка фоновых картинок
-    for (let i = 0; i < BG.length; i += 1) {
-        // если изображение движется
-        if (BG[i].frame) {
-            GAME.ctx?.drawImage(BG[i].path, BG[i].x, GAME.yPosBg);
-            GAME.ctx?.drawImage(BG[i].path, BG[i].x2, GAME.yPosBg);
+    for (let i = 0; i < BG.length; i++) {
+        GAME.ctx?.drawImage(BG[i].path, BG[i].x, GAME.yPosBg);
+        GAME.ctx?.drawImage(BG[i].path, BG[i].x2, GAME.yPosBg);
 
-            // parallax
-            if (BG[i].speed) {
-                BG[i].x -= GAME.speed / BG[i].speed;
-                BG[i].x2 -= GAME.speed / BG[i].speed;
-            }
+        // parallax
+        if (BG[i].speed) {
+            BG[i].x -= GAME.speed / BG[i].speed;
+            BG[i].x2 -= GAME.speed / BG[i].speed;
+        }
 
-            // спрайт фоновых картинок
-            if (BG[i].x < -GAME.winWidth) {
-                BG[i].x = BG[i].x2 + GAME.winWidth;
-            }
-            if (BG[i].x2 < -GAME.winWidth) {
-                BG[i].x2 = BG[i].x + GAME.winWidth;
-            }
-        } else {
-            GAME.ctx?.drawImage(BG[i].path, 0, GAME.yPosBg);
+        // спрайт фоновых картинок
+        if (BG[i].x < -GAME.winWidth) {
+            BG[i].x = BG[i].x2 + GAME.winWidth;
+        }
+        if (BG[i].x2 < -GAME.winWidth) {
+            BG[i].x2 = BG[i].x + GAME.winWidth;
         }
     }
 
@@ -84,12 +79,12 @@ export default function drawRunner(): void {
 
     // Увеличение скорости при увеличении счёта
     if (GAME.score - GAME.scoreCounter > 50) {
-        GAME.speed += 1;
+        GAME.speed += 2 / pixelDevice;
         GAME.scoreCounter = GAME.score;
     }
 
     // увеличение скорости игры
-    GAME.score += GAME.speed / 1000;
+    GAME.score += GAME.speed / 100;
 
     // рекорд в игре
     if (GAME.score > GAME.localRecord) {
@@ -100,7 +95,7 @@ export default function drawRunner(): void {
     const calibration = 40;
 
     // столкновение героя и врага
-    for (let i = 0; i < PUSSY.enemy.length; i += 1) {
+    for (let i = 0; i < PUSSY.enemy.length; i++) {
         // фронтальное столкновение
         if (
             HERO.position.x + HERO.img.run.width - calibration
@@ -122,7 +117,7 @@ export default function drawRunner(): void {
             }
         }
     }
-    jump();
+
     // статистика
     if (GAME.ctx) {
         GAME.ctx.font = '120px Play';

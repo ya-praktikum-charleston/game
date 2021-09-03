@@ -9,19 +9,11 @@ import {
     restart,
 } from './media/js/parameters';
 import drawRunner from './media/js/drawRunner';
+import jump from './media/js/jump';
 import {
     GameOver,
     Smile,
 } from './media/js/assetsLinks';
-
-// добавление события клика мыши
-const jump = () => {
-    if (!GAME.jumping) {
-        GAME.jumping = true;
-        GAME.jumpingStart = true;
-        GAME.jumpTimer = 0;
-    }
-};
 
 function GameRunner(): ReactElement {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -42,16 +34,17 @@ function GameRunner(): ReactElement {
             document.addEventListener('mousedown', jump);
 
             // дожидаемся загрузки всех изображений
-
-            if (GAME.allCount === GAME.loadCount) {
-                // console.log('Все картинки загружены', allCount , loadCount);
-                restart();
-                drawRunner();
-            }
+            let int = setInterval(function () {
+				if (GAME.allCount === GAME.loadCount) {
+					clearInterval(int);
+                    restart();
+					drawRunner();
+				}
+			}, 1000 / 60);
         }
         return () => {
             // удаление событий мыши
-            window.removeEventListener('mousedown', jump);
+            document.removeEventListener('mousedown', jump);
         };
     }, []);
 
@@ -73,7 +66,7 @@ function GameRunner(): ReactElement {
                     <img src={Smile} className="img_smile" alt="Smile" />
                     <img src={GameOver} className="img_game_over" alt="GameOver" />
                     <button type="button" className="game_restar" onClick={() => handleRestart()}>Повторить</button>
-                    <button type="button" className="game_restar" onClick={() => handleGameExite()}>Выход</button>
+                    <button type="button" className="game_restar game_exit" onClick={() => handleGameExite()}>Выход</button>
                 </div>
             </div>
         </div>
