@@ -5,11 +5,6 @@ export type Game = {
     ctx: CanvasRenderingContext2D | null,
     winWidth: number,
     winHeight: number,
-    gravity: number,
-    jumpPower: number,
-    jumping: boolean,
-    jumpTimer: number,
-    jumpingStart: boolean,
     y_positionLine: number,
     allCount: number,
     loadCount: number,
@@ -31,7 +26,6 @@ export type Background = {
     path: HTMLImageElement,
     x: number,
     x2: number,
-    frame: boolean,
     speed: number,
 };
 

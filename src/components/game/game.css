@@ -34,7 +34,7 @@ body {
 .game_over_main {
     position: relative;
     border-radius: 20px;
-    padding: 110px 100px 130px;
+    padding: 110px 100px 100px;
     overflow: hidden;
 
     display: -ms-flexbox;
@@ -84,6 +84,17 @@ button.game_restar {
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
+}
+button.game_exit {
+    color: var(--orange);
+    font-size: 32px;
+    border: none;
+    padding: 0 26px;
+    line-height: 56px;
+    position: absolute;
+    top: -6px;
+    right: 14px;
+    background: none;
 }
 
 button.game_restar:hover {
