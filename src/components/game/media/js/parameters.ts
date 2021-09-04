@@ -35,7 +35,7 @@ import loadAudio from './loadAudio';
 const { clientWidth, clientHeight } = document.body;
 const spriteHeight = 120;
 // соотношение разрешения дисплея текущего устройства
-export const pixelDevice: number = window.devicePixelRatio;
+export const pixelDevice: number = window.devicePixelRatio * 2;
 // стартовая скорость игры
 const startSpeed: number = 8 / pixelDevice;
 
@@ -224,4 +224,4 @@ export function restart(): void {
 
 
 
-  console.log(window.devicePixelRatio)
+console.log(window.devicePixelRatio)
