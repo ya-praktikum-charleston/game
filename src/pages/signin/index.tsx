@@ -8,6 +8,9 @@ import { validateFormValues } from '../../utilities/validator';
 import { signinAction } from '../../actions/auth/signin';
 import Main from '../../components/main';
 import { getSignin } from '../../selectors/collections/auth';
+import type { Store } from '../../reducers/types';
+import type { Props } from './types';
+import type { SigninProps } from '../../../app/api/auth/types';
 import Field from '../../components/field';
 import './signin.css';
 
@@ -18,30 +21,12 @@ const SigninSchema: SchemaOf<SigninProps> = Yup.object().shape({
 
 const validate = validateFormValues(SigninSchema);
 
-type SigninProps = {
-    signinAction: typeof signinAction;
-    signinResult: {
-        data?: 'OK';
-        error?: string;
-    }
-};
-
-const LoginPassError = ({signinResult}) => {
-    if (signinResult.error !== 'Login or password is incorrect') {
-        return null;
-    }
-
-   return (
-       <div>Не правильный логин или пароль</div>
-   );
-};
-
-const Signin = ({ signinResult, ...props }: SigninProps) => {
-    const onSubmitHandler = (values) => {
-        props.signinAction(values);
+const Signin = ({ signinStore, signin }: Props) => {
+    const onSubmitHandler = (values: SigninProps) => {
+        signin(values);
     };
 
-    if (signinResult.data === 'OK' || signinResult.error === 'User already in system') {
+    if (signinStore.data === 'OK' || signinStore.error === 'User already in system') {
         return <Redirect to="/" />;
     }
 
@@ -66,7 +51,11 @@ const Signin = ({ signinResult, ...props }: SigninProps) => {
                                 >
                                     Вход
                                 </button>
-                                <LoginPassError signinResult={signinResult} />
+                                {
+                                    (signinStore.error === 'Login or password is incorrect')
+                                    ? <div>Не правильный логин или пароль</div>
+                                    : null
+                                }
                             </form>
                         )}
                     />
@@ -77,7 +66,7 @@ const Signin = ({ signinResult, ...props }: SigninProps) => {
 };
 
 const mapStateToProps = (store: Store) => ({
-    signinResult: getSignin(store),
+    signinStore: getSignin(store),
 });
 
 const mapDispatchToProps = {

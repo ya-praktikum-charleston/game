@@ -5,8 +5,8 @@ import * as Yup from 'yup';
 import { SchemaOf } from 'yup';
 import { validateFormValues } from '../../../utilities/validator';
 import Button from '../../button';
-import PasswordField from '../../fields/password';
 import { passwordAction } from '../../../actions/users/password';
+import Field from '../../field';
 import type { Props, PasswordFormProps } from './types';
 
 const PasswordFormSchema: SchemaOf<PasswordFormProps> = Yup.object().shape({
@@ -34,18 +34,9 @@ const PasswordForm = ({ password }: Props) => {
             validate={validate}
             render={({ handleSubmit, submitting }) => (
                 <form onSubmit={handleSubmit}>
-                    <PasswordField
-                        name="oldPassword"
-                        placeholder="Старый пароль"
-                    />
-                    <PasswordField
-                        name="newPassword"
-                        placeholder="Новый пароль"
-                    />
-                    <PasswordField
-                        name="confirmNewPassword"
-                        placeholder="Новый пароль (ещё раз)"
-                    />
+                    <Field name="oldPassword" type="password" placeholder="Старый пароль" />
+                    <Field name="newPassword" type="password" placeholder="Новый пароль" />
+                    <Field name="confirmNewPassword" type="password" placeholder="Новый пароль (ещё раз)" />
                     <Button
                         type="submit"
                         className="btn fullwidth"

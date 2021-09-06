@@ -1,20 +1,16 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Form, Field } from 'react-final-form';
+import { Form } from 'react-final-form';
 import * as Yup from 'yup';
 import { SchemaOf } from 'yup';
 import { validateFormValues } from '../../utilities/validator';
 import Main from '../../components/main';
 import { signupAction } from '../../actions/auth/signup';
 import { getSignup } from '../../selectors/collections/auth';
-<<<<<<< HEAD
-import PasswordField from '../../components/fields/password';
+import Field from '../../components/field';
 import type { Store } from '../../reducers/types';
 import type { Props, SignupFormProps } from './types';
-=======
-import PasswordField from '../../components/field';
->>>>>>> fb8031b50348d2b85f916a50a776b0d6620c5952
 import './signup.css';
 
 const SignupSchema: SchemaOf<SignupFormProps> = Yup.object().shape({
@@ -69,54 +65,13 @@ const Signup = ({ signupResult, signup }: Props) => {
                         validate={validate}
                         render={({ handleSubmit, submitting }) => (
                             <form className="form" onSubmit={handleSubmit}>
-                                <Field name="email">
-                                    {({ input, meta }) => (
-                                        <div>
-                                            <input {...input} className="input" type="email" placeholder="Почта" />
-                                            {meta.error && meta.touched && <span className="input-block__error">{meta.error}</span>}
-                                        </div>
-                                    )}
-                                </Field>
-                                <Field name="login">
-                                    {({ input, meta }) => (
-                                        <div>
-                                            <input {...input} className="input" name="login" type="text" placeholder="Логин" />
-                                            {meta.error && meta.touched && <span className="input-block__error">{meta.error}</span>}
-                                        </div>
-                                    )}
-                                </Field>
-                                <Field name="first_name">
-                                    {({ input, meta }) => (
-                                        <div>
-                                            <input {...input} className="input" name="first_name" type="text" placeholder="Имя" />
-                                            {meta.error && meta.touched && <span className="input-block__error">{meta.error}</span>}
-                                        </div>
-                                    )}
-                                </Field>
-                                <Field name="second_name">
-                                    {({ input, meta }) => (
-                                        <div>
-                                            <input {...input} className="input" name="second_name" type="text" placeholder="Фамилия" />
-                                            {meta.error && meta.touched && <span className="input-block__error">{meta.error}</span>}
-                                        </div>
-                                    )}
-                                </Field>
-                                <Field name="phone">
-                                    {({ input, meta }) => (
-                                        <div>
-                                            <input {...input} className="input" name="phone" type="tel" placeholder="Телефон" />
-                                            {meta.error && meta.touched && <span className="input-block__error">{meta.error}</span>}
-                                        </div>
-                                    )}
-                                </Field>
-                                <PasswordField
-                                    name="password"
-                                    placeholder="Пароль"
-                                />
-                                <PasswordField
-                                    name="confirm"
-                                    placeholder="Пароль (ещё раз)"
-                                />
+                                <Field name="email" type="email" placeholder="Почта" />
+                                <Field name="login" type="text" placeholder="Логин" />
+                                <Field name="first_name" type="text" placeholder="Имя" />
+                                <Field name="second_name" type="text" placeholder="Фамилия" />
+                                <Field name="phone" type="tel" placeholder="Телефон" />
+                                <Field name="password" type="password" placeholder="Пароль" />
+                                <Field name="confirm" type="password" placeholder="Пароль (ещё раз)" />
                                 <div className="form__redirect">
                                     <Link to="/signin">Войти</Link>
                                 </div>
