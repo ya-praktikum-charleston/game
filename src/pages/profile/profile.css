@@ -22,7 +22,8 @@
 }
 
 .avatar_img__size {
-    width: 100%;
+	width: 100%;
+    border-radius: 50px 50px 50px 50px;
 }
 
 .file-input__hidden {
@@ -35,16 +36,17 @@
 }
 
 .btn-file-input {
-    display: block;
-    width: 100%;
-    text-align: center;
-    cursor: pointer;
-    margin-bottom: 28px;
-    border-radius: 10px;
-    font-size: var(--font-size-xxs);
-    font-family: var(--main-font-family);
-    background: var(--button-color);
-    border: 1px solid #81911f;
-    padding: 10px;
-    box-sizing: border-box;
+	display: block;
+	width: 100%;
+	text-align: center;
+	cursor: pointer;
+    margin-top: 15px;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	font-size: var(--font-size-xxs);
+	font-family: var(--main-font-family);
+	background: var(--button-color);
+	border: 1px solid #81911f;
+	padding: 10px;
+	box-sizing: border-box;
 }

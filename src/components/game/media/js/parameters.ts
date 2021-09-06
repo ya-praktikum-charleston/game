@@ -34,22 +34,16 @@ import loadAudio from './loadAudio';
 
 const { clientWidth, clientHeight } = document.body;
 const spriteHeight = 120;
+// соотношение разрешения дисплея текущего устройства
+export const pixelDevice: number = window.devicePixelRatio;
+// стартовая скорость игры
+const startSpeed: number = 8 / pixelDevice;
+
 // настройки игры и canvas
 export const GAME: Game = {
     ctx: null,
     winWidth: clientWidth,
     winHeight: clientHeight,
-
-    // гравитация
-    gravity: 0.4,
-    // сила прыжка
-    jumpPower: 12,
-    // прыжок
-    jumping: false,
-    // время прыжка
-    jumpTimer: 0,
-    //  анимация и аудио прыжка запущена
-    jumpingStart: false,
     // координа на которой расположены персонажы
     y_positionLine: clientHeight - 220 - spriteHeight,
     // сколько всего картинок
@@ -59,7 +53,7 @@ export const GAME: Game = {
     // выравнивание картинок исходя из пропорций экрана
     yPosBg: clientHeight <= 1080 ? clientHeight - 1080 : 1080 - clientHeight,
     // скорость игры
-    speed: 4,
+    speed: startSpeed,
     // балансная переменная для увеличения скорости игры
     scoreCounter: 0,
     // счёт в игре
@@ -93,49 +87,42 @@ export const BG: Background[] = [
         path: loadStaticImage(l1_sky, GAME),
         x: 0,
         x2: 0,
-        frame: false,
         speed: 0,
     },
     {
         path: loadStaticImage(l2_clouds, GAME),
         x: 0,
         x2: 0,
-        frame: false,
         speed: 0,
     },
     {
         path: loadStaticImage(l3_pyramid, GAME),
         x: 0,
         x2: 0,
-        frame: false,
         speed: 0,
     },
     {
         path: loadStaticImage(l4_bg_ground01, GAME),
         x: 0,
         x2: clientWidth,
-        frame: true,
         speed: 40,
     },
     {
         path: loadStaticImage(l5_bg_ground02, GAME),
         x: 0,
         x2: clientWidth,
-        frame: true,
         speed: 20,
     },
     {
         path: loadStaticImage(l6_bg_ground03, GAME),
         x: 0,
         x2: clientWidth,
-        frame: true,
         speed: 10,
     },
     {
         path: loadStaticImage(l7_ground, GAME),
         x: 0,
         x2: clientWidth,
-        frame: true,
         speed: 1,
     },
 ];
@@ -159,7 +146,7 @@ export const HERO: Hero = {
 };
 
 // пиздюки
-const pussyDistance = [[640, 1400], [1400, 2160], [2160, 2920]];
+const pussyDistance = [[640, 1300], [1400, 2060], [2160, 2920]];
 
 export const PUSSY: TypePussy = {
     run: loadSpriteImage(Pussy, 128.58333, 150, 12, 6, GAME),
@@ -204,7 +191,7 @@ export function restart(): void {
 
     GAME.y_positionLine = clientHeight - 220 - 120;
     GAME.yPosBg = clientHeight <= 1080 ? clientHeight - 1080 : 1080 - clientHeight;
-    GAME.speed = 4;
+    GAME.speed = startSpeed;
     GAME.scoreCounter = 0;
     GAME.score = 0;
     GAME.isGameStopped = false;
@@ -214,10 +201,8 @@ export function restart(): void {
 
     // сброс BG
     for (let i = 0; i < BG.length; i += 1) {
-        if (BG[i].frame) {
-            BG[i].x = 0;
-            BG[i].x2 = GAME.winWidth;
-        }
+        BG[i].x = 0;
+        BG[i].x2 = GAME.winWidth;
     }
     // сброс PUSSY
     for (let i = 0; i < PUSSY.enemy.length; i += 1) {
@@ -227,6 +212,7 @@ export function restart(): void {
         PUSSY.enemy[i].attack = false;
     }
 
+    // сброс HERO
     HERO.position.x = 65;
     HERO.position.y = GAME.y_positionLine;
     HERO.event.run = true;
@@ -234,3 +220,8 @@ export function restart(): void {
 
     GAME.dom.gameBanner.current?.classList.add('hidden');
 }
+
+
+
+
+  console.log(window.devicePixelRatio)

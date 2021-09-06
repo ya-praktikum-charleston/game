@@ -7,7 +7,6 @@ import GameMenu from '../../components/game-menu';
 import SettingsIcon from '../../assets/svg/settings.svg';
 import GameRunner from '../../components/game/gameRunner';
 import { AUDIO, restart } from '../../components/game/media/js/parameters';
-
 import './start.css';
 
 const headerMenu = [
@@ -41,7 +40,6 @@ function Start(): ReactElement {
 	if (gameRunner) {
 		return <GameRunner handleExittGame={handleExittGame} />;
 	}
-	console.log('render')
 	return (
 		<>
 			<HeaderMenu headerMenu={headerMenu} />
