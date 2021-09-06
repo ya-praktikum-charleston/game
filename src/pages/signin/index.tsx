@@ -20,7 +20,25 @@ const SigninSchema: SchemaOf<SigninProps> = Yup.object().shape({
 
 const validate = validateFormValues(SigninSchema);
 
-const Signin = ({ signin, signinResult }: Props) => {
+type SigninProps = {
+    signinAction: typeof signinAction;
+    signinResult: {
+        data?: 'OK';
+        error?: string;
+    }
+};
+
+const LoginPassError = ({signinResult}) => {
+    if (signinResult.error !== 'Login or password is incorrect') {
+        return null;
+    }
+
+    return (
+        <div>Не правильный логин или пароль</div>
+    );
+};
+
+const Signin = ({ signin, signinResult }: SigninProps) => {
     const onSubmitHandler = (values: SigninProps) => {
         signin(values);
     };
@@ -38,22 +56,8 @@ const Signin = ({ signin, signinResult }: Props) => {
                         validate={validate}
                         render={({ handleSubmit, submitting }) => (
                             <form className="form" onSubmit={handleSubmit}>
-                                <Field name="login">
-                                    {({ input, meta }) => (
-                                        <div>
-                                            <input {...input} className="input" type="text" placeholder="Логин" />
-                                            {meta.error && meta.touched && <span className="input-block__error">{meta.error}</span>}
-                                        </div>
-                                    )}
-                                </Field>
-                                <Field name="password">
-                                    {({ input, meta }) => (
-                                        <div>
-                                            <input {...input} className="input" type="password" placeholder="Пароль" />
-                                            {meta.error && meta.touched && <span className="input-block__error">{meta.error}</span>}
-                                        </div>
-                                    )}
-                                </Field>
+                                <Field name="login" type="text" placeholder="Логин" />
+                                <Field name="password" type="password" placeholder="Пароль" />
                                 <div className="form__redirect">
                                     <Link to="/signup">Регистрация</Link>
                                 </div>
@@ -64,11 +68,7 @@ const Signin = ({ signin, signinResult }: Props) => {
                                 >
                                     Вход
                                 </button>
-                                {
-                                    (signinResult.error === 'Login or password is incorrect')
-                                        ? <div>Не правильный логин или пароль</div>
-                                        : ''
-                                }
+                                <LoginPassError signinResult={signinResult} />
                             </form>
                         )}
                     />
