@@ -1,7 +1,7 @@
 import type { UserResponse } from '../../../../app/api/auth/types';
-import type { ProfileAction } from '../../../actions/users/profile/types';
+import { profileAction } from '../../../actions/users/profile';
 
 export type Props = {
     user: UserResponse;
-    profile: ProfileAction;
+    profile: typeof profileAction;
 };

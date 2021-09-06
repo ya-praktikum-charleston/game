@@ -8,14 +8,14 @@ import type {
     LogoutResponse,
 } from './types';
 
-export const signup = (props: SignupProps) => axios.post<SignupResponse>('/auth/signup', props)
+export const signup = (props: SignupProps): Promise<SignupResponse> => axios.post<SignupResponse>('/auth/signup', props)
     .then(({ data }) => data);
 
-export const signin = (props: SigninProps) => axios.post<SigninResponse>('/auth/signin', props)
+export const signin = (props: SigninProps): Promise<SigninResponse> => axios.post<SigninResponse>('/auth/signin', props)
     .then(({ data }) => data);
 
-export const user = () => axios.get<UserResponse>('/auth/user')
+export const user = (): Promise<UserResponse> => axios.get<UserResponse>('/auth/user')
     .then(({ data }) => data);
 
-export const logout = () => axios.post<LogoutResponse>('/auth/logout')
+export const logout = (): Promise<LogoutResponse> => axios.post<LogoutResponse>('/auth/logout')
     .then(({ data }) => data);
