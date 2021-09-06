@@ -6,8 +6,7 @@ export const SET_APP_UNAUTHORIZED = 'app/UNAUTHORIZED';
 export const SET_APP_UNEXPECTED_ERROR = 'app/UNAUTHORIZED';
 export const SET_GAME_START = 'app/GAMESTART';
 
-// --------------------------------------------
-export const setGameStart = (payload) => {
+export const setGameStart = (payload: boolean): ActionPayload<boolean> => {
 	return {
 		type: SET_GAME_START,
 		payload,
