@@ -8,9 +8,13 @@ import { validateFormValues } from '../../utilities/validator';
 import Main from '../../components/main';
 import { signupAction } from '../../actions/auth/signup';
 import { getSignup } from '../../selectors/collections/auth';
+<<<<<<< HEAD
 import PasswordField from '../../components/fields/password';
 import type { Store } from '../../reducers/types';
 import type { Props, SignupFormProps } from './types';
+=======
+import PasswordField from '../../components/field';
+>>>>>>> fb8031b50348d2b85f916a50a776b0d6620c5952
 import './signup.css';
 
 const SignupSchema: SchemaOf<SignupFormProps> = Yup.object().shape({
