@@ -1,4 +1,4 @@
-export type App = {
+export type AppStore = {
     loading: boolean;
     authorized: boolean;
     unauthorized: boolean;

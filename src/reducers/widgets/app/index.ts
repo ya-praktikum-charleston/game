@@ -1,4 +1,4 @@
-import type { App } from './types';
+import type { AppStore } from './types';
 import type { ActionPayload } from '../../../actions/types';
 
 import {
@@ -17,7 +17,7 @@ const initialState = {
 	gamaRunner: false,
 };
 
-export const app = (store: App = initialState, action: ActionPayload<boolean>) => {
+export const app = (store: AppStore = initialState, action: ActionPayload<boolean>): AppStore => {
 	switch (action.type) {
 		case SET_GAME_START: {
 			store.gamaRunner = action.payload;

@@ -1,8 +1,8 @@
-import type { AvatarAction } from '../../../actions/users/avatar/types';
+import { avatarAction } from '../../../actions/users/avatar';
 
 export type Props = {
     avatarLink: null | string;
-    avatar: AvatarAction;
+    avatar: typeof avatarAction;
 };
 
 export type FormProps = {

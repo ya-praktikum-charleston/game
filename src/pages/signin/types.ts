@@ -1,7 +1,7 @@
-import type { SigninAction } from '../../actions/auth/signin/types';
+import { signinAction } from '../../actions/auth/signin';
 import type { SigninStore } from '../../reducers/collections/auth/types';
 
 export type Props = {
-    signinStore: SigninStore;
-    signin: SigninAction;
+    signin: typeof signinAction;
+    signinResult: SigninStore;
 };

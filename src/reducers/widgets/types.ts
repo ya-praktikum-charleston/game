@@ -1,5 +1,5 @@
-import type { App } from './app/types';
+import type { AppStore } from './app/types';
 
 export type Widgets = {
-    app: App;
+    app: AppStore;
 };
