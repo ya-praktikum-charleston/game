@@ -1,19 +1,19 @@
 import React from 'react';
-import {Provider} from 'react-redux';
-import {mount} from 'enzyme';
+import { waitFor } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { mount } from 'enzyme';
+import { mockStore } from '../../../../mocks/store';
 import { signinAction } from '../../../actions/auth/signin';
 
-import {mockStore} from 'mocks/store';
+import Signin from '..';
 
-import Signin from '../';
-
-jest.mock('../../../components/main', () => function Main({children}) {
+jest.mock('../../../components/main', () => function Main({ children }) {
     return children;
 });
 
 jest.mock('react-router-dom', () => ({
     Link(props) {
-        return <a {...props} />;
+        return <a {...props}>Регистрация</a>;
     },
     Redirect(props) {
         return <span {...props} />;
@@ -24,24 +24,40 @@ describe('<Signin />', () => {
     let store;
     let wrapper;
 
-    beforeEach(() => {
+    beforeEach(async () => {
         store = mockStore({
             collections: {
-                signin: {
-                    data: 'OK',
-                },
+                signin: {},
             },
         });
 
         wrapper = mount(
             <Provider store={store}>
                 <Signin />
-            </Provider>
+            </Provider>,
         );
+
+        await waitFor(() => {
+            wrapper.update();
+        });
     });
 
     describe('редиректим на корневой роут, если', () => {
         it('успешно авторизовались', () => {
+            store = mockStore({
+                collections: {
+                    signin: {
+                        data: 'OK',
+                    },
+                },
+            });
+
+            wrapper = mount(
+                <Provider store={store}>
+                    <Signin />
+                </Provider>,
+            );
+
             expect(wrapper.find('Signin').find('Redirect')).toHaveLength(1);
             expect(wrapper.find('Signin').find('Redirect').props()).toEqual({
                 to: '/',
@@ -60,7 +76,7 @@ describe('<Signin />', () => {
             wrapper = mount(
                 <Provider store={store}>
                     <Signin />
-                </Provider>
+                </Provider>,
             );
 
             expect(wrapper.find('Signin').find('Redirect')).toHaveLength(1);
@@ -70,35 +86,29 @@ describe('<Signin />', () => {
         });
     });
 
-    it('при сабмите формы диспатчим экшн для авторизации', () => {
-        store = mockStore({
-            collections: {
-                signin: {},
-            },
-        });
-
-        wrapper = mount(
-            <Provider store={store}>
-                <Signin />
-            </Provider>
-        );
-
-        // console.log(wrapper.debug());
-
+    it('при сабмите формы диспатчим экшн для авторизации', async () => {
         wrapper.find('Signin').find('ReactFinalForm').props().onSubmit({
             login: 'admin',
             password: 'pass',
         });
 
-        expect(store.getActions()).toEqual([
-            signinAction({
-                login: 'admin',
-                password: 'pass',
-            }),
-        ]);
+        await waitFor(() => {
+            expect(store.getActions()).toEqual([
+                signinAction({
+                    login: 'admin',
+                    password: 'pass',
+                }),
+            ]);
+        });
     });
 
-    it('рендерим сообщение об ошибке, если пользователь ввел неправильный логин или пароль', () => {
+    it('не рендерим сообщение об ошибке неправильного логина пароля, при загрузке страницы', async () => {
+        await waitFor(() => {
+            expect(wrapper.find({ children: 'Не правильный логин или пароль' })).toHaveLength(0);
+        });
+    });
+
+    it('рендерим сообщение об ошибке, если пользователь ввел неправильный логин или пароль', async () => {
         store = mockStore({
             collections: {
                 signin: {
@@ -110,15 +120,11 @@ describe('<Signin />', () => {
         wrapper = mount(
             <Provider store={store}>
                 <Signin />
-            </Provider>
+            </Provider>,
         );
 
-        // console.log(wrapper.debug());
-
-        expect(wrapper.find('LoginPassError')).toHaveLength(1);
-    });
-
-    it('не рендерим сообщение об ошибке, если пользователь ввел правильный логин и пароль', () => {
-        expect(wrapper.find('LoginPassError')).toHaveLength(0);
+        await waitFor(() => {
+            expect(wrapper.find({ children: 'Не правильный логин или пароль' })).toHaveLength(1);
+        });
     });
 });
