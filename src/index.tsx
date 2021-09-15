@@ -11,7 +11,7 @@ const initialState = (window as any).__INITIAL_STATE__ || {};
 const store = create(initialState);
 
 const rootElement = document.getElementById('root');
-ReactDOM.render(
+ReactDOM.hydrate(
     <BrowserRouter>
         <Provider store={store}>
             <App />
