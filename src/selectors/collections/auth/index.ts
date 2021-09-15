@@ -1,9 +1,15 @@
 import type { Store } from '../../../reducers/types';
+import type {
+    SignupStore,
+    SigninStore,
+    UserStore,
+    LogoutStore,
+} from '../../../reducers/collections/auth/types';
 
-export const getSignup = (store: Store) => store.collections.signup;
-export const getSignin = (store: Store) => store.collections.signin;
-export const getUser = (store: Store) => store.collections.user;
-export const getUserAvatar = (store: Store) => {
+export const getSignup = (store: Store): SignupStore => store.collections.signup;
+export const getSignin = (store: Store): SigninStore => store.collections.signin;
+export const getUser = (store: Store): UserStore => store.collections.user;
+export const getUserAvatar = (store: Store): string | null => {
     const avatarPath = store.collections.user.avatar;
 
     if (avatarPath) {
@@ -12,4 +18,4 @@ export const getUserAvatar = (store: Store) => {
 
     return null;
 };
-export const getLogout = (store: Store) => store.collections.logout;
+export const getLogout = (store: Store): LogoutStore => store.collections.logout;

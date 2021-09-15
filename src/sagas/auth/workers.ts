@@ -1,14 +1,9 @@
-import { put, call } from 'redux-saga/effects';
-import type { ErrorType } from '../../../app/utils/axios-instance/types';
-import type { ActionPayload } from '../../actions/types';
-import type {
-    LogoutResponse,
-    SigninProps,
-    SigninResponse,
-    SignupProps,
-    SignupResponse,
-    UserResponse,
-} from '../../../app/api/auth/types';
+import {
+    put,
+    call,
+    CallEffect,
+    PutEffect,
+} from 'redux-saga/effects';
 import {
     signup,
     signin,
@@ -25,8 +20,20 @@ import {
     setUnauthorized,
     setUnexpectedError,
 } from '../../actions/app';
+import type { Action, ActionPayload } from '../../actions/types';
+import type {
+    LogoutResponse,
+    SigninProps,
+    SigninResponse,
+    SignupProps,
+    SignupResponse,
+    UserResponse,
+} from '../../../app/api/auth/types';
+import type { ErrorType } from '../../../app/utils/axios-instance/types';
 
-export function* workerSignup(action: ActionPayload<SignupProps>) {
+export function* workerSignup(
+    action: ActionPayload<SignupProps>,
+): Generator<CallEffect<SignupResponse> | PutEffect<Action>, void, SignupResponse> {
     try {
 		const response: SignupResponse = yield call(signup, action.payload);
 
@@ -36,25 +43,25 @@ export function* workerSignup(action: ActionPayload<SignupProps>) {
 	} catch (error) {
 		const { response } = error as ErrorType;
 
-        if (response) {
-            switch (response.status) {
-                case 400:
-                    yield put(signupFailedAction(response.data.reason));
-                    break;
+        switch (response?.status) {
+            case 400:
+                yield put(signupFailedAction(response.data.reason));
+                break;
 
-                case 401:
-                    yield put(signupFailedAction(response.data.reason));
-                    break;
+            case 401:
+                yield put(signupFailedAction(response.data.reason));
+                break;
 
-                default:
-                    yield put(setUnexpectedError(true));
-                    break;
-            }
+            default:
+                yield put(setUnexpectedError(true));
+                break;
         }
 	}
 }
 
-export function* workerSignin(action: ActionPayload<SigninProps>) {
+export function* workerSignin(
+    action: ActionPayload<SigninProps>,
+): Generator<CallEffect<string> | PutEffect<Action>, void, string> {
     try {
 		const response: SigninResponse = yield call(signin, action.payload);
 
@@ -80,7 +87,9 @@ export function* workerSignin(action: ActionPayload<SigninProps>) {
 	}
 }
 
-export function* workerUser() {
+export function* workerUser(): Generator<PutEffect<ActionPayload<boolean>>
+    | CallEffect<UserResponse>
+    | PutEffect<ActionPayload<UserResponse>>, void, UserResponse> {
 	yield put(setLoading(true));
 
 	try {
@@ -106,7 +115,8 @@ export function* workerUser() {
 	yield put(setLoading(false));
 }
 
-export function* workerLogout() {
+export function* workerLogout(): Generator<CallEffect<string>
+    | PutEffect<Action>, void, string> {
     try {
 		const response: LogoutResponse = yield call(logout);
 

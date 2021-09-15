@@ -25,7 +25,7 @@ const initialSignup: SignupStore = {
 export const signup = (
     store = initialSignup,
     action: Action | ActionPayload<SignupResponse | string>,
-) => {
+): SignupStore => {
 	switch (action.type) {
 		case FETCH_SIGNUP_FULFILLED: {
 			store.data = (action as ActionPayload<SignupResponse>).payload;
@@ -59,7 +59,7 @@ const initialSignin: SigninStore = {
 export const signin = (
     store = initialSignin,
     action: Action | ActionPayload<SigninResponse | ErrorType>,
-) => {
+): SigninStore => {
 	switch (action.type) {
 		case FETCH_SIGNIN_FULFILLED: {
 			store.data = (action as ActionPayload<SigninResponse>).payload;
@@ -111,7 +111,7 @@ const initialLogout: LogoutStore = {
 export const logout = (
     store = initialLogout,
     action: Action | ActionPayload<LogoutResponse | ErrorType>,
-) => {
+): LogoutStore => {
 	switch (action.type) {
 		case FETCH_LOGOUT_FULFILLED: {
             store.data = (action as ActionPayload<LogoutResponse>).payload;
