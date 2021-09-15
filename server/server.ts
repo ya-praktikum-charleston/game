@@ -1,5 +1,5 @@
 import express from 'express';
-import ssr from '../ssr';
+import ssr from './ssr';
 const server = express()
 
 server.get('/', (req, res) => {

@@ -4,10 +4,13 @@ import routes from './routes';
 
 export default function App() {
     return (
-        <Switch>
-            {routes.map(({ ...routeProps }) => (
-                <Route key={routeProps.path} {...routeProps} />
-            ))}
-        </Switch>
+        <>
+            <div>asdasd</div>
+            <Switch>
+                {routes.map(({ ...routeProps }) => (
+                    <Route key={routeProps.path} {...routeProps} />
+                ))}
+            </Switch>
+        </>
     );
 }

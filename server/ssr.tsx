@@ -1,12 +1,11 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
-import { Request, Response } from 'express';
 import App from '../src/App';
 
-export default function render(req: Request, res: Response) {
+export default function render() {
     const jsx = (
-        <StaticRouter location={req.url}>
+        <StaticRouter>
             <App />
         </StaticRouter>
     );
