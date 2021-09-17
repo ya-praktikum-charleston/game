@@ -12,7 +12,7 @@ const initialState = {};
 export default function render(req) {
     const location = req.originalUrl;
     const store = create(initialState);
-    const statsFile = path.resolve('./dist/static/loadable-stats.json');
+    const statsFile = path.resolve('./dist/server/loadable-stats.json');
     const chunkExtractor = new ChunkExtractor({ statsFile });
     const jsx = chunkExtractor.collectChunks(
         <ReduxProvider store={store}>

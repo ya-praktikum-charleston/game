@@ -1,11 +1,10 @@
 import path from 'path';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import LoadablePlugin from '@loadable/webpack-plugin';
 
 module.exports = {
     name: 'client/index.tsx',
-    target: 'node',
+    target: 'web',
     entry: {
         client: path.resolve(__dirname, 'client'),
     },
@@ -64,6 +63,5 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin({ filename: '[name].css' }),
         new CleanWebpackPlugin(),
-        new LoadablePlugin(),
     ],
 };

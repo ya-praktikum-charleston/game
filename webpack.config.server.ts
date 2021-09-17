@@ -1,6 +1,7 @@
 import path from 'path';
 import nodeExternals from 'webpack-node-externals';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import LoadablePlugin from '@loadable/webpack-plugin';
 
 module.exports = {
     name: 'server',
@@ -13,11 +14,12 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist/server'),
         filename: '[name].js',
+        libraryTarget: 'commonjs2',
     },
     resolve: {
         extensions: ['.ts', '.tsx'],
     },
-    externals: [nodeExternals()],
+    externals: ['@loadable/component', nodeExternals()],
     module: {
         rules: [
             {
@@ -37,5 +39,6 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(),
+        new LoadablePlugin(),
     ],
 };
