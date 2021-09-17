@@ -3,14 +3,12 @@ import loadable from '@loadable/component';
 import { Route, Switch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import PrivateRoute from './components/routes/privete';
-//import Start from './pages';
 import ErrorPage from './pages/error';
 import LeaderboardPage from './pages/leaderboard';
 import ForumPage from './pages/forum';
 import Profile from './pages/profile';
 import Signin from './pages/signin';
 import Signup from './pages/signup';
-//import GameStatic from './components/game/gameStatic';
 import ErrorBoundary from './utilities/ErrorBoundary';
 import './assets/style.css';
 

@@ -8,7 +8,6 @@ import 'babel-polyfill';
 import { create } from '../src/store';
 import App from '../src/App';
 
-
 const initialState = (window as any).__INITIAL_STATE__ || {};
 
 const store = create(initialState);
@@ -22,4 +21,4 @@ loadableReady(() => {
         </Provider>,
         document.getElementById('root'),
     );
-})
+});
