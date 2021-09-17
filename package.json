@@ -13,7 +13,8 @@
         "stylelint:fix": "stylelint 'src' .scss --fix",
         "test": "jest",
         "test:coverage": "jest --coverage",
-        "build:server": "tsc --project ./tsconfig.server.json --outDir ./dist",
+        "build:client": "webpack --config webpack.config.client.ts",
+        "build:server": "webpack --config webpack.config.server.ts",
         "ssr": "node ./dist/server/server.js"
     },
     "keywords": [],
@@ -34,12 +35,14 @@
         "@types/loadable__component": "^5.13.4",
         "@types/loadable__server": "^5.12.6",
         "@types/loadable__webpack-plugin": "^5.7.3",
+        "@types/mini-css-extract-plugin": "^2.3.0",
         "@types/node": "^16.9.1",
         "@types/react-router-dom": "^5.1.8",
         "@typescript-eslint/eslint-plugin": "^4.29.0",
         "@typescript-eslint/parser": "^4.29.0",
         "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
         "babel-loader": "^8.1.0",
+        "clean-webpack-plugin": "^4.0.0",
         "css-loader": "^6.2.0",
         "enzyme": "^3.11.0",
         "enzyme-to-json": "^3.6.2",
@@ -55,6 +58,8 @@
         "html-webpack-plugin": "^5.3.2",
         "identity-obj-proxy": "^3.0.0",
         "jest": "27.1.0",
+        "mini-css-extract-plugin": "^2.3.0",
+        "null-loader": "^4.0.1",
         "path": "^0.12.7",
         "redux-mock-store": "^1.5.4",
         "style-loader": "^3.2.1",
@@ -69,14 +74,8 @@
         "webpack": "^5.52.1",
         "webpack-cli": "^4.8.0",
         "webpack-dev-server": "3.11.2",
+        "webpack-manifest-plugin": "^4.0.2",
         "webpack-node-externals": "^3.0.0"
-    },
-    "babel": {
-        "presets": [
-            "@babel/preset-env",
-            "@babel/preset-react",
-            "@babel/preset-typescript"
-        ]
     },
     "engines": {
         "node": "= 12.0.0",

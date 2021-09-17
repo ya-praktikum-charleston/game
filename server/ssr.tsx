@@ -1,27 +1,46 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
+import path from 'path';
 import { StaticRouter } from 'react-router-dom';
+import { Provider as ReduxProvider } from 'react-redux';
+import { ChunkExtractor } from '@loadable/server';
+import { create } from '../src/store';
 import App from '../src/App';
 
-export default function render() {
-    const jsx = (
-        <StaticRouter>
-            <App />
-        </StaticRouter>
+const initialState = {};
+
+export default function render(req) {
+    const location = req.originalUrl;
+    const store = create(initialState);
+    const statsFile = path.resolve('./dist/static/loadable-stats.json');
+    const chunkExtractor = new ChunkExtractor({ statsFile });
+    const jsx = chunkExtractor.collectChunks(
+        <ReduxProvider store={store}>
+            <StaticRouter location={location}>
+                <App />
+            </StaticRouter>
+        </ReduxProvider>
     );
 
-    const app = renderToString(jsx);
-
-    return (
-        `<!DOCTYPE html>
-    <html>
+    const html = renderToString(jsx);
+    const reduxState = store.getState();
+    return `
+    <!DOCTYPE html>
+    <html lang="en">
     <head>
-    <meta charset="utf-8">
-    <title>Server-side rendering with rehydration</title>
+        <meta charset="UTF-8">
+        <meta name="google-site-verification" content="nLL5VlSAgcKL756luG6o6UwKcvR8miU2duRnhU-agmE" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
     </head>
     <body>
-    <div id="root">${app}</div>
+        <div id="root">${html}</div>
+        <script src='client.js'></script>
+        <script>
+                window.__INITIAL_STATE__ = ${JSON.stringify(reduxState)}
+        </script>
     </body>
-</html>`
-    );
+    </html>
+`;
 }

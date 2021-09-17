@@ -1,38 +1,39 @@
-import React from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
-import routes from './routes';
+import React, { ReactElement } from 'react';
+import loadable from '@loadable/component';
+import { Route, Switch } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import PrivateRoute from './components/routes/privete';
+import { Start } from './pages';
+import ErrorPage from './pages/error';
+import LeaderboardPage from './pages/leaderboard';
+import ForumPage from './pages/forum';
+import Profile from './pages/profile';
+import Signin from './pages/signin';
+import Signup from './pages/signup';
+//import GameStatic from './components/game/gameStatic';
+import ErrorBoundary from './utilities/ErrorBoundary';
+import { isServer } from './utilities/isServer';
+import './assets/style.css';
 
-export default function App() {
+const GameStatic = loadable(() => import('./components/game/gameStatic'), { ssr: false });
+
+export default function App(): ReactElement {
+    const gameRunner = useSelector(({ widgets }) => widgets.app.gamaRunner);
     return (
-        <>
-
-            <div>asdasd</div>
-            <div>
-                <ul>
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/about">About</Link>
-                    </li>
-                    <li>
-                        <Link to="/topics">Topics</Link>
-                    </li>
-                </ul>
-
+        <ErrorBoundary>
+            <div className="app">
                 <Switch>
-                    <Route path="/about">
-                        <div>About</div>
-                    </Route>
-                    <Route path="/topics">
-                        <div>Topics</div>
-                    </Route>
-                    <Route path="/">
-                        <div>Home</div>
-                    </Route>
+                    {/*<PrivateRoute path="/" exact ><Start /></PrivateRoute>*/}
+                    <Route path="/signin" component={Signin} />
+                    <Route path="/signup" component={Signup} />
+                    <PrivateRoute path="/profile"><Profile /></PrivateRoute>
+                    <PrivateRoute path="/forum"><ForumPage /></PrivateRoute>
+                    <PrivateRoute path="/leaderboard"><LeaderboardPage /></PrivateRoute>
+                    <Route component={() => (<ErrorPage number={404} />)} />
                 </Switch>
-            </div>
 
-        </>
+                {/*<GameStatic />*/}
+            </div>
+        </ErrorBoundary>
     );
 }
