@@ -13,6 +13,8 @@ import GameStatic from './components/game/gameStatic';
 import ErrorBoundary from './utilities/ErrorBoundary';
 import './assets/style.css';
 
+
+
 export default function App(): ReactElement {
     const gameRunner = useSelector(({ widgets }) => widgets.app.gamaRunner);
     return (
