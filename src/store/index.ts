@@ -1,5 +1,5 @@
 import { createStore, compose, applyMiddleware } from 'redux';
-import createSagaMiddleware from 'redux-saga';
+import createSagaMiddleware, { END } from 'redux-saga';
 import { rootReducer } from '../reducers';
 import rootSaga from '../sagas';
 import { isServer } from '../utilities/isServer';
@@ -20,6 +20,10 @@ export const create = <T>(initialState: T) => {
 		initialState,
 		composeEnhancers(applyMiddleware(sagaMiddleware)),
 	);
+
+	store.runSaga = sagaMiddleware.run;
+	store.close = () => store.dispatch(END);
+
 	if (!isServer) {
 		sagaMiddleware.run(rootSaga);
 	}

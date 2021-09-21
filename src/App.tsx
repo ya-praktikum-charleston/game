@@ -17,6 +17,7 @@ const Start = loadable(() => import('./pages'), { ssr: false });
 
 export default function App(): ReactElement {
     const gameRunner = useSelector(({ widgets }) => widgets.app.gamaRunner);
+
     return (
         <ErrorBoundary>
             <div className="app">

@@ -11,6 +11,7 @@ import {
 } from '../../../selectors/widgets/app';
 import type { Store } from '../../../reducers/types';
 import type { Props } from './types';
+import { isServer } from '../../../utilities/isServer';
 
 const PrivateRoute = ({
     children,
@@ -26,7 +27,6 @@ const PrivateRoute = ({
             user();
         }
     }, [isAuthorized]);
-
     return (
         <Route
             {...props}

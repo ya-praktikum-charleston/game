@@ -220,8 +220,3 @@ export function restart(): void {
 
     GAME.dom.gameBanner.current?.classList.add('hidden');
 }
-
-
-
-
-console.log(window.devicePixelRatio)

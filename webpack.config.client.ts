@@ -1,6 +1,7 @@
 import path from 'path';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import LoadablePlugin from '@loadable/webpack-plugin';
 
 module.exports = {
     name: 'client/index.tsx',
@@ -26,7 +27,11 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                    },
+                    'css-loader'],
             },
             {
                 test: /\.svg$/i,
@@ -62,6 +67,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({ filename: '[name].css' }),
+        new LoadablePlugin(),
         new CleanWebpackPlugin(),
     ],
 };
