@@ -11,7 +11,8 @@ module.exports = {
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
         alias: {
-            process: 'process/browser',
+            Components: path.resolve(__dirname, 'src/components/'),
+            Assets: path.resolve(__dirname, 'src/assets/'),
         },
     },
     devServer: {
