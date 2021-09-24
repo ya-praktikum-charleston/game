@@ -13,6 +13,7 @@ import {
     Angels_Jump,
     Angels_Hurt,
     Angels_Stand,
+    Angels2,
     // враги
     Pussy,
     PussyAttack,
@@ -39,6 +40,38 @@ export const pixelDevice: number = window.devicePixelRatio * 2;
 // стартовая скорость игры
 const startSpeed: number = 8 / pixelDevice;
 
+const chooseHero = (name: string) => {
+    switch (name) {
+        case 'angel1':
+            return {
+                run: Angels,
+                jump: Angels_Jump,
+                hurt: Angels_Hurt,
+                stand: Angels_Stand,
+            };
+        case 'angel2':
+            return {
+                run: Angels2,
+                jump: Angels2,
+                hurt: Angels2,
+                stand: Angels2,
+            };
+        default:
+            return {
+                run: Angels,
+                jump: Angels_Jump,
+                hurt: Angels_Hurt,
+                stand: Angels_Stand,
+            };
+    }
+};
+
+const defaultHero = {
+    run: Angels,
+    jump: Angels_Jump,
+    hurt: Angels_Hurt,
+    stand: Angels_Stand,
+};
 // настройки игры и canvas
 export const GAME: Game = {
     ctx: null,
@@ -46,6 +79,8 @@ export const GAME: Game = {
     winHeight: clientHeight,
     // координа на которой расположены персонажы
     y_positionLine: clientHeight - 220 - spriteHeight,
+
+    heroName: 'angel1',
     // сколько всего картинок
     allCount: 14,
     // сколько загрузилось
@@ -128,12 +163,16 @@ export const BG: Background[] = [
 ];
 
 // главный герой
+export const heroGame = (name: string) => {
+    return chooseHero(name);
+};
+
 export const HERO: Hero = {
     img: {
-        run: loadSpriteImage(Angels, 128.58333, 150, 12, 1, GAME),
-        jump: loadSpriteImage(Angels_Jump, 128.5, 150, 6, 1, GAME),
-        hurt: loadSpriteImage(Angels_Hurt, 129, 150, 1, 1, GAME),
-        stand: loadSpriteImage(Angels_Stand, 128.5555555555556, 150, 18, 5, GAME),
+        run: loadSpriteImage(heroGame(GAME.heroName).run, 128.58333, 150, 12, 1, GAME),
+        jump: loadSpriteImage(heroGame(GAME.heroName).jump, 128.5, 150, 6, 1, GAME),
+        hurt: loadSpriteImage(heroGame(GAME.heroName).hurt, 129, 150, 1, 1, GAME),
+        stand: loadSpriteImage(heroGame(GAME.heroName).stand, 128.5555555555556, 150, 18, 5, GAME),
     },
     position: {
         x: 65,

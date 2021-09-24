@@ -20,6 +20,7 @@ export type Game = {
     dom: Record<string, RefObject<HTMLCanvasElement> | RefObject<HTMLDivElement>>,
     random: (range: number[]) => number,
     requestId: number,
+    heroName: string,
 };
 
 export type Background = {
