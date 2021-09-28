@@ -44,6 +44,7 @@
         "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars-experimental": "error",
         "no-param-reassign": ["error", { "props": false }],
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
         "import/extensions": [
             "error",
             "ignorePackages",

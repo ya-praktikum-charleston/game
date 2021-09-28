@@ -13,6 +13,7 @@ import type { Props } from './types';
 import type { SigninProps } from '../../../app/api/auth/types';
 import Field from '../../components/field';
 import './signin.css';
+import axios from 'axios';
 
 const SigninSchema: SchemaOf<SigninProps> = Yup.object().shape({
     login: Yup.string().required('Пожалуйста, укажите логин'),
@@ -29,7 +30,6 @@ const Signin = ({ signinStore, signin }: Props) => {
     if (signinStore.data === 'OK' || signinStore.error === 'User already in system') {
         return <Redirect to="/" />;
     }
-
     return (
         <>
             <Main title="GAME" offBtnIcon>
@@ -53,8 +53,8 @@ const Signin = ({ signinStore, signin }: Props) => {
                                 </button>
                                 {
                                     (signinStore.error === 'Login or password is incorrect')
-                                    ? <div>Не правильный логин или пароль</div>
-                                    : null
+                                        ? <div>Не правильный логин или пароль</div>
+                                        : null
                                 }
                             </form>
                         )}

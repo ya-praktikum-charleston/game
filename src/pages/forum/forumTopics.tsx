@@ -18,7 +18,6 @@ const ForumTopics = (): ReactElement => {
         (chapterElement) => chapterElement.id === +chapterId,
     );
     const onSubmitHandler = () => {
-        console.log('test');
     };
     return (
         <div className="forum-content-topics">

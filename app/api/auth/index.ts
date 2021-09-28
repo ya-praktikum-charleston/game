@@ -12,7 +12,9 @@ export const signup = (props: SignupProps): Promise<SignupResponse> => axios.pos
     .then(({ data }) => data);
 
 export const signin = (props: SigninProps): Promise<SigninResponse> => axios.post<SigninResponse>('/auth/signin', props)
-    .then(({ data }) => data);
+    .then(({ data }) => {
+        return (data);
+    });
 
 export const user = (): Promise<UserResponse> => axios.get<UserResponse>('/auth/user')
     .then(({ data }) => data);
