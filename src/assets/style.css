@@ -86,13 +86,6 @@ a {
     flex: 0 0 auto;
 }
 
-.btn-back-icon {
-    transform: rotate(180deg);
-    background: #fff;
-    padding: 10px;
-    border-bottom-right-radius: 20px;
-}
-
 .input {
     border-color: var(--border-input-color);
     font-size: 16px;
@@ -134,4 +127,9 @@ z-index: -1;
     display: block;
     font-size: 14px;
     margin-bottom: 10px;
+}
+
+.app {
+    display: flex;
+    height: 100vh;
 }

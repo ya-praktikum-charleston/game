@@ -1,15 +1,17 @@
 import React, { ReactElement, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import classNames from 'classnames';
 import { setGameStart } from '../../actions/app';
 import Main from '../../components/main';
 import HeaderMenu from '../../components/header-menu';
 import GameMenu from '../../components/game-menu';
 import SettingsIcon from '../../assets/svg/settings.svg';
 import GameRunner from '../../components/game/gameRunner';
-import { AUDIO, restart, Game } from '../../components/game/media/js/parameters';
-import Angel1 from '../../assets/img/Angels1.png';
-import Angel2 from '../../assets/img/Angels2.png';
-import Angel3 from '../../assets/img/Angels3.png';
+import { AUDIO, restart, GAME } from '../../components/game/media/js/parameters';
+import StartOptions from './options';
+import ForwardIcon from '../../assets/svg/forward.svg';
+import MouseIcon from '../../assets/svg/mouse_black_48dp.svg';
+import KeyboardIcon from '../../assets/svg/keyboard_black_48dp.svg';
 import './start.css';
 
 const headerMenu = [
@@ -25,7 +27,7 @@ function Start(): ReactElement {
 	// const [game, setGame] = React.useState<boolean>(false);
 	const dispatch = useDispatch();
 	const gameRunner = useSelector(({ widgets }) => widgets.app.gamaRunner);
-	const [hero, setHero] = useState('angel1');
+	const [isOptions, setIsOptions] = useState(false);
 
 	const handleStartGame = () => {
 		// TODO установить значение в redux gameRun true
@@ -41,29 +43,49 @@ function Start(): ReactElement {
 		restart();
 		AUDIO.Theme1.stop();
 	};
-	const chooseHero = (e) => {
-		setHero(e.target.getAttribute('data-name'));
-		Game.heroName = e.target.getAttribute('data-name');
-		console.log(e.target.getAttribute('data-name'));
+
+	const visibility = classNames('start__main', { 'visibility-options': isOptions });
+
+	const goOptions = () => {
+		setIsOptions((prev) => !prev);
 	};
 
 	if (gameRunner) {
 		return <GameRunner handleExittGame={handleExittGame} />;
 	}
+	const Title = () => {
+		return (
+			<div>
+				<img onClick={goOptions} className="btn-back-icon position-icon" src={ForwardIcon} alt="forward" />
+				Новая игра
+			</div>
+		);
+	};
 	return (
 		<>
 			<HeaderMenu headerMenu={headerMenu} />
-			<Main title="Инструкция" offBtnIcon>
+			<Main title={isOptions ? <Title /> : 'GAME'} offBtnIcon>
 				<div className="start">
-					<div className="instructions">
-						<div>Выберите персонажа:</div>
-						<div onClick={chooseHero} className="list__hero">
-							<img src={Angel1} data-name="angel1" alt="angel1" className={`hero ${hero === 'angel1' && 'active__hero'} `} />
-							<img src={Angel2} data-name="angel2" alt="angel2" className={`hero ${hero === 'angel2' && 'active__hero'} `} />
-							<img src={Angel3} data-name="angel3" alt="angel3" className={`hero ${hero === 'angel3' && 'active__hero'} `} />
+					<div className={visibility}>
+						<div className="start__menu">
+							<div>
+
+								<div className="start__menu__topic">Как играть?</div>
+								<div className="start__menu__description">Ваша задача перепрыгивать всё, что попадется у вас на пути и любой ценой избежать столкновений.</div>
+								<div className="start__menu__topic">Управление</div>
+								<div className="start__menu__description">Управлять персонажем Вы можете с помощью ЛЕВОЙ КЛАВИШИ МЫШИ или кнопки ПРОБЕЛ на клавиатуре</div>
+								{/*<div>
+									<img onClick={goOptions} src={MouseIcon} alt="forward" />
+									или
+									<img onClick={goOptions} src={KeyboardIcon} alt="forward" />
+								</div>*/}
+							</div>
+							<GameMenu goOptions={goOptions} />
+						</div>
+						<div className="start__options">
+							<StartOptions handleStartGame={handleStartGame} />
 						</div>
 					</div>
-					<GameMenu handleStartGame={handleStartGame} />
 				</div>
 			</Main>
 		</>

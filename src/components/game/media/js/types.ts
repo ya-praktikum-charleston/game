@@ -21,6 +21,7 @@ export type Game = {
     random: (range: number[]) => number,
     requestId: number,
     heroName: string,
+    level: string,
 };
 
 export type Background = {

@@ -8,7 +8,17 @@ import { SpriteImage } from './types';
  */
 export default function drawImage(img: SpriteImage, x: number, y: number): void {
     // частота обновления кадров для данной картинки
-    img.tickCount += 1;
+    let offset = 0;
+    if (GAME.heroName === 'angel1') {
+        offset = 0;
+    }
+    if (GAME.heroName === 'angel2') {
+        offset = 200;
+    }
+    if (GAME.heroName === 'angel3') {
+        offset = 400;
+    }
+    img.tickCount += 0.15;
     if (img.tickCount > img.ticksFrame) {
         img.tickCount = 0;
         if (img.frameIndex < img.colFrames - 1) {
@@ -21,7 +31,7 @@ export default function drawImage(img: SpriteImage, x: number, y: number): void 
     GAME.ctx?.drawImage(
         img.dom,
         img.frameIndex * img.width,
-        0,
+        0 + offset,
         img.width,
         img.height,
         x,

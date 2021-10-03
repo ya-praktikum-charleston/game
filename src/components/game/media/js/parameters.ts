@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 import {
     // фоновые картинки
+    /* level1 */
     l1_sky,
     l2_clouds,
     l3_pyramid,
@@ -8,13 +9,36 @@ import {
     l5_bg_ground02,
     l6_bg_ground03,
     l7_ground,
+    /* level2 */
+    l2_l1_sky,
+    l2_l3_clouds,
+    l2_l2_mountains,
+    l2_l4_bg_ground01,
+    l2_l5_bg_ground02,
+    l2_l6_ground,
+    /* levels3 */
+    l3_l1_wall,
+    l3_l2_prop01,
+    l3_l3_prop02,
+    l3_l4_stones,
+    l3_l5_crystals,
+    l3_l6_ground,
+    /* levels4 */
+    l4_l1_sky,
+    l4_l2_stars,
+    l4_l4_clouds02,
+    l4_l5_mountains,
+    l4_l6_ground01,
+    l4_l7_ground02,
+    l4_l8_ground,
     // главный герой
-    Angels,
-    Angels_Jump,
-    Angels_Hurt,
-    Angels_Stand,
-    Angels2,
+    Heroes_Run,
+    Heroes_Stand,
+    Heroes_Jump,
+    Heroes_Death,
+    Heroes_Sliding,
     // враги
+    Pussy_1_walk,
     Pussy,
     PussyAttack,
     PussyStop,
@@ -34,44 +58,12 @@ import loadAudio from './loadAudio';
 // import drawRunner from './drawRunner';
 
 const { clientWidth, clientHeight } = document.body;
-const spriteHeight = 120;
+const spriteHeight = 150;
 // соотношение разрешения дисплея текущего устройства
 export const pixelDevice: number = window.devicePixelRatio * 2;
 // стартовая скорость игры
 const startSpeed: number = 8 / pixelDevice;
 
-const chooseHero = (name: string) => {
-    switch (name) {
-        case 'angel1':
-            return {
-                run: Angels,
-                jump: Angels_Jump,
-                hurt: Angels_Hurt,
-                stand: Angels_Stand,
-            };
-        case 'angel2':
-            return {
-                run: Angels2,
-                jump: Angels2,
-                hurt: Angels2,
-                stand: Angels2,
-            };
-        default:
-            return {
-                run: Angels,
-                jump: Angels_Jump,
-                hurt: Angels_Hurt,
-                stand: Angels_Stand,
-            };
-    }
-};
-
-const defaultHero = {
-    run: Angels,
-    jump: Angels_Jump,
-    hurt: Angels_Hurt,
-    stand: Angels_Stand,
-};
 // настройки игры и canvas
 export const GAME: Game = {
     ctx: null,
@@ -79,10 +71,12 @@ export const GAME: Game = {
     winHeight: clientHeight,
     // координа на которой расположены персонажы
     y_positionLine: clientHeight - 220 - spriteHeight,
-
+    // наименование Героя
     heroName: 'angel1',
+    // наименование уровня
+    level: 'level1',
     // сколько всего картинок
-    allCount: 14,
+    allCount: 33,
     // сколько загрузилось
     loadCount: 0,
     // выравнивание картинок исходя из пропорций экрана
@@ -117,7 +111,7 @@ export const GAME: Game = {
 };
 
 // фоновые картинки
-export const BG: Background[] = [
+const level1: Background[] = [
     {
         path: loadStaticImage(l1_sky, GAME),
         x: 0,
@@ -162,17 +156,137 @@ export const BG: Background[] = [
     },
 ];
 
-// главный герой
-export const heroGame = (name: string) => {
-    return chooseHero(name);
-};
+const level2: Background[] = [
+    {
+        path: loadStaticImage(l2_l1_sky, GAME),
+        x: 0,
+        x2: 0,
+        speed: 0,
+    },
+    {
+        path: loadStaticImage(l2_l3_clouds, GAME),
+        x: 0,
+        x2: 0,
+        speed: 0,
+    },
+    {
+        path: loadStaticImage(l2_l2_mountains, GAME),
+        x: 0,
+        x2: 0,
+        speed: 0,
+    },
+    {
+        path: loadStaticImage(l2_l4_bg_ground01, GAME),
+        x: 0,
+        x2: clientWidth,
+        speed: 40,
+    },
+    {
+        path: loadStaticImage(l2_l5_bg_ground02, GAME),
+        x: 0,
+        x2: clientWidth,
+        speed: 20,
+    },
+    {
+        path: loadStaticImage(l2_l6_ground, GAME),
+        x: 0,
+        x2: clientWidth,
+        speed: 1,
+    },
+];
+
+const level3: Background[] = [
+    {
+        path: loadStaticImage(l3_l1_wall, GAME),
+        x: 0,
+        x2: 0,
+        speed: 0,
+    },
+    {
+        path: loadStaticImage(l3_l2_prop01, GAME),
+        x: 0,
+        x2: 0,
+        speed: 0,
+    },
+    {
+        path: loadStaticImage(l3_l3_prop02, GAME),
+        x: 0,
+        x2: 0,
+        speed: 0,
+    },
+    {
+        path: loadStaticImage(l3_l4_stones, GAME),
+        x: 0,
+        x2: clientWidth,
+        speed: 20,
+    },
+    {
+        path: loadStaticImage(l3_l5_crystals, GAME),
+        x: 0,
+        x2: clientWidth,
+        speed: 10,
+    },
+    {
+        path: loadStaticImage(l3_l6_ground, GAME),
+        x: 0,
+        x2: clientWidth,
+        speed: 1,
+    },
+];
+
+const level4: Background[] = [
+    {
+        path: loadStaticImage(l4_l1_sky, GAME),
+        x: 0,
+        x2: 0,
+        speed: 0,
+    },
+    {
+        path: loadStaticImage(l4_l2_stars, GAME),
+        x: 0,
+        x2: 0,
+        speed: 0,
+    },
+    {
+        path: loadStaticImage(l4_l4_clouds02, GAME),
+        x: 0,
+        x2: 0,
+        speed: 0,
+    },
+    {
+        path: loadStaticImage(l4_l5_mountains, GAME),
+        x: 0,
+        x2: clientWidth,
+        speed: 40,
+    },
+    {
+        path: loadStaticImage(l4_l6_ground01, GAME),
+        x: 0,
+        x2: clientWidth,
+        speed: 20,
+    },
+    {
+        path: loadStaticImage(l4_l7_ground02, GAME),
+        x: 0,
+        x2: clientWidth,
+        speed: 10,
+    },
+    {
+        path: loadStaticImage(l4_l8_ground, GAME),
+        x: 0,
+        x2: clientWidth,
+        speed: 1,
+    },
+];
+
+export const BG = { level1, level2, level3, level4 };
 
 export const HERO: Hero = {
     img: {
-        run: loadSpriteImage(heroGame(GAME.heroName).run, 128.58333, 150, 12, 1, GAME),
-        jump: loadSpriteImage(heroGame(GAME.heroName).jump, 128.5, 150, 6, 1, GAME),
-        hurt: loadSpriteImage(heroGame(GAME.heroName).hurt, 129, 150, 1, 1, GAME),
-        stand: loadSpriteImage(heroGame(GAME.heroName).stand, 128.5555555555556, 150, 18, 5, GAME),
+        run: loadSpriteImage(Heroes_Run, 200, 200, 12, 1, GAME),
+        jump: loadSpriteImage(Heroes_Jump, 200, 200, 12, 1, GAME),
+        hurt: loadSpriteImage(Heroes_Death, 200, 200, 15, 1, GAME),
+        stand: loadSpriteImage(Heroes_Stand, 200, 200, 18, 1, GAME),
     },
     position: {
         x: 65,
@@ -188,7 +302,7 @@ export const HERO: Hero = {
 const pussyDistance = [[640, 1300], [1400, 2060], [2160, 2920]];
 
 export const PUSSY: TypePussy = {
-    run: loadSpriteImage(Pussy, 128.58333, 150, 12, 6, GAME),
+    run: loadSpriteImage(Pussy_1_walk, 200, 200, 10, 6, GAME),
     attack: loadSpriteImage(PussyAttack, 182, 150, 1, 1, GAME),
     stop: loadSpriteImage(PussyStop, 129, 150, 1, 1, GAME),
     enemy: [
@@ -228,7 +342,7 @@ if (localStorage.getItem('localStorageRecord')) {
 export function restart(): void {
     window.cancelAnimationFrame(GAME.requestId);
 
-    GAME.y_positionLine = clientHeight - 220 - 120;
+    GAME.y_positionLine = clientHeight - 220 - spriteHeight;
     GAME.yPosBg = clientHeight <= 1080 ? clientHeight - 1080 : 1080 - clientHeight;
     GAME.speed = startSpeed;
     GAME.scoreCounter = 0;
@@ -239,9 +353,11 @@ export function restart(): void {
     GAME.audioPlayed = true;
 
     // сброс BG
-    for (let i = 0; i < BG.length; i += 1) {
-        BG[i].x = 0;
-        BG[i].x2 = GAME.winWidth;
+    const { level } = GAME;
+    const _bg = BG[level];
+    for (let i = 0; i < _bg.length; i += 1) {
+        _bg[i].x = 0;
+        _bg[i].x2 = GAME.winWidth;
     }
     // сброс PUSSY
     for (let i = 0; i < PUSSY.enemy.length; i += 1) {
@@ -259,8 +375,3 @@ export function restart(): void {
 
     GAME.dom.gameBanner.current?.classList.add('hidden');
 }
-
-
-
-
-console.log(window.devicePixelRatio)

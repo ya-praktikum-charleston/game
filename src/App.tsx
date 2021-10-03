@@ -18,6 +18,7 @@ export default function App(): ReactElement {
     return (
         <ErrorBoundary>
             <div className="app">
+                {!gameRunner && <GameStatic />}
                 <Switch>
                     <PrivateRoute path="/" exact><Start /></PrivateRoute>
                     <Route path="/signin" component={Signin} />
@@ -28,7 +29,6 @@ export default function App(): ReactElement {
                     <Route component={() => (<ErrorPage number={404} />)} />
                 </Switch>
 
-                {!gameRunner && <GameStatic />}
             </div>
         </ErrorBoundary>
     );
