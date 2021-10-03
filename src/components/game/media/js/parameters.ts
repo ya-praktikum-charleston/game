@@ -311,18 +311,21 @@ export const PUSSY: TypePussy = {
             y: GAME.y_positionLine,
             distance: GAME.random([14, 15]) / 10,
             attack: false,
+            skin: GAME.random([0, 2]),
         },
         {
             x: 1280 + GAME.random(pussyDistance[1]),
             y: GAME.y_positionLine,
             distance: GAME.random([14, 15]) / 10,
             attack: false,
+            skin: GAME.random([0, 2]),
         },
         {
             x: 1280 + GAME.random(pussyDistance[2]),
             y: GAME.y_positionLine,
             distance: GAME.random([14, 15]) / 10,
             attack: false,
+            skin: GAME.random([0, 2]),
         },
     ],
 };

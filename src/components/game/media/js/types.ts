@@ -73,6 +73,7 @@ export type PussyEnemy = {
     y: number,
     distance: number,
     attack: boolean,
+    skin: number,
 };
 
 export type TypePussy = {
