@@ -20,7 +20,6 @@ const initialState = {
 	gamaRunner: false,
 	heroName: 'angel1',
 	leaderboard: [],
-	addLeaderboard: false,
 };
 
 export const app = (store: AppStore = initialState, action: ActionPayload<boolean>): AppStore => {
@@ -28,10 +27,6 @@ export const app = (store: AppStore = initialState, action: ActionPayload<boolea
 		case LEADERBOARD_LIST: {
 			store.leaderboard = action.payload;
 			debugger
-			return store;
-		}
-		case SET_LEADERBOARD: {
-			store.addLeaderboard = action.payload;
 			return store;
 		}
 		case SET_HERO_NAME: {

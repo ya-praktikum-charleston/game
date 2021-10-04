@@ -17,7 +17,6 @@ export default function gameStop(): void {
         avatar: '/path/to/avatar.jpg',
         point: GAME.localRecord,
     };
-    cancelAnimationFrame(GAME.requestId);
     GAME.dom.action(asd);
     AUDIO.Theme1.stop();
 

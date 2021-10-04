@@ -27,7 +27,7 @@
 
 .error__number {
     margin-bottom: 26px;
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-lg);
     line-height: 1;
 }
 

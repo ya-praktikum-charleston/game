@@ -131,5 +131,7 @@ export default function drawRunner(): void {
         GAME.ctx.textAlign = 'left';
         GAME.ctx.fillText(`Рекорд: ${GAME.localStorageRecord}`, 10, 30);
     }
-    GAME.requestId = requestAnimationFrame(drawRunner);
+    if (!GAME.isGameStopped) {
+        GAME.requestId = requestAnimationFrame(drawRunner);
+    }
 }
