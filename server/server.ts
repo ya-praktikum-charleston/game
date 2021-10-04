@@ -1,38 +1,35 @@
 import express from 'express';
 import path from 'path';
 import 'babel-polyfill';
-import render from './ssr';
-import rootSaga from '../src/sagas';
-import { create } from '../src/store';
-import singin from './modules/auth';
-import logout from './modules/logout';
-import user from './modules/user';
-
-const initialState = {};
+import singin from './modules/auth/signin';
+import singup from './modules/auth/signup';
+import logout from './modules/auth/logout';
+import user from './modules/auth/user';
+import oauthYandex from './modules/oauth/yandex';
+import serviceId from './modules/oauth/service-id';
+import profile from './modules/users/profile';
+import avatar from './modules/users/avatar';
+import password from './modules/users/password';
+import serverRenderMiddleware from './middleware/server-render';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-const store = create(initialState);
+const PORT = process.env.PORT || 5000;
 
 app.use(express.static(path.join(__dirname, '../static')));
 
-singin(app, store);
-logout(app, store);
-user(app, store);
+singin(app);
+singup(app);
+logout(app);
+user(app);
 
-app.get('/*', (req, res) => {
-    store.runSaga(rootSaga).toPromise().then(() => {
-        console.log('sagas complete');
-        const appHTML = render(req, res, store);
-        res.contentType('text/html');
-        res.status(200);
-        res.send(appHTML);
-    }).catch((e) => {
-        console.log(e.message);
-        res.status(500).send(e.message);
-    });
-    store.close();
-});
+profile(app);
+avatar(app);
+password(app);
+
+oauthYandex(app);
+serviceId(app);
+
+app.get('/*', serverRenderMiddleware);
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}!`);

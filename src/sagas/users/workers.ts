@@ -17,11 +17,7 @@ import type {
     AvatarResponse,
 } from '../../../app/api/users/types';
 
-export function* workerProfile(
-    action: ActionPayload<ProfileProps>,
-): Generator<CallEffect<UserResponse>
-    | PutEffect<ActionPayload<UserResponse>>
-    | PutEffect<ActionPayload<boolean>>, void, UserResponse> {
+export function* workerProfile(action: ActionPayload<ProfileProps>) {
     try {
         yield call(profile, action.payload);
 
@@ -33,12 +29,7 @@ export function* workerProfile(
     }
 }
 
-export function* workerAvatar(
-    action: ActionPayload<AvatarProps>,
-): Generator<CallEffect<UserResponse>
-    | CallEffect<AvatarResponse>
-    | PutEffect<ActionPayload<UserResponse>>
-    | PutEffect<Action>> {
+export function* workerAvatar(action: ActionPayload<AvatarProps>) {
     try {
         yield call(avatar, action.payload);
 
@@ -50,9 +41,7 @@ export function* workerAvatar(
     }
 }
 
-export function* workerPassword(
-    action: ActionPayload<PasswordProps>,
-): Generator<PutEffect<ActionPayload<boolean>> | CallEffect<string>, void, unknown> {
+export function* workerPassword(action: ActionPayload<PasswordProps>) {
     try {
         yield call(password, action.payload);
     } catch (error) {
