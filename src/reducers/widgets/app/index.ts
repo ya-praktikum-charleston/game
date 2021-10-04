@@ -8,6 +8,8 @@ import {
 	SET_APP_UNEXPECTED_ERROR,
 	SET_GAME_START,
 	SET_HERO_NAME,
+	SET_LEADERBOARD,
+	LEADERBOARD_LIST,
 } from '../../../actions/app';
 
 const initialState = {
@@ -17,10 +19,21 @@ const initialState = {
 	unexpectedError: false,
 	gamaRunner: false,
 	heroName: 'angel1',
+	leaderboard: [],
+	addLeaderboard: false,
 };
 
 export const app = (store: AppStore = initialState, action: ActionPayload<boolean>): AppStore => {
 	switch (action.type) {
+		case LEADERBOARD_LIST: {
+			store.leaderboard = action.payload;
+			debugger
+			return store;
+		}
+		case SET_LEADERBOARD: {
+			store.addLeaderboard = action.payload;
+			return store;
+		}
 		case SET_HERO_NAME: {
 			store.heroName = action.payload;
 

@@ -25,9 +25,9 @@ export function* workerProfile(
     try {
         yield call(profile, action.payload);
 
-		const response: UserResponse = yield call(user);
+        const response: UserResponse = yield call(user);
 
-		yield put(fetchUserFulfilled(response));
+        yield put(fetchUserFulfilled(response));
     } catch (error) {
         yield put(setUnexpectedError(true));
     }
@@ -42,9 +42,9 @@ export function* workerAvatar(
     try {
         yield call(avatar, action.payload);
 
-       const response = yield call(user);
+        const response = yield call(user);
 
-       yield put(fetchUserFulfilled(response as UserResponse));
+        yield put(fetchUserFulfilled(response as UserResponse));
     } catch (error) {
         yield put(setUnexpectedError(true));
     }

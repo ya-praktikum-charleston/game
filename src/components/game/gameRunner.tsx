@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, ReactElement } from 'react';
-import { useDispatch } from 'react-redux';
-import { setGameStart } from '../../actions/app';
+import React, { useRef, useEffect, ReactElement, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setGameStart, setLeaderboard } from '../../actions/app';
 import './game.css';
 import {
     GAME,
@@ -16,6 +16,7 @@ import {
 } from './media/js/assetsLinks';
 
 function GameRunner(): ReactElement {
+    const gameRunner = useSelector(({ widgets }) => widgets.app.gamaRunner);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const gameBannerRef = useRef<HTMLDivElement>(null);
     const dispatch = useDispatch();
@@ -29,18 +30,19 @@ function GameRunner(): ReactElement {
             GAME.dom = {
                 canvas: canvasRef,
                 gameBanner: gameBannerRef,
+                action: (arg) => dispatch(setLeaderboard(arg)),
             };
             HERO.event.run = true;
             document.addEventListener('mousedown', jump);
 
             // дожидаемся загрузки всех изображений
             let int = setInterval(function () {
-				if (GAME.allCount === GAME.loadCount) {
-					clearInterval(int);
+                if (GAME.allCount === GAME.loadCount) {
+                    clearInterval(int);
                     restart();
-					drawRunner();
-				}
-			}, 1000 / 60);
+                    drawRunner();
+                }
+            }, 1000 / 60);
         }
         return () => {
             // удаление событий мыши
@@ -57,7 +59,6 @@ function GameRunner(): ReactElement {
         restart();
         dispatch(setGameStart(false));
     };
-
     return (
         <div className="game">
             <canvas id="canvas" ref={canvasRef}>Эх... Ваш браузер не поддерживает Canvas, Вы не сможете сыграть в игру...</canvas>

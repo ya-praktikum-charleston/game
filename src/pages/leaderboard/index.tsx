@@ -1,10 +1,14 @@
-import React, { ReactElement } from 'react';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import './leaderboard.css';
 import Main from '../../components/main';
 import LeaderboardItem from './leaderboardItem';
 import Angel1 from '../../assets/img/Angels1.png';
 import Angel2 from '../../assets/img/Angels2.png';
 import Angel3 from '../../assets/img/Angels3.png';
+import { getLeaderboard } from '../../selectors/widgets/app';
+import type { Store } from '../../reducers/types';
+import { getLeaderboardList, setLeaderboard } from '../../actions/app';
 
 const DATA = [
     {
@@ -27,27 +31,57 @@ const DATA = [
     },
 ];
 
-export default function LeaderboardPage(): ReactElement {
+type Props = {
+    leaderboardList: {},
+    fetchLeaderboard: typeof getLeaderboardList,
+    setLeaderboardList: typeof setLeaderboard,
+};
+const LeaderboardPage = ({ leaderboardList, fetchLeaderboard, setLeaderboardList }: Props) => {
+    const [data, setData] = useState(leaderboardList);
+    useEffect(() => {
+        fetchLeaderboard();
+    }, []);
+    const addUserLeaderboard = () => {
+        const asd = {
+            id: 123,
+            login: 'userTest',
+            avatar: '/path/to/avatar.jpg',
+            point: 22222222219,
+        };
+        setLeaderboardList(asd);
+    };
+    console.log('leaderboardList2', leaderboardList);
     return (
         <Main title="Таблица лидеров">
             <div className="table-loaderboard">
                 {
-                    DATA.map((item) => {
+                    leaderboardList.map((item, index) => {
                         const {
-                            id, avatar, name, position, count,
-                        } = item;
+                            id, avatar, login, point,
+                        } = item.data;
                         return (
                             <LeaderboardItem
                                 key={id}
-                                position={position}
                                 avatar={avatar}
-                                name={name}
-                                count={count}
+                                index={index + 1}
+                                login={login}
+                                point={point}
                             />
                         );
                     })
                 }
+                <div onClick={addUserLeaderboard}>Test</div>
             </div>
         </Main>
     );
-}
+};
+
+const mapStateToProps = (store: Store) => ({
+    leaderboardList: getLeaderboard(store),
+});
+const mapDispatchToProps = {
+    fetchLeaderboard: getLeaderboardList,
+    setLeaderboardList: setLeaderboard,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LeaderboardPage);

@@ -5,4 +5,5 @@ export type AppStore = {
     unexpectedError: boolean;
     gamaRunner: boolean;
     heroName: string;
+    leaderboard: [];
 };

@@ -1,23 +1,29 @@
 import React, { ReactElement } from 'react';
+import AccountIcon from '../../assets/svg/pause.svg';
 
 type MainProps = {
     avatar: string;
-    name: string;
-    position: number;
-    count: number;
+    login: string;
+    index: number;
+    point: number;
 };
 
 const LeaderboardItem = ({
     avatar,
-    name,
-    position,
-    count,
+    login,
+    index,
+    point,
 }: MainProps): ReactElement => (
     <div className="table-leaderboard-item">
-        <div className="item-number">{position}</div>
-        <img src={avatar} alt="avatar" className="item-img" />
-        <div className="item-name">{name}</div>
-        <div className="item-count">{count}</div>
+        <div className="item-number">{index}</div>
+        {
+            avatar === null
+                ? <AccountIcon />
+                : <img src={avatar} alt="avatar" className="item-img" />
+        }
+
+        <div className="item-name">{login}</div>
+        <div className="item-count">{point}</div>
     </div>
 );
 
