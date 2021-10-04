@@ -36,7 +36,7 @@ export default function drawRunner(): void {
     if (!GAME.isGameStopped) {
         for (let i = 0; i < PUSSY.enemy.length; i += 1) {
             // отрисовка врага
-            drawImage(PUSSY.run, PUSSY.enemy[i].x, PUSSY.enemy[i].y, 'pussy');
+            drawImage(PUSSY.run, PUSSY.enemy[i].x, PUSSY.enemy[i].y, { object: 'pussy', number: i });
 
             // новые координаты для следующей отрисовки
             PUSSY.enemy[i].x -= GAME.speed * PUSSY.enemy[i].distance;
@@ -61,22 +61,22 @@ export default function drawRunner(): void {
     } else {
         for (let i = 0; i < PUSSY.enemy.length; i += 1) {
             if (PUSSY.enemy[i].attack) {
-                drawImage(PUSSY.attack, PUSSY.enemy[i].x, PUSSY.enemy[i].y, 'pussy');
+                drawImage(PUSSY.attack, PUSSY.enemy[i].x, PUSSY.enemy[i].y, { object: 'pussy', number: i });
             } else {
-                drawImage(PUSSY.stop, PUSSY.enemy[i].x, PUSSY.enemy[i].y, 'pussy');
+                drawImage(PUSSY.stop, PUSSY.enemy[i].x, PUSSY.enemy[i].y, { object: 'pussy', number: i });
             }
         }
     }
 
     // Варианты отрисовки главного героя
     if (HERO.event.run) {
-        drawImage(HERO.img.run, HERO.position.x, HERO.position.y, 'hero');
+        drawImage(HERO.img.run, HERO.position.x, HERO.position.y, { object: 'hero', number: 0 });
     }
     if (HERO.event.jump) {
-        drawImage(HERO.img.jump, HERO.position.x, HERO.position.y, 'hero');
+        drawImage(HERO.img.jump, HERO.position.x, HERO.position.y, { object: 'hero', number: 0 });
     }
     if (GAME.isGameStopped) {
-        drawImage(HERO.img.hurt, HERO.position.x, HERO.position.y, 'hero');
+        drawImage(HERO.img.hurt, HERO.position.x, HERO.position.y, { object: 'hero', number: 0 });
     }
 
     // Увеличение скорости при увеличении счёта

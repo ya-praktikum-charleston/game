@@ -13,10 +13,10 @@ export default function drawImage(
     img: SpriteImage,
     x: number,
     y: number,
-    animationObject: string,
+    animationObject: { object: string, number: number },
 ): void {
     let offset = 0;
-    if (animationObject === 'hero') {
+    if (animationObject.object === 'hero') {
         if (GAME.heroName === 'angel1') {
             offset = 0;
         }

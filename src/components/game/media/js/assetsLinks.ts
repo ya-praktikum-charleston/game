@@ -57,3 +57,5 @@ export { default as Smile } from '../img/smile.png';
 export { default as Jump } from '../audio/Jump.wav';
 export { default as Death } from '../audio/Death.wav';
 export { default as theme1 } from '../audio/theme1.mp3';
+export { default as themeNight } from '../audio/themeNight.mp3';
+export { default as themeEpick } from '../audio/themeEpick.mp3';

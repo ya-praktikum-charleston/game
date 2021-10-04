@@ -46,6 +46,8 @@ import {
     Jump,
     Death,
     theme1,
+    themeNight,
+    themeEpick,
 } from './assetsLinks';
 import {
     Game,
@@ -330,11 +332,23 @@ export const PUSSY: TypePussy = {
     ],
 };
 
+const selectAudioLevel = () => {
+    switch (GAME.level) {
+        case 'level1':
+            return theme1;
+        case 'level2':
+            return themeNight;
+        case 'level3':
+            return themeEpick;
+        default:
+            return theme1;
+    }
+};
 // аудио файлы
 export const AUDIO = {
     Jump: loadAudio([Jump], 0.4),
     Dead: loadAudio([Death], 0.1),
-    Theme1: loadAudio([theme1], 0.4),
+    Theme1: loadAudio(() => selectAudioLevel(), 0.1),
 };
 
 // проверка localStorage на наличия рекорда в игре
