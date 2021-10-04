@@ -15,6 +15,7 @@ import Field from '../../components/field';
 import YaOauthButton from '../../components/ya-oauth-button';
 
 import './signin.css';
+import axios from 'axios';
 
 const SigninSchema: SchemaOf<SigninProps> = Yup.object().shape({
     login: Yup.string().required('Пожалуйста, укажите логин'),
