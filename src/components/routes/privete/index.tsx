@@ -9,33 +9,35 @@ import {
     getUnauthorized,
     getUnexpectedError,
 } from '../../../selectors/widgets/app';
+import type { Store } from '../../../reducers/types';
+import type { Props } from './types';
+import { isServer } from '../../../utilities/isServer';
 
 const PrivateRoute = ({
     children,
     isAuthorized,
     isLoading,
-    fetchUser,
     isUnauthorized,
     isUnexpectedError,
+    user,
     ...props
-}) => {
-	useEffect(() => {
+}: Props) => {
+    useEffect(() => {
         if (!isAuthorized) {
-            fetchUser();
+            user();
         }
-	}, [isAuthorized, fetchUser]);
-
+    }, [isAuthorized]);
     return (
         <Route
             {...props}
             render={() => {
-				if (isAuthorized) {
-					return children;
-				}
+                if (isAuthorized) {
+                    return children;
+                }
 
                 if (isLoading) {
-					return <Loading />;
-				}
+                    return <Loading />;
+                }
 
                 if (isUnauthorized) {
                     return <Redirect to="/signin" />;
@@ -51,11 +53,15 @@ const PrivateRoute = ({
     );
 };
 
-const mapStateToProps = (store) => ({
+const mapStateToProps = (store: Store) => ({
     isLoading: getLoading(store),
     isAuthorized: getAuthorized(store),
     isUnauthorized: getUnauthorized(store),
     isUnexpectedError: getUnexpectedError(store),
 });
 
-export default connect(mapStateToProps, { fetchUser })(PrivateRoute);
+const mapDispatchToProps = {
+    user: fetchUser,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PrivateRoute);

@@ -1,16 +1,19 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Form, Field } from 'react-final-form';
-import { setIn } from 'final-form';
+import { Form } from 'react-final-form';
 import * as Yup from 'yup';
+import { SchemaOf } from 'yup';
+import { validateFormValues } from '../../utilities/validator';
 import Main from '../../components/main';
 import { signupAction } from '../../actions/auth/signup';
 import { getSignup } from '../../selectors/collections/auth';
-import PasswordField from '../../components/fields/password';
+import Field from '../../components/field';
+import type { Store } from '../../reducers/types';
+import type { Props, SignupFormProps } from './types';
 import './signup.css';
 
-const SignupSchema = Yup.object().shape({
+const SignupSchema: SchemaOf<SignupFormProps> = Yup.object().shape({
     email: Yup.string()
         .email('Пожалуйста, укажите почту')
         .required('Пожалуйста, укажите почту'),
@@ -28,26 +31,28 @@ const SignupSchema = Yup.object().shape({
         .required('Пароли не совпадают'),
 });
 
-const validateFormValues = (schema) => {
-    return async (values) => {
-        try {
-            await schema.validate(values, { abortEarly: false });
-        } catch (error) {
-            return error.inner.reduce((errors, innerError) => {
-                return setIn(errors, innerError.path, innerError.message);
-            }, {});
-        }
-    };
-};
-
 const validate = validateFormValues(SignupSchema);
 
-const Signup = ({ signupResult, signupAction }) => {
-    const onSubmitHandler = (values: SingupProps) => {
-        signupAction(values);
+const Signup = ({ signupResult, signup }: Props) => {
+    const onSubmitHandler = ({
+        first_name,
+        second_name,
+        login,
+        email,
+        password,
+        phone,
+    }: SignupFormProps) => {
+        signup({
+            first_name,
+            second_name,
+            login,
+            email,
+            password,
+            phone,
+        });
     };
 
-    if (signupResult.id) {
+    if (signupResult && signupResult.data && signupResult.data.id) {
         return <Redirect to="/" />;
     }
 
@@ -60,54 +65,13 @@ const Signup = ({ signupResult, signupAction }) => {
                         validate={validate}
                         render={({ handleSubmit, submitting }) => (
                             <form className="form" onSubmit={handleSubmit}>
-                                <Field name="email">
-                                    {({ input, meta }) => (
-                                        <div>
-                                            <input {...input} className="input" type="email" placeholder="Почта" />
-                                            {meta.error && meta.touched && <span className="input-block__error">{meta.error}</span>}
-                                        </div>
-                                    )}
-                                </Field>
-                                <Field name="login">
-                                    {({ input, meta }) => (
-                                        <div>
-                                            <input {...input} className="input" name="login" type="text" placeholder="Логин" />
-                                            {meta.error && meta.touched && <span className="input-block__error">{meta.error}</span>}
-                                        </div>
-                                    )}
-                                </Field>
-                                <Field name="first_name">
-                                    {({ input, meta }) => (
-                                        <div>
-                                            <input {...input} className="input" name="first_name" type="text" placeholder="Имя" />
-                                            {meta.error && meta.touched && <span className="input-block__error">{meta.error}</span>}
-                                        </div>
-                                    )}
-                                </Field>
-                                <Field name="second_name">
-                                    {({ input, meta }) => (
-                                        <div>
-                                            <input {...input} className="input" name="second_name" type="text" placeholder="Фамилия" />
-                                            {meta.error && meta.touched && <span className="input-block__error">{meta.error}</span>}
-                                        </div>
-                                    )}
-                                </Field>
-                                <Field name="phone">
-                                    {({ input, meta }) => (
-                                        <div>
-                                            <input {...input} className="input" name="phone" type="tel" placeholder="Телефон" />
-                                            {meta.error && meta.touched && <span className="input-block__error">{meta.error}</span>}
-                                        </div>
-                                    )}
-                                </Field>
-                                <PasswordField
-                                    name="password"
-                                    placeholder="Пароль"
-                                />
-                                <PasswordField
-                                    name="confirm"
-                                    placeholder="Пароль (ещё раз)"
-                                />
+                                <Field name="email" type="email" placeholder="Почта" />
+                                <Field name="login" type="text" placeholder="Логин" />
+                                <Field name="first_name" type="text" placeholder="Имя" />
+                                <Field name="second_name" type="text" placeholder="Фамилия" />
+                                <Field name="phone" type="tel" placeholder="Телефон" />
+                                <Field name="password" type="password" placeholder="Пароль" />
+                                <Field name="confirm" type="password" placeholder="Пароль (ещё раз)" />
                                 <div className="form__redirect">
                                     <Link to="/signin">Войти</Link>
                                 </div>
@@ -132,8 +96,12 @@ const Signup = ({ signupResult, signupAction }) => {
     );
 };
 
-const mapStateToProps = (store) => ({
+const mapStateToProps = (store: Store) => ({
     signupResult: getSignup(store),
 });
 
-export default connect(mapStateToProps, { signupAction })(Signup);
+const mapDispatchToProps = {
+    signup: signupAction,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

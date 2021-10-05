@@ -7,11 +7,12 @@ import GameMenu from '../../components/game-menu';
 import SettingsIcon from '../../assets/svg/settings.svg';
 import GameRunner from '../../components/game/gameRunner';
 import { AUDIO, restart } from '../../components/game/media/js/parameters';
+import { isServer } from '../../utilities/isServer';
 import './start.css';
 
 const headerMenu = [
 	{
-        id: 1,
+		id: 1,
 		imgLink: SettingsIcon,
 		imgAlt: 'Settings',
 		link: '/profile',
@@ -25,19 +26,22 @@ function Start(): ReactElement {
 	const handleStartGame = () => {
 		// TODO установить значение в redux gameRun true
 		// setGame(true);
-		dispatch(setGameStart(true));
-		AUDIO.Theme1.play();
+		if (!isServer) {
+			dispatch(setGameStart(true));
+			AUDIO.Theme1.play();
+		}
 	};
-
 	const handleExittGame = () => {
 		// TODO установить значение в redux gameRun false
 		// setGame(false);
-		dispatch(setGameStart(false));
-		restart();
-		AUDIO.Theme1.stop();
+		if (!isServer) {
+			dispatch(setGameStart(false));
+			restart();
+			AUDIO.Theme1.stop();
+		}
 	};
 
-	if (gameRunner) {
+	if (gameRunner && !isServer) {
 		return <GameRunner handleExittGame={handleExittGame} />;
 	}
 	return (

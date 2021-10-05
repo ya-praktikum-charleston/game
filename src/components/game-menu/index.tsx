@@ -1,6 +1,6 @@
-import React, { useCallback } from "react";
-import { useHistory } from "react-router-dom";
-import "./game-menu.css";
+import React, { useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
+import './game-menu.css';
 
 type Props = {
 	handleStartGame: () => void;
@@ -30,14 +30,14 @@ const GameMenu = ({ handleStartGame }: Props) => {
 				<button
 					type="button"
 					className="btn mr"
-					onClick={() => handleOnClick("forum")}
+					onClick={() => handleOnClick('forum')}
 				>
 					Форум
 				</button>
 				<button
 					type="button"
 					className="btn"
-					onClick={() => handleOnClick("leaderboard")}
+					onClick={() => handleOnClick('leaderboard')}
 				>
 					Лидеры
 				</button>

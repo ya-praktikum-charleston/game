@@ -1,59 +1,42 @@
 import React from 'react';
-import { Form, Field } from 'react-final-form';
-import { setIn } from 'final-form';
+import { Form } from 'react-final-form';
+import { connect } from 'react-redux';
 import * as Yup from 'yup';
-import Button from '../../../components/button';
+import { SchemaOf } from 'yup';
+import { validateFormValues } from '../../../utilities/validator';
+import Button from '../../button';
+import { passwordAction } from '../../../actions/users/password';
+import Field from '../../field';
+import type { Props, PasswordFormProps } from './types';
 
-const onSubmitHandler = (values) => {
-    //
-};
-
-const PasswordFormSchema = Yup.object().shape({
+const PasswordFormSchema: SchemaOf<PasswordFormProps> = Yup.object().shape({
     oldPassword: Yup.string()
         .required('Пожалуйста, укажите старый пароль'),
     newPassword: Yup.string()
         .notOneOf([Yup.ref('oldPassword'), null], 'Пароли не должны сопадать')
         .min(8, 'Пожалуйста, укажите пароль длинее 8 символов')
         .required('Пожалуйста, укажите пароль длинее 8 символов'),
+    confirmNewPassword: Yup.string()
+        .oneOf([Yup.ref('newPassword'), null], 'Новые пароли не совпадают')
+        .required('Новые пароли не совпадают'),
 });
-
-const validateFormValues = (schema) => {
-    return async (values: PasswordProps) => {
-        try {
-            await schema.validate(values, { abortEarly: false });
-        } catch (error) {
-            return error.inner.reduce((errors, innerError) => {
-                return setIn(errors, innerError.path, innerError.message);
-            }, {});
-        }
-    };
-};
 
 const validate = validateFormValues(PasswordFormSchema);
 
-const PasswordForm = () => {
+const PasswordForm = ({ password }: Props) => {
+    const onSubmitHandler = ({ oldPassword, newPassword }: PasswordFormProps) => {
+        password({ oldPassword, newPassword });
+    };
+
     return (
         <Form
             onSubmit={onSubmitHandler}
             validate={validate}
             render={({ handleSubmit, submitting }) => (
                 <form onSubmit={handleSubmit}>
-                    <Field name="oldPassword">
-                        {({ input, meta }) => (
-                            <div>
-                                <input {...input} className="input" type="password" placeholder="Старый пароль" />
-                                {meta.error && meta.touched && <span className="input-block__error">{meta.error}</span>}
-                            </div>
-                        )}
-                    </Field>
-                    <Field name="newPassword">
-                        {({ input, meta }) => (
-                            <div>
-                                <input {...input} className="input" type="password" placeholder="Новый пароль" />
-                                {meta.error && meta.touched && <span className="input-block__error">{meta.error}</span>}
-                            </div>
-                        )}
-                    </Field>
+                    <Field name="oldPassword" type="password" placeholder="Старый пароль" />
+                    <Field name="newPassword" type="password" placeholder="Новый пароль" />
+                    <Field name="confirmNewPassword" type="password" placeholder="Новый пароль (ещё раз)" />
                     <Button
                         type="submit"
                         className="btn fullwidth"
@@ -67,4 +50,10 @@ const PasswordForm = () => {
     );
 };
 
-export default PasswordForm;
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = {
+    password: passwordAction,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PasswordForm);
