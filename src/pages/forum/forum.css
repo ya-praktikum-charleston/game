@@ -97,7 +97,7 @@ article.post .info {}
 .messages {
     max-height: 500px;
     overflow: auto;
-    padding: 0px 30px 120px 0px;
+    padding: 0px 30px 30px 0px;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
@@ -123,12 +123,7 @@ article.post .info {}
     font-size: 1rem;
 }
 
-.message_form {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
+.message_form {}
 
 .message_form form {
     padding-bottom: 12px;
@@ -183,10 +178,10 @@ article.post .info {}
     background: #ffffff99;
     margin: 20px 0px;
     padding: 10px 20px 10px;
-    border: 1px dashed #6a6a6a;
+    /*border: 1px dashed #ffffff;*/
     border-radius: 10px;
     border-top-left-radius: 0;
-    /*border: 1px solid #3a3a3a;*/
+    border: 1px solid #ffffff;
 }
 
 .message_main:hover {
@@ -265,11 +260,10 @@ article.post .info {}
     display: inline-block;
 }
 
-.message .message_form,
+.message_form,
 .answer .message_form {
-    position: static;
     padding-top: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .message form,
@@ -281,12 +275,14 @@ article.post .info {}
 .forum input,
 .forum textarea {
     min-height: 30px;
-    border: 1px solid #000;
+    border: 1px solid #7e7e7e;
     background-color: #fff;
     color: #000;
     font-size: 14px;
     padding: 3px 5px;
     outline: none;
+    border-radius: 10px;
+    border-top-left-radius: 0px;
 }
 
 .forum textarea {
@@ -295,15 +291,14 @@ article.post .info {}
 }
 
 .forum form {
-    padding: 10px 20px;
     display: flex;
     flex-direction: column;
 }
 
-.forum form div {
+/*.forum form div {
     margin-bottom: 20px;
     display: flex;
-}
+}*/
 
 .forum form div label {
     display: flex;
@@ -318,7 +313,8 @@ article.post .info {}
 
 .form-button button {
     min-height: 30px;
-    border: 1px solid #000;
+    border: 1px solid #686868;
+    border-radius: 10px;
     background-color: #fff;
     color: #000;
     font-size: 12px;
@@ -337,5 +333,41 @@ article.post .info {}
 }
 
 .form-button button:hover {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: #b8d220;
+}
+
+.emoji_picker {
+    overflow: hidden;
+    margin: 10px 0px;
+    max-height: 0px;
+    will-change: height;
+    transition: max-height 1s;
+}
+
+.picker-show {
+    max-height: 320px;
+}
+
+.picker-hidden {
+    animation: accordeonHidden 1s forwards;
+}
+
+@keyframes accordeonShow {
+    from {
+        max-height: 0px;
+    }
+
+    to {
+        max-height: 320px;
+    }
+}
+
+@keyframes accordeonHidden {
+    100% {
+        height: 0px;
+    }
+}
+
+.emoji_picker_main {
+    width: 100%;
 }

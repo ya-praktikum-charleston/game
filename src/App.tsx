@@ -8,10 +8,9 @@ import LeaderboardPage from './pages/leaderboard';
 import Profile from './pages/profile';
 import Signin from './pages/signin';
 import Signup from './pages/signup';
-import Posts from './pages/Forum/Posts';
-import Post from './pages/Forum/Post';
-import AddPost from './pages/Forum/AddPost';
-
+import Posts from './pages/forum/Posts';
+import Post from './pages/forum/Post';
+import AddPost from './pages/forum/AddPost';
 import ErrorBoundary from './utilities/ErrorBoundary';
 import './assets/style.css';
 
@@ -25,7 +24,7 @@ export default function App(): ReactElement {
         <ErrorBoundary>
             <div className="app">
                 <Switch>
-                    <PrivateRoute path="/" exact ><Start /></PrivateRoute>
+                    <PrivateRoute path="/" exact><Start /></PrivateRoute>
                     <Route path="/signin" component={Signin} />
                     <Route path="/signup" component={Signup} />
                     <PrivateRoute path="/profile"><Profile /></PrivateRoute>
@@ -35,7 +34,6 @@ export default function App(): ReactElement {
                     <PrivateRoute path="/leaderboard"><LeaderboardPage /></PrivateRoute>
                     <Route component={() => (<ErrorPage number={404} />)} />
                 </Switch>
-
                 {!gameRunner && <GameStatic />}
             </div>
         </ErrorBoundary>

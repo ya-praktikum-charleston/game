@@ -1,6 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Topic, Comment, CommentAdd } from './index';
+import Topic from './Topic';
+import Comment from './Comment';
+import CommentAdd from './CommentAdd';
 import { API } from '../../api';
 import Main from '../../components/main';
 import { PostType, MessageType } from './type';

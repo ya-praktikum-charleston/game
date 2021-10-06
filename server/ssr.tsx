@@ -36,6 +36,7 @@ export default function render(req, res, store) {
 <body>
     <div id="root">${html}</div>
     <script src='client.js'></script>
+    <script src='emoji-picker-react.js'></script>
     <script>
             window.__INITIAL_STATE__ = ${JSON.stringify(reduxState)}
     </script>

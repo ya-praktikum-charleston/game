@@ -1,7 +1,12 @@
-import React from 'react';
-import { useFormik, FormikProvider, Field, Form } from 'formik';
+import React, { useState, useRef } from 'react';
+import loadable from '@loadable/component';
+import { useFormik, FormikProvider, Form } from 'formik';
+import classNames from 'classnames';
 import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
+import EmojiIcon from '../../assets/svg/emoji-emotions.svg';
+
+const Picker = loadable(() => import('emoji-picker-react'), { ssr: false });
 
 type FormValueType = {
     author: string,
@@ -13,8 +18,13 @@ type HandleAddMessagesType = {
 
 function CommentAdd(props: HandleAddMessagesType) {
     const login = useSelector(({ collections }) => collections.user.login);
+    const [emojiPicker, setEmojiPicker] = useState(false);
+    const refTextarea = useRef(null);
     const { handleAddMessages } = props;
 
+    const handlerPicker = () => {
+        setEmojiPicker((prev) => !prev);
+    };
     const formik = useFormik({
         initialValues: {
             author: login,
@@ -33,18 +43,55 @@ function CommentAdd(props: HandleAddMessagesType) {
         },
     });
 
+    const onEmojiClick = (e, emojiObject) => {
+        const cursor = refTextarea.current.selectionStart;
+        const messageUser = formik.values.text;
+        const result = messageUser.slice(0, cursor)
+            + emojiObject.emoji + messageUser.slice(cursor);
+
+        formik.setValues((prev) => {
+            return { ...prev, text: result };
+        });
+        refTextarea.current.focus();
+    };
+
+    const styleEmoji = classNames('emoji_picker', { 'picker-show': emojiPicker });
     return (
         <>
             <div className="message_form">
                 <FormikProvider value={formik}>
                     <Form>
                         <label>Добавить комментарий</label>
+                        <div className={styleEmoji}>
+                            <div className="emoji_picker_main">
+                                <Picker
+                                    preload
+                                    onEmojiClick={onEmojiClick}
+                                    pickerStyle={{ width: '100%' }}
+                                    disableSearchBar
+                                    groupVisibility={{
+                                        flags: false,
+                                        animals_nature: false,
+                                        food_drink: false,
+                                        travel_places: false,
+                                        activities: false,
+                                        objects: false,
+                                        symbols: false,
+                                        recently_used: false,
+                                    }}
+                                />
+                            </div>
+                        </div>
                         <div className="form-text">
-                            <Field
-                                as="textarea"
-                                type="text"
+                            <textarea
+                                ref={refTextarea}
                                 name="text"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.text}
                             />
+                            <button type="button" onClick={handlerPicker}><img src={EmojiIcon} alt="Emoji" /></button>
+
                             <div className="form-button">
                                 <button
                                     type="submit"
