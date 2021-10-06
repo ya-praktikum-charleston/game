@@ -32,6 +32,8 @@
 .forum--theme {
     background-color: #fff;
     margin-bottom: 10px;
+    border-radius: 10px;
+    /*border: 1px solid #3a3a3a;*/
 }
 
 .forum--theme:hover {
@@ -46,23 +48,8 @@
 
 .forum--theme-content {
     padding: 10px 20px;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
-    -webkit-justify-content: flex-start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-    -webkit-align-content: stretch;
-    -ms-flex-line-pack: stretch;
-    align-content: stretch;
-    -webkit-align-items: flex-start;
-    -ms-flex-align: start;
+    display: grid;
+    grid-template-columns: 1fr auto;
 }
 
 .forum--main {
@@ -96,6 +83,7 @@
 
 .info span {
     font-size: 12px;
+    padding: 3px 0px;
 }
 
 .info span b {
@@ -192,9 +180,17 @@ article.post .info {}
 }
 
 .message_main {
-    background: white;
+    background: #ffffff99;
     margin: 20px 0px;
     padding: 10px 20px 10px;
+    border: 1px dashed #6a6a6a;
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    /*border: 1px solid #3a3a3a;*/
+}
+
+.message_main:hover {
+    background: #fff;
 }
 
 .message_content {
