@@ -11,13 +11,6 @@ export default function gameStop(): void {
         GAME.audioPlayed = false;
         AUDIO.Dead.play();
     }
-    const asd = {
-        id: 123,
-        login: 'userTest',
-        avatar: '/path/to/avatar.jpg',
-        point: GAME.localRecord,
-    };
-    GAME.dom.action(asd);
     AUDIO.Theme1.stop();
 
     // запись нового рекорда
@@ -25,5 +18,6 @@ export default function gameStop(): void {
         const record = Math.floor(GAME.score);
         localStorage.setItem('localStorageRecord', String(record));
         GAME.localStorageRecord = record;
+        GAME.setLeaderboard(record);
     }
 }

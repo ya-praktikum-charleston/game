@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, ReactElement, useCallback } from 'react';
+import React, { useRef, useEffect, ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setGameStart, setLeaderboard } from '../../actions/app';
 import './game.css';
@@ -16,10 +16,10 @@ import {
 } from './media/js/assetsLinks';
 
 function GameRunner(): ReactElement {
-    const gameRunner = useSelector(({ widgets }) => widgets.app.gamaRunner);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const gameBannerRef = useRef<HTMLDivElement>(null);
     const dispatch = useDispatch();
+    const profile = useSelector(({ collections }) => collections.user);
 
     useEffect(() => {
         if (canvasRef.current && gameBannerRef.current) {
@@ -30,13 +30,18 @@ function GameRunner(): ReactElement {
             GAME.dom = {
                 canvas: canvasRef,
                 gameBanner: gameBannerRef,
-                action: (arg) => dispatch(setLeaderboard(arg)),
             };
+            GAME.setLeaderboard = (arg: number) => dispatch(setLeaderboard({
+                score_charleston: arg,
+                id: profile.id,
+                login: profile.login,
+                avatar: profile.avatar,
+            }));
             HERO.event.run = true;
             document.addEventListener('mousedown', jump);
 
             // дожидаемся загрузки всех изображений
-            let int = setInterval(function () {
+            const int = setInterval(() => {
                 if (GAME.allCount === GAME.loadCount) {
                     clearInterval(int);
                     restart();

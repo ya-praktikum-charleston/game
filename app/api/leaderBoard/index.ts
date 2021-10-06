@@ -10,7 +10,7 @@ import type {
 
 export const addUserLeaderBoard = (props: UserLeaderBoardProps): Promise<UserLeaderBoardResponse> => axios.post<UserLeaderBoardResponse>('/leaderboard', {
     data: props,
-    ratingFieldName: 'point',
+    ratingFieldName: 'score_charleston',
     teamName: 'charleston',
 })
     .then(({ data }) => data);

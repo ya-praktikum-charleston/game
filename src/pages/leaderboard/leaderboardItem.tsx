@@ -1,29 +1,29 @@
 import React, { ReactElement } from 'react';
-import AccountIcon from '../../assets/svg/pause.svg';
+import AccountIcon from '../../assets/svg/account_circle.svg';
 
 type MainProps = {
     avatar: string;
     login: string;
     index: number;
-    point: number;
+    score: number;
 };
 
 const LeaderboardItem = ({
     avatar,
     login,
     index,
-    point,
+    score,
 }: MainProps): ReactElement => (
     <div className="table-leaderboard-item">
         <div className="item-number">{index}</div>
         {
             avatar === null
-                ? <AccountIcon />
-                : <img src={avatar} alt="avatar" className="item-img" />
+                ? <img src={AccountIcon} alt="avatar" className="item-img" />
+                : <img src={`https://ya-praktikum.tech/api/v2/resources${avatar}`} alt="avatar" className="item-img" />
         }
 
         <div className="item-name">{login}</div>
-        <div className="item-count">{point}</div>
+        <div className="item-count">{score}</div>
     </div>
 );
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Form } from 'react-final-form';
@@ -6,12 +6,14 @@ import * as Yup from 'yup';
 import { SchemaOf } from 'yup';
 import { validateFormValues } from '../../utilities/validator';
 import { signinAction } from '../../actions/auth/signin';
+import { fetchUser } from '../../actions/auth/user';
 import Main from '../../components/main';
 import { getSignin } from '../../selectors/collections/auth';
 import type { Store } from '../../reducers/types';
 import type { Props } from './types';
 import type { SigninProps } from '../../../app/api/auth/types';
 import Field from '../../components/field';
+import { getAuthorized } from '../../selectors/widgets/app';
 import './signin.css';
 
 const SigninSchema: SchemaOf<SigninProps> = Yup.object().shape({
@@ -21,14 +23,20 @@ const SigninSchema: SchemaOf<SigninProps> = Yup.object().shape({
 
 const validate = validateFormValues(SigninSchema);
 
-const Signin = ({ signinStore, signin }: Props) => {
+const Signin = ({ signinStore, user, signin, isAuthorized }: Props) => {
     const onSubmitHandler = (values: SigninProps) => {
         signin(values);
     };
 
-    if (signinStore.data === 'OK' || signinStore.error === 'User already in system') {
+    if (signinStore.data === 'OK' || signinStore.error === 'User already in system' || isAuthorized) {
         return <Redirect to="/" />;
     }
+
+    useEffect(() => {
+        if (!isAuthorized) {
+            user();
+        }
+    }, [isAuthorized]);
 
     return (
         <>
@@ -53,8 +61,8 @@ const Signin = ({ signinStore, signin }: Props) => {
                                 </button>
                                 {
                                     (signinStore.error === 'Login or password is incorrect')
-                                    ? <div>Не правильный логин или пароль</div>
-                                    : null
+                                        ? <div>Не правильный логин или пароль</div>
+                                        : null
                                 }
                             </form>
                         )}
@@ -67,10 +75,12 @@ const Signin = ({ signinStore, signin }: Props) => {
 
 const mapStateToProps = (store: Store) => ({
     signinStore: getSignin(store),
+    isAuthorized: getAuthorized(store),
 });
 
 const mapDispatchToProps = {
     signin: signinAction,
+    user: fetchUser,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signin);

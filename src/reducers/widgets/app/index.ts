@@ -7,10 +7,11 @@ import {
 	SET_APP_UNAUTHORIZED,
 	SET_APP_UNEXPECTED_ERROR,
 	SET_GAME_START,
-	SET_HERO_NAME,
-	SET_LEADERBOARD,
 	LEADERBOARD_LIST,
 } from '../../../actions/app';
+import { FetchData } from '../../../../app/api/leaderBoard/types';
+
+type LeaderboardArr = { data: FetchData }[];
 
 const initialState = {
 	loading: false,
@@ -18,47 +19,43 @@ const initialState = {
 	unauthorized: false,
 	unexpectedError: false,
 	gamaRunner: false,
-	heroName: 'angel1',
 	leaderboard: [],
 };
 
-export const app = (store: AppStore = initialState, action: ActionPayload<boolean>): AppStore => {
+export const app = (
+	store: AppStore = initialState,
+	action: ActionPayload<LeaderboardArr | boolean>,
+): AppStore => {
 	switch (action.type) {
 		case LEADERBOARD_LIST: {
-			store.leaderboard = action.payload;
-			debugger
-			return store;
-		}
-		case SET_HERO_NAME: {
-			store.heroName = action.payload;
-
+			store.leaderboard = (action as ActionPayload<LeaderboardArr>).payload;
 			return store;
 		}
 		case SET_GAME_START: {
-			store.gamaRunner = action.payload;
+			store.gamaRunner = (action as ActionPayload<boolean>).payload;
 
 			return store;
 		}
 		case SET_APP_LOADING: {
-			store.loading = action.payload;
+			store.loading = (action as ActionPayload<boolean>).payload;
 
 			return store;
 		}
 
 		case SET_APP_AUTHORIZED: {
-			store.authorized = action.payload;
+			store.authorized = (action as ActionPayload<boolean>).payload;
 
 			return store;
 		}
 
 		case SET_APP_UNAUTHORIZED: {
-			store.unauthorized = action.payload;
+			store.unauthorized = (action as ActionPayload<boolean>).payload;
 
 			return store;
 		}
 
 		case SET_APP_UNEXPECTED_ERROR: {
-			store.unexpectedError = action.payload;
+			store.unexpectedError = (action as ActionPayload<boolean>).payload;
 
 			return store;
 		}

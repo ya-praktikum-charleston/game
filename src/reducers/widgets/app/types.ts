@@ -4,6 +4,5 @@ export type AppStore = {
     unauthorized: boolean;
     unexpectedError: boolean;
     gamaRunner: boolean;
-    heroName: string;
-    leaderboard: [];
+    leaderboard: any;
 };

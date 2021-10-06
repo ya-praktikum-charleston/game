@@ -21,23 +21,21 @@ const PrivateRoute = ({
     user,
     ...props
 }: Props) => {
-	useEffect(() => {
-        if (!isAuthorized) {
-            user();
-        }
-	}, [isAuthorized]);
+    useEffect(() => {
+        user();
+    }, []);
 
     return (
         <Route
             {...props}
             render={() => {
-				if (isAuthorized) {
-					return children;
-				}
+                if (isAuthorized) {
+                    return children;
+                }
 
                 if (isLoading) {
-					return <Loading />;
-				}
+                    return <Loading />;
+                }
 
                 if (isUnauthorized) {
                     return <Redirect to="/signin" />;

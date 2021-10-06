@@ -4,19 +4,17 @@ import {
     CallEffect,
     PutEffect,
 } from 'redux-saga/effects';
-import { setUnexpectedError } from '../../actions/app';
 import {
     addUserLeaderBoard,
     getAllLeaderBoard,
     getTeamLeaderBoard,
 } from '../../../app/api/leaderBoard';
-import { fetchUserFulfilled } from '../../actions/auth/user';
-import { leaderboardList } from '../../actions/app';
-import type { Action, ActionPayload } from '../../actions/types';
+import { leaderboardList, setUnexpectedError } from '../../actions/app';
+import type { ActionPayload } from '../../actions/types';
 import type {
     UserLeaderBoardProps,
     UserLeaderBoardResponse,
-    AllLeaderBoardProps,
+    // AllLeaderBoardProps,
     AllLeaderBoardResponse,
     TeamLeaderBoardProps,
     TeamLeaderBoardResponse,
@@ -28,7 +26,6 @@ export function* workerAddUserLeaderBoard(
     | PutEffect<ActionPayload<UserLeaderBoardResponse>>
     | PutEffect<ActionPayload<boolean>>, void, UserLeaderBoardResponse> {
     try {
-        debugger
         yield call(addUserLeaderBoard, action.payload);
     } catch (error) {
         yield put(setUnexpectedError(true));
@@ -36,13 +33,12 @@ export function* workerAddUserLeaderBoard(
 }
 
 export function* workerGetAllLeaderBoard(
-    action: ActionPayload<AllLeaderBoardProps>,
 ): Generator<CallEffect<AllLeaderBoardResponse>
     | PutEffect<ActionPayload<AllLeaderBoardResponse>>
     | PutEffect<ActionPayload<boolean>>, void, AllLeaderBoardResponse> {
     try {
         const response = yield call(getAllLeaderBoard, {
-            ratingFieldName: 'point',
+            ratingFieldName: 'score_charleston',
             cursor: 0,
             limit: 10,
         });

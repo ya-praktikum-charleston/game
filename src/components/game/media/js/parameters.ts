@@ -42,10 +42,12 @@ import {
     Pussy,
     PussyAttack,
     PussyStop,
+    Pussy_leve3,
     // аудио файлы
     Jump,
     Death,
     theme1,
+    theme4,
     themeNight,
     themeEpick,
 } from './assetsLinks';
@@ -110,6 +112,7 @@ export const GAME: Game = {
     },
     // используется для остановки requestAnimationFrame
     requestId: 0,
+    setLeaderboard: () => null,
 };
 
 // фоновые картинки
@@ -304,7 +307,7 @@ export const HERO: Hero = {
 const pussyDistance = [[640, 1300], [1400, 2060], [2160, 2920]];
 
 export const PUSSY: TypePussy = {
-    run: loadSpriteImage(Pussy_1_walk, 200, 200, 10, 6, GAME),
+    run: loadSpriteImage(Pussy_leve3, 200, 200, 12, 1, GAME),
     attack: loadSpriteImage(PussyAttack, 182, 150, 1, 1, GAME),
     stop: loadSpriteImage(PussyStop, 129, 150, 1, 1, GAME),
     enemy: [
@@ -340,6 +343,8 @@ const selectAudioLevel = () => {
             return themeNight;
         case 'level3':
             return themeEpick;
+        case 'level4':
+            return theme4;
         default:
             return theme1;
     }

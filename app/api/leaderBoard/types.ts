@@ -1,30 +1,30 @@
-export type fetchData = {
+export type FetchData = {
     id: number,
     login: string,
     avatar: string,
-    point: number,
+    score_charleston: number,
 };
 
 export type UserLeaderBoardProps = {
-    data: fetchData,
-    ratingFieldName: 'point',
+    data: FetchData,
+    ratingFieldName: 'score_charleston',
     teamName: 'charleston'
 };
 
 export type AllLeaderBoardProps = {
-    ratingFieldName: 'point',
+    ratingFieldName: 'score_charleston',
     cursor: 0,
     limit: 10
 };
 
 export type TeamLeaderBoardProps = {
-    ratingFieldName: 'point',
+    ratingFieldName: 'score_charleston',
     cursor: 0,
     limit: 10
 };
 
 export type UserLeaderBoardResponse = string;
 
-export type AllLeaderBoardResponse = { data: fetchData }[];
+export type AllLeaderBoardResponse = { data: FetchData }[];
 
-export type TeamLeaderBoardResponse = { data: fetchData }[];
+export type TeamLeaderBoardResponse = { data: FetchData }[];
