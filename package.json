@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "webpack --mode production && node ./server.js",
+        "start": "webpack --mode production && node ./server/server.ts",
         "dev": "webpack serve --mode development --open --hot",
         "build": "webpack --mode production",
         "eslint": "eslint . --ext .ts",

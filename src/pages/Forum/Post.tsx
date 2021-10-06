@@ -1,9 +1,9 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { Topic, Comment, CommentAdd } from './index';
 import { API } from '../../api';
-import { useParams } from 'react-router-dom';
 import Main from '../../components/main';
-import {PostType, MessageType} from './type';
+import { PostType, MessageType } from './type';
 
 interface UseParamsTypes {
     id: string;
@@ -12,7 +12,7 @@ interface UseParamsTypes {
 type addMessageValueType = {
     author: string,
     text: string,
-}
+};
 
 function Post() {
     const [post, setPost] = React.useState<PostType | null>(null);
@@ -29,7 +29,7 @@ function Post() {
                     console.log(error);
                 });
         },
-        [id, messages]
+        [id, messages],
     );
 
     const handleGetMessages = React.useCallback(() => {
@@ -47,23 +47,19 @@ function Post() {
 
     return (
         <>
-            <Main title='Форум'>
-                <div className='forum'>
-                    <div className='forum-content'>
+            <Main title="Форум">
+                <div className="forum">
+                    <div className="forum-content">
                         <Topic post={post} />
-
-                        {
-                            <div className='messages'>
-                                {messages.length ? (
-                                    messages.map((elem) => (
-                                        <Comment key={elem.id} message={elem} />
-                                    ))
-                                ) : (
-                                    <p>Комментариев нет</p>
-                                )}
-                            </div>
-                        }
-
+                        <div className="messages">
+                            {messages.length ? (
+                                messages.map((elem) => (
+                                    <Comment key={elem.id} message={elem} />
+                                ))
+                            ) : (
+                                <p>Комментариев нет</p>
+                            )}
+                        </div>
                         <CommentAdd handleAddMessages={handleAddMessages} />
                     </div>
                 </div>

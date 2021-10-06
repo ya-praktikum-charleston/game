@@ -13,25 +13,31 @@
 .forum {
     width: 1200px;
 }
+
 .forum-content {
     padding: 20px 45px;
 }
+
 .forum-add-topic {
     margin-bottom: 10px;
 }
+
 .forum-title {
     font-weight: bolder;
     margin-bottom: 10px;
 }
-.forum-themes {
-}
+
+.forum-themes {}
+
 .forum--theme {
     background-color: #fff;
     margin-bottom: 10px;
 }
+
 .forum--theme:hover {
     background-color: rgb(255 255 255 / 85%);
 }
+
 .forum--theme a {
     padding: 10px 20px;
     display: -ms-flexbox;
@@ -52,6 +58,7 @@
     -webkit-align-items: flex-start;
     -ms-flex-align: start;
 }
+
 .forum--theme-content {
     padding: 10px 20px;
     display: -ms-flexbox;
@@ -72,15 +79,16 @@
     -webkit-align-items: flex-start;
     -ms-flex-align: start;
 }
+
 .forum--main {
-    width: calc(100% - 100px);
+    width: 100%;
 }
-.forum-themes-title {
-}
-.forum-themes-text {
-}
+
+.forum-themes-title {}
+
+.forum-themes-text {}
+
 .info {
-    width: 100px;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
@@ -100,20 +108,23 @@
     -ms-flex-align: end;
     align-items: flex-end;
 }
+
 .info span {
     font-size: 12px;
 }
-.info span  b {
+
+.info span b {
     font-size: 14px;
 }
 
-article.post {
-}
-article.post .info {
-}
+article.post {}
+
+article.post .info {}
 
 .messages {
-    padding-bottom: 120px;
+    max-height: 500px;
+    overflow: auto;
+    padding: 0px 30px 120px 0px;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
@@ -123,21 +134,37 @@ article.post .info {
     align-content: stretch;
     align-items: flex-end;
 }
-.message p {
-    font-size: 14px;
+
+.messages::-webkit-scrollbar {
+    width: 0.5em;
 }
+
+.messages::-webkit-scrollbar-track {}
+
+.messages::-webkit-scrollbar-thumb {
+    background-color: #0000004a;
+    border-radius: 20px;
+}
+
+.message p {
+    font-size: 1rem;
+}
+
 .message_form {
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
 }
+
 .message_form form {
     padding-bottom: 12px;
 }
+
 .message_form form label {
     margin-bottom: 2px;
 }
+
 .message_form .form-text {
     margin-bottom: 0px;
     display: -ms-flexbox;
@@ -159,9 +186,11 @@ article.post .info {
     -ms-flex-align: stretch;
     align-items: stretch;
 }
+
 .message_form label {
     font-size: 13px;
 }
+
 .message_form .form-text textarea {
     min-height: 40px;
     width: calc(100% - 120px);
@@ -170,6 +199,7 @@ article.post .info {
 .message_form .form-button {
     margin: 0;
 }
+
 .message {
     position: relative;
     width: calc(100% - 40px);
@@ -177,10 +207,14 @@ article.post .info {
 }
 
 .message_main {
-    position: relative;
-    padding: 10px 20px 25px;
-    background-color: #fff;
-    margin-bottom: 10px;
+    background: white;
+    margin: 20px 0px;
+    padding: 10px 20px 10px;
+}
+
+.message_content {
+    display: flex;
+    justify-content: space-between;
 }
 
 .message_answer {
@@ -190,21 +224,25 @@ article.post .info {
 }
 
 .message_answer:hover {
-    color: #00d2ff;
+    color: var(--orangeHover);
+    text-decoration: underline;
 }
 
 .message .info {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    /*position: absolute;*/
+    /*top: 10px;*/
+    /*right: 10px;*/
 }
+
 .message .info span {
     font-size: 12px;
-    margin-right: 10px;
+    /*margin-right: 10px;*/
 }
+
 .message .info span b {
     font-size: 14px;
 }
+
 .answers {
     position: relative;
 }
@@ -250,6 +288,7 @@ article.post .info {
     padding-top: 10px;
     margin-bottom: 30px;
 }
+
 .message form,
 .answer form {
     padding: 0;
@@ -288,6 +327,7 @@ article.post .info {
     flex-direction: column;
     flex: 1;
 }
+
 .form-button {
     display: flex;
     justify-content: flex-end;

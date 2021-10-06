@@ -1,21 +1,23 @@
 import React from 'react';
 import { useFormik, FormikProvider, Field, Form } from 'formik';
+import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
 
 type FormValueType = {
     author: string,
     text: string,
-}
+};
 type HandleAddMessagesType = {
-    handleAddMessages: (arg: FormValueType)=> void
-}
+    handleAddMessages: (arg: FormValueType) => void
+};
 
 function CommentAdd(props: HandleAddMessagesType) {
+    const login = useSelector(({ collections }) => collections.user.login);
     const { handleAddMessages } = props;
 
     const formik = useFormik({
         initialValues: {
-            author: 'testAuthor',
+            author: login,
             text: '',
         },
         enableReinitialize: true,
@@ -33,19 +35,19 @@ function CommentAdd(props: HandleAddMessagesType) {
 
     return (
         <>
-            <div className='message_form'>
+            <div className="message_form">
                 <FormikProvider value={formik}>
                     <Form>
                         <label>Добавить комментарий</label>
-                        <div className='form-text'>
+                        <div className="form-text">
                             <Field
-                                as='textarea'
-                                type='text'
-                                name='text'
-                            ></Field>
-                            <div className='form-button'>
+                                as="textarea"
+                                type="text"
+                                name="text"
+                            />
+                            <div className="form-button">
                                 <button
-                                    type='submit'
+                                    type="submit"
                                     disabled={!(formik.isValid && formik.dirty)}
                                 >
                                     Отправить

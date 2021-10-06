@@ -1,17 +1,19 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { useFormik, FormikProvider, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import { API } from '../../api';
 import Main from '../../components/main';
 
 function AddPost() {
+    const login = useSelector(({ collections }) => collections.user.login);
     const history = useHistory();
 
     const formik = useFormik({
         initialValues: {
             title: '',
-            author: 'testAuthor',
+            author: login,
             text: '',
         },
         validationSchema: Yup.object({
@@ -34,41 +36,41 @@ function AddPost() {
                     }
                 })
                 .catch((error) => {
-                   // throw new Error('Что-то пошло не так: ', error.message);
+                    // throw new Error('Что-то пошло не так: ', error.message);
                 });
         },
     });
 
     return (
-        <Main title='Форум'>
-            <div className='forum'>
-                <div className='forum-content'>
+        <Main title="Форум">
+            <div className="forum">
+                <div className="forum-content">
                     <FormikProvider value={formik}>
                         <Form>
-                            <div className='form-info'>
+                            <div className="form-info">
                                 <label>
                                     Заголовок
                                     <Field
-                                        type='text'
-                                        id='title'
-                                        name='title'
+                                        type="text"
+                                        id="title"
+                                        name="title"
                                     />
                                 </label>
                             </div>
-                            <div className='form-text'>
+                            <div className="form-text">
                                 <label>
                                     Описание темы
                                     <Field
-                                        as='textarea'
-                                        id='text'
-                                        type='text'
-                                        name='text'
-                                    ></Field>
+                                        as="textarea"
+                                        id="text"
+                                        type="text"
+                                        name="text"
+                                    />
                                 </label>
                             </div>
-                            <div className='form-button'>
+                            <div className="form-button">
                                 <button
-                                    type='submit'
+                                    type="submit"
                                     disabled={!(formik.isValid && formik.dirty)}
                                 >
                                     Сохранить
