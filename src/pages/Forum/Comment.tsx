@@ -38,7 +38,7 @@ function Comment(props: PropsCommentType) {
                 console.log(error);
             });
     }, [id, message]);
-    console.log('message', message)
+
     return (
         <>
             <div className="message">
@@ -51,7 +51,7 @@ function Comment(props: PropsCommentType) {
                             </span>
                             <span>
                                 {message.createdAt
-                                    ? new Date(message.createdAt).toLocaleString()
+                                    ? new Date(message.createdAt).toLocaleString('ru-RU', { dateStyle: 'short', timeStyle: 'short' })
                                     : 'Без даты'}
                             </span>
                         </div>
