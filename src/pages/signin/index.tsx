@@ -12,6 +12,8 @@ import type { Store } from '../../reducers/types';
 import type { Props } from './types';
 import type { SigninProps } from '../../../app/api/auth/types';
 import Field from '../../components/field';
+import YaOauthButton from '../../components/ya-oauth-button';
+
 import './signin.css';
 import axios from 'axios';
 
@@ -51,9 +53,10 @@ const Signin = ({ signinStore, signin }: Props) => {
                                 >
                                     Вход
                                 </button>
+                                <YaOauthButton/>
                                 {
                                     (signinStore.error === 'Login or password is incorrect')
-                                        ? <div>Не правильный логин или пароль</div>
+                                        ? <span className="input-block__error">Не правильный логин или пароль</span>
                                         : null
                                 }
                             </form>
