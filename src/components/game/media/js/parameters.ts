@@ -42,6 +42,12 @@ import {
     Pussy,
     PussyAttack,
     PussyStop,
+
+    Pussy_level1,
+    Pussy_level2,
+    Pussy_level3,
+    Pussy_level4,
+
     // аудио файлы
     Jump,
     Death,
@@ -302,7 +308,7 @@ export const HERO: Hero = {
 const pussyDistance = [[640, 1300], [1400, 2060], [2160, 2920]];
 
 export const PUSSY: TypePussy = {
-    run: loadSpriteImage(Pussy_1_walk, 200, 200, 10, 6, GAME),
+    run: loadSpriteImage(Pussy_level1, 200, 200, 12, 1, GAME),
     attack: loadSpriteImage(PussyAttack, 182, 150, 1, 1, GAME),
     stop: loadSpriteImage(PussyStop, 129, 150, 1, 1, GAME),
     enemy: [
