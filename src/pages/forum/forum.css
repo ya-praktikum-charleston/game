@@ -344,6 +344,18 @@ article.post .info {}
     transition: max-height 1s;
 }
 
+.btn-emoji-picker {
+    border: none;
+    background: transparent;
+    transition: transform 2s, opacity 2s;
+    opacity: 0.5;
+}
+
+.btn-emoji-picker:hover {
+    transform: rotate(540deg);
+    opacity: 1;
+}
+
 .picker-show {
     max-height: 320px;
 }

@@ -90,7 +90,7 @@ function CommentAdd(props: HandleAddMessagesType) {
                                 onBlur={formik.handleBlur}
                                 value={formik.values.text}
                             />
-                            <button type="button" onClick={handlerPicker}><img src={EmojiIcon} alt="Emoji" /></button>
+                            <button className="btn-emoji-picker" type="button" onClick={handlerPicker}><img src={EmojiIcon} alt="Emoji" /></button>
 
                             <div className="form-button">
                                 <button
