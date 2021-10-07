@@ -4,8 +4,6 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "webpack --mode production && node ./server/server.ts",
-        "dev": "webpack serve --mode development --open --hot",
         "build": "webpack --mode production",
         "eslint": "eslint . --ext .ts --ext .tsx",
         "eslint:fix": "eslint . --ext .ts --fix --ext .tsx",
@@ -13,11 +11,9 @@
         "stylelint:fix": "stylelint 'src' .scss --fix",
         "test": "jest",
         "test:coverage": "jest --coverage",
-        "build:client": "webpack --config webpack.config.client.ts",
-        "build:server": "webpack --config webpack.config.server.ts",
-        "ssr": "nodemon ./dist/server/server.js",
-        "dev2": "concurrently \"npm run build:client\" \"npm run build:server\" \"npm run ssr\"",
-        "start2": "concurrently \"npm run start\" \"npm run dev\""
+        "start:webpack": "webpack --mode=development --watch",
+        "start:server": "nodemon ./dist/server/server.js --watch",
+        "start": "concurrently -m 1 \"npm run start:webpack\" \"npm run start:server\""
     },
     "keywords": [],
     "author": "",

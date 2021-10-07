@@ -1,9 +1,10 @@
 import path from 'path';
+import { Configuration, Plugin } from 'webpack';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import LoadablePlugin from '@loadable/webpack-plugin';
 
-module.exports = {
+const config: Configuration = {
     name: 'client/index.tsx',
     target: 'web',
     entry: {
@@ -69,5 +70,6 @@ module.exports = {
         new MiniCssExtractPlugin({ filename: '[name].css' }),
         new LoadablePlugin(),
         new CleanWebpackPlugin(),
-    ],
+    ].filter(Boolean) as Plugin[],
 };
+export default config;

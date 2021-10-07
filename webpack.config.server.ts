@@ -1,9 +1,10 @@
 import path from 'path';
 import nodeExternals from 'webpack-node-externals';
+import { Configuration, Plugin } from 'webpack';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import LoadablePlugin from '@loadable/webpack-plugin';
 
-module.exports = {
+const config: Configuration = {
     name: 'server',
     target: 'node',
     node: { __dirname: false },
@@ -40,5 +41,6 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new LoadablePlugin(),
-    ],
+    ].filter(Boolean) as Plugin[],
 };
+export default config;

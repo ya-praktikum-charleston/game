@@ -285,7 +285,7 @@ export const HERO: Hero = {
     img: {
         run: loadSpriteImage(Heroes_Run, 200, 200, 12, 1, GAME),
         jump: loadSpriteImage(Heroes_Jump, 200, 200, 12, 1, GAME),
-        hurt: loadSpriteImage(Heroes_Death, 200, 200, 15, 1, GAME),
+        hurt: loadSpriteImage(Heroes_Death, 200, 200, 1, 1, GAME),
         stand: loadSpriteImage(Heroes_Stand, 200, 200, 18, 1, GAME),
     },
     position: {
