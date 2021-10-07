@@ -14,9 +14,7 @@ type ParamTypes = {
 
 const ForumMessageList = (): ReactElement => {
     const { chapterId, topicId } = useParams<ParamTypes>();
-    const onSubmitHandler = () => {
-        console.log('test');
-    };
+    const onSubmitHandler = () => {};
     const chapterItem = content.find(
         (chapterElement) => chapterElement.id === +chapterId,
     );

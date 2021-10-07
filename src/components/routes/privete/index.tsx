@@ -11,6 +11,7 @@ import {
 } from '../../../selectors/widgets/app';
 import type { Store } from '../../../reducers/types';
 import type { Props } from './types';
+import { isServer } from '../../../utilities/isServer';
 
 const PrivateRoute = ({
     children,
@@ -21,23 +22,23 @@ const PrivateRoute = ({
     user,
     ...props
 }: Props) => {
-	useEffect(() => {
-        if (!isAuthorized) {
+    useEffect(() => {
+        if (!isAuthorized && !isServer && !isUnauthorized) {
             user();
         }
-	}, [isAuthorized]);
+    }, [isAuthorized]);
 
     return (
         <Route
             {...props}
             render={() => {
-				if (isAuthorized) {
-					return children;
-				}
+                if (isAuthorized) {
+                    return children;
+                }
 
                 if (isLoading) {
-					return <Loading />;
-				}
+                    return <Loading />;
+                }
 
                 if (isUnauthorized) {
                     return <Redirect to="/signin" />;

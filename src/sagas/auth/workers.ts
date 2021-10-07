@@ -30,18 +30,20 @@ import type {
     UserResponse,
 } from '../../../app/api/auth/types';
 import type { ErrorType } from '../../../app/utils/axios-instance/types';
+import { isServer } from '../../utilities/isServer';
 
 export function* workerSignup(
     action: ActionPayload<SignupProps>,
 ): Generator<CallEffect<SignupResponse> | PutEffect<Action>, void, SignupResponse> {
     try {
-		const response: SignupResponse = yield call(signup, action.payload);
+        const response: SignupResponse = yield call(signup, action.payload);
 
-		yield put(signupFilfilldAction(response));
+        yield put(signupFilfilldAction(response));
 
-        yield put(signupResetAction());
-	} catch (error) {
-		const { response } = error as ErrorType;
+        yield put(setAuthorized(true));
+
+    } catch (error) {
+        const { response } = error as ErrorType;
 
         switch (response?.status) {
             case 400:
@@ -56,74 +58,93 @@ export function* workerSignup(
                 yield put(setUnexpectedError(true));
                 break;
         }
-	}
+    }
 }
 
-export function* workerSignin(
-    action: ActionPayload<SigninProps>,
-): Generator<CallEffect<string> | PutEffect<Action>, void, string> {
+export function* workerSignin( action: ActionPayload<SigninProps> ) {
     try {
-		const response: SigninResponse = yield call(signin, action.payload);
+        const response: SigninResponse = yield call(signin, action.payload);
 
-		yield put(signinFilfilldAction(response));
+        yield put(setUnauthorized(false));
+
+        yield put(signinFilfilldAction(response));
+
+        yield put(setAuthorized(true));
 
         yield put(signinResetAction());
-	} catch (error) {
-		const { response } = error as ErrorType;
+    } catch (error) {
+        const { response } = error as ErrorType;
 
-		switch (response?.status) {
-			case 400:
-				yield put(signinFailedAction(response.data.reason));
-				break;
+        switch (response?.status) {
+            case 400:
+                yield put(signinFailedAction(response.data.reason));
+                break;
 
             case 401:
                 yield put(signinFailedAction(response.data.reason));
                 break;
 
-			default:
-				yield put(setUnexpectedError(true));
-				break;
-		}
-	}
+            default:
+                yield put(setUnexpectedError(true));
+                break;
+        }
+    }
 }
 
-export function* workerUser(): Generator<PutEffect<ActionPayload<boolean>>
-    | CallEffect<UserResponse>
-    | PutEffect<ActionPayload<UserResponse>>, void, UserResponse> {
-	yield put(setLoading(true));
+export function* workerUser({ config }) {
+    yield put(setLoading(true));
 
-	try {
-		const response: UserResponse = yield call(user);
+    try {
+        const response: UserResponse = yield call(user, config);
 
-		yield put(fetchUserFulfilled(response));
+        if (isServer) {
+            yield put(fetchUserFulfilled(response.data));
+        } else {
+            yield put(fetchUserFulfilled(response));
+        }     
 
-		yield put(setAuthorized(true));
-	} catch (error) {
-		const { response } = error as ErrorType;
+        yield put(setAuthorized(true));
+        yield put(setUnauthorized(false));
+    } catch (error) {      
+        const { response } = error as ErrorType;
 
         switch (response?.status) {
-			case 401:
-				yield put(setUnauthorized(true));
-				break;
+            case 401:
+                yield put(setUnauthorized(true));
+                break;
 
-			default:
-				yield put(setUnexpectedError(true));
-				break;
-		}
-	}
+            default:
+                yield put(setUnexpectedError(true));
+                break;
+        }
+    }
 
-	yield put(setLoading(false));
+    yield put(setLoading(false));
 }
 
-export function* workerLogout(): Generator<CallEffect<string>
-    | PutEffect<Action>, void, string> {
+export function* workerLogout() {
     try {
-		const response: LogoutResponse = yield call(logout);
+        const response: LogoutResponse = yield call(logout);
 
-		yield put(logoutFilfilldAction(response));
+        yield put(logoutFilfilldAction(response));
+
+        yield put(setAuthorized(false));
 
         yield put(logoutResetAction());
-	} catch (error) {
+    } catch (error) {
+        const { response } = error as ErrorType;
+
+        switch (response?.status) {
+            case 401:
+                yield put(setAuthorized(false));
+                yield put(setUnauthorized(true));
+                break;
+
+            default:
+                yield put(setUnexpectedError(true));
+                break;
+        }
+
         yield put(setUnexpectedError(true));
-	}
+    }
 }
