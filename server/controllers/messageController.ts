@@ -5,10 +5,12 @@ const handleError = (res, error) => {
 };
 
 const getMessages = (req, res) => {
-    Message.findAll({ where: {
-        postId: req.params.id,
-        messageId: null
-    } })
+    Message.findAll({
+        where: {
+            postId: req.params.id,
+            messageId: null,
+        },
+    })
         .then((posts) => res.status(200).json(posts))
         .catch((error) => handleError(res, error));
 };
@@ -24,10 +26,12 @@ const addMessage = (req, res) => {
 
 const getMessageToMessage = (req, res) => {
     const { postId, messageId } = req.params;
-    Message.findAll({ where: {
-        postId: postId,
-        messageId: messageId
-    } })
+    Message.findAll({
+        where: {
+            postId: postId,
+            messageId: messageId
+        },
+    })
         .then((posts) => res.status(200).json(posts))
         .catch((error) => handleError(res, error));
 };
@@ -45,5 +49,5 @@ module.exports = {
     getMessages,
     addMessage,
     getMessageToMessage,
-    addMessageToMessage
+    addMessageToMessage,
 };

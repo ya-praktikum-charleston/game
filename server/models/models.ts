@@ -24,5 +24,5 @@ Message.belongsTo(Message, { as: 'parent', foreignKey: 'messageId' });
 
 module.exports = {
     Post,
-    Message
+    Message,
 };

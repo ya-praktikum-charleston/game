@@ -3,19 +3,21 @@ import createSagaMiddleware, { END } from 'redux-saga';
 import { rootReducer } from '../reducers';
 import rootSaga from '../sagas';
 import { isServer } from '../utilities/isServer';
+import type { AppStore } from './types';
 
 function getComposeEnhancers() {
 	if (process.env.NODE_ENV !== 'production' && !isServer) {
 		return window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 	}
+
 	return compose;
 }
 
-const composeEnhancers = getComposeEnhancers();
-const sagaMiddleware = createSagaMiddleware();
-
 export const create = <T>(initialState: T) => {
-	const store = createStore(
+	const composeEnhancers = getComposeEnhancers();
+	const sagaMiddleware = createSagaMiddleware();
+
+	const store: AppStore = createStore(
 		rootReducer,
 		initialState,
 		composeEnhancers(applyMiddleware(sagaMiddleware)),

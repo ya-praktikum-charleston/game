@@ -7,6 +7,7 @@
     --textInput-color: #292929;
     --titleButton-color: #292929;
     --text-color: #000000;
+    --text-color-error: red;
     --text-color-light: #f3f3f3;
     --link-color: #4791ff;
     --border-input-color: #a0a0a0;
@@ -28,11 +29,15 @@
     margin: 0;
 }
 
-a {
+body {
+    background-color: #f0db69;
+}
+
+/* a {
     text-decoration: none;
     display: inline-block;
     color: black;
-}
+} */
 
 .main-font-family {
     font-family: var(--main-font-family);
@@ -86,13 +91,6 @@ a {
     flex: 0 0 auto;
 }
 
-.btn-back-icon {
-    transform: rotate(180deg);
-    background: #fff;
-    padding: 10px;
-    border-bottom-right-radius: 20px;
-}
-
 .input {
     border-color: var(--border-input-color);
     font-size: 16px;
@@ -132,8 +130,14 @@ z-index: -1;
 
 .input-block__error {
     display: block;
-    font-size: 14px;
-    position: relative;
-    top: -15px;
-    left: 12px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-color-error);
+    margin-top: -16px;
+    margin-bottom: 10px;
+}
+
+.app {
+    display: flex;
+    height: 100vh;
 }

@@ -1,8 +1,10 @@
-import { fork, ForkEffect } from 'redux-saga/effects';
+import { fork } from 'redux-saga/effects';
 import { watchAuth } from './auth/watchers';
 import { watchUsers } from './users/watchers';
+import { watchOauth } from './oauth/watchers';
 
-export default function* rootSaga(): Generator<ForkEffect<void>, void, unknown> {
+export default function* rootSaga() {
     yield fork(watchAuth);
     yield fork(watchUsers);
+    yield fork(watchOauth);
 }

@@ -3,28 +3,24 @@ import { useHistory } from 'react-router-dom';
 import './game-menu.css';
 
 type Props = {
-	handleStartGame: () => void;
+	goOptions: () => void;
 };
 
-const GameMenu = ({ handleStartGame }: Props) => {
+const GameMenu = ({ goOptions }: Props) => {
 	const history = useHistory();
 	const handleOnClick = useCallback(
 		(link) => history.push(`/${link}`),
 		[history],
 	);
 
-	const handleNewGame = () => {
-		handleStartGame();
-	};
-
 	return (
 		<div className="game-menu">
 			<button
 				type="button"
 				className="btn fullwidth"
-				onClick={() => handleNewGame()}
+				onClick={() => goOptions()}
 			>
-				Старт
+				Выбрать персонажа
 			</button>
 			<div className="game-menu__block">
 				<button

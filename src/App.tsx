@@ -13,7 +13,6 @@ import Post from './pages/forum/Post';
 import AddPost from './pages/forum/AddPost';
 import ErrorBoundary from './utilities/ErrorBoundary';
 import './assets/style.css';
-import ForwardIcon from './assets/svg/forward.svg';
 
 const GameStatic = loadable(() => import('./components/game/gameStatic'), { ssr: false });
 const Start = loadable(() => import('./pages'), { ssr: false });
@@ -24,7 +23,6 @@ export default function App(): ReactElement {
     return (
         <ErrorBoundary>
             <div className="app">
-                <img className="btn-back-icon" src={ForwardIcon} alt="forward" />
                 <Switch>
                     <PrivateRoute path="/" exact><Start /></PrivateRoute>
                     <Route path="/signin" component={Signin} />
