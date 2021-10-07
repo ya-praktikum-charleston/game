@@ -42,10 +42,14 @@ import {
     Pussy,
     PussyAttack,
     PussyStop,
+    Pussy_leve3,
     // аудио файлы
     Jump,
     Death,
     theme1,
+    theme4,
+    themeNight,
+    themeEpick,
 } from './assetsLinks';
 import {
     Game,
@@ -108,6 +112,7 @@ export const GAME: Game = {
     },
     // используется для остановки requestAnimationFrame
     requestId: 0,
+    setLeaderboard: () => null,
 };
 
 // фоновые картинки
@@ -302,7 +307,7 @@ export const HERO: Hero = {
 const pussyDistance = [[640, 1300], [1400, 2060], [2160, 2920]];
 
 export const PUSSY: TypePussy = {
-    run: loadSpriteImage(Pussy_1_walk, 200, 200, 10, 6, GAME),
+    run: loadSpriteImage(Pussy_leve3, 200, 200, 12, 1, GAME),
     attack: loadSpriteImage(PussyAttack, 182, 150, 1, 1, GAME),
     stop: loadSpriteImage(PussyStop, 129, 150, 1, 1, GAME),
     enemy: [
@@ -311,27 +316,44 @@ export const PUSSY: TypePussy = {
             y: GAME.y_positionLine,
             distance: GAME.random([14, 15]) / 10,
             attack: false,
+            skin: GAME.random([0, 2]),
         },
         {
             x: 1280 + GAME.random(pussyDistance[1]),
             y: GAME.y_positionLine,
             distance: GAME.random([14, 15]) / 10,
             attack: false,
+            skin: GAME.random([0, 2]),
         },
         {
             x: 1280 + GAME.random(pussyDistance[2]),
             y: GAME.y_positionLine,
             distance: GAME.random([14, 15]) / 10,
             attack: false,
+            skin: GAME.random([0, 2]),
         },
     ],
 };
 
+const selectAudioLevel = () => {
+    switch (GAME.level) {
+        case 'level1':
+            return theme1;
+        case 'level2':
+            return themeNight;
+        case 'level3':
+            return themeEpick;
+        case 'level4':
+            return theme4;
+        default:
+            return theme1;
+    }
+};
 // аудио файлы
 export const AUDIO = {
     Jump: loadAudio([Jump], 0.4),
     Dead: loadAudio([Death], 0.1),
-    Theme1: loadAudio([theme1], 0.4),
+    Theme1: loadAudio(() => selectAudioLevel(), 0.1),
 };
 
 // проверка localStorage на наличия рекорда в игре

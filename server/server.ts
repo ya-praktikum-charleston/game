@@ -4,6 +4,8 @@ import singin from './modules/auth/signin';
 import singup from './modules/auth/signup';
 import logout from './modules/auth/logout';
 import user from './modules/auth/user';
+import leaderboard from './modules/leaderboard/leaderboard';
+import leaderboardAll from './modules/leaderboard/leaderboardAll';
 import oauthYandex from './modules/oauth/yandex';
 import serviceId from './modules/oauth/service-id';
 import profile from './modules/users/profile';
@@ -29,14 +31,16 @@ app.use(cors());
 app.use(express.json());
 app.use('/api', router);
 
-//singin(app, store);
-//logout(app, store);
-//user(app, store);
+// singin(app, store);
+// logout(app, store);
+// user(app, store);
 
 singin(app);
 singup(app);
 logout(app);
 user(app);
+leaderboard(app);
+leaderboardAll(app);
 
 profile(app);
 avatar(app);
