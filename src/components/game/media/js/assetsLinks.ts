@@ -33,17 +33,16 @@ export { default as l4_l6_ground01 } from '../img/level4/l6_ground01.png';
 export { default as l4_l7_ground02 } from '../img/level4/l7_ground02.png';
 export { default as l4_l8_ground } from '../img/level4/l8_ground.png';
 /* Hero */
-export { default as Angels } from '../img/Angels.png';
 export { default as Heroes_Run } from '../img/heroes_run.png';
 export { default as Heroes_Stand } from '../img/heroes_stand.png';
 export { default as Heroes_Jump } from '../img/heroes_jump.png';
 export { default as Heroes_Death } from '../img/heroes_death.png';
 export { default as Heroes_Sliding } from '../img/heroes_sliding.png';
-export { default as AngelsTwo } from '../img/AngelsTwo.png';
-export { default as Angels_Jump } from '../img/Angels_Jump.png';
-export { default as Angels_Hurt } from '../img/Angels_Hurt.png';
-export { default as Angels_Stand } from '../img/Angels_Stand.png';
-export { default as Angels2 } from '../img/Angels2.png';
+
+export { default as HeroRun } from '../img/heroes-run2.png';
+export { default as HeroJump } from '../img/heroes-jump2.png';
+export { default as HeroStand } from '../img/heroes-stand2.png';
+
 /* Pussy */
 export { default as Pussy } from '../img/Pussy.png';
 export { default as PussyAttack } from '../img/PussyAttack.png';
@@ -54,6 +53,8 @@ export { default as Pussy_level1 } from '../img/pussy/pussy_level1.png';
 export { default as Pussy_level2 } from '../img/pussy/pussy_level2.png';
 export { default as Pussy_level3 } from '../img/pussy/pussy_level3.png';
 export { default as Pussy_level4 } from '../img/pussy/pussy_level4.png';
+export { default as Pussy_all } from '../img/pussy-run-all2.png';
+export { default as Pussy_attack_all } from '../img/pussy/pussy-attack-all.png';
 
 export { default as GameOver } from '../img/GameOver.png';
 export { default as Smile } from '../img/smile.png';
@@ -62,3 +63,6 @@ export { default as Smile } from '../img/smile.png';
 export { default as Jump } from '../audio/Jump.wav';
 export { default as Death } from '../audio/Death.wav';
 export { default as theme1 } from '../audio/theme1.mp3';
+export { default as themeNight } from '../audio/themeNight.mp3';
+export { default as themeEpick } from '../audio/themeEpick.mp3';
+export { default as theme4 } from '../audio/theme4.mp3';

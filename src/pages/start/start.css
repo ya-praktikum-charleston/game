@@ -1,6 +1,7 @@
 .start {
     overflow: hidden;
     margin: 0px 20px;
+    min-width: 430px;
 }
 
 .start__main {

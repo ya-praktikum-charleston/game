@@ -6,7 +6,12 @@ import { SpriteImage } from './types';
  * @x {number} координа картинки по x
  * @y {number} координа картинки по y
  */
-export default function drawImage(img: SpriteImage, x: number, y: number): void {
+export default function drawImage(
+    img: SpriteImage,
+    x: number,
+    y: number,
+    objectAnimation: string,
+): void {
     // частота обновления кадров для данной картинки
     let offset = 0;
     if (GAME.heroName === 'angel1') {
@@ -17,6 +22,23 @@ export default function drawImage(img: SpriteImage, x: number, y: number): void 
     }
     if (GAME.heroName === 'angel3') {
         offset = 400;
+    }
+    if (GAME.heroName === 'angel4') {
+        offset = 600;
+    }
+    if (objectAnimation === 'pussy') {
+        if (GAME.level === 'level1') {
+            offset = 0;
+        }
+        if (GAME.level === 'level2') {
+            offset = 200;
+        }
+        if (GAME.level === 'level3') {
+            offset = 400;
+        }
+        if (GAME.level === 'level4') {
+            offset = 600;
+        }
     }
     img.tickCount += 0.15;
     if (img.tickCount > img.ticksFrame) {

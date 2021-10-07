@@ -4,22 +4,34 @@ import { Track } from './types';
  * @arr {string} массив с путями аудио файла в различных форматах
  * @vol {number} уровень громкости
  */
-export default function loadAudio(arr: string[], vol = 1): Track {
-    const audio = document.createElement('audio');
-    for (let i = 0, len = arr.length; i < len; i += 1) {
-        const source = document.createElement('source');
-        source.src = arr[i];
-        audio.appendChild(source);
-    }
+
+export default function loadAudio(audioPath: string[] | (() => string), vol = 1): Track {
+    let audio = document.createElement('audio');
+    const selectAudioPath = () => {
+        audio.innerHTML = '';
+        if (typeof audioPath === 'function') {
+            const theme = audioPath();
+            audio = new Audio(theme);
+        } else {
+            for (let i = 0, len = audioPath.length; i < len; i += 1) {
+                const source = document.createElement('source');
+                source.src = audioPath[i];
+                audio.appendChild(source);
+            }
+        }
+    };
+
     audio.volume = vol;
     const track = {
         dom: audio,
         state: 'stop',
         play() {
+            selectAudioPath();
             audio.play();
             this.state = 'play';
         },
         restart() {
+            selectAudioPath();
             audio.currentTime = 0;
             audio.play();
             this.state = 'play';

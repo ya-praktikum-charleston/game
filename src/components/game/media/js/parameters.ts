@@ -37,21 +37,30 @@ import {
     Heroes_Jump,
     Heroes_Death,
     Heroes_Sliding,
+
+    HeroRun,
+    HeroJump,
+    HeroStand,
+
     // враги
     Pussy_1_walk,
     Pussy,
-    PussyAttack,
     PussyStop,
 
     Pussy_level1,
     Pussy_level2,
     Pussy_level3,
     Pussy_level4,
+    Pussy_all,
+    Pussy_attack_all,
 
     // аудио файлы
     Jump,
     Death,
     theme1,
+    theme4,
+    themeNight,
+    themeEpick,
 } from './assetsLinks';
 import {
     Game,
@@ -289,10 +298,10 @@ export const BG = { level1, level2, level3, level4 };
 
 export const HERO: Hero = {
     img: {
-        run: loadSpriteImage(Heroes_Run, 200, 200, 12, 1, GAME),
-        jump: loadSpriteImage(Heroes_Jump, 200, 200, 12, 1, GAME),
+        run: loadSpriteImage(HeroRun, 200, 200, 12, 1, GAME),
+        jump: loadSpriteImage(HeroJump, 200, 200, 12, 1, GAME),
         hurt: loadSpriteImage(Heroes_Death, 200, 200, 1, 1, GAME),
-        stand: loadSpriteImage(Heroes_Stand, 200, 200, 18, 1, GAME),
+        stand: loadSpriteImage(HeroStand, 200, 200, 18, 1, GAME),
     },
     position: {
         x: 65,
@@ -308,9 +317,9 @@ export const HERO: Hero = {
 const pussyDistance = [[640, 1300], [1400, 2060], [2160, 2920]];
 
 export const PUSSY: TypePussy = {
-    run: loadSpriteImage(Pussy_level1, 200, 200, 12, 1, GAME),
-    attack: loadSpriteImage(PussyAttack, 182, 150, 1, 1, GAME),
-    stop: loadSpriteImage(PussyStop, 129, 150, 1, 1, GAME),
+    run: loadSpriteImage(Pussy_all, 200, 200, 12, 4, GAME),
+    attack: loadSpriteImage(Pussy_attack_all, 200, 200, 1, 1, GAME),
+    stop: loadSpriteImage(Pussy_attack_all, 200, 200, 1, 1, GAME),
     enemy: [
         {
             x: 1280 + GAME.random(pussyDistance[0]),
@@ -334,10 +343,24 @@ export const PUSSY: TypePussy = {
 };
 
 // аудио файлы
+const selectAudioLevel = () => {
+    switch (GAME.level) {
+        case 'level1':
+            return theme1;
+        case 'level2':
+            return themeNight;
+        case 'level3':
+            return themeEpick;
+        case 'level4':
+            return theme4;
+        default:
+            return theme1;
+    }
+};
 export const AUDIO = {
     Jump: loadAudio([Jump], 0.4),
     Dead: loadAudio([Death], 0.1),
-    Theme1: loadAudio([theme1], 0.4),
+    Theme1: loadAudio(() => selectAudioLevel(), 0.1),
 };
 
 // проверка localStorage на наличия рекорда в игре
