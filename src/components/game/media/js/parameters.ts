@@ -32,25 +32,13 @@ import {
     l4_l7_ground02,
     l4_l8_ground,
     // главный герой
-    Heroes_Run,
-    Heroes_Stand,
-    Heroes_Jump,
-    Heroes_Death,
-    Heroes_Sliding,
 
     HeroRun,
     HeroJump,
     HeroStand,
+    HeroDeath,
 
     // враги
-    Pussy_1_walk,
-    Pussy,
-    PussyStop,
-
-    Pussy_level1,
-    Pussy_level2,
-    Pussy_level3,
-    Pussy_level4,
     Pussy_all,
     Pussy_attack_all,
 
@@ -300,7 +288,7 @@ export const HERO: Hero = {
     img: {
         run: loadSpriteImage(HeroRun, 200, 200, 12, 1, GAME),
         jump: loadSpriteImage(HeroJump, 200, 200, 12, 1, GAME),
-        hurt: loadSpriteImage(Heroes_Death, 200, 200, 1, 1, GAME),
+        hurt: loadSpriteImage(HeroDeath, 200, 200, 1, 1, GAME),
         stand: loadSpriteImage(HeroStand, 200, 200, 18, 1, GAME),
     },
     position: {

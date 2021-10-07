@@ -42,6 +42,7 @@ export { default as Heroes_Sliding } from '../img/heroes_sliding.png';
 export { default as HeroRun } from '../img/heroes-run2.png';
 export { default as HeroJump } from '../img/heroes-jump2.png';
 export { default as HeroStand } from '../img/heroes-stand2.png';
+export { default as HeroDeath } from '../img/heroes-death2.png';
 
 /* Pussy */
 export { default as Pussy } from '../img/Pussy.png';
