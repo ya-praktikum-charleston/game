@@ -33,11 +33,11 @@ body {
     background-color: #f0db69;
 }
 
-/* a {
+a {
     text-decoration: none;
     display: inline-block;
     color: black;
-} */
+}
 
 .main-font-family {
     font-family: var(--main-font-family);

@@ -8,9 +8,7 @@ function Topic({ post }: PropsPostType) {
                 <div className="forum--theme">
                     <div className="forum--theme-content">
                         <div className="forum--main">
-                            <div className="forum-themes-title">
-                                <b>{post.title}</b>
-                            </div>
+                            <b>{post.title}</b>
                             <div className="forum-themes-text">{post.text}</div>
                         </div>
 

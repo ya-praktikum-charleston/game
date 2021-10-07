@@ -67,7 +67,7 @@ function CommentAdd(props: HandleAddMessagesType) {
                                 <Picker
                                     preload
                                     onEmojiClick={onEmojiClick}
-                                    pickerStyle={{ width: '100%' }}
+                                    pickerStyle={{ width: '100%', height: '200px', border: '2px solid #9e9e9e' }}
                                     disableSearchBar
                                     groupVisibility={{
                                         flags: false,
