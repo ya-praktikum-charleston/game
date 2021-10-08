@@ -3,6 +3,7 @@ import { GAME } from '../../components/game/media/js/parameters';
 import Angel1 from '../../assets/img/Angels1.png';
 import Angel2 from '../../assets/img/Angels2.png';
 import Angel3 from '../../assets/img/Angels3.png';
+import Angel4 from '../../assets/img/Angels4.png';
 import Level1 from '../../assets/img/level1.jpg';
 import Level2 from '../../assets/img/level2.jpg';
 import Level3 from '../../assets/img/level3.jpg';
@@ -32,6 +33,7 @@ function StartOptions({ handleStartGame }: Props): ReactElement {
                 <img src={Angel1} data-name="angel1" alt="angel1" className={`hero ${hero === 'angel1' && 'active__option'} `} />
                 <img src={Angel2} data-name="angel2" alt="angel2" className={`hero ${hero === 'angel2' && 'active__option'} `} />
                 <img src={Angel3} data-name="angel3" alt="angel3" className={`hero ${hero === 'angel3' && 'active__option'} `} />
+                <img src={Angel4} data-name="angel4" alt="angel4" className={`hero ${hero === 'angel4' && 'active__option'} `} />
             </div>
             <div>Выберите уровень:</div>
             <div onClick={selectLevel} className="list__levels">

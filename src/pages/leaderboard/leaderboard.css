@@ -16,7 +16,7 @@
 
 .table-loaderboard::-webkit-scrollbar-thumb {
     background-color: #ffffffa8;
-
+}
 
 .table-leaderboard-item {
     display: grid;
@@ -73,6 +73,7 @@
     padding: 10px;
     background: #fff;
 }
+
 .empty__list {
     margin: 30px auto;
 }

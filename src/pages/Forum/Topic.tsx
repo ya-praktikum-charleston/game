@@ -1,5 +1,5 @@
-import React from "react";
-import { PropsPostType } from "./type";
+import React from 'react';
+import { PropsPostType } from './type';
 
 function Topic({ post }: PropsPostType) {
     return (

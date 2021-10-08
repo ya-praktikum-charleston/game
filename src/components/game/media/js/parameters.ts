@@ -32,17 +32,15 @@ import {
     l4_l7_ground02,
     l4_l8_ground,
     // главный герой
-    Heroes_Run,
-    Heroes_Stand,
-    Heroes_Jump,
-    Heroes_Death,
-    Heroes_Sliding,
+
+    HeroRun,
+    HeroJump,
+    HeroStand,
+    HeroDeath,
+
     // враги
-    Pussy_1_walk,
-    Pussy,
-    PussyAttack,
-    PussyStop,
-    Pussy_leve3,
+    Pussy_all,
+    Pussy_attack_all,
     // аудио файлы
     Jump,
     Death,
@@ -288,10 +286,12 @@ export const BG = { level1, level2, level3, level4 };
 
 export const HERO: Hero = {
     img: {
-        run: loadSpriteImage(Heroes_Run, 200, 200, 12, 1, GAME),
-        jump: loadSpriteImage(Heroes_Jump, 200, 200, 12, 1, GAME),
-        hurt: loadSpriteImage(Heroes_Death, 200, 200, 1, 1, GAME),
-        stand: loadSpriteImage(Heroes_Stand, 200, 200, 18, 1, GAME),
+
+        run: loadSpriteImage(HeroRun, 200, 200, 12, 1, GAME),
+        jump: loadSpriteImage(HeroJump, 200, 200, 12, 1, GAME),
+        hurt: loadSpriteImage(HeroDeath, 200, 200, 1, 1, GAME),
+        stand: loadSpriteImage(HeroStand, 200, 200, 18, 1, GAME),
+
     },
     position: {
         x: 65,
@@ -307,11 +307,9 @@ export const HERO: Hero = {
 const pussyDistance = [[640, 1300], [1400, 2060], [2160, 2920]];
 
 export const PUSSY: TypePussy = {
-
-    run: loadSpriteImage(Pussy_leve3, 200, 200, 12, 1, GAME),
-
-    attack: loadSpriteImage(PussyAttack, 182, 150, 1, 1, GAME),
-    stop: loadSpriteImage(PussyStop, 129, 150, 1, 1, GAME),
+    run: loadSpriteImage(Pussy_all, 200, 200, 12, 4, GAME),
+    attack: loadSpriteImage(Pussy_attack_all, 200, 200, 1, 1, GAME),
+    stop: loadSpriteImage(Pussy_attack_all, 200, 200, 1, 1, GAME),
     enemy: [
         {
             x: 1280 + GAME.random(pussyDistance[0]),
@@ -336,7 +334,7 @@ export const PUSSY: TypePussy = {
         },
     ],
 };
-
+// аудио файлы
 const selectAudioLevel = () => {
     switch (GAME.level) {
         case 'level1':
@@ -351,7 +349,6 @@ const selectAudioLevel = () => {
             return theme1;
     }
 };
-// аудио файлы
 export const AUDIO = {
     Jump: loadAudio([Jump], 0.4),
     Dead: loadAudio([Death], 0.1),
