@@ -41,7 +41,6 @@ import {
     // враги
     Pussy_all,
     Pussy_attack_all,
-
     // аудио файлы
     Jump,
     Death,
@@ -111,6 +110,7 @@ export const GAME: Game = {
     },
     // используется для остановки requestAnimationFrame
     requestId: 0,
+    setLeaderboard: () => null,
 };
 
 // фоновые картинки
@@ -286,10 +286,12 @@ export const BG = { level1, level2, level3, level4 };
 
 export const HERO: Hero = {
     img: {
+
         run: loadSpriteImage(HeroRun, 200, 200, 12, 1, GAME),
         jump: loadSpriteImage(HeroJump, 200, 200, 12, 1, GAME),
         hurt: loadSpriteImage(HeroDeath, 200, 200, 1, 1, GAME),
         stand: loadSpriteImage(HeroStand, 200, 200, 18, 1, GAME),
+
     },
     position: {
         x: 65,
@@ -314,22 +316,24 @@ export const PUSSY: TypePussy = {
             y: GAME.y_positionLine,
             distance: GAME.random([14, 15]) / 10,
             attack: false,
+            skin: GAME.random([0, 2]),
         },
         {
             x: 1280 + GAME.random(pussyDistance[1]),
             y: GAME.y_positionLine,
             distance: GAME.random([14, 15]) / 10,
             attack: false,
+            skin: GAME.random([0, 2]),
         },
         {
             x: 1280 + GAME.random(pussyDistance[2]),
             y: GAME.y_positionLine,
             distance: GAME.random([14, 15]) / 10,
             attack: false,
+            skin: GAME.random([0, 2]),
         },
     ],
 };
-
 // аудио файлы
 const selectAudioLevel = () => {
     switch (GAME.level) {

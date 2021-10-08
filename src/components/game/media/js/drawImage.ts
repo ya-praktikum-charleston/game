@@ -1,4 +1,4 @@
-import { GAME } from './parameters';
+import { GAME, PUSSY } from './parameters';
 import { SpriteImage } from './types';
 
 /** Эта функция отрисовывает любые изображения
@@ -6,6 +6,9 @@ import { SpriteImage } from './types';
  * @x {number} координа картинки по x
  * @y {number} координа картинки по y
  */
+
+const offsetStep = [0, 200, 400, 600, 800];
+
 export default function drawImage(
     img: SpriteImage,
     x: number,

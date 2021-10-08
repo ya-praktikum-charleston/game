@@ -13,7 +13,7 @@ export const getUserAvatar = (store: Store): string | null => {
     const avatarPath = store.collections.user.avatar;
 
     if (avatarPath) {
-        return `https://ya-praktikum.tech/api/v2/resources/${avatarPath}`;
+        return `https://ya-praktikum.tech/api/v2/resources${avatarPath}`;
     }
 
     return null;

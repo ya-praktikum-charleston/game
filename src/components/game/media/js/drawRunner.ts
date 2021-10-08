@@ -48,6 +48,7 @@ export default function drawRunner(): void {
                 // и установть рандомно от последнего не ушедшего за левый экран
                 PUSSY.enemy[i].x = PUSSY.enemy[key].x + GAME.random([600, 1400]);
                 PUSSY.enemy[i].distance = (GAME.random([14, 16]) / 10 + 1) / 2;
+                //PUSSY.enemy[i].skin = GAME.random([0, 2])
 
                 // враги не должны держаться вместе
                 if (
@@ -130,5 +131,7 @@ export default function drawRunner(): void {
         GAME.ctx.textAlign = 'left';
         GAME.ctx.fillText(`Рекорд: ${GAME.localStorageRecord}`, 10, 30);
     }
-    GAME.requestId = requestAnimationFrame(drawRunner);
+    if (!GAME.isGameStopped) {
+        GAME.requestId = requestAnimationFrame(drawRunner);
+    }
 }

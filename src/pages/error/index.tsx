@@ -36,7 +36,7 @@ const ErrorPage = ({ number }: ErrorPageProps) => {
                     <div className="error__decription">{error.description}</div>
                     <div className="error__message">{error.message}</div>
                 </div>
-                <Link to="/"><button type="button" className="btn">Вернуться</button></Link>
+                <Link to="/"><button type="button" className="btn fullwidth">Вернуться</button></Link>
             </div>
         </Main>
     );

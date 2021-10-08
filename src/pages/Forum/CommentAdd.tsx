@@ -13,14 +13,16 @@ type FormValueType = {
     text: string,
 };
 type HandleAddMessagesType = {
-    handleAddMessages: (arg: FormValueType) => void
+    handleAddMessages: (arg: FormValueType) => void,
+    mainComment?: boolean,
 };
 
 function CommentAdd(props: HandleAddMessagesType) {
     const login = useSelector(({ collections }) => collections.user.login);
     const [emojiPicker, setEmojiPicker] = useState(false);
     const refTextarea = useRef(null);
-    const { handleAddMessages } = props;
+
+    const { handleAddMessages, mainComment } = props;
 
     const handlerPicker = () => {
         setEmojiPicker((prev) => !prev);
@@ -55,7 +57,7 @@ function CommentAdd(props: HandleAddMessagesType) {
         refTextarea.current.focus();
     };
 
-    const styleEmoji = classNames('emoji_picker', { 'picker-show': emojiPicker });
+    const styleEmoji = classNames(mainComment ? 'emoji_picker' : 'emoji_picker_2', { 'picker-show': emojiPicker });
     return (
         <>
             <div className="message_form">

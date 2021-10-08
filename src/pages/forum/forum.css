@@ -110,7 +110,7 @@ article.post .info {}
 .messages {
     max-height: 380px;
     overflow: auto;
-    padding: 0px 30px 30px 0px;
+    padding: 0px 15px 15px 0px;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
@@ -203,7 +203,7 @@ textarea::-webkit-scrollbar-thumb {
 
 .message_main {
     background: #ffffff99;
-    margin: 20px 0px;
+    margin: 5px 0px;
     padding: 10px 20px 10px;
     border-radius: 10px;
     border-top-left-radius: 0;
@@ -372,6 +372,14 @@ textarea::-webkit-scrollbar-thumb {
     will-change: height;
     transition: max-height 1s, top 1s;
     margin: 5px 0px;
+}
+
+.emoji_picker_2 {
+    overflow: hidden;
+    margin: 5px 0px;
+    max-height: 0px;
+    will-change: height;
+    transition: max-height 1s;
 }
 
 .emoji_picker_main {

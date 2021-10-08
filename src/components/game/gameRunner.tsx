@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, ReactElement } from 'react';
-import { useDispatch } from 'react-redux';
-import { setGameStart } from '../../actions/app';
+import { useDispatch, useSelector } from 'react-redux';
+import { setGameStart, setLeaderboard } from '../../actions/app';
 import './game.css';
 import {
     GAME,
@@ -19,6 +19,7 @@ function GameRunner(): ReactElement {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const gameBannerRef = useRef<HTMLDivElement>(null);
     const dispatch = useDispatch();
+    const profile = useSelector(({ collections }) => collections.user);
 
     useEffect(() => {
         if (canvasRef.current && gameBannerRef.current) {
@@ -30,17 +31,23 @@ function GameRunner(): ReactElement {
                 canvas: canvasRef,
                 gameBanner: gameBannerRef,
             };
+            GAME.setLeaderboard = (arg: number) => dispatch(setLeaderboard({
+                score_charleston: arg,
+                id: profile.id,
+                login: profile.login,
+                avatar: profile.avatar,
+            }));
             HERO.event.run = true;
             document.addEventListener('mousedown', jump);
 
             // дожидаемся загрузки всех изображений
-            let int = setInterval(function () {
-				if (GAME.allCount === GAME.loadCount) {
-					clearInterval(int);
+            const int = setInterval(() => {
+                if (GAME.allCount === GAME.loadCount) {
+                    clearInterval(int);
                     restart();
-					drawRunner();
-				}
-			}, 1000 / 60);
+                    drawRunner();
+                }
+            }, 1000 / 60);
         }
         return () => {
             // удаление событий мыши
@@ -57,7 +64,6 @@ function GameRunner(): ReactElement {
         restart();
         dispatch(setGameStart(false));
     };
-
     return (
         <div className="game">
             <canvas id="canvas" ref={canvasRef}>Эх... Ваш браузер не поддерживает Canvas, Вы не сможете сыграть в игру...</canvas>
