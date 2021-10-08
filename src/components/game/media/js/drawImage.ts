@@ -1,4 +1,4 @@
-import { GAME } from './parameters';
+import { GAME, PUSSY } from './parameters';
 import { SpriteImage } from './types';
 
 /** Эта функция отрисовывает любые изображения
@@ -6,7 +6,20 @@ import { SpriteImage } from './types';
  * @x {number} координа картинки по x
  * @y {number} координа картинки по y
  */
-export default function drawImage(img: SpriteImage, x: number, y: number): void {
+
+const offsetStep = [0, 200, 400, 600, 800];
+
+export default function drawImage(
+    img: SpriteImage,
+    x: number,
+    y: number,
+    animationObject: { object: string, number: number },
+): void {
+    //if (animationObject.object === 'pussy') {
+    //    const layer = PUSSY.enemy[animationObject.number].skin;
+    //    offset = offsetStep[layer];
+    //}
+
     // частота обновления кадров для данной картинки
     let offset = 0;
     if (GAME.heroName === 'angel1') {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Form } from 'react-final-form';
@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import { SchemaOf } from 'yup';
 import { validateFormValues } from '../../utilities/validator';
 import { signinAction } from '../../actions/auth/signin';
+import { fetchUser } from '../../actions/auth/user';
 import Main from '../../components/main';
 import { getSignin } from '../../selectors/collections/auth';
 import type { Store } from '../../reducers/types';
@@ -15,7 +16,6 @@ import Field from '../../components/field';
 import YaOauthButton from '../../components/ya-oauth-button';
 
 import './signin.css';
-import axios from 'axios';
 
 const SigninSchema: SchemaOf<SigninProps> = Yup.object().shape({
     login: Yup.string().required('Пожалуйста, укажите логин'),
@@ -53,7 +53,7 @@ const Signin = ({ signinStore, signin }: Props) => {
                                 >
                                     Вход
                                 </button>
-                                <YaOauthButton/>
+                                <YaOauthButton />
                                 {
                                     (signinStore.error === 'Login or password is incorrect')
                                         ? <span className="input-block__error">Не правильный логин или пароль</span>

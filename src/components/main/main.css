@@ -2,7 +2,7 @@
     background: #ffffff8a;
     backdrop-filter: blur(7px);
     -webkit-backdrop-filter: blur(7px);
-    width: 38%;
+    width: min-content;
     height: max-content;
     margin: auto;
     position: relative;

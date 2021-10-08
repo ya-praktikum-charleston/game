@@ -5,10 +5,12 @@ import { useSelector } from 'react-redux';
 import PrivateRoute from './components/routes/privete';
 import ErrorPage from './pages/error';
 import LeaderboardPage from './pages/leaderboard';
-import ForumPage from './pages/forum';
 import Profile from './pages/profile';
 import Signin from './pages/signin';
 import Signup from './pages/signup';
+import Posts from './pages/forum/Posts';
+import Post from './pages/forum/Post';
+import AddPost from './pages/forum/AddPost';
 import ErrorBoundary from './utilities/ErrorBoundary';
 import './assets/style.css';
 
@@ -21,17 +23,19 @@ export default function App(): ReactElement {
     return (
         <ErrorBoundary>
             <div className="app">
-                {!gameRunner && <GameStatic />}
                 <Switch>
-                    <PrivateRoute path="/" exact ><Start /></PrivateRoute>
+                    <PrivateRoute path="/" exact><Start /></PrivateRoute>
                     <Route path="/signin" component={Signin} />
                     <Route path="/signup" component={Signup} />
                     <PrivateRoute path="/profile"><Profile /></PrivateRoute>
-                    <PrivateRoute path="/forum"><ForumPage /></PrivateRoute>
+                    <PrivateRoute path="/forum"><Posts /></PrivateRoute>
+                    <PrivateRoute path="/forum-topic/:id"><Post /></PrivateRoute>
+                    <PrivateRoute path="/forum-add-topic"><AddPost /></PrivateRoute>
                     <PrivateRoute path="/leaderboard"><LeaderboardPage /></PrivateRoute>
                     <Route component={() => (<ErrorPage number={404} />)} />
                 </Switch>
 
+                {!gameRunner && <GameStatic />}
             </div>
         </ErrorBoundary>
     );

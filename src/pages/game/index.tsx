@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
-import HeaderMenu from '../../components/header-menu';
-import Distance from '../../components/distance';
-import SettingsIcon from '../../assets/svg/settings.svg';
-import PauseIcon from '../../assets/svg/pause.svg';
+import HeaderMenu from 'Components/header-menu';
+import Distance from 'Components/distance';
+import SettingsIcon from 'Assets/svg/settings.svg';
+import PauseIcon from 'Assets/svg/pause.svg';
 
 const headerMenu = [
     {

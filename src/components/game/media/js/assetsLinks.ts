@@ -49,6 +49,7 @@ export { default as Pussy } from '../img/Pussy.png';
 export { default as PussyAttack } from '../img/PussyAttack.png';
 export { default as PussyStop } from '../img/PussyStop.png';
 export { default as Pussy_1_walk } from '../img/pussy_1_walk.png';
+export { default as Pussy_leve3 } from '../img/pussy/pussy_level3.png';
 
 export { default as GameOver } from '../img/GameOver.png';
 export { default as Smile } from '../img/smile.png';
@@ -57,3 +58,6 @@ export { default as Smile } from '../img/smile.png';
 export { default as Jump } from '../audio/Jump.wav';
 export { default as Death } from '../audio/Death.wav';
 export { default as theme1 } from '../audio/theme1.mp3';
+export { default as themeNight } from '../audio/themeNight.mp3';
+export { default as themeEpick } from '../audio/themeEpick.mp3';
+export { default as theme4 } from '../audio/theme4.mp3';

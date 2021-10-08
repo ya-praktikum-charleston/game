@@ -36,7 +36,7 @@ export default function drawRunner(): void {
     if (!GAME.isGameStopped) {
         for (let i = 0; i < PUSSY.enemy.length; i += 1) {
             // отрисовка врага
-            drawImage(PUSSY.run, PUSSY.enemy[i].x, PUSSY.enemy[i].y);
+            drawImage(PUSSY.run, PUSSY.enemy[i].x, PUSSY.enemy[i].y, { object: 'pussy', number: i });
 
             // новые координаты для следующей отрисовки
             PUSSY.enemy[i].x -= GAME.speed * PUSSY.enemy[i].distance;
@@ -48,6 +48,7 @@ export default function drawRunner(): void {
                 // и установть рандомно от последнего не ушедшего за левый экран
                 PUSSY.enemy[i].x = PUSSY.enemy[key].x + GAME.random([600, 1400]);
                 PUSSY.enemy[i].distance = (GAME.random([14, 16]) / 10 + 1) / 2;
+                //PUSSY.enemy[i].skin = GAME.random([0, 2])
 
                 // враги не должны держаться вместе
                 if (
@@ -60,22 +61,22 @@ export default function drawRunner(): void {
     } else {
         for (let i = 0; i < PUSSY.enemy.length; i += 1) {
             if (PUSSY.enemy[i].attack) {
-                drawImage(PUSSY.attack, PUSSY.enemy[i].x, PUSSY.enemy[i].y);
+                drawImage(PUSSY.attack, PUSSY.enemy[i].x, PUSSY.enemy[i].y, { object: 'pussy', number: i });
             } else {
-                drawImage(PUSSY.stop, PUSSY.enemy[i].x, PUSSY.enemy[i].y);
+                drawImage(PUSSY.stop, PUSSY.enemy[i].x, PUSSY.enemy[i].y, { object: 'pussy', number: i });
             }
         }
     }
 
     // Варианты отрисовки главного героя
     if (HERO.event.run) {
-        drawImage(HERO.img.run, HERO.position.x, HERO.position.y);
+        drawImage(HERO.img.run, HERO.position.x, HERO.position.y, { object: 'hero', number: 0 });
     }
     if (HERO.event.jump) {
-        drawImage(HERO.img.jump, HERO.position.x, HERO.position.y);
+        drawImage(HERO.img.jump, HERO.position.x, HERO.position.y, { object: 'hero', number: 0 });
     }
     if (GAME.isGameStopped) {
-        drawImage(HERO.img.hurt, HERO.position.x, HERO.position.y);
+        drawImage(HERO.img.hurt, HERO.position.x, HERO.position.y, { object: 'hero', number: 0 });
     }
 
     // Увеличение скорости при увеличении счёта
@@ -130,5 +131,7 @@ export default function drawRunner(): void {
         GAME.ctx.textAlign = 'left';
         GAME.ctx.fillText(`Рекорд: ${GAME.localStorageRecord}`, 10, 30);
     }
-    GAME.requestId = requestAnimationFrame(drawRunner);
+    if (!GAME.isGameStopped) {
+        GAME.requestId = requestAnimationFrame(drawRunner);
+    }
 }

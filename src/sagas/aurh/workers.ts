@@ -67,7 +67,6 @@ export function* workerSignin(
 ): Generator<PutEffect<Action> | CallEffect<string>, void, unknown> {
 	try {
 		const response = yield call(signin, action.payload);
-
 		yield put(signinFilfilldAction(response as SigninResponse));
 
 		// yield put(signinResetAction());
@@ -126,7 +125,6 @@ export function* workerLogout(): Generator<PutEffect<Action>
 	| CallEffect<string>, void, unknown> {
 	try {
 		const response = yield call(logout);
-
 		yield put(logoutFilfilldAction(response as LogoutResponse));
 
 		yield put(logoutResetAction());

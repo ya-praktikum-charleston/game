@@ -1,4 +1,4 @@
-import { fetchUser } from '../../../actions/auth/user/index';
+import { fetchUser } from '../../../actions/auth/user';
 
 export type Props = {
     children: JSX.Element;

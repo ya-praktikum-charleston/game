@@ -39,8 +39,8 @@ export function* workerSignup(
         const response: SignupResponse = yield call(signup, action.payload);
 
         yield put(signupFilfilldAction(response));
-
         yield put(setAuthorized(true));
+        yield put(signupResetAction());
 
     } catch (error) {
         const { response } = error as ErrorType;
@@ -61,7 +61,7 @@ export function* workerSignup(
     }
 }
 
-export function* workerSignin( action: ActionPayload<SigninProps> ) {
+export function* workerSignin(action: ActionPayload<SigninProps>) {
     try {
         const response: SigninResponse = yield call(signin, action.payload);
 
@@ -101,11 +101,11 @@ export function* workerUser({ config }) {
             yield put(fetchUserFulfilled(response.data));
         } else {
             yield put(fetchUserFulfilled(response));
-        }     
+        }
 
         yield put(setAuthorized(true));
         yield put(setUnauthorized(false));
-    } catch (error) {      
+    } catch (error) {
         const { response } = error as ErrorType;
 
         switch (response?.status) {
