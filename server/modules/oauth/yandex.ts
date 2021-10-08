@@ -1,11 +1,11 @@
 import express from 'express';
+import type { Application } from 'express';
 import setCookie from 'set-cookie-parser';
-import type { Application } from 'express'
-import { oauthYandex } from '../../../app/api/oauth/';
+import { oauthYandex } from '../../../app/api/oauth';
 
 export default (app: Application) => {
     app.use('/api/oauth/yandex', express.urlencoded({ extended: true }));
-    app.use('/api/oauth/yandex', express.json());   
+    app.use('/api/oauth/yandex', express.json());
 
     app.get('/api/oauth/yandex', (req, res) => {
         oauthYandex({
@@ -23,7 +23,7 @@ export default (app: Application) => {
                     .cookie(cookies.authCookie.name, cookies.authCookie.value)
                     .redirect(302, `http://${req.headers.host}`);
 
-                    return;
+                return;
             })
             .catch((error) => {
                 const { headers } = error.response;

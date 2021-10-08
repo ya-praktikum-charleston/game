@@ -23,7 +23,7 @@ export default function GameStatic(): ReactElement {
             }, 1000 / 60);
         }
     }, []);
-
+    console.log('kjlkjlkj')
     return (
         <canvas id="canvas_static" ref={canvasRef}>Эх... Ваш браузер не поддерживает Canvas, Вы не сможете сыграть в игру...</canvas>
     );

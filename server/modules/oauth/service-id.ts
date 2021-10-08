@@ -1,14 +1,12 @@
 import express from 'express';
+import type { Application } from 'express';
 import axios from 'axios';
 import setCookie from 'set-cookie-parser';
-import { serviceId } from '../../../app/api/oauth/';
-import type { Application } from 'express'
-
-
+import { serviceId } from '../../../app/api/oauth';
 
 export default (app: Application) => {
     app.use('/api/oauth/yandex/service-id', express.urlencoded({ extended: true }));
-    app.use('/api/oauth/yandex/service-id', express.json());  
+    app.use('/api/oauth/yandex/service-id', express.json());
 
     app.get('/api/oauth/yandex/service-id', (req, res) => {
         serviceId({
@@ -17,7 +15,7 @@ export default (app: Application) => {
             },
             params: req.query,
         })
-            .then(({ status, data }) => {          
+            .then(({ status, data }) => {
                 res
                     .status(status)
                     .send(data);

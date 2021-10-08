@@ -10,24 +10,25 @@ import gameStop from './gameStop';
 
 export default function drawRunner(): void {
     GAME.ctx?.clearRect(0, 0, GAME.winWidth, GAME.winHeight);
-
     // отрисовка фоновых картинок
-    for (let i = 0; i < BG.length; i++) {
-        GAME.ctx?.drawImage(BG[i].path, BG[i].x, GAME.yPosBg);
-        GAME.ctx?.drawImage(BG[i].path, BG[i].x2, GAME.yPosBg);
+    const { level } = GAME;
+    const _bg = BG[level];
+    for (let i = 0; i < _bg.length; i++) {
+        GAME.ctx?.drawImage(_bg[i].path, _bg[i].x, GAME.yPosBg);
+        GAME.ctx?.drawImage(_bg[i].path, _bg[i].x2, GAME.yPosBg);
 
         // parallax
-        if (BG[i].speed) {
-            BG[i].x -= GAME.speed / BG[i].speed;
-            BG[i].x2 -= GAME.speed / BG[i].speed;
+        if (_bg[i].speed) {
+            _bg[i].x -= GAME.speed / _bg[i].speed;
+            _bg[i].x2 -= GAME.speed / _bg[i].speed;
         }
 
         // спрайт фоновых картинок
-        if (BG[i].x < -GAME.winWidth) {
-            BG[i].x = BG[i].x2 + GAME.winWidth;
+        if (_bg[i].x < -GAME.winWidth) {
+            _bg[i].x = _bg[i].x2 + GAME.winWidth;
         }
-        if (BG[i].x2 < -GAME.winWidth) {
-            BG[i].x2 = BG[i].x + GAME.winWidth;
+        if (_bg[i].x2 < -GAME.winWidth) {
+            _bg[i].x2 = _bg[i].x + GAME.winWidth;
         }
     }
 
@@ -92,7 +93,7 @@ export default function drawRunner(): void {
     }
 
     // калибровка
-    const calibration = 40;
+    const calibration = 65;
 
     // столкновение героя и врага
     for (let i = 0; i < PUSSY.enemy.length; i++) {

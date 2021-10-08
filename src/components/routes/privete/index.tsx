@@ -23,7 +23,7 @@ const PrivateRoute = ({
     ...props
 }: Props) => {
     useEffect(() => {
-        if (!isAuthorized && !isServer && !isUnauthorized) {          
+        if (!isAuthorized && !isServer && !isUnauthorized) {
             user();
         }
     }, [isAuthorized]);

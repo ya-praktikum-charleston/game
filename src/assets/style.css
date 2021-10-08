@@ -33,11 +33,11 @@ body {
     background-color: #f0db69;
 }
 
-/* a {
+a {
     text-decoration: none;
     display: inline-block;
     color: black;
-} */
+}
 
 .main-font-family {
     font-family: var(--main-font-family);
@@ -91,13 +91,6 @@ body {
     flex: 0 0 auto;
 }
 
-.btn-back-icon {
-    transform: rotate(180deg);
-    background: #fff;
-    padding: 10px;
-    border-bottom-right-radius: 20px;
-}
-
 .input {
     border-color: var(--border-input-color);
     font-size: 16px;
@@ -142,4 +135,9 @@ z-index: -1;
     color: var(--text-color-error);
     margin-top: -16px;
     margin-bottom: 10px;
+}
+
+.app {
+    display: flex;
+    height: 100vh;
 }

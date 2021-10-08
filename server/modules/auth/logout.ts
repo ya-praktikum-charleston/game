@@ -1,7 +1,7 @@
 import express from 'express';
+import type { Application } from 'express';
 import setCookie from 'set-cookie-parser';
 import { logout } from '../../../app/api/auth';
-import type { Application } from 'express'
 
 export default (app: Application) => {
     app.use('/api/auth/logout', express.urlencoded({ extended: true }));
@@ -28,7 +28,7 @@ export default (app: Application) => {
                     decodeValues: true,
                     map: true,
                 });
-                
+
                 res
                     .cookie(cookies.uuid.name, cookies.uuid.value)
                     .cookie(cookies.authCookie.name, cookies.authCookie.value)

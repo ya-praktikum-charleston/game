@@ -7,6 +7,7 @@ import {
 	SET_APP_UNAUTHORIZED,
 	SET_APP_UNEXPECTED_ERROR,
 	SET_GAME_START,
+	SET_HERO_NAME,
 } from '../../../actions/app';
 
 const initialState = {
@@ -15,10 +16,16 @@ const initialState = {
 	unauthorized: false,
 	unexpectedError: false,
 	gamaRunner: false,
+	heroName: 'angel1',
 };
 
 export const app = (store: AppStore = initialState, action: ActionPayload<boolean>): AppStore => {
 	switch (action.type) {
+		case SET_HERO_NAME: {
+			store.heroName = action.payload;
+
+			return store;
+		}
 		case SET_GAME_START: {
 			store.gamaRunner = action.payload;
 
@@ -30,14 +37,14 @@ export const app = (store: AppStore = initialState, action: ActionPayload<boolea
 			return store;
 		}
 
-        case SET_APP_AUTHORIZED: {
-            store.authorized = action.payload;
+		case SET_APP_AUTHORIZED: {
+			store.authorized = action.payload;
 
 			return store;
 		}
 
 		case SET_APP_UNAUTHORIZED: {
-            store.unauthorized = action.payload;
+			store.unauthorized = action.payload;
 
 			return store;
 		}

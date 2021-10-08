@@ -1,7 +1,6 @@
-import express from 'express';
+import express, { Application } from 'express';
 import setCookie from 'set-cookie-parser';
 import { profile } from '../../../app/api/users';
-import type { Application } from 'express'
 
 export default (app: Application) => {
     app.use('/api/user/profile', express.urlencoded({ extended: true }));
@@ -18,12 +17,10 @@ export default (app: Application) => {
             })
             .catch((error) => {
                 const { status, data, headers } = error.response;
-
                 const cookies = setCookie.parse(headers['set-cookie'], {
                     decodeValues: true,
                     map: true,
                 });
-                
                 res
                     .cookie(cookies.uuid.name, cookies.uuid.value)
                     .cookie(cookies.authCookie.name, cookies.authCookie.value)
@@ -31,6 +28,5 @@ export default (app: Application) => {
                     .send(data);
             });
     });
-
     return app;
 };
