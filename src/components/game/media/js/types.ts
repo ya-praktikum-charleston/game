@@ -18,6 +18,7 @@ export type Game = {
     localRecord: number,
     audioPlayed: boolean,
     dom: Record<string, RefObject<HTMLCanvasElement> | RefObject<HTMLDivElement>>,
+    setLeaderboard: ((arg: number) => void),
     random: (range: number[]) => number,
     requestId: number,
     heroName: string,
@@ -73,6 +74,7 @@ export type PussyEnemy = {
     y: number,
     distance: number,
     attack: boolean,
+    skin: number,
 };
 
 export type TypePussy = {

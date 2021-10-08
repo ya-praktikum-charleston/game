@@ -17,7 +17,7 @@ export default function drawStatic(): void {
     }
 
     // Варианты отрисовки главного героя
-    drawImage(HERO.img.stand, HERO.position.x, HERO.position.y);
+    drawImage(HERO.img.stand, HERO.position.x, HERO.position.y, { object: 'hero', number: 0 });
 
     GAME.requestId = requestAnimationFrame(drawStatic);
 }
