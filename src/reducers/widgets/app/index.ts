@@ -29,8 +29,9 @@ export const app = (
 	switch (action.type) {
 		case LEADERBOARD_LIST: {
 			store.leaderboard = (action as ActionPayload<LeaderboardArr>).payload;
-			return store;
-		}
+      
+      return store;
+    }
 		case SET_GAME_START: {
 			store.gamaRunner = (action as ActionPayload<boolean>).payload;
 

@@ -307,7 +307,9 @@ export const HERO: Hero = {
 const pussyDistance = [[640, 1300], [1400, 2060], [2160, 2920]];
 
 export const PUSSY: TypePussy = {
+
     run: loadSpriteImage(Pussy_leve3, 200, 200, 12, 1, GAME),
+
     attack: loadSpriteImage(PussyAttack, 182, 150, 1, 1, GAME),
     stop: loadSpriteImage(PussyStop, 129, 150, 1, 1, GAME),
     enemy: [

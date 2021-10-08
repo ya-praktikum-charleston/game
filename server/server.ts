@@ -31,9 +31,9 @@ app.use(cors());
 app.use(express.json());
 app.use('/api', router);
 
-// singin(app, store);
-// logout(app, store);
-// user(app, store);
+//singin(app, store);
+//logout(app, store);
+//user(app, store);
 
 singin(app);
 singup(app);

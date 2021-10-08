@@ -62,7 +62,7 @@ function Post() {
                                 <p>Комментариев нет</p>
                             )}
                         </div>
-                        <CommentAdd handleAddMessages={handleAddMessages} />
+                        <CommentAdd handleAddMessages={handleAddMessages} mainComment />
                     </div>
                 </div>
             </Main>

@@ -32,6 +32,15 @@ export const getLeaderboardList = (): Action => {
 	};
 };
 
+export const SET_HERO_NAME = 'app/HERONAME';
+
+export const setHeroName = (payload: string): ActionPayload<string> => {
+	return {
+		type: SET_HERO_NAME,
+		payload,
+	};
+};
+
 export const setGameStart = (payload: boolean): ActionPayload<boolean> => {
 	return {
 		type: SET_GAME_START,

@@ -34,6 +34,16 @@ export default function drawImage(
     //}
 
     // частота обновления кадров для данной картинки
+    let offset = 0;
+    if (GAME.heroName === 'angel1') {
+        offset = 0;
+    }
+    if (GAME.heroName === 'angel2') {
+        offset = 200;
+    }
+    if (GAME.heroName === 'angel3') {
+        offset = 400;
+    }
     img.tickCount += 0.15;
     if (img.tickCount > img.ticksFrame) {
         img.tickCount = 0;
