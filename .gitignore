@@ -4,3 +4,4 @@
 .idea/
 coverage
 .env
+/docker/postgres/data/*
