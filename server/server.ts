@@ -53,8 +53,8 @@ app.get('/*', serverRenderMiddleware);
 
 const start = async () => {
     try {
-        // await sequelize.authenticate(); // устанавливаем подключение к БД
-        // await sequelize.sync(); // сверяет данные БД со схемой
+        await sequelize.authenticate(); // устанавливаем подключение к БД
+        await sequelize.sync(); // сверяет данные БД со схемой
         app.listen(PORT, () => console.log(`Сервер запущен на порту ${PORT}`));
     } catch (e) {
         console.log(e);
