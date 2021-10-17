@@ -15,7 +15,6 @@ type FormValueType = {
 type HandleAddMessagesType = {
     handleAddMessages: (arg: FormValueType) => void,
     mainComment?: boolean,
-
 };
 
 function CommentAdd(props: HandleAddMessagesType) {
@@ -59,7 +58,6 @@ function CommentAdd(props: HandleAddMessagesType) {
     };
 
     const styleEmoji = classNames(mainComment ? 'emoji_picker' : 'emoji_picker_2', { 'picker-show': emojiPicker });
-
     return (
         <>
             <div className="message_form">

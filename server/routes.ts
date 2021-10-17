@@ -2,7 +2,7 @@ import { fetchUser } from '../src/actions/auth/user';
 
 export default [
     {
-        path: '/',
+        path: '/*',
         exact: true,
         fetchData({ dispatch, params }) {
             dispatch(fetchUser(params));

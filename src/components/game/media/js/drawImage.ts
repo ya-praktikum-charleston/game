@@ -13,12 +13,12 @@ export default function drawImage(
     img: SpriteImage,
     x: number,
     y: number,
-    animationObject: { object: string, number: number },
+    objectAnimation: string,
 ): void {
-    //if (animationObject.object === 'pussy') {
+    // if (animationObject.object === 'pussy') {
     //    const layer = PUSSY.enemy[animationObject.number].skin;
     //    offset = offsetStep[layer];
-    //}
+    // }
 
     // частота обновления кадров для данной картинки
     let offset = 0;
@@ -30,6 +30,23 @@ export default function drawImage(
     }
     if (GAME.heroName === 'angel3') {
         offset = 400;
+    }
+    if (GAME.heroName === 'angel4') {
+        offset = 600;
+    }
+    if (objectAnimation === 'pussy') {
+        if (GAME.level === 'level1') {
+            offset = 0;
+        }
+        if (GAME.level === 'level2') {
+            offset = 200;
+        }
+        if (GAME.level === 'level3') {
+            offset = 400;
+        }
+        if (GAME.level === 'level4') {
+            offset = 600;
+        }
     }
     img.tickCount += 0.15;
     if (img.tickCount > img.ticksFrame) {

@@ -1,3 +1,4 @@
+import express from 'express';
 import path from 'path';
 import 'babel-polyfill';
 import singin from './modules/auth/signin';
@@ -12,7 +13,6 @@ import profile from './modules/users/profile';
 import avatar from './modules/users/avatar';
 import password from './modules/users/password';
 import serverRenderMiddleware from './middleware/server-render';
-import express from 'express';
 
 require('dotenv').config();
 const sequelize = require('./db');

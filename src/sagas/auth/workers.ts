@@ -41,7 +41,6 @@ export function* workerSignup(
         yield put(signupFilfilldAction(response));
         yield put(setAuthorized(true));
         yield put(signupResetAction());
-
     } catch (error) {
         const { response } = error as ErrorType;
 
@@ -68,7 +67,7 @@ export function* workerSignin(action: ActionPayload<SigninProps>) {
         yield put(setUnauthorized(false));
 
         yield put(signinFilfilldAction(response));
-
+        console.log('asdasdas')
         yield put(setAuthorized(true));
 
         yield put(signinResetAction());
@@ -102,8 +101,9 @@ export function* workerUser({ config }) {
         } else {
             yield put(fetchUserFulfilled(response));
         }
-
+        console.log('asda ads as');
         yield put(setAuthorized(true));
+        console.log('asdasdasdasdasdsa asd asd ads as');
         yield put(setUnauthorized(false));
     } catch (error) {
         const { response } = error as ErrorType;
