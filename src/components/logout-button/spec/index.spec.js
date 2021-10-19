@@ -41,5 +41,25 @@ describe('<LogoutButton />', () => {
         ]);
     });
 
-    it('если пользователь вышел редиректим на страницу входа');
+    it('если пользователь вышел редиректим на страницу входа', () => {
+        store = mockStore({
+            collections: {
+                logout: {
+                    data: 'OK',
+                    error: null,
+                },
+            },
+        });
+    
+        wrapper = mount(
+            <Provider store={store}>
+                <LogoutButton />
+            </Provider>,
+        );
+
+        expect(wrapper.find('Redirect')).toHaveLength(1);
+        expect(wrapper.find('Redirect').props()).toEqual({
+            to: '/signin',
+        });
+    });
 });

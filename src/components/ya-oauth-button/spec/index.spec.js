@@ -30,6 +30,8 @@ describe('<YaOauthButton />', () => {
     });
 
     it('при клике по кнопке диспатчим экшн для получения serviceId', () => {
+        process.env.APP_URL = 'http://localhost';
+
         store = mockStore({
             collections: {
                 serviceId: {
