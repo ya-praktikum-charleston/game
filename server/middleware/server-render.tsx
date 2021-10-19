@@ -37,7 +37,7 @@ function getHtml(reactHtml: string, reduxState = {}) {
 
 export default (req: Request, res: Response) => {
     if (req.query.code) {
-        res.redirect(302, `http://localhost:5000/api/oauth/yandex?code=${req.query.code}`);
+        res.redirect(302, `${process.env.APP_URL}:5000/api/oauth/yandex?code=${req.query.code}`);
 
         return;
     }

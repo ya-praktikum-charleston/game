@@ -1,5 +1,5 @@
 import path from 'path';
-import { Configuration, Plugin } from 'webpack';
+import { Configuration, Plugin, EnvironmentPlugin } from 'webpack';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import LoadablePlugin from '@loadable/webpack-plugin';
@@ -67,9 +67,13 @@ const config: Configuration = {
         ],
     },
     plugins: [
+        new EnvironmentPlugin({
+            APP_URL: 'http://localhost',
+        }),
         new MiniCssExtractPlugin({ filename: '[name].css' }),
         new LoadablePlugin(),
         new CleanWebpackPlugin(),
     ].filter(Boolean) as Plugin[],
 };
+
 export default config;

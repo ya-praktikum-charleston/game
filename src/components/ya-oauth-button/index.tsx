@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchServiceId } from '../../actions/oauth/service-id';
 import { getServiceId } from '../../selectors/collections/oath';
@@ -8,7 +7,7 @@ import './ya-oauth-button.css'
 
 const YaOauthButton = ({ serviceId, serviceIdAction }) => {
     const onClickHandler = () => {
-        serviceIdAction('http://localhost:5000');
+        serviceIdAction(`${process.env.APP_URL}:5000`);
     }
 
     if (serviceId) {
