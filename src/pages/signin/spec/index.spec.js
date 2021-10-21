@@ -11,6 +11,10 @@ jest.mock('../../../components/main', () => function Main({ children }) {
     return children;
 });
 
+jest.mock('../../../components/ya-oauth-button', () => function YaOauthButton() {
+    return <div></div>;
+});
+
 jest.mock('react-router-dom', () => ({
     Link(props) {
         return <a {...props}>Регистрация</a>;

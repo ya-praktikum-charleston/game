@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import './leaderboard.css';
 import Main from '../../components/main';
 import LeaderboardItem from './leaderboardItem';
@@ -18,6 +17,7 @@ const LeaderboardPage = ({ leaderboardList, fetchLeaderboard }: Props) => {
     useEffect(() => {
         fetchLeaderboard();
     }, []);
+
     return (
         <Main title="Лидеры">
             <div className="table-loaderboard">

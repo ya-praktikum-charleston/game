@@ -16,12 +16,12 @@ const LeaderboardItem = ({
 }: MainProps): ReactElement => (
     <div className="table-leaderboard-item">
         <div className="item-number">{index}</div>
-        {/* {
+        {
             avatar === null
                 ? <img src={AccountIcon} alt="avatar" className="item-img" />
                 : <img src={`https://ya-praktikum.tech/api/v2/resources${avatar}`} alt="avatar" className="item-img" />
-        } */}
-        <img src={AccountIcon} alt="avatar" className="item-img" />
+        }
+        {/* <img src={AccountIcon} alt="avatar" className="item-img" /> */}
 
         <div className="item-name">{login}</div>
         <div className="item-count">{score}</div>
