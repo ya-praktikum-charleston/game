@@ -11,8 +11,6 @@ export default (app: Application) => {
         const form = formidable({ multiples: true });
 
         form.parse(req, (err, fields, files) => {
-            console.log('/api/user/profile/avatar: ', files);
-
             avatar({ avatar: files }, {
                 headers: { cookie: req.headers.cookie || '' },
             })
@@ -22,7 +20,6 @@ export default (app: Application) => {
                         .send(data);
                 })
                 .catch((error) => {
-                    console.log('error: ', error.response.data);
                     const { status, data, headers } = error.response;
                     const cookies = setCookie.parse(headers['set-cookie'], {
                         decodeValues: true,

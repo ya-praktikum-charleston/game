@@ -1,5 +1,7 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import createSagaMiddleware, { END } from 'redux-saga';
+import { routerMiddleware } from 'connected-react-router';
+import { createBrowserHistory, createMemoryHistory } from 'history';
 import { rootReducer } from '../reducers';
 import rootSaga from '../sagas';
 import { isServer } from '../utilities/isServer';
@@ -13,14 +15,20 @@ function getComposeEnhancers() {
 	return compose;
 }
 
-export const create = <T>(initialState: T) => {
+export const create = <T>(initialState: T, url = '/') => {
 	const composeEnhancers = getComposeEnhancers();
 	const sagaMiddleware = createSagaMiddleware();
 
+	const history = isServer
+		? createMemoryHistory({ initialEntries: [url] })
+		: createBrowserHistory();
+
+	const middlewares = [routerMiddleware(history), sagaMiddleware];
+
 	const store: AppStore = createStore(
-		rootReducer,
+		rootReducer(history),
 		initialState,
-		composeEnhancers(applyMiddleware(sagaMiddleware)),
+		composeEnhancers(applyMiddleware(...middlewares)),
 	);
 
 	store.runSaga = sagaMiddleware.run;
@@ -30,5 +38,5 @@ export const create = <T>(initialState: T) => {
 		sagaMiddleware.run(rootSaga);
 	}
 
-	return store;
+	return { store, history };
 };

@@ -26,7 +26,7 @@ function Posts() {
                         {!!posts
                             && posts.map((elem) => (
                                 <div className="forum--theme" key={elem.id}>
-                                    <Link to={`/forum-topic/${elem.id}`}>
+                                    <Link to={`/forum/${elem.id}`}>
                                         <div className="forum--main">
                                             <div className="forum-themes-title">
                                                 {elem.title}

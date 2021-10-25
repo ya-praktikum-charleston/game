@@ -11,7 +11,10 @@ import rootSaga from '../../src/sagas';
 import App from '../../src/App';
 import routes from '../routes';
 
-function getHtml(reactHtml: string, reduxState = {}) {
+function getHtml(reactHtml: string, chunkExtractor: ChunkExtractor, reduxState = {}) {
+    const scriptTags = chunkExtractor.getScriptTags();
+    const linkTags = chunkExtractor.getLinkTags();
+    const styleTags = chunkExtractor.getStyleTags();
     return `
         <!DOCTYPE html>
         <html lang="en">
@@ -21,15 +24,15 @@ function getHtml(reactHtml: string, reduxState = {}) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
             <link rel="icon" href="data:;base64,=">
-            <link rel="stylesheet" href="client.css">
-            <link rel="stylesheet" href="pages.css">
+            ${linkTags}
+            ${styleTags}
         </head>
         <body>
             <div id="root">${reactHtml}</div>
             <script>
                     window.__INITIAL_STATE__ = ${JSON.stringify(reduxState)}
             </script>
-            <script src='client.js'></script>
+            ${scriptTags}
         </body>
         </html>
 `;
@@ -42,16 +45,20 @@ export default (req: Request, res: Response) => {
         return;
     }
 
-    const location = req.path;
+    const location = req.url;
     const context: StaticRouterContext = {};
 
-    const initialState = {};
-    const store = create(initialState);
+    const initialState = {
+        router: {
+            location: { location, search: '', hash: '', key: '' },
+            action: 'POP',
+        },
+    };
+    const { store } = create(initialState, location);
 
     function renderApp() {
-        const statsFile = path.resolve('./dist/server/loadable-stats.json');
-        const chunkExtractor = new ChunkExtractor({ statsFile });
-
+        const statsFile = path.resolve('./dist/static/loadable-stats.json');
+        const chunkExtractor = new ChunkExtractor({ statsFile, entrypoints: ['client'] });
         const jsx = chunkExtractor.collectChunks(
             <ReduxProvider store={store}>
                 <StaticRouter context={context} location={location}>
@@ -68,10 +75,9 @@ export default (req: Request, res: Response) => {
             return;
         }
 
-        const html = getHtml(reactHtml, reduxState);
+        const html = getHtml(reactHtml, chunkExtractor, reduxState);
 
         res
-            .contentType('text/html')
             .status(context.statusCode || 200)
             .send(html);
     }
@@ -88,12 +94,10 @@ export default (req: Request, res: Response) => {
 
     routes.some(route => {
         const { fetchData: fetchMethod } = route;
-
         const match = matchPath(
             location,
             route,
         );
-
         if (match && fetchMethod) {
             fetchMethod({
                 dispatch: store.dispatch,

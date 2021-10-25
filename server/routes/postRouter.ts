@@ -1,12 +1,13 @@
-const Router = require('express');
-const router = new Router();
-const {
+import express from 'express';
+import {
     getPosts,
     addPost,
     getPost,
     deletePost,
-    editPost
-} = require('../controllers/postController');
+    editPost,
+} from '../controllers/postController';
+
+const router = express.Router();
 
 // Получить все посты
 router.get('/posts', getPosts);
@@ -19,4 +20,4 @@ router.put('/post/:id', editPost);
 // Удалить пост по id
 router.delete('/post/:id', deletePost);
 
-module.exports = router;
+export default router;

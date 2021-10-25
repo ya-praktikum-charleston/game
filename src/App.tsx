@@ -24,12 +24,12 @@ export default function App(): ReactElement {
         <ErrorBoundary>
             <div className="app">
                 <Switch>
-                    <PrivateRoute path="/" exact><Start /></PrivateRoute>
+                    <PrivateRoute exact path="/" exact><Start /></PrivateRoute>
                     <Route path="/signin" component={Signin} />
                     <Route path="/signup" component={Signup} />
                     <PrivateRoute path="/profile"><Profile /></PrivateRoute>
-                    <PrivateRoute path="/forum"><Posts /></PrivateRoute>
-                    <PrivateRoute path="/forum-topic/:id"><Post /></PrivateRoute>
+                    <PrivateRoute exact path="/forum"><Posts /></PrivateRoute>
+                    <PrivateRoute path="/forum/:id"><Post /></PrivateRoute>
                     <PrivateRoute path="/forum-add-topic"><AddPost /></PrivateRoute>
                     <PrivateRoute path="/leaderboard"><LeaderboardPage /></PrivateRoute>
                     <Route component={() => (<ErrorPage number={404} />)} />
