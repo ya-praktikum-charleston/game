@@ -1,4 +1,6 @@
 import { fetchUser } from '../src/actions/auth/user';
+import { getLeaderboardList } from '../src/actions/app';
+import { fetchPosts } from '../src/actions/forum';
 
 export default [
     {
@@ -15,6 +17,7 @@ export default [
         strict: true,
         fetchData({ dispatch, params }) {
             dispatch(fetchUser(params));
+            dispatch(fetchPosts());
         },
     },
     {
@@ -22,6 +25,7 @@ export default [
         strict: true,
         fetchData({ dispatch, params }) {
             dispatch(fetchUser(params));
+            dispatch(getLeaderboardList());
         },
     },
     {

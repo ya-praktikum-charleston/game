@@ -1,19 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { API } from '../../api';
+import { useDispatch, useSelector } from 'react-redux';
 import Main from '../../components/main';
 import { PostType } from './type';
+import { fetchPosts } from '../../actions/forum';
 import './forum.css';
 
 function Posts() {
-    const [posts, setPosts] = React.useState<PostType[] | null>(null);
-
+    // const [posts, setPosts] = React.useState<PostType[] | null>(null);
+    const dispatch = useDispatch();
+    const forumData: PostType[] = useSelector(({ widgets }) => widgets.forum.posts);
     React.useEffect(() => {
-        API.getPosts().then((response) => {
-            setPosts(response.data);
-        });
+        dispatch(fetchPosts());
     }, []);
-
     return (
         <Main title="Форум">
             <div className="forum">
@@ -23,8 +22,8 @@ function Posts() {
                     </div>
                     <div className="forum-title">темы</div>
                     <div className="forum-themes">
-                        {!!posts
-                            && posts.map((elem) => (
+                        {!!forumData
+                            && forumData.map((elem) => (
                                 <div className="forum--theme" key={elem.id}>
                                     <Link to={`/forum/${elem.id}`}>
                                         <div className="forum--main">
