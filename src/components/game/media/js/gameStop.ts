@@ -5,7 +5,7 @@ export default function gameStop(): void {
     GAME.isGameStopped = true;
     HERO.event.run = false;
     GAME.dom.gameBanner.current?.classList.remove('hidden');
-
+    document.exitPointerLock();
     // остановить аудио
     if (GAME.audioPlayed) {
         GAME.audioPlayed = false;

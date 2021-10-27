@@ -34,6 +34,7 @@ function Start(): ReactElement {
 		if (!isServer) {
 			dispatch(setGameStart(true));
 			AUDIO.Theme1.play();
+			document.body.requestPointerLock();
 		}
 	};
 	const handleExittGame = () => {
