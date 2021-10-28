@@ -17,12 +17,8 @@
         "test:coverage": "jest --coverage",
         "start:webpack": "webpack --mode=development --watch",
         "start:server": "nodemon ./dist/server/server.js --watch",
-        "docker:build": "sudo chown -R $USER ./docker/postgres/data/ && docker-compose up -d --build db app",
-        "docker:serve": "NODE_ENV=production docker-compose up -d db app",
-        "docker:start": "docker-compose up -d db pgadmin && concurrently -m 2 'npm run start:webpack' 'npm run start:server'",
-        "docker:down": "docker-compose down",
         "start": "concurrently -m 2 'npm run start:webpack' 'npm run start:server'",
-        "serve": "npm run build && node ./dist/server/server.js"
+        "start:prod": "node ./dist/server/server.js"
     },
     "keywords": [],
     "author": "",

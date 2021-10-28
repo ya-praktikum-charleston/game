@@ -1,7 +1,5 @@
-/node_modules/*
-/dist/*
-/.github/*
+node_modules
+dist
 .idea/
 coverage
 .env
-/docker/postgres/data/*
