@@ -15,6 +15,12 @@ import {
     Smile,
 } from './media/js/assetsLinks';
 
+const handlerKeypress = (event) => {
+    if (event.keyCode === 32) {
+        jump();
+    }
+};
+
 function GameRunner(): ReactElement {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const gameBannerRef = useRef<HTMLDivElement>(null);
@@ -39,7 +45,7 @@ function GameRunner(): ReactElement {
             }));
             HERO.event.run = true;
             document.addEventListener('mousedown', jump);
-
+            document.addEventListener('keydown', handlerKeypress);
             // дожидаемся загрузки всех изображений
             const int = setInterval(() => {
                 if (GAME.allCount === GAME.loadCount) {
@@ -50,8 +56,9 @@ function GameRunner(): ReactElement {
             }, 1000 / 60);
         }
         return () => {
-            // удаление событий мыши
+            // удаление событий мыши и пробела
             document.removeEventListener('mousedown', jump);
+            document.removeEventListener('keydown', handlerKeypress);
         };
     }, []);
 
