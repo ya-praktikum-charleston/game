@@ -3,6 +3,9 @@ import nodeExternals from 'webpack-node-externals';
 import { Configuration, Plugin, EnvironmentPlugin } from 'webpack';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import LoadablePlugin from '@loadable/webpack-plugin';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const config: Configuration = {
     name: 'server',
@@ -40,7 +43,7 @@ const config: Configuration = {
     },
     plugins: [
         new EnvironmentPlugin({
-            APP_URL: 'http://localhost',
+            APP_URL: process.env.APP_URL,
         }),
         new CleanWebpackPlugin(),
         new LoadablePlugin(),

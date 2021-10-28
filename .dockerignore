@@ -7,10 +7,9 @@
 ./.stylelintrc.js
 ./Dockerfile
 ./dist/*
-./docker/data/*
-./docker-compose.yaml
 ./jest.config.js
 ./mocks
 ./node_modules
 ./package-lock.json
 ./template.env
+./.github
