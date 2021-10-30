@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
 
-module.exports = new Sequelize(
+export default new Sequelize(
     process.env.POSTGRES_DB,        // Название БД
     process.env.POSTGRES_USER,        // Пользователь
     process.env.POSTGRES_PASSWORD,    // ПАРОЛЬ
