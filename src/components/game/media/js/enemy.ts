@@ -1,4 +1,3 @@
-import { SlowBuffer } from 'buffer';
 import { SpriteImage } from './types';
 import configGame from './configGame';
 
@@ -43,12 +42,10 @@ export class Enemy {
 
     skins: {
         run: SpriteImage | undefined,
-        jump: SpriteImage | undefined,
+        attack: SpriteImage | undefined,
         hurt: SpriteImage | undefined,
         stand: SpriteImage | undefined,
     };
-
-    skinHero: string;
 
     constructor(x, y, speed, canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D | null, skin, typeSkin) {
         this.w = 136;
@@ -60,27 +57,29 @@ export class Enemy {
         this.y = this.canvas.height - this.h * 2.7;
         this.ctx = ctx;
         this.jumpTimer = 0;
-        this.skinHero = 'angel1';
         this.typeSkin = typeSkin;
         this.skins = {
             run: skin,
-            jump: undefined,
+            attack: skin.attack,
             hurt: undefined,
             stand: undefined,
         };
         this.actions = {
             run: true,
-            jump: false,
+            attack: false,
             hurt: false,
             stand: false,
         };
     }
 
     Move(): void {
-        //const offset: number = skinsHero[this.skinHero];
         this.x += this.dx;
         this.Show();
         this.dx = -this.speed;
+    }
+
+    killHero(): {
+
     }
 
     Jump(): void {
@@ -98,7 +97,14 @@ export class Enemy {
     }
 
     Show(): void {
-        this.Draw(this.skins.run, this.x, this.y, offsetStep[this.typeSkin]);
+        if (this.actions.run) {
+            this.actions.attack = false;
+            this.Draw(this.skins.run, this.x, this.y, offsetStep[this.typeSkin]);
+        }
+        if (this.actions.attack) {
+            this.actions.run = false;
+            this.DrawStatic(this.skins.attack, this.x, this.y, offsetStep[this.typeSkin]);
+        }
     }
 
     Draw(sprite: SpriteImage | undefined, x: number, y: number, offset: number) {
@@ -117,6 +123,21 @@ export class Enemy {
             sprite.dom,
             sprite.frameIndex * sprite.width,
             0 + offset,
+            sprite.width,
+            sprite.height,
+            x,
+            y,
+            sprite.width,
+            sprite.height,
+        );
+    }
+
+    DrawStatic(sprite: SpriteImage | undefined, x: number, y: number, offset: number) {
+        debugger
+        this.ctx?.drawImage(
+            sprite.dom,
+            sprite.frameIndex + offset,
+            skinsEnemy[configGame.level],
             sprite.width,
             sprite.height,
             x,

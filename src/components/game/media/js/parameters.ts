@@ -5,6 +5,7 @@ import {
     HeroStand,
     HeroDeath,
 
+    Pussy_attack_all2,
     Pussy_level1,
     Pussy_level2,
     Pussy_level3,
@@ -26,8 +27,6 @@ import { Enemy } from './enemy';
 import { Level } from './level';
 import configGame from './configGame';
 // import drawRunner from './drawRunner';
-
-const { clientWidth, clientHeight } = document.body;
 
 // соотношение разрешения дисплея текущего устройства
 export const pixelDevice: number = (window.devicePixelRatio > 1) ? 2 : 1;
@@ -115,7 +114,6 @@ export class GAME2 {
         } else {
             this.hero.actions.stand = false;
             this.level.pause = false;
-            //configGame.speedGame = 3;
         }
         this.level.update();
         this.score += configGame.speedGame / 100;
@@ -146,6 +144,8 @@ export class GAME2 {
                 this.hero.y < enemy.y + enemy.h &&
                 this.hero.y + this.hero.h > enemy.y + 35
             ) {
+                enemy.actions.run = false;
+                enemy.actions.attack = true;
                 this.gameStopp();
             }
             //enemy.speed += this.step;
@@ -155,11 +155,13 @@ export class GAME2 {
         if (this.hero) {
             this.hero.Move();
         }
-        configGame.speedGame = this.speed;
+
 
         this.hero.speed += this.step;
         this.level.speed += this.step;
         this.speed += this.step;
+        configGame.speedGame = this.speed;
+
         if (!configGame.isPause) {
             displayText(this.ctx, this.score, this.localStorageRecord);
         }
@@ -203,6 +205,7 @@ export class GAME2 {
         this.skinEnemies[1] = loadSpriteImage(Pussy_level2, 200, 200, 12, 1);
         this.skinEnemies[2] = loadSpriteImage(Pussy_level3, 200, 200, 12, 1);
         this.skinEnemies[3] = loadSpriteImage(Pussy_level4, 200, 200, 12, 1);
+        this.skinEnemies[4] = loadSpriteImage(Pussy_attack_all2, 200, 200, 1, 1);
 
         this.level.preloader();
     }
@@ -216,7 +219,7 @@ export class GAME2 {
         this.enemiesList = [];
         this.score = 0;
         this.spawnTimer = this.initialSpawnTimer;
-        this.speed = 3;
+        this.speed = configGame.defaultSpeed;
         this.isGameStopped = false;
         this.Start();
     }
@@ -246,7 +249,7 @@ export class GAME2 {
     createEnemies(skin) {
         let size = randomRange(250, 450);
         let typeSkin = randomRange(0, 2);
-        const skinEnemy = Object.assign({}, skin);
+        const skinEnemy = Object.assign({}, skin, { attack: this.skinEnemies[4] });
         let obstacle = new Enemy(
             this.canvas.width + size,
             this.canvas.height - 200 * 1.5,

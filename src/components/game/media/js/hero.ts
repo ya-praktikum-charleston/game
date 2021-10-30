@@ -142,12 +142,14 @@ export class Hero {
             this.Draw(this.skins.hurt, this.x, this.y, skinsHero[condigGame.hero]);
         }
     }
+
     isStaticHero() {
         this.actions.run = false;
         this.actions.jump = false;
         this.actions.stand = true;
         this.actions.hurt = false;
     }
+
     isGoHero() {
         this.actions.run = true;
         this.actions.jump = false;
@@ -156,6 +158,7 @@ export class Hero {
     }
 
     Draw(sprite: SpriteImage | undefined, x: number, y: number, offset: number) {
+        debugger
         sprite.tickCount += this.speed / 20;
         if (sprite.tickCount > sprite.ticksFrame) {
             sprite.tickCount = 0;

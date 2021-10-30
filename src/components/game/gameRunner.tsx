@@ -50,19 +50,16 @@ function GameRunner(): ReactElement {
     const handleRestart = () => {
         const game = classGame.current;
         game.restart();
-        //restart();
-        //drawRunner();
+        document.body.requestPointerLock();
         AUDIO.Theme1.play();
     };
     const handleGameExite = () => {
-        //restart();
         const game = classGame.current;
         game.restart();
         game.pause = true;
         configGame.isPause = true;
         dispatch(setGameStart(false));
     };
-    console.log(classGame.current)
     return (
         <div className="game">
             <canvas id="canvas" ref={canvasRef}>Эх... Ваш браузер не поддерживает Canvas, Вы не сможете сыграть в игру...</canvas>

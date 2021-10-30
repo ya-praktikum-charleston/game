@@ -57,6 +57,7 @@ export { default as Pussy_level3 } from '../img/pussy/pussy_level3.png';
 export { default as Pussy_level4 } from '../img/pussy/pussy_level4.png';
 export { default as Pussy_all } from '../img/pussy-run-all2.png';
 export { default as Pussy_attack_all } from '../img/pussy/pussy-attack-all.png';
+export { default as Pussy_attack_all2 } from '../img/pussy/pussy-attack-all3.png';
 
 export { default as GameOver } from '../img/GameOver.png';
 export { default as Smile } from '../img/smile.png';

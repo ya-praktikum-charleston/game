@@ -35,6 +35,8 @@ import {
     l4_l8_ground,
 } from './assetsLinks';
 import configGame from './configGame';
+
+const speedLayer = [0, 0.0001, 0.0005, 0.001, 0.02, 0.08, 0.4];
 export class Level {
     level1: Background[];
 
@@ -69,43 +71,43 @@ export class Level {
                 path: loadStaticImage(l1_sky, this.loadingSprite),
                 x: 0,
                 x2: 0,
-                speed: 0,
+                speed: speedLayer[0],
             },
             {
                 path: loadStaticImage(l2_clouds, this.loadingSprite),
                 x: 0,
                 x2: 0,
-                speed: 0.001,
+                speed: speedLayer[1],
             },
             {
                 path: loadStaticImage(l3_pyramid, this.loadingSprite),
                 x: 0,
                 x2: 0,
-                speed: 0.001,
+                speed: speedLayer[2],
             },
             {
                 path: loadStaticImage(l4_bg_ground01, this.loadingSprite),
                 x: 0,
                 x2: 0,
-                speed: 0.1,
+                speed: speedLayer[3],
             },
             {
                 path: loadStaticImage(l5_bg_ground02, this.loadingSprite),
                 x: 0,
                 x2: 0,
-                speed: 0.2,
+                speed: speedLayer[4],
             },
             {
                 path: loadStaticImage(l6_bg_ground03, this.loadingSprite),
                 x: 0,
                 x2: 0,
-                speed: 0.3,
+                speed: speedLayer[5],
             },
             {
                 path: loadStaticImage(l7_ground, this.loadingSprite),
                 x: 0,
                 x2: 0,
-                speed: 0.4,
+                speed: speedLayer[6],
             },
         ];
         this.levelSprite.level2 = [
@@ -113,37 +115,37 @@ export class Level {
                 path: loadStaticImage(l2_l1_sky),
                 x: 0,
                 x2: 0,
-                speed: 0,
+                speed: speedLayer[0],
             },
             {
                 path: loadStaticImage(l2_l3_clouds),
                 x: 0,
                 x2: 0,
-                speed: 0.001,
+                speed: speedLayer[1],
             },
             {
                 path: loadStaticImage(l2_l2_mountains),
                 x: 0,
                 x2: 0,
-                speed: 0.001,
+                speed: speedLayer[3],
             },
             {
                 path: loadStaticImage(l2_l4_bg_ground01),
                 x: 0,
                 x2: 0,
-                speed: 0.2,
+                speed: speedLayer[4],
             },
             {
                 path: loadStaticImage(l2_l5_bg_ground02),
                 x: 0,
                 x2: 0,
-                speed: 0.3,
+                speed: speedLayer[5],
             },
             {
                 path: loadStaticImage(l2_l6_ground),
                 x: 0,
                 x2: 0,
-                speed: 0.4,
+                speed: speedLayer[6],
             },
         ];
 
@@ -152,37 +154,37 @@ export class Level {
                 path: loadStaticImage(l3_l1_wall),
                 x: 0,
                 x2: 0,
-                speed: 0,
+                speed: speedLayer[0],
             },
             {
                 path: loadStaticImage(l3_l2_prop01),
                 x: 0,
                 x2: 0,
-                speed: 0.001,
+                speed: speedLayer[1],
             },
             {
                 path: loadStaticImage(l3_l3_prop02),
                 x: 0,
                 x2: 0,
-                speed: 0.001,
+                speed: speedLayer[3],
             },
             {
                 path: loadStaticImage(l3_l4_stones),
                 x: 0,
                 x2: 0,
-                speed: 0.2,
+                speed: speedLayer[4],
             },
             {
                 path: loadStaticImage(l3_l5_crystals),
                 x: 0,
                 x2: 0,
-                speed: 0.3,
+                speed: speedLayer[5],
             },
             {
                 path: loadStaticImage(l3_l6_ground),
                 x: 0,
                 x2: 0,
-                speed: 0.4,
+                speed: speedLayer[6],
             },
         ];
 
@@ -191,43 +193,43 @@ export class Level {
                 path: loadStaticImage(l4_l1_sky),
                 x: 0,
                 x2: 0,
-                speed: 0,
+                speed: speedLayer[0],
             },
             {
                 path: loadStaticImage(l4_l2_stars),
                 x: 0,
                 x2: 0,
-                speed: 0.01,
+                speed: speedLayer[1],
             },
             {
                 path: loadStaticImage(l4_l4_clouds02),
                 x: 0,
                 x2: 0,
-                speed: 0.01,
+                speed: speedLayer[2],
             },
             {
                 path: loadStaticImage(l4_l5_mountains),
                 x: 0,
                 x2: 0,
-                speed: 0.2,
+                speed: speedLayer[3],
             },
             {
                 path: loadStaticImage(l4_l6_ground01),
                 x: 0,
                 x2: 0,
-                speed: 0.2,
+                speed: speedLayer[4],
             },
             {
                 path: loadStaticImage(l4_l7_ground02),
                 x: 0,
                 x2: 0,
-                speed: 0.3,
+                speed: speedLayer[5],
             },
             {
                 path: loadStaticImage(l4_l8_ground),
                 x: 0,
                 x2: 0,
-                speed: 0.4,
+                speed: speedLayer[6],
             },
         ];
     }
