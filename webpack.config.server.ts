@@ -36,7 +36,18 @@ const config: Configuration = {
                 loader: 'null-loader',
             },
             {
-                test: /\.(gif|png|jpg|jpeg|svg|mp3|wav)?$/,
+                test: /\.svg$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'assets/svg/[hash].[ext]',
+                        },
+                    },
+                ],
+            },
+            {
+                test: /\.(gif|png|jpg|jpeg|mp3|wav)?$/,
                 loader: 'null-loader',
             },
         ],

@@ -41,7 +41,6 @@ export function* workerSignup(
         yield put(signupFilfilldAction(response));
         yield put(setAuthorized(true));
         yield put(signupResetAction());
-
     } catch (error) {
         const { response } = error as ErrorType;
 
@@ -68,7 +67,6 @@ export function* workerSignin(action: ActionPayload<SigninProps>) {
         yield put(setUnauthorized(false));
 
         yield put(signinFilfilldAction(response));
-
         yield put(setAuthorized(true));
 
         yield put(signinResetAction());
@@ -102,7 +100,6 @@ export function* workerUser({ config }) {
         } else {
             yield put(fetchUserFulfilled(response));
         }
-
         yield put(setAuthorized(true));
         yield put(setUnauthorized(false));
     } catch (error) {

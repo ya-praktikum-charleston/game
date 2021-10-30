@@ -1,7 +1,7 @@
-const { Post } = require('../models/models');
+import { Post } from '../models/models';
 
 const handleError = (res, error) => {
-    res.status(500).send('ERROR: ',error.message);
+    res.status(500).send('ERROR: ', error.message);
 };
 
 const getPosts = (req, res) => {
@@ -38,10 +38,10 @@ const deletePost = (req, res) => {
         .catch((error) => handleError(res, error));
 };
 
-module.exports = {
+export {
     getPosts,
     addPost,
     getPost,
     editPost,
-    deletePost
+    deletePost,
 };

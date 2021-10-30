@@ -1,11 +1,12 @@
-const Router = require('express');
-const router = new Router();
-const {
+import express from 'express';
+import {
     getMessages,
     addMessage,
     getMessageToMessage,
-    addMessageToMessage
-} = require('../controllers/messageController');
+    addMessageToMessage,
+} from '../controllers/messageController';
+
+const router = express.Router();
 
 // Получить все комментарии поста
 router.get('/messages/:id', getMessages);
@@ -16,4 +17,4 @@ router.get('/answers/:postId/:messageId', getMessageToMessage);
 // Добавить комментарий
 router.post('/answer/:id', addMessageToMessage);
 
-module.exports = router;
+export default router;

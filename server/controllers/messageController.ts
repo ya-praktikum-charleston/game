@@ -1,4 +1,4 @@
-const { Message } = require('../models/models');
+import { Message } from '../models/models';
 
 const handleError = (res, error) => {
     res.status(500).send('ERROR: ', error.message);
@@ -45,7 +45,7 @@ const addMessageToMessage = (req, res) => {
         .catch((error) => handleError(res, error));
 };
 
-module.exports = {
+export {
     getMessages,
     addMessage,
     getMessageToMessage,

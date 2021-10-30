@@ -15,6 +15,11 @@ export default function drawImage(
     y: number,
     objectAnimation: string,
 ): void {
+    // if (animationObject.object === 'pussy') {
+    //    const layer = PUSSY.enemy[animationObject.number].skin;
+    //    offset = offsetStep[layer];
+    // }
+
     // частота обновления кадров для данной картинки
     let offset = 0;
     if (GAME.heroName === 'angel1') {

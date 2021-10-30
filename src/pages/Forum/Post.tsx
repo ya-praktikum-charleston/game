@@ -1,11 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import Topic from './Topic';
 import Comment from './Comment';
 import CommentAdd from './CommentAdd';
 import { API } from '../../api';
 import Main from '../../components/main';
 import { PostType, MessageType } from './type';
+import { fetchMessages } from '../../actions/forum';
 
 interface UseParamsTypes {
     id: string;
@@ -18,8 +20,10 @@ type addMessageValueType = {
 
 function Post() {
     const [post, setPost] = React.useState<PostType | null>(null);
-    const [messages, setMessages] = React.useState<MessageType[]>([]);
+    const [messages2, setMessages] = React.useState<MessageType[]>([]);
     const { id } = useParams<UseParamsTypes>();
+    const dispatch = useDispatch();
+    const messages: MessageType[] = useSelector(({ widgets }) => widgets.forum.messages);
 
     const handleAddMessages = React.useCallback(
         (value: addMessageValueType) => {
@@ -35,9 +39,10 @@ function Post() {
     );
 
     const handleGetMessages = React.useCallback(() => {
-        API.getMessages(id).then((response) => {
-            setMessages(response.data);
-        });
+        //API.getMessages(id).then((response) => {
+        //    setMessages(response.data);
+        //});
+        dispatch(fetchMessages(id));
     }, [id, setMessages]);
 
     React.useEffect(() => {

@@ -1,7 +1,7 @@
 import 'regenerator-runtime/runtime';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
 import { loadableReady } from '@loadable/component';
 import 'babel-polyfill';
@@ -10,14 +10,14 @@ import App from '../src/App';
 
 const initialState = (window as any).__INITIAL_STATE__ || {};
 
-const store = create(initialState);
+const { store, history } = create(initialState);
 
 loadableReady(() => {
     ReactDOM.hydrate(
         <Provider store={store}>
-            <BrowserRouter>
+            <ConnectedRouter history={history}>
                 <App />
-            </BrowserRouter>
+            </ConnectedRouter>
         </Provider>,
         document.getElementById('root'),
     );

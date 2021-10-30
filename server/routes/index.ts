@@ -1,10 +1,10 @@
-const Router = require('express');
-const router = new Router();
+import express from 'express';
+import postRouter from './postRouter';
+import messageRouter from './messageRouter';
 
-const postRouter = require('./postRouter');
-const messageRouter = require('./messageRouter');
+const router = express.Router();
 
 router.use(postRouter);
 router.use(messageRouter);
 
-module.exports = router;
+export default router;
