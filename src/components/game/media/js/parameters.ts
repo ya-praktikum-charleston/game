@@ -160,8 +160,9 @@ export class GAME2 {
         this.hero.speed += this.step;
         this.level.speed += this.step;
         this.speed += this.step;
-        displayText(this.ctx, this.score, this.localStorageRecord);
-
+        if (!configGame.isPause) {
+            displayText(this.ctx, this.score, this.localStorageRecord);
+        }
 
         if (!this.isGameStopped) {
             requestAnimationFrame(() => this.Update());
