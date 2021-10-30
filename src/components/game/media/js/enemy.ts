@@ -1,18 +1,19 @@
 import { SlowBuffer } from 'buffer';
 import { SpriteImage } from './types';
+import configGame from './configGame';
 
-type SkinsHeroType = {
-    angel1: number;
-    angel2: number;
-    angel3: number;
-    angel4: number;
+type SkinsEnemyType = {
+    level1: number;
+    level2: number;
+    level3: number;
+    level4: number;
 }
 
-const skinsHero: SkinsHeroType = {
-    angel1: 0,
-    angel2: 200,
-    angel3: 400,
-    angel4: 600,
+const skinsEnemy: SkinsEnemyType = {
+    level1: 0,
+    level2: 200,
+    level3: 400,
+    level4: 600,
 };
 
 const offsetStep = [0, 200, 400, 600, 800];
@@ -97,7 +98,7 @@ export class Enemy {
     }
 
     Show(): void {
-        this.Draw(this.skins.run, this.x, this.y, 200);
+        this.Draw(this.skins.run, this.x, this.y, offsetStep[this.typeSkin]);
     }
 
     Draw(sprite: SpriteImage | undefined, x: number, y: number, offset: number) {
@@ -111,6 +112,7 @@ export class Enemy {
             }
         }
         // отрисовка изображения на canvas
+
         this.ctx?.drawImage(
             sprite.dom,
             sprite.frameIndex * sprite.width,

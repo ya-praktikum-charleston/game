@@ -12,6 +12,7 @@ import StartOptions from './options';
 import ForwardIcon from '../../assets/svg/forward.svg';
 import { isServer } from '../../utilities/isServer';
 import './start.css';
+import configGame from '../../components/game/media/js/configGame';
 
 const headerMenu = [
 	{
@@ -33,17 +34,10 @@ function Start(): ReactElement {
 		// setGame(true);
 		if (!isServer) {
 			dispatch(setGameStart(true));
+			configGame.isPause = false;
 			AUDIO.Theme1.play();
+			AUDIO.Theme1.setVolume(0.08);
 			document.body.requestPointerLock();
-		}
-	};
-	const handleExittGame = () => {
-		// TODO установить значение в redux gameRun false
-		// setGame(false);
-		if (!isServer) {
-			dispatch(setGameStart(false));
-			restart();
-			AUDIO.Theme1.stop();
 		}
 	};
 
@@ -53,9 +47,7 @@ function Start(): ReactElement {
 		setIsOptions((prev) => !prev);
 	};
 
-	if (gameRunner && !isServer) {
-		return <GameRunner handleExittGame={handleExittGame} />;
-	}
+
 	const Title = () => {
 		return (
 			<div>

@@ -14,7 +14,7 @@ export const displayText = (ctx, score, localStorageRecord) => {
     }
 };
 
-export const gameStop = () => {
+export function gameStop(this) {
     this.speed = 0;
     this.isGameStopped = true;
     this.enemiesList = [];

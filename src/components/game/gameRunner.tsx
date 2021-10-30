@@ -4,22 +4,20 @@ import { setGameStart, setLeaderboard } from '../../actions/app';
 import './game.css';
 import {
     GAME2,
-    HERO,
     AUDIO,
-    restart,
 } from './media/js/parameters';
-import drawRunner from './media/js/drawRunner';
-import jump from './media/js/jump';
 import {
     GameOver,
     Smile,
 } from './media/js/assetsLinks';
+import configGame from './media/js/configGame';
 
 function GameRunner(): ReactElement {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const gameBannerRef = useRef<HTMLDivElement>(null);
     const dispatch = useDispatch();
     const profile = useSelector(({ collections }) => collections.user);
+    const classGame = useRef();
 
     useEffect(() => {
         if (canvasRef.current && gameBannerRef.current) {
@@ -27,8 +25,13 @@ function GameRunner(): ReactElement {
             canvasRef.current.width = clientWidth;
             canvasRef.current.height = clientHeight;
 
-            const game2 = new GAME2(canvasRef.current, false);
-            debugger
+            window.addEventListener('resize', () => {
+                canvasRef.current.width = document.body.clientWidth;
+                canvasRef.current.height = document.body.clientHeight;
+            });
+
+            const game2 = new GAME2(canvasRef.current, true);
+            classGame.current = game2;
             game2.Start();
             game2.dom = {
                 canvas: canvasRef,
@@ -41,32 +44,25 @@ function GameRunner(): ReactElement {
                 login: profile.login,
                 avatar: profile.avatar,
             }));
-
-            debugger
-            //const int = setInterval(() => {
-            //    if (GAME.allCount === GAME.loadCount) {
-            //        clearInterval(int);
-            //        restart();
-            //        //drawRunner();
-            //    }
-            //}, 1000 / 60);
         }
-        return () => {
-            // удаление событий мыши и пробела
-            document.removeEventListener('mousedown', jump);
-            document.removeEventListener('keydown', handlerKeypress);
-        };
     }, []);
 
     const handleRestart = () => {
-        restart();
-        drawRunner();
+        const game = classGame.current;
+        game.restart();
+        //restart();
+        //drawRunner();
         AUDIO.Theme1.play();
     };
     const handleGameExite = () => {
-        restart();
+        //restart();
+        const game = classGame.current;
+        game.restart();
+        game.pause = true;
+        configGame.isPause = true;
         dispatch(setGameStart(false));
     };
+    console.log(classGame.current)
     return (
         <div className="game">
             <canvas id="canvas" ref={canvasRef}>Эх... Ваш браузер не поддерживает Canvas, Вы не сможете сыграть в игру...</canvas>

@@ -34,7 +34,7 @@ import {
     l4_l7_ground02,
     l4_l8_ground,
 } from './assetsLinks';
-
+import configGame from './configGame';
 export class Level {
     level1: Background[];
 
@@ -233,11 +233,7 @@ export class Level {
     }
 
     update() {
-        if (this.pause) {
-            this.setPause();
-        } else {
-            this.draw();
-        }
+        this.draw();
     }
 
     init() {
@@ -253,24 +249,18 @@ export class Level {
         this.levels.level4 = this.levelSprite.level4.map((layer) => {
             return new Layer(layer.path, this.speed, layer.speed, this.h, this.ctx);
         });
-        //this.levels.level1.speed = this.speed;
-        //this.levels.level2.speed = this.speed;
-        //this.levels.level4.speed = this.speed;
-        //this.levels.level1.speed = this.speed;
     }
 
     setPause() {
-        this.levels.level1.speed = 0;
-        this.levels.level2.speed = 0;
-        this.levels.level4.speed = 0;
-        this.levels.level1.speed = 0;
-    }
-
-    draw() {
-        this.levels.level2.forEach((level) => {
-            debugger
-            level.update();
+        this.levels[configGame.level].forEach(el => {
+            el.speedGame = 0;
         })
     }
 
+    draw() {
+        const a = configGame.level;
+        this.levels[a].forEach((level) => {
+            level.update();
+        })
+    }
 }

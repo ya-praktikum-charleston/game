@@ -1,12 +1,9 @@
-import { SpriteImage, Game } from './types';
+import { SpriteImage } from './types';
 /** Загрузка изображений не требующих наличия параметров
  * @path {string} путь до картинки
  */
-export function loadStaticImage(path: string, GAME: Game): HTMLImageElement {
+export function loadStaticImage(path: string): HTMLImageElement {
     const image = document.createElement('img');
-    image.onload = () => {
-        GAME.loadCount += 1;
-    };
     image.src = path;
     return image;
 }
@@ -24,7 +21,6 @@ export function loadSpriteImage(
     height: number,
     colFrames: number,
     ticksFrame: number,
-    GAME,
 ): SpriteImage {
     const image = document.createElement('img');
     const result = {
@@ -35,9 +31,6 @@ export function loadSpriteImage(
         ticksFrame,
         tickCount: 0, // счётчик для ticksFrame
         frameIndex: 0, // какой кадр показывать
-    };
-    image.onload = () => {
-        GAME.loadCount += 1;
     };
     image.src = path;
     return result;

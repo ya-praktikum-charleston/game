@@ -1,3 +1,5 @@
+import configGame from "./configGame";
+
 export class Layer {
     constructor(sprite, speed, speedLayer, canvas_height, ctx) {
         this.sprite = sprite;
@@ -6,18 +8,20 @@ export class Layer {
         this.w = 1920;
         this.canvas_height = canvas_height;
         this.h = 1080;
+        this.speedGame = speed;
         this.speedLayer = speedLayer;
-        this.speed = speed;
         this.ctx = ctx;
-        this.speed = this.speed * this.speedLayer;
-        debugger
+        //this.speed = this.speedGame * this.speedLayer;
     }
 
     update() {
-        this.speed = this.speed * this.speedLayer;
-        if (this.x <= -this.w) this.x = 0;
-        this.x -= this.speed;
-        this.x = this.x - this.speed;
+        if (!configGame.isPause) {
+            const speed = configGame.speedGame * this.speedLayer;
+            if (this.x <= -this.w) this.x = 0;
+            this.x -= speed;
+            this.x = this.x - speed;
+        }
+
         this.draw();
     }
 

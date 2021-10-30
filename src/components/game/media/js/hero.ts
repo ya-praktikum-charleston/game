@@ -1,4 +1,5 @@
 import { SpriteImage } from './types';
+import condigGame from './configGame';
 
 type SkinsHeroType = {
     angel1: number;
@@ -50,7 +51,7 @@ export class Hero {
         this.x = 70;
         this.w = 136;
         this.h = 136;
-        this.y = this.h * 2.7;
+        this.y = this.h * 2.9;
         this.vy = 0;
         this.speed = speed;
         this.canvas = canvas;
@@ -59,7 +60,7 @@ export class Hero {
         this.jumpForce = 10;
         this.grounded = false;
         this.jumpTimer = 0;
-        this.skinHero = 'angel1';
+        this.skinHero = condigGame.hero;
         this.landing = false;
         this.skins = {
             run: undefined,
@@ -91,7 +92,9 @@ export class Hero {
         } else {
             this.vy = 0;
             this.grounded = true;
-            this.actions.run = true;
+            if (!this.actions.stand) {
+                this.actions.run = true;
+            }
             this.y = this.canvas.height - this.h * 2.7;
         }
 
@@ -116,28 +119,40 @@ export class Hero {
         //console.log(this.actions.jump)
         //this.Draw(this.skins.stand, this.x, this.y, skinsHero[this.skinHero]);
         if (this.actions.run) {
-            console.log('run')
+            //console.log('run')
             this.actions.jump = false;
             this.actions.hurt = false;
             this.actions.stand = false;
-            this.Draw(this.skins.run, this.x, this.y, skinsHero[this.skinHero]);
+            this.Draw(this.skins.run, this.x, this.y, skinsHero[condigGame.hero]);
         } else if (this.actions.jump || !this.grounded) {
             //console.log('juump')
             this.actions.run = false;
             this.actions.hurt = false;
             this.actions.stand = false;
-            this.Draw(this.skins.jump, this.x, this.y, skinsHero[this.skinHero]);
+            this.Draw(this.skins.jump, this.x, this.y, skinsHero[condigGame.hero]);
         } else if (this.actions.stand) {
             this.actions.run = false;
             this.actions.jump = false;
             this.actions.hurt = false;
-            this.Draw(this.skins.stand, this.x, this.y, skinsHero[this.skinHero]);
+            this.Draw(this.skins.stand, this.x, this.y, skinsHero[condigGame.hero]);
         } else if (this.actions.hurt) {
             this.actions.run = false;
             this.actions.jump = false;
             this.actions.stand = false;
-            this.Draw(this.skins.hurt, this.x, this.y, skinsHero[this.skinHero]);
+            this.Draw(this.skins.hurt, this.x, this.y, skinsHero[condigGame.hero]);
         }
+    }
+    isStaticHero() {
+        this.actions.run = false;
+        this.actions.jump = false;
+        this.actions.stand = true;
+        this.actions.hurt = false;
+    }
+    isGoHero() {
+        this.actions.run = true;
+        this.actions.jump = false;
+        this.actions.stand = false;
+        this.actions.hurt = false;
     }
 
     Draw(sprite: SpriteImage | undefined, x: number, y: number, offset: number) {
