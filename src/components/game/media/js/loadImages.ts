@@ -24,7 +24,7 @@ export function loadSpriteImage(
     height: number,
     colFrames: number,
     ticksFrame: number,
-    GAME: Game,
+    GAME,
 ): SpriteImage {
     const image = document.createElement('img');
     const result = {

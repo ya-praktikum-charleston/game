@@ -1,5 +1,9 @@
-import { GAME, BG, HERO } from './parameters';
+import { GAME, BG, HERO, GAME2 } from './parameters';
 import drawImage from './drawImage';
+
+function init() {
+
+}
 
 export default function drawStatic(): void {
     GAME.ctx?.clearRect(0, 0, GAME.winWidth, GAME.winHeight);
@@ -17,7 +21,11 @@ export default function drawStatic(): void {
     }
 
     // Варианты отрисовки главного героя
-    drawImage(HERO.img.stand, HERO.position.x, HERO.position.y, 'hero');
+    //const game = new GAME2();
+    //const player = game.hero;
+    //player.Show(GAME.ctx);
+
+    // drawImage(HERO.img.stand, HERO.position.x, HERO.position.y, 'hero');
 
     GAME.requestId = requestAnimationFrame(drawStatic);
 }

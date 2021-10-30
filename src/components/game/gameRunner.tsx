@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setGameStart, setLeaderboard } from '../../actions/app';
 import './game.css';
 import {
-    GAME,
+    GAME2,
     HERO,
     AUDIO,
     restart,
@@ -15,12 +15,6 @@ import {
     Smile,
 } from './media/js/assetsLinks';
 
-const handlerKeypress = (event) => {
-    if (event.keyCode === 32) {
-        jump();
-    }
-};
-
 function GameRunner(): ReactElement {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const gameBannerRef = useRef<HTMLDivElement>(null);
@@ -29,31 +23,33 @@ function GameRunner(): ReactElement {
 
     useEffect(() => {
         if (canvasRef.current && gameBannerRef.current) {
-            canvasRef.current.width = GAME.winWidth;
-            canvasRef.current.height = GAME.winHeight;
+            const { clientWidth, clientHeight } = document.body;
+            canvasRef.current.width = clientWidth;
+            canvasRef.current.height = clientHeight;
 
-            GAME.ctx = canvasRef.current.getContext('2d');
-            GAME.dom = {
+            const game2 = new GAME2(canvasRef.current, false);
+            debugger
+            game2.Start();
+            game2.dom = {
                 canvas: canvasRef,
                 gameBanner: gameBannerRef,
             };
-            GAME.setLeaderboard = (arg: number) => dispatch(setLeaderboard({
+
+            game2.setLeaderboard = (arg: number) => dispatch(setLeaderboard({
                 score_charleston: arg,
                 id: profile.id,
                 login: profile.login,
                 avatar: profile.avatar,
             }));
-            HERO.event.run = true;
-            document.addEventListener('mousedown', jump);
-            document.addEventListener('keydown', handlerKeypress);
-            // дожидаемся загрузки всех изображений
-            const int = setInterval(() => {
-                if (GAME.allCount === GAME.loadCount) {
-                    clearInterval(int);
-                    restart();
-                    drawRunner();
-                }
-            }, 1000 / 60);
+
+            debugger
+            //const int = setInterval(() => {
+            //    if (GAME.allCount === GAME.loadCount) {
+            //        clearInterval(int);
+            //        restart();
+            //        //drawRunner();
+            //    }
+            //}, 1000 / 60);
         }
         return () => {
             // удаление событий мыши и пробела

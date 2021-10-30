@@ -41,6 +41,10 @@ import {
     // враги
     Pussy_all,
     Pussy_attack_all,
+    Pussy_level1,
+    Pussy_level2,
+    Pussy_level3,
+    Pussy_level4,
     // аудио файлы
     Jump,
     Death,
@@ -55,12 +59,16 @@ import {
     Hero,
     TypePussy,
 } from './types';
+import { displayText, gameStop } from './utils';
 import { loadStaticImage, loadSpriteImage } from './loadImages';
 import loadAudio from './loadAudio';
+import { Hero as Heero } from './hero';
+import { Enemy } from './enemy';
+import { Level } from './level';
 // import drawRunner from './drawRunner';
 
 const { clientWidth, clientHeight } = document.body;
-const spriteHeight = 150;
+const spriteHeight = 200;
 // соотношение разрешения дисплея текущего устройства
 export const pixelDevice: number = (window.devicePixelRatio > 1) ? 2 : 1;
 // стартовая скорость игры
@@ -78,7 +86,7 @@ export const GAME: Game = {
     // наименование уровня
     level: 'level1',
     // сколько всего картинок
-    allCount: 33,
+    allCount: 34,
     // сколько загрузилось
     loadCount: 0,
     // выравнивание картинок исходя из пропорций экрана
@@ -113,227 +121,206 @@ export const GAME: Game = {
     setLeaderboard: () => null,
 };
 
-// фоновые картинки
-const level1: Background[] = [
-    {
-        path: loadStaticImage(l1_sky, GAME),
-        x: 0,
-        x2: 0,
-        speed: 0,
-    },
-    {
-        path: loadStaticImage(l2_clouds, GAME),
-        x: 0,
-        x2: 0,
-        speed: 0,
-    },
-    {
-        path: loadStaticImage(l3_pyramid, GAME),
-        x: 0,
-        x2: 0,
-        speed: 0,
-    },
-    {
-        path: loadStaticImage(l4_bg_ground01, GAME),
-        x: 0,
-        x2: clientWidth,
-        speed: 40,
-    },
-    {
-        path: loadStaticImage(l5_bg_ground02, GAME),
-        x: 0,
-        x2: clientWidth,
-        speed: 20,
-    },
-    {
-        path: loadStaticImage(l6_bg_ground03, GAME),
-        x: 0,
-        x2: clientWidth,
-        speed: 10,
-    },
-    {
-        path: loadStaticImage(l7_ground, GAME),
-        x: 0,
-        x2: clientWidth,
-        speed: 1,
-    },
-];
-
-const level2: Background[] = [
-    {
-        path: loadStaticImage(l2_l1_sky, GAME),
-        x: 0,
-        x2: 0,
-        speed: 0,
-    },
-    {
-        path: loadStaticImage(l2_l3_clouds, GAME),
-        x: 0,
-        x2: 0,
-        speed: 0,
-    },
-    {
-        path: loadStaticImage(l2_l2_mountains, GAME),
-        x: 0,
-        x2: 0,
-        speed: 0,
-    },
-    {
-        path: loadStaticImage(l2_l4_bg_ground01, GAME),
-        x: 0,
-        x2: clientWidth,
-        speed: 40,
-    },
-    {
-        path: loadStaticImage(l2_l5_bg_ground02, GAME),
-        x: 0,
-        x2: clientWidth,
-        speed: 20,
-    },
-    {
-        path: loadStaticImage(l2_l6_ground, GAME),
-        x: 0,
-        x2: clientWidth,
-        speed: 1,
-    },
-];
-
-const level3: Background[] = [
-    {
-        path: loadStaticImage(l3_l1_wall, GAME),
-        x: 0,
-        x2: 0,
-        speed: 0,
-    },
-    {
-        path: loadStaticImage(l3_l2_prop01, GAME),
-        x: 0,
-        x2: 0,
-        speed: 0,
-    },
-    {
-        path: loadStaticImage(l3_l3_prop02, GAME),
-        x: 0,
-        x2: 0,
-        speed: 0,
-    },
-    {
-        path: loadStaticImage(l3_l4_stones, GAME),
-        x: 0,
-        x2: clientWidth,
-        speed: 20,
-    },
-    {
-        path: loadStaticImage(l3_l5_crystals, GAME),
-        x: 0,
-        x2: clientWidth,
-        speed: 10,
-    },
-    {
-        path: loadStaticImage(l3_l6_ground, GAME),
-        x: 0,
-        x2: clientWidth,
-        speed: 1,
-    },
-];
-
-const level4: Background[] = [
-    {
-        path: loadStaticImage(l4_l1_sky, GAME),
-        x: 0,
-        x2: 0,
-        speed: 0,
-    },
-    {
-        path: loadStaticImage(l4_l2_stars, GAME),
-        x: 0,
-        x2: 0,
-        speed: 0,
-    },
-    {
-        path: loadStaticImage(l4_l4_clouds02, GAME),
-        x: 0,
-        x2: 0,
-        speed: 0,
-    },
-    {
-        path: loadStaticImage(l4_l5_mountains, GAME),
-        x: 0,
-        x2: clientWidth,
-        speed: 40,
-    },
-    {
-        path: loadStaticImage(l4_l6_ground01, GAME),
-        x: 0,
-        x2: clientWidth,
-        speed: 20,
-    },
-    {
-        path: loadStaticImage(l4_l7_ground02, GAME),
-        x: 0,
-        x2: clientWidth,
-        speed: 10,
-    },
-    {
-        path: loadStaticImage(l4_l8_ground, GAME),
-        x: 0,
-        x2: clientWidth,
-        speed: 1,
-    },
-];
-
-export const BG = { level1, level2, level3, level4 };
-
-export const HERO: Hero = {
-    img: {
-
-        run: loadSpriteImage(HeroRun, 200, 200, 12, 1, GAME),
-        jump: loadSpriteImage(HeroJump, 200, 200, 12, 1, GAME),
-        hurt: loadSpriteImage(HeroDeath, 200, 200, 1, 1, GAME),
-        stand: loadSpriteImage(HeroStand, 200, 200, 18, 1, GAME),
-
-    },
-    position: {
-        x: 65,
-        y: GAME.y_positionLine,
-    },
-    event: {
-        run: false,
-        jump: false,
-    },
+const randomRange = (min, max) => {
+    const rand = min + Math.random() * (max + 1 - min);
+    return Math.floor(rand);
 };
 
-// пиздюки
-const pussyDistance = [[640, 1300], [1400, 2060], [2160, 2920]];
-
-export const PUSSY: TypePussy = {
-    run: loadSpriteImage(Pussy_all, 200, 200, 12, 4, GAME),
-    attack: loadSpriteImage(Pussy_attack_all, 200, 200, 1, 1, GAME),
-    stop: loadSpriteImage(Pussy_attack_all, 200, 200, 1, 1, GAME),
-    enemy: [
-        {
-            x: 1280 + GAME.random(pussyDistance[0]),
-            y: GAME.y_positionLine,
-            distance: GAME.random([14, 15]) / 10,
-            attack: false,
-            skin: GAME.random([0, 2]),
-        },
-        {
-            x: 1280 + GAME.random(pussyDistance[1]),
-            y: GAME.y_positionLine,
-            distance: GAME.random([14, 15]) / 10,
-            attack: false,
-            skin: GAME.random([0, 2]),
-        },
-        {
-            x: 1280 + GAME.random(pussyDistance[2]),
-            y: GAME.y_positionLine,
-            distance: GAME.random([14, 15]) / 10,
-            attack: false,
-            skin: GAME.random([0, 2]),
-        },
-    ],
+export const g = {
+    speed: 3,
 };
+export class GAME2 {
+    score: number;
+
+    highscore: number;
+
+    hero: Heero;
+
+    gravity: number;
+
+    obstacles: never[];
+
+    gameSpeed: number;
+
+    keys: {};
+
+    canvas: HTMLCanvasElement;
+
+    ctx: CanvasRenderingContext2D | null;
+
+    constructor(canvas: HTMLCanvasElement, pause) {
+        this.canvas = canvas;
+        this.ctx = null;
+        this.dom = undefined;
+        this.audioPlayed = true;
+        this.score = 0;
+        this.localRecord = 0;
+        this.localStorageRecord = 0;
+        this.gravity = 0.3;
+        this.pause = pause;
+        this.speed = 3;
+        this.isGameStopped = false;
+        this.hero = undefined;
+        this.enemiesList = [];
+        this.skinEnemies = [];
+        this.gameSpeed = 0;
+        this.level = undefined;
+        this.initialSpawnTimer = 200;
+        this.spawnTimer = this.initialSpawnTimer;
+        this.keys = {};
+        this.loadingSprite = {
+            countSprites: 4,
+            loadCount: 0,
+        };
+        this.countSprites = 4;
+        this.countLoadedSprites = 0;
+        this.setLeaderboard = () => null;
+        debugger
+    }
+
+    Start(): void {
+        this.ctx = this.canvas.getContext('2d');
+        this.level = new Level(0, 0, this.speed, this.canvas, this.ctx, this.loadingSprite);
+        this.hero = new Heero(this.canvas, this.ctx, this.gravity, this.speed);
+        this.Preloader();
+        this.level.init();
+        this.EventListener();
+        this.Update();
+        if (localStorage.getItem('localStorageRecord')) {
+            this.localStorageRecord = Number(localStorage.getItem('localStorageRecord')) || 0;
+        }
+        //if (this.loadingSprite.loadCount === this.loadingSprite.countSprites) {
+        console.log('ctx', this.ctx)
+        //}
+    }
+
+    Update() {
+        this.ctx?.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        if (this.pause) {
+            this.speed = 0;
+            this.level.pause = true;
+            this.hero.speed = 0;
+        } else {
+            this.level.pause = false;
+        }
+        this.level.update();
+        this.score += this.speed / 100;
+        if (this.score > this.localRecord) {
+            this.localRecord = Math.floor(this.score);
+        }
+
+        this.spawnTimer--;
+        if (this.spawnTimer <= 0) {
+            this.createEnemies(this.skinEnemies[1]);
+            this.spawnTimer = this.initialSpawnTimer - this.speed * 8;
+
+            if (this.spawnTimer < 60) {
+                this.spawnTimer = 60;
+            }
+        }
+
+        for (let i = 0; i < this.enemiesList.length; i++) {
+            let enemy = this.enemiesList[i];
+            if (enemy.x + enemy.w < 0) {
+                this.enemiesList.splice(i, 1);
+            }
+            if (
+                this.hero.x < enemy.x + enemy.w - 80 &&
+                this.hero.x + this.hero.w - 80 > enemy.x &&
+                this.hero.y < enemy.y + enemy.h &&
+                this.hero.y + this.hero.h > enemy.y + 35
+            ) {
+                this.enemiesList = [];
+                //this.score = 0;
+                this.spawnTimer = this.initialSpawnTimer;
+                this.speed = 3;
+                this.isGameStopped = true;
+                //gameStop();
+                //window.localStorage.setItem('highscore', highscore);
+            }
+            enemy.Move();
+        }
+
+        if (this.hero) {
+            this.hero.Move();
+        }
+        this.speed += 0.0005;
+
+        displayText(this.ctx, this.score, this.localStorageRecord);
+
+
+        if (!this.isGameStopped) {
+            requestAnimationFrame(() => this.Update());
+        }
+    }
+
+    EventListener(): void {
+        const handlerKeypressDown = (event: { keyCode: number; }) => {
+            if (event.keyCode === 32) {
+                this.hero.actions.jump = !this.pause && true;
+            }
+        };
+        const handlerKeypressUp = (event: { keyCode: number; }) => {
+            if (event.keyCode === 32) {
+                this.hero.actions.jump = false;
+            }
+        };
+        const handlerMouseDown = () => {
+            this.hero.actions.jump = !this.pause && true;
+        };
+        const handlerMouseUp = () => {
+            this.hero.actions.jump = false;
+        };
+        document.addEventListener('mousedown', handlerMouseDown);
+        document.addEventListener('mouseup', handlerMouseUp);
+        document.addEventListener('keydown', handlerKeypressDown);
+        document.addEventListener('keyup', handlerKeypressUp);
+    }
+
+    Preloader() {
+        this.hero.skins.stand = loadSpriteImage(HeroStand, 200, 200, 18, 1, this.loadingSprite);
+        this.hero.skins.run = loadSpriteImage(HeroRun, 200, 200, 12, 1, this.loadingSprite);
+        this.hero.skins.jump = loadSpriteImage(HeroJump, 200, 200, 12, 1, this.loadingSprite);
+        this.hero.skins.hurt = loadSpriteImage(HeroDeath, 200, 200, 1, 1, this.loadingSprite);
+        this.skinEnemies[0] = loadSpriteImage(Pussy_level1, 200, 200, 18, 1, this.loadingSprite);
+        this.skinEnemies[1] = loadSpriteImage(Pussy_level2, 200, 200, 12, 1, this.loadingSprite);
+        this.skinEnemies[2] = loadSpriteImage(Pussy_level3, 200, 200, 12, 1, this.loadingSprite);
+        this.skinEnemies[3] = loadSpriteImage(Pussy_level4, 200, 200, 12, 1, this.loadingSprite);
+
+        this.level.preloader();
+    }
+
+    loadedSprite() {
+        this.countLoadedSprites += 1;
+    }
+
+    restart() {
+        this.enemiesList = [];
+        this.score = 0;
+        this.spawnTimer = this.initialSpawnTimer;
+        this.speed = 3;
+        this.isGameStopped = false;
+    }
+    gameStopp() {
+        //this.enemiesList = [];
+        //this.score = 0;
+        //this.spawnTimer = this.initialSpawnTimer;
+        //this.speed = 3;
+        this.isGameStopped = true;
+    }
+    createEnemies(skin) {
+        let size = randomRange(250, 450);
+        let typeSkin = randomRange(0, 2);
+        const skinEnemy = Object.assign({}, skin);
+
+        let obstacle = new Enemy(
+            this.canvas.width + size,
+            this.canvas.height - 200 * 1.5,
+            this.speed, this.canvas, this.ctx, skinEnemy, typeSkin);
+        this.enemiesList.push(obstacle);
+    }
+}
+
 // аудио файлы
 const selectAudioLevel = () => {
     switch (GAME.level) {
@@ -354,11 +341,6 @@ export const AUDIO = {
     Dead: loadAudio([Death], 0.1),
     Theme1: loadAudio(() => selectAudioLevel(), 0.1),
 };
-
-// проверка localStorage на наличия рекорда в игре
-if (localStorage.getItem('localStorageRecord')) {
-    GAME.localStorageRecord = Number(localStorage.getItem('localStorageRecord')) || 0;
-}
 
 export function restart(): void {
     window.cancelAnimationFrame(GAME.requestId);
@@ -381,18 +363,18 @@ export function restart(): void {
         _bg[i].x2 = GAME.winWidth;
     }
     // сброс PUSSY
-    for (let i = 0; i < PUSSY.enemy.length; i += 1) {
-        PUSSY.enemy[i].x = 1280 + GAME.random(pussyDistance[i]);
-        PUSSY.enemy[i].y = GAME.y_positionLine;
-        PUSSY.enemy[i].distance = GAME.random([14, 15]) / 10;
-        PUSSY.enemy[i].attack = false;
-    }
+    //for (let i = 0; i < PUSSY.enemy.length; i += 1) {
+    //    PUSSY.enemy[i].x = 1280 + GAME.random(pussyDistance[i]);
+    //    PUSSY.enemy[i].y = GAME.y_positionLine;
+    //    PUSSY.enemy[i].distance = GAME.random([14, 15]) / 10;
+    //    PUSSY.enemy[i].attack = false;
+    //}
 
     // сброс HERO
-    HERO.position.x = 65;
-    HERO.position.y = GAME.y_positionLine;
-    HERO.event.run = true;
-    HERO.event.jump = false;
+    //HERO.position.x = 65;
+    //HERO.position.y = GAME.y_positionLine;
+    //HERO.event.run = true;
+    //HERO.event.jump = false;
 
     GAME.dom.gameBanner.current?.classList.add('hidden');
 }

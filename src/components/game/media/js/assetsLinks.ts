@@ -40,7 +40,7 @@ export { default as Heroes_Death } from '../img/heroes_death.png';
 export { default as Heroes_Sliding } from '../img/heroes_sliding.png';
 
 export { default as HeroRun } from '../img/heroes-run2.png';
-export { default as HeroJump } from '../img/heroes-jump2.png';
+export { default as HeroJump } from '../img/heroes-jump3.png';
 export { default as HeroStand } from '../img/heroes-stand2.png';
 export { default as HeroDeath } from '../img/heroes-death2.png';
 
