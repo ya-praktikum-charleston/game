@@ -33,7 +33,7 @@ const ProfileForm = ({ user, profile }: Props) => {
         login: user.login,
         first_name: user.first_name,
         second_name: user.second_name,
-        phone: user.phone,
+        phone: user.phone || '',
         display_name: `${user.first_name} ${user.second_name}`,
     };
 
@@ -52,7 +52,7 @@ const ProfileForm = ({ user, profile }: Props) => {
                     <Field name="login" type="text" placeholder="Логин" />
                     <Field name="first_name" type="text" placeholder="Имя" />
                     <Field name="second_name" type="text" placeholder="Фамилия" />
-                    <Field name="phone" type="tel" placeholder="Телефон" />
+                    <Field name="phone" type="text" placeholder="Телефон" />
                     <Button
 						type="submit"
 						className="btn fullwidth"

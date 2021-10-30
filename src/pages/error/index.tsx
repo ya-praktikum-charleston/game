@@ -17,12 +17,12 @@ const errors: Errors[] = [
     },
 ];
 
-function getError(number: 404 | 500): Errors {
+const getError = (number: 404 | 500): Errors => {
     const error = errors.find((item) => item.number === number);
+
     if (error) {
         return error;
     }
-    throw new Error('error not found');
 }
 
 const ErrorPage = ({ number }: ErrorPageProps) => {

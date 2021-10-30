@@ -2,6 +2,10 @@
     "name": "game_runner_pussy",
     "version": "1.0.0",
     "description": "",
+    "private": true,
+    "engines": {
+        "node": "14"
+    },
     "main": "index.js",
     "scripts": {
         "build": "webpack --mode production",
@@ -12,8 +16,9 @@
         "test": "jest",
         "test:coverage": "jest --coverage",
         "start:webpack": "webpack --mode=development --watch",
-        "start:server": "nodemon ./dist/server/server.js",
-        "start": "concurrently -m 1 \"npm run start:webpack\" \"npm run start:server\""
+        "start:server": "nodemon ./dist/server/server.js --watch",
+        "start": "concurrently -m 2 'npm run start:webpack' 'npm run start:server'",
+        "start:prod": "node ./dist/server/server.js"
     },
     "keywords": [],
     "author": "",
@@ -80,10 +85,6 @@
         "webpack-dev-server": "3.11.2",
         "webpack-manifest-plugin": "^4.0.2",
         "webpack-node-externals": "^3.0.0"
-    },
-    "engines": {
-        "node": "13.8.0",
-        "npm": "=7.15.0"
     },
     "dependencies": {
         "@loadable/component": "^5.15.0",

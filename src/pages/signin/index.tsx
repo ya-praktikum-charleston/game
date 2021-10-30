@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Form } from 'react-final-form';
@@ -6,7 +6,6 @@ import * as Yup from 'yup';
 import { SchemaOf } from 'yup';
 import { validateFormValues } from '../../utilities/validator';
 import { signinAction } from '../../actions/auth/signin';
-import { fetchUser } from '../../actions/auth/user';
 import Main from '../../components/main';
 import { getSignin } from '../../selectors/collections/auth';
 import type { Store } from '../../reducers/types';

@@ -34,5 +34,6 @@ export default (app: Application) => {
                 });
         });
     });
+    
     return app;
 };

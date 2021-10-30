@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchServiceId } from '../../actions/oauth/service-id';
 import { getServiceId } from '../../selectors/collections/oath';
@@ -8,11 +7,11 @@ import './ya-oauth-button.css'
 
 const YaOauthButton = ({ serviceId, serviceIdAction }) => {
     const onClickHandler = () => {
-        serviceIdAction('http://localhost:5000');
+        serviceIdAction(`${process.env.APP_URL}`);
     }
 
     if (serviceId) {
-        { window.location.href = `https://oauth.yandex.ru/authorize?response_type=code&client_id=${serviceId}&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2F` }
+        { window.location.href = `https://oauth.yandex.ru/authorize?response_type=code&client_id=${serviceId}&redirect_uri=https%3A%2F%2Fcharleston-runner-07.ya-praktikum.tech` }
     }    
 
     return (

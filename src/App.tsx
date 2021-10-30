@@ -8,9 +8,9 @@ import LeaderboardPage from './pages/leaderboard';
 import Profile from './pages/profile';
 import Signin from './pages/signin';
 import Signup from './pages/signup';
-import Posts from './pages/forum/Posts';
-import Post from './pages/forum/Post';
-import AddPost from './pages/forum/AddPost';
+import Posts from './pages/Forum/Posts';
+import Post from './pages/Forum/Post';
+import AddPost from './pages/Forum/AddPost';
 import ErrorBoundary from './utilities/ErrorBoundary';
 import './assets/style.css';
 

@@ -23,23 +23,19 @@ const headerMenu = [
 ];
 
 function Start(): ReactElement {
-	// const [game, setGame] = React.useState<boolean>(false);
 	const dispatch = useDispatch();
 	const gameRunner = useSelector(({ widgets }) => widgets.app.gamaRunner);
 	const [isOptions, setIsOptions] = useState(false);
 
 	const handleStartGame = () => {
-		// TODO установить значение в redux gameRun true
-		// setGame(true);
 		if (!isServer) {
 			dispatch(setGameStart(true));
 			AUDIO.Theme1.play();
 			document.body.requestPointerLock();
 		}
 	};
-	const handleExittGame = () => {
-		// TODO установить значение в redux gameRun false
-		// setGame(false);
+
+	const handleExitGame = () => {
 		if (!isServer) {
 			dispatch(setGameStart(false));
 			restart();
@@ -54,8 +50,9 @@ function Start(): ReactElement {
 	};
 
 	if (gameRunner && !isServer) {
-		return <GameRunner handleExittGame={handleExittGame} />;
+		return <GameRunner handleExitGame={handleExitGame} />;
 	}
+
 	const Title = () => {
 		return (
 			<div>
@@ -64,6 +61,7 @@ function Start(): ReactElement {
 			</div>
 		);
 	};
+	
 	return (
 		<>
 			<HeaderMenu headerMenu={headerMenu} />
@@ -72,7 +70,6 @@ function Start(): ReactElement {
 					<div className={visibility}>
 						<div className="start__menu">
 							<div>
-
 								<div className="start__menu__topic">Как играть?</div>
 								<div className="start__menu__description">Ваша задача перепрыгивать всё, что попадется у вас на пути и любой ценой избежать столкновений.</div>
 								<div className="start__menu__topic">Управление</div>
