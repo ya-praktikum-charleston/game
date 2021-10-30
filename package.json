@@ -17,7 +17,7 @@
         "test:coverage": "jest --coverage",
         "start:webpack": "webpack --mode=development --watch",
         "start:server": "nodemon ./dist/server/server.js --watch",
-        "start": "concurrently -m 2 'npm run start:webpack' 'npm run start:server'",
+        "start": "concurrently -m 1 \"npm run start:webpack\" \"npm run start:server\"",
         "start:prod": "node ./dist/server/server.js"
     },
     "keywords": [],

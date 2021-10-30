@@ -1,6 +1,5 @@
 import sequelize from '../db';
-
-const { DataTypes } = require('sequelize');
+import { DataTypes } from 'sequelize';
 
 export const Post = sequelize.define('post', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },

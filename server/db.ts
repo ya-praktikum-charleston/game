@@ -10,5 +10,5 @@ module.exports = new Sequelize(
         host: process.env.DB_HOST,
         port: process.env.POSTGRES_PORT,
         logging: false,
-    }
-)
+    },
+);
