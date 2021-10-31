@@ -3,7 +3,7 @@ import axios from 'axios';
 import { isServer } from '../../../src/utilities/isServer';
 
 const instanceAPI = axios.create({
-    baseURL: 'http://localhost:5000/',
+    baseURL: process.env.APP_URL,
     headers: {
         post: {
             'Content-Type': 'application/json; charset=utf-8',
