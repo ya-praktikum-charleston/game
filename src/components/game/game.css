@@ -66,15 +66,16 @@ img.img_smile {
 
 img.img_game_over {
     margin-bottom: 90px;
+    width: 400px;
 }
 
 button.game_restar {
     border: 10px solid var(--orange);
     border-radius: 5px;
     color: var(--orange);
-    font-size: 63px;
+    font-size: 40px;
     font-weight: 600;
-    padding: 0 50px;
+    padding: 0 35px;
     margin: 20px 0;
     text-align: center;
     line-height: 80px;
@@ -85,6 +86,7 @@ button.game_restar {
     -khtml-user-select: none;
     -webkit-user-select: none;
 }
+
 button.game_exit {
     color: var(--orange);
     font-size: 32px;
