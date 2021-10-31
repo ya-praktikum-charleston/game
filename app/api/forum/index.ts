@@ -2,17 +2,6 @@
 import axios from '../../utils/axios-instance';
 import { isServer } from '../../../src/utilities/isServer';
 
-//const instanceAPI = axios.create({
-//    baseURL: `${process.env.APP_URL}/`,
-//    headers: {
-//        post: {
-//            'Content-Type': 'application/json; charset=utf-8',
-//        },
-//        put: {
-//            'Content-Type': 'application/json; charset=utf-8',
-//        },
-//    },
-//});
 // Получить все посты
 export const getPosts = () => axios.get('/posts')
     .then((response) => {
