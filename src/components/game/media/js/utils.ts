@@ -36,6 +36,11 @@ export function gameStop(this) {
     }
 }
 
+export const randomRange = (min, max) => {
+    const rand = min + Math.random() * (max + 1 - min);
+    return Math.floor(rand);
+};
+
 import { Track } from './types';
 
 /** Функция добавления любого количества аудио файлов

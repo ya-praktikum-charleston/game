@@ -19,7 +19,7 @@ import {
     theme4,
 } from './assetsLinks';
 
-import { displayText } from './utils';
+import { displayText, randomRange } from './utils';
 import { loadSpriteImage } from './loadImages';
 import loadAudio from './loadAudio';
 import { Hero as Heero } from './hero';
@@ -49,10 +49,7 @@ const skinsEnemy: SkinsEnemyType = {
     level4: 3,
 };
 
-const randomRange = (min, max) => {
-    const rand = min + Math.random() * (max + 1 - min);
-    return Math.floor(rand);
-};
+
 export class GAME2 {
     score: number;
 
