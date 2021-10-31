@@ -51,7 +51,7 @@ export class Hero {
         this.x = 70;
         this.w = 136;
         this.h = 136;
-        this.y = this.h * 2.9;
+        this.y = -200;
         this.vy = 0;
         this.speed = speed;
         this.canvas = canvas;
@@ -115,17 +115,18 @@ export class Hero {
         }
     }
 
+    deathHero() {
+        this.actions.hurt = true;
+        this.Draw(this.skins.hurt, this.x, this.y, skinsHero[condigGame.hero]);
+    }
+
     Show(): void {
-        //console.log(this.actions.jump)
-        //this.Draw(this.skins.stand, this.x, this.y, skinsHero[this.skinHero]);
         if (this.actions.run) {
-            //console.log('run')
             this.actions.jump = false;
             this.actions.hurt = false;
             this.actions.stand = false;
             this.Draw(this.skins.run, this.x, this.y, skinsHero[condigGame.hero]);
         } else if (this.actions.jump || !this.grounded) {
-            //console.log('juump')
             this.actions.run = false;
             this.actions.hurt = false;
             this.actions.stand = false;

@@ -3,7 +3,7 @@ import {
     HeroRun,
     HeroJump,
     HeroStand,
-    HeroDeath,
+    HeroDeath2,
 
     Pussy_attack_all2,
     Pussy_level1,
@@ -144,15 +144,19 @@ export class GAME2 {
                 this.hero.y < enemy.y + enemy.h &&
                 this.hero.y + this.hero.h > enemy.y + 35
             ) {
+                this.hero.actions.run = false;
+                this.hero.deathHero();
+
                 enemy.actions.run = false;
                 enemy.actions.attack = true;
+
                 this.gameStopp();
             }
             //enemy.speed += this.step;
             enemy.Move();
         }
 
-        if (this.hero) {
+        if (!this.hero.actions.hurt) {
             this.hero.Move();
         }
 
@@ -200,7 +204,7 @@ export class GAME2 {
         this.hero.skins.stand = loadSpriteImage(HeroStand, 200, 200, 18, 1);
         this.hero.skins.run = loadSpriteImage(HeroRun, 200, 200, 12, 1);
         this.hero.skins.jump = loadSpriteImage(HeroJump, 200, 200, 12, 1);
-        this.hero.skins.hurt = loadSpriteImage(HeroDeath, 200, 200, 1, 1);
+        this.hero.skins.hurt = loadSpriteImage(HeroDeath2, 200, 200, 1, 1);
         this.skinEnemies[0] = loadSpriteImage(Pussy_level1, 200, 200, 18, 1);
         this.skinEnemies[1] = loadSpriteImage(Pussy_level2, 200, 200, 12, 1);
         this.skinEnemies[2] = loadSpriteImage(Pussy_level3, 200, 200, 12, 1);
