@@ -1,5 +1,4 @@
 import React, { ReactElement, useState } from 'react';
-import { GAME } from '../../components/game/media/js/parameters';
 import Angel1 from '../../assets/img/Angels1.png';
 import Angel2 from '../../assets/img/Angels2.png';
 import Angel3 from '../../assets/img/Angels3.png';
@@ -8,22 +7,25 @@ import Level1 from '../../assets/img/level1.jpg';
 import Level2 from '../../assets/img/level2.jpg';
 import Level3 from '../../assets/img/level3.jpg';
 import Level4 from '../../assets/img/level4.jpg';
+import configGame from '../../components/game/media/js/configGame';
 
 type Props = {
     handleStartGame: () => void;
 };
 
-function StartOptions({ handleStartGame }: Props): ReactElement {
+function StartOptions({
+    handleStartGame,
+}: Props): ReactElement {
     const [hero, setHero] = useState('angel1');
     const [level, setLevel] = useState('level1');
 
     const selectHero = (e) => {
         setHero(e.target.getAttribute('data-name'));
-        GAME.heroName = e.target.getAttribute('data-name');
+        configGame.hero = e.target.getAttribute('data-name');
     };
     const selectLevel = (e) => {
         setLevel(e.target.getAttribute('data-name'));
-        GAME.level = e.target.getAttribute('data-name');
+        configGame.level = e.target.getAttribute('data-name');
     };
 
     return (

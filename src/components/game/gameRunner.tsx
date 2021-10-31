@@ -3,73 +3,62 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setGameStart, setLeaderboard } from '../../actions/app';
 import './game.css';
 import {
-    GAME,
-    HERO,
+    GAME2,
     AUDIO,
-    restart,
 } from './media/js/parameters';
-import drawRunner from './media/js/drawRunner';
-import jump from './media/js/jump';
 import {
     GameOver,
     Smile,
 } from './media/js/assetsLinks';
-
-const handlerKeypress = (event) => {
-    if (event.keyCode === 32) {
-        jump();
-    }
-};
+import configGame from './media/js/configGame';
 
 function GameRunner(): ReactElement {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const gameBannerRef = useRef<HTMLDivElement>(null);
     const dispatch = useDispatch();
     const profile = useSelector(({ collections }) => collections.user);
+    const classGame = useRef();
 
     useEffect(() => {
         if (canvasRef.current && gameBannerRef.current) {
-            canvasRef.current.width = GAME.winWidth;
-            canvasRef.current.height = GAME.winHeight;
+            const { clientWidth, clientHeight } = document.body;
+            canvasRef.current.width = clientWidth;
+            canvasRef.current.height = clientHeight;
 
-            GAME.ctx = canvasRef.current.getContext('2d');
-            GAME.dom = {
+            window.addEventListener('resize', () => {
+                canvasRef.current.width = document.body.clientWidth;
+                canvasRef.current.height = document.body.clientHeight;
+            });
+
+            const game2 = new GAME2(canvasRef.current, true);
+            classGame.current = game2;
+            game2.Start();
+            game2.dom = {
                 canvas: canvasRef,
                 gameBanner: gameBannerRef,
             };
-            GAME.setLeaderboard = (arg: number) => dispatch(setLeaderboard({
+
+            game2.setLeaderboard = (arg: number) => dispatch(setLeaderboard({
                 score_charleston: arg,
                 id: profile.id,
                 login: profile.login,
                 avatar: profile.avatar,
             }));
-            HERO.event.run = true;
-            document.addEventListener('mousedown', jump);
-            document.addEventListener('keydown', handlerKeypress);
-            // дожидаемся загрузки всех изображений
-            const int = setInterval(() => {
-                if (GAME.allCount === GAME.loadCount) {
-                    clearInterval(int);
-                    restart();
-                    drawRunner();
-                }
-            }, 1000 / 60);
         }
-        return () => {
-            // удаление событий мыши и пробела
-            document.removeEventListener('mousedown', jump);
-            document.removeEventListener('keydown', handlerKeypress);
-        };
     }, []);
 
     const handleRestart = () => {
-        restart();
-        drawRunner();
+        const game = classGame.current;
+        game.restart();
+        document.body.requestPointerLock();
         AUDIO.Theme1.play();
         document.body.requestPointerLock();
     };
     const handleGameExite = () => {
-        restart();
+        const game = classGame.current;
+        game.restart();
+        game.pause = true;
+        configGame.isPause = true;
         dispatch(setGameStart(false));
     };
     return (

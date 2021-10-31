@@ -12,9 +12,10 @@ import Posts from './pages/Forum/Posts';
 import Post from './pages/Forum/Post';
 import AddPost from './pages/Forum/AddPost';
 import ErrorBoundary from './utilities/ErrorBoundary';
+import { isServer } from './utilities/isServer';
 import './assets/style.css';
 
-const GameStatic = loadable(() => import('./components/game/gameStatic'), { ssr: false });
+const GameRunner = loadable(() => import('./components/game/gameRunner'), { ssr: false });
 const Start = loadable(() => import('./pages'), { ssr: false });
 
 export default function App(): ReactElement {
@@ -23,19 +24,24 @@ export default function App(): ReactElement {
     return (
         <ErrorBoundary>
             <div className="app">
-                <Switch>
-                    <PrivateRoute exact path="/" exact><Start /></PrivateRoute>
-                    <Route path="/signin" component={Signin} />
-                    <Route path="/signup" component={Signup} />
-                    <PrivateRoute path="/profile"><Profile /></PrivateRoute>
-                    <PrivateRoute exact path="/forum"><Posts /></PrivateRoute>
-                    <PrivateRoute path="/forum/:id"><Post /></PrivateRoute>
-                    <PrivateRoute path="/forum-add-topic"><AddPost /></PrivateRoute>
-                    <PrivateRoute path="/leaderboard"><LeaderboardPage /></PrivateRoute>
-                    <Route component={() => (<ErrorPage number={404} />)} />
-                </Switch>
-
-                {!gameRunner && <GameStatic />}
+                {
+                    !gameRunner && !isServer
+                        ? (
+                            <Switch>
+                                <PrivateRoute exact path="/" exact><Start /></PrivateRoute>
+                                <Route path="/signin" component={Signin} />
+                                <Route path="/signup" component={Signup} />
+                                <PrivateRoute path="/profile"><Profile /></PrivateRoute>
+                                <PrivateRoute exact path="/forum"><Posts /></PrivateRoute>
+                                <PrivateRoute path="/forum/:id"><Post /></PrivateRoute>
+                                <PrivateRoute path="/forum-add-topic"><AddPost /></PrivateRoute>
+                                <PrivateRoute path="/leaderboard"><LeaderboardPage /></PrivateRoute>
+                                <Route component={() => (<ErrorPage number={404} />)} />
+                            </Switch>
+                        )
+                        : null
+                }
+                <GameRunner />
             </div>
         </ErrorBoundary>
     );

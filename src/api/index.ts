@@ -30,7 +30,6 @@ export const API = {
 
     // Получить все комментарии поста
     async getMessages(id: string) {
-        console.log('asdas')
         return await instanceAPI.get(`/api/messages/${id}`);
     },
 

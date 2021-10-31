@@ -1,5 +1,9 @@
 # Game Run
 
+![Image alt](https://github.com/ya-praktikum-charleston/game/raw/main/public/gameImg1.png)
+
+![Image alt](https://github.com/ya-praktikum-charleston/game/raw/main/public/gameImg1.png)
+
 Яндекс Практикум. Курс Middle Frontend разработчик.  
 Проектная работа второго модуля.  
 Команда: Чарлстон
@@ -44,13 +48,4 @@ npm run build
 
 ```
 npm run start:prod
-```
-
-
-### Executing program
-
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
 ```

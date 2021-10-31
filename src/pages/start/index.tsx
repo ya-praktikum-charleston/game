@@ -12,6 +12,7 @@ import StartOptions from './options';
 import ForwardIcon from '../../assets/svg/forward.svg';
 import { isServer } from '../../utilities/isServer';
 import './start.css';
+import configGame from '../../components/game/media/js/configGame';
 
 const headerMenu = [
 	{
@@ -24,22 +25,15 @@ const headerMenu = [
 
 function Start(): ReactElement {
 	const dispatch = useDispatch();
-	const gameRunner = useSelector(({ widgets }) => widgets.app.gamaRunner);
 	const [isOptions, setIsOptions] = useState(false);
 
 	const handleStartGame = () => {
 		if (!isServer) {
 			dispatch(setGameStart(true));
+			configGame.isPause = false;
 			AUDIO.Theme1.play();
+			AUDIO.Theme1.setVolume(0.08);
 			document.body.requestPointerLock();
-		}
-	};
-
-	const handleExitGame = () => {
-		if (!isServer) {
-			dispatch(setGameStart(false));
-			restart();
-			AUDIO.Theme1.stop();
 		}
 	};
 
@@ -49,10 +43,6 @@ function Start(): ReactElement {
 		setIsOptions((prev) => !prev);
 	};
 
-	if (gameRunner && !isServer) {
-		return <GameRunner handleExitGame={handleExitGame} />;
-	}
-
 	const Title = () => {
 		return (
 			<div>
@@ -61,7 +51,7 @@ function Start(): ReactElement {
 			</div>
 		);
 	};
-	
+
 	return (
 		<>
 			<HeaderMenu headerMenu={headerMenu} />

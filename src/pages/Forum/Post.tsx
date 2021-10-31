@@ -7,7 +7,7 @@ import CommentAdd from './CommentAdd';
 import { API } from '../../api';
 import Main from '../../components/main';
 import { PostType, MessageType } from './type';
-import { fetchMessages } from '../../actions/forum';
+import { fetchMessages, addMessage } from '../../actions/forum';
 
 interface UseParamsTypes {
     id: string;
@@ -20,30 +20,20 @@ type addMessageValueType = {
 
 function Post() {
     const [post, setPost] = React.useState<PostType | null>(null);
-    const [messages2, setMessages] = React.useState<MessageType[]>([]);
     const { id } = useParams<UseParamsTypes>();
     const dispatch = useDispatch();
     const messages: MessageType[] = useSelector(({ widgets }) => widgets.forum.messages);
 
     const handleAddMessages = React.useCallback(
         (value: addMessageValueType) => {
-            API.addMessage(id, JSON.stringify(value))
-                .then((response) => {
-                    setMessages([...messages, response.data]);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+            dispatch(addMessage(id, value));
         },
         [id, messages],
     );
 
     const handleGetMessages = React.useCallback(() => {
-        //API.getMessages(id).then((response) => {
-        //    setMessages(response.data);
-        //});
         dispatch(fetchMessages(id));
-    }, [id, setMessages]);
+    }, [id]);
 
     React.useEffect(() => {
         API.getPost(id).then((response) => {
@@ -51,7 +41,6 @@ function Post() {
             handleGetMessages();
         });
     }, [id, handleGetMessages]);
-
     return (
         <>
             <Main title="Форум">

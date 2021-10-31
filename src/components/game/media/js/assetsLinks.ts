@@ -40,9 +40,10 @@ export { default as Heroes_Death } from '../img/heroes_death.png';
 export { default as Heroes_Sliding } from '../img/heroes_sliding.png';
 
 export { default as HeroRun } from '../img/heroes-run2.png';
-export { default as HeroJump } from '../img/heroes-jump2.png';
+export { default as HeroJump } from '../img/heroes-jump3.png';
 export { default as HeroStand } from '../img/heroes-stand2.png';
 export { default as HeroDeath } from '../img/heroes-death2.png';
+export { default as HeroDeath2 } from '../img/heroes-death3.png';
 
 /* Pussy */
 export { default as Pussy } from '../img/Pussy.png';
@@ -57,6 +58,7 @@ export { default as Pussy_level3 } from '../img/pussy/pussy_level3.png';
 export { default as Pussy_level4 } from '../img/pussy/pussy_level4.png';
 export { default as Pussy_all } from '../img/pussy-run-all2.png';
 export { default as Pussy_attack_all } from '../img/pussy/pussy-attack-all.png';
+export { default as Pussy_attack_all2 } from '../img/pussy/pussy-attack-all3.png';
 
 export { default as GameOver } from '../img/GameOver.png';
 export { default as Smile } from '../img/smile.png';
@@ -67,4 +69,7 @@ export { default as Death } from '../audio/Death.wav';
 export { default as theme1 } from '../audio/theme1.mp3';
 export { default as themeNight } from '../audio/themeNight.mp3';
 export { default as themeEpick } from '../audio/themeEpick.mp3';
-export { default as theme4 } from '../audio/theme4.mp3';
+export { default as theme3 } from '../audio/2_night.mp3';
+export { default as theme2 } from '../audio/3_forest.mp3';
+export { default as theme4 } from '../audio/4_winter.mp3';
+

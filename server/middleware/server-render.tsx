@@ -98,8 +98,6 @@ export default (req: Request, res: Response) => {
             location,
             route,
         );
-        console.log('---------------------------')
-        console.log(fetchMethod)
         if (match && fetchMethod) {
             fetchMethod({
                 dispatch: store.dispatch,
