@@ -9,7 +9,7 @@ import {
     getPosts as fetchPosts,
     addPost,
     getMessages as fetchMessages,
-    //addMessage,
+    addMessage,
     getMessageToMessage,
     addMessageToMessage,
 } from '../../../app/api/forum';
@@ -26,7 +26,7 @@ import type {
     GetMessageToMessageProps,
 } from '../../../app/api/forum/types';
 
-export function* workerGetPosts(): Generator<CallEffect<GetPostsResponse>> {
+export function* workerGetPosts() {
     try {
         const result = yield call(fetchPosts);
         yield put(getPosts(result));
@@ -37,7 +37,7 @@ export function* workerGetPosts(): Generator<CallEffect<GetPostsResponse>> {
 
 export function* workerGetPost(
     action: ActionPayload<GetPostProps>,
-): Generator<CallEffect<GetPostResponse>> {
+) {
     try {
         yield call(getPost, action.payload);
     } catch (error) {
@@ -47,7 +47,7 @@ export function* workerGetPost(
 
 export function* workerAddPost(
     action: ActionPayload<AddPostProps>,
-): Generator<CallEffect<TeamLeaderBoardResponse>> {
+) {
     try {
         yield call(addPost, action.payload);
     } catch (error) {
@@ -57,7 +57,7 @@ export function* workerAddPost(
 
 export function* workerGetMessages(
     action: ActionPayload<GetMessagesProps>,
-): Generator<CallEffect<TeamLeaderBoardResponse>> {
+) {
     try {
         const result = yield call(fetchMessages, action.payload);
         yield put(getMessages(result));
@@ -68,10 +68,11 @@ export function* workerGetMessages(
 
 export function* workerAddMessage(
     action: ActionPayload<AddMessageProps>,
-): Generator<CallEffect<TeamLeaderBoardResponse>> {
+) {
     try {
-        const result = yield call(fetchMessage, action.payload);
-        yield put(addMessage(result));
+        yield call(addMessage, action.payload);
+        const result = yield call(fetchMessages, action.payload.id);
+        yield put(getMessages(result));
     } catch (error) {
         console.log(error);
     }
@@ -79,7 +80,7 @@ export function* workerAddMessage(
 
 export function* workerAddMessageToMessage(
     action: ActionPayload<AddMessageToMessageProps>,
-): Generator<CallEffect<TeamLeaderBoardResponse>> {
+) {
     try {
         yield call(addMessageToMessage, action.payload);
     } catch (error) {
@@ -89,7 +90,7 @@ export function* workerAddMessageToMessage(
 
 export function* workerGetMessageToMessage(
     action: ActionPayload<GetMessageToMessageProps>,
-): Generator<CallEffect<TeamLeaderBoardResponse>> {
+) {
     try {
         yield call(getMessageToMessage, action.payload);
     } catch (error) {

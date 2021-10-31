@@ -7,7 +7,6 @@ import { fetchPosts } from '../../actions/forum';
 import './forum.css';
 
 function Posts() {
-    // const [posts, setPosts] = React.useState<PostType[] | null>(null);
     const dispatch = useDispatch();
     const forumData: PostType[] = useSelector(({ widgets }) => widgets.forum.posts);
     React.useEffect(() => {

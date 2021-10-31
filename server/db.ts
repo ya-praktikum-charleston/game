@@ -4,12 +4,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export default new Sequelize(
-    process.env.DB_NAME,
-    process.env.DB_USER,
-    process.env.DB_PASSWORD,
-    {
-        dialect: 'postgres',
-        host: process.env.DB_HOST,
-        port: process.env.DB_PORT,
-    },
+        process.env.POSTGRES_DB,        // Название БД
+        process.env.POSTGRES_USER,        // Пользователь
+        process.env.POSTGRES_PASSWORD,    // ПАРОЛЬ
+        {
+                dialect: 'postgres',
+                host: process.env.DB_HOST,
+                port: process.env.POSTGRES_PORT,
+                logging: false,
+        },
 );

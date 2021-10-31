@@ -1,5 +1,4 @@
 import React, { ReactElement, useState } from 'react';
-import { GAME } from '../../components/game/media/js/parameters';
 import Angel1 from '../../assets/img/Angels1.png';
 import Angel2 from '../../assets/img/Angels2.png';
 import Angel3 from '../../assets/img/Angels3.png';
@@ -9,6 +8,7 @@ import Level2 from '../../assets/img/level2.jpg';
 import Level3 from '../../assets/img/level3.jpg';
 import Level4 from '../../assets/img/level4.jpg';
 import configGame from '../../components/game/media/js/configGame';
+
 type Props = {
     handleStartGame: () => void;
 };

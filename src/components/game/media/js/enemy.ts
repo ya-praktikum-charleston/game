@@ -133,7 +133,7 @@ export class Enemy {
     }
 
     DrawStatic(sprite: SpriteImage | undefined, x: number, y: number, offset: number) {
-        debugger
+
         this.ctx?.drawImage(
             sprite.dom,
             sprite.frameIndex + offset,

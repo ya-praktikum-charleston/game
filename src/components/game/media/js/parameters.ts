@@ -97,8 +97,6 @@ export class GAME2 {
         if (localStorage.getItem('localStorageRecord')) {
             this.localStorageRecord = Number(localStorage.getItem('localStorageRecord')) || 0;
         }
-        //if (this.loadingSprite.loadCount === this.loadingSprite.countSprites) {
-        //}
     }
 
     Update() {
@@ -156,7 +154,6 @@ export class GAME2 {
         if (!this.hero.actions.hurt) {
             this.hero.Move();
         }
-
 
         this.hero.speed += this.step;
         this.level.speed += this.step;

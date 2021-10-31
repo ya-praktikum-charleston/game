@@ -23,6 +23,7 @@ export default [
     {
         path: '/leaderboard',
         strict: true,
+        exact: true,
         fetchData({ dispatch, params }) {
             dispatch(fetchUser(params));
             dispatch(getLeaderboardList());

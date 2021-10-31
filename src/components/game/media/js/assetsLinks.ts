@@ -69,7 +69,7 @@ export { default as Death } from '../audio/Death.wav';
 export { default as theme1 } from '../audio/theme1.mp3';
 export { default as themeNight } from '../audio/themeNight.mp3';
 export { default as themeEpick } from '../audio/themeEpick.mp3';
-export { default as theme2 } from '../audio/2_night.mp3';
-export { default as theme3 } from '../audio/3_forest.mp3';
+export { default as theme3 } from '../audio/2_night.mp3';
+export { default as theme2 } from '../audio/3_forest.mp3';
 export { default as theme4 } from '../audio/4_winter.mp3';
 

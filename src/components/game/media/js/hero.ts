@@ -6,7 +6,7 @@ type SkinsHeroType = {
     angel2: number;
     angel3: number;
     angel4: number;
-}
+};
 
 const skinsHero: SkinsHeroType = {
     angel1: 0,
@@ -47,7 +47,11 @@ export class Hero {
 
     skinHero: string;
 
-    constructor(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D | null, gravity: number, speed) {
+    constructor(
+        canvas: HTMLCanvasElement,
+        ctx: CanvasRenderingContext2D | null,
+        gravity: number, speed,
+    ) {
         this.x = 70;
         this.w = 136;
         this.h = 136;
@@ -159,7 +163,6 @@ export class Hero {
     }
 
     Draw(sprite: SpriteImage | undefined, x: number, y: number, offset: number) {
-        debugger
         sprite.tickCount += this.speed / 20;
         if (sprite.tickCount > sprite.ticksFrame) {
             sprite.tickCount = 0;

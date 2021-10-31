@@ -84,8 +84,8 @@ const Signup = ({ signupResult, signup }: Props) => {
                                 </button>
                                 {
                                     (signupResult.error === 'Login already exists')
-                                        ? <div>Такой пользователь уже зарегистрирован</div>
-                                        : ''
+                                        ? <span className="input-block__error">Не правильный логин или пароль</span>
+                                        : null
                                 }
                             </form>
                         )}
