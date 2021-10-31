@@ -2,7 +2,7 @@
 
 ![Image alt](https://github.com/ya-praktikum-charleston/game/raw/main/public/gameImg1.png)
 
-![Image alt](https://github.com/ya-praktikum-charleston/game/raw/main/public/gameImg1.png)
+![Image alt](https://github.com/ya-praktikum-charleston/game/raw/main/public/gameImg2.png)
 
 Яндекс Практикум. Курс Middle Frontend разработчик.  
 Проектная работа второго модуля.  
