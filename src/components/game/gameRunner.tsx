@@ -52,6 +52,7 @@ function GameRunner(): ReactElement {
         game.restart();
         document.body.requestPointerLock();
         AUDIO.Theme1.play();
+        AUDIO.Theme1.setVolume(0.08);
         document.body.requestPointerLock();
     };
     const handleGameExite = () => {
